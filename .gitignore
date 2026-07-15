@@ -1,0 +1,35 @@
+## .NET
+bin/
+obj/
+artifacts/
+TestResults/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## VS Code
+.vscode/*
+!.vscode/settings.json
+
+## JetBrains
+.idea/
+*.sln.iml
+
+## Sistema operacional
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
+
+## Ambiente
+.env
+.env.*
+!.env.example
+
+## Pacotes
+*.nupkg
+*.snupkg
+packages/
