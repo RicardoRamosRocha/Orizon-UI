@@ -1,0 +1,121 @@
+.orizon-card {
+    display: block;
+    color: var(--orizon-color-text-primary, #111827);
+    background: var(--orizon-color-surface, #ffffff);
+    border: 1px solid var(--orizon-color-border, #e5e7eb);
+    border-radius: var(--orizon-radius-xl, 1rem);
+    box-shadow: var(
+        --orizon-shadow-sm,
+        0 1px 2px rgb(0 0 0 / 0.05)
+    );
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.orizon-card:hover {
+    color: var(--orizon-color-text-primary, #111827);
+    text-decoration: none;
+}
+
+.orizon-card--hoverable {
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.orizon-card--hoverable:hover {
+    border-color: var(--orizon-color-border-strong, #d1d5db);
+    box-shadow: var(
+        --orizon-shadow-md,
+        0 8px 24px rgb(15 23 42 / 0.08)
+    );
+    transform: translateY(-2px);
+}
+
+.orizon-card--elevated {
+    border-color: transparent;
+    box-shadow: var(
+        --orizon-shadow-lg,
+        0 12px 30px rgb(15 23 42 / 0.12)
+    );
+}
+
+.orizon-card--outlined {
+    box-shadow: none;
+}
+
+.orizon-card--muted {
+    background: var(--orizon-color-surface-secondary, #f9fafb);
+    box-shadow: none;
+}
+
+.orizon-card--padding-none {
+    padding: 0;
+}
+
+.orizon-card--padding-sm {
+    padding: 1rem;
+}
+
+.orizon-card--padding-md {
+    padding: 1.25rem;
+}
+
+.orizon-card--padding-lg {
+    padding: 1.5rem;
+}
+
+.orizon-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.orizon-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--orizon-color-primary-600, #4f46e5);
+    background: var(--orizon-color-primary-50, #eef2ff);
+    border-radius: var(--orizon-radius-lg, 0.75rem);
+    font-size: 1.25rem;
+}
+
+.orizon-card__heading {
+    min-width: 0;
+    flex: 1;
+}
+
+.orizon-card__title {
+    margin: 0;
+    color: var(--orizon-color-text-primary, #111827);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.orizon-card__subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--orizon-color-text-secondary, #6b7280);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.orizon-card__body {
+    color: var(--orizon-color-text-secondary, #4b5563);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.orizon-card__body > :first-child {
+    margin-top: 0;
+}
+
+.orizon-card__body > :last-child {
+    margin-bottom: 0;
+}

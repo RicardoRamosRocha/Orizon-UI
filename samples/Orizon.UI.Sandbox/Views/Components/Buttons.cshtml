@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Buttons";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Buttons</h1>
+            <p class="component-catalog__description">
+                Botões reutilizáveis para ações, navegação e formulários.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Variantes</h2>
+            <p class="component-example__description">
+                Estilos semânticos para diferentes tipos de ação.
+            </p>
+        </header>
+
+        <div class="component-example__preview">
+            <orizon-button variant="primary">Primary</orizon-button>
+            <orizon-button variant="secondary">Secondary</orizon-button>
+            <orizon-button variant="success">Success</orizon-button>
+            <orizon-button variant="warning">Warning</orizon-button>
+            <orizon-button variant="danger">Danger</orizon-button>
+            <orizon-button variant="ghost">Ghost</orizon-button>
+        </div>
+    </section>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Ícones e estados</h2>
+        </header>
+
+        <div class="component-example__preview">
+            <orizon-button icon="ph ph-plus">
+                Novo registro
+            </orizon-button>
+
+            <orizon-button variant="secondary"
+                           icon="ph ph-download-simple">
+                Exportar
+            </orizon-button>
+
+            <orizon-button variant="danger"
+                           icon="ph ph-trash">
+                Excluir
+            </orizon-button>
+
+            <orizon-button loading="true">
+                Processando
+            </orizon-button>
+
+            <orizon-button disabled="true">
+                Desabilitado
+            </orizon-button>
+        </div>
+    </section>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Tamanhos</h2>
+        </header>
+
+        <div class="component-example__preview">
+            <orizon-button size="sm">Small</orizon-button>
+            <orizon-button size="md">Medium</orizon-button>
+            <orizon-button size="lg">Large</orizon-button>
+        </div>
+    </section>
+</div>

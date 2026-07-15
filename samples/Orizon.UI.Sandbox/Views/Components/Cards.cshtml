@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Cards</h1>
+            <p class="component-catalog__description">
+                Containers para agrupamento de conteúdo e ações.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <div class="component-catalog__grid">
+        <orizon-card title="Clientes"
+                     subtitle="Gestão de clientes"
+                     icon="ph ph-users">
+            Consulte e gerencie os clientes cadastrados.
+        </orizon-card>
+
+        <orizon-card title="Relatórios"
+                     subtitle="Indicadores operacionais"
+                     icon="ph ph-chart-line-up"
+                     variant="elevated"
+                     hoverable="true">
+            Acompanhe os principais indicadores da aplicação.
+        </orizon-card>
+
+        <orizon-card title="Configurações"
+                     subtitle="Preferências da aplicação"
+                     icon="ph ph-gear"
+                     variant="muted">
+            Personalize os recursos disponíveis.
+        </orizon-card>
+    </div>
+</div>

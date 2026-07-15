@@ -1,14 +1,38 @@
-@import url("base/variables.css");
-@import url("base/reset.css");
-@import url("base/typography.css");
+/*
+|--------------------------------------------------------------------------
+| Orizon UI
+|--------------------------------------------------------------------------
+*/
 
-@import url("layout/grid.css");
-@import url("layout/sidebar.css");
-@import url("layout/topbar.css");
+/* Base */
+@import url("./base/variables.css");
+@import url("./base/reset.css");
+@import url("./base/typography.css");
 
-@import url("components/button.css");
-@import url("components/card.css");
-@import url("components/table.css");
+/* Themes */
+@import url("./themes/light.css");
+@import url("./themes/dark.css");
 
-@import url("utilities/spacing.css");
-@import url("utilities/colors.css");
+/* Layout */
+@import url("./layout/grid.css");
+@import url("./layout/sidebar.css");
+@import url("./layout/topbar.css");
+@import url("./layout/admin-layout.css");
+
+/* Components */
+@import url("./components/buttons.css");
+@import url("./components/cards.css");
+@import url("./components/alerts.css");
+@import url("./components/badges.css");
+@import url("./components/breadcrumb.css");
+@import url("./components/dropdown.css");
+@import url("./components/form.css");
+@import url("./components/modal.css");
+@import url("./components/navbar.css");
+@import url("./components/pagination.css");
+@import url("./components/table.css");
+@import url("./components/tabs.css");
+
+/* Utilities */
+@import url("./utilities/spacing.css");
+@import url("./utilities/colors.css");
