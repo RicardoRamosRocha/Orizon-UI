@@ -1,0 +1,119 @@
+.orizon-table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--orizon-color-surface, #ffffff);
+    border: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-radius: var(--orizon-radius-lg, 0.875rem);
+    box-shadow: var(--orizon-shadow-xs, 0 1px 2px rgb(15 23 42 / 5%));
+}
+
+.orizon-table-container:focus-visible {
+    box-shadow: var(--orizon-focus-ring);
+    outline: 0;
+}
+
+.orizon-table {
+    width: 100%;
+    min-width: 44rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--orizon-color-text-primary, #0f172a);
+    font-size: var(--orizon-font-size-sm, 0.875rem);
+}
+
+.orizon-table caption {
+    padding: var(--orizon-space-3, 0.75rem) var(--orizon-space-4, 1rem);
+    color: var(--orizon-color-text-secondary, #475569);
+    text-align: left;
+}
+
+.orizon-table th,
+.orizon-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--orizon-color-border, #e2e8f0);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.orizon-table th {
+    color: var(--orizon-color-text-secondary, #475569);
+    background: var(--orizon-color-surface-secondary, #f1f5f9);
+    font-size: var(--orizon-font-size-xs, 0.75rem);
+    font-weight: var(--orizon-font-weight-bold, 700);
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.orizon-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.orizon-table--striped tbody tr:nth-child(even) td {
+    background: color-mix(
+        in srgb,
+        var(--orizon-color-surface-secondary, #f1f5f9) 55%,
+        transparent
+    );
+}
+
+.orizon-table--hoverable tbody tr:hover td {
+    background: color-mix(
+        in srgb,
+        var(--orizon-color-primary-50, #eef5ff) 72%,
+        transparent
+    );
+}
+
+.orizon-table--compact th,
+.orizon-table--compact td {
+    padding: 0.625rem 0.75rem;
+}
+
+.orizon-table--bordered th,
+.orizon-table--bordered td {
+    border-right: 1px solid var(--orizon-color-border, #e2e8f0);
+}
+
+.orizon-table--bordered th:last-child,
+.orizon-table--bordered td:last-child {
+    border-right: 0;
+}
+
+.orizon-table__cell {
+    display: grid;
+    gap: 0.125rem;
+}
+
+.orizon-table__primary {
+    color: var(--orizon-color-text-primary, #0f172a);
+    font-weight: var(--orizon-font-weight-semibold, 600);
+}
+
+.orizon-table__secondary {
+    color: var(--orizon-color-text-muted, #64748b);
+    font-size: var(--orizon-font-size-xs, 0.75rem);
+}
+
+.orizon-table__number,
+.orizon-table .is-numeric {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.orizon-table__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--orizon-space-2, 0.5rem);
+    white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+    .orizon-table-container {
+        border-radius: var(--orizon-radius-md, 0.625rem);
+    }
+
+    .orizon-table {
+        min-width: 52rem;
+    }
+}

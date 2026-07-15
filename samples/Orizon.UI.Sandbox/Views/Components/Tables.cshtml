@@ -1,0 +1,145 @@
+@{
+    ViewData["Title"] = "Tables";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Tables</h1>
+            <p class="component-catalog__description">
+                Tabelas responsivas para listas densas, status, valores e acoes.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Clientes</h2>
+            <p class="component-example__description">
+                Use a rolagem horizontal em telas estreitas para manter a leitura da tabela.
+            </p>
+        </header>
+
+        <orizon-table label="Clientes cadastrados"
+                      striped="true"
+                      hoverable="true"
+                      bordered="true">
+            <thead>
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Plano</th>
+                    <th scope="col" class="is-numeric">Receita</th>
+                    <th scope="col">Atualizado</th>
+                    <th scope="col">
+                        <span class="orizon-sr-only">Acoes</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="orizon-table__cell">
+                            <span class="orizon-table__primary">Atlas Energia</span>
+                            <span class="orizon-table__secondary">atlas.energia@example.com</span>
+                        </div>
+                    </td>
+                    <td>
+                        <orizon-badge variant="success" dot="true">Ativo</orizon-badge>
+                    </td>
+                    <td>Enterprise</td>
+                    <td class="orizon-table__number">R$ 42.800,00</td>
+                    <td>15/07/2026</td>
+                    <td>
+                        <div class="orizon-table__actions">
+                            <orizon-button variant="ghost"
+                                           size="sm"
+                                           icon="ph ph-pencil-simple"
+                                           aria-label="Editar Atlas Energia">
+                                Editar
+                            </orizon-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="orizon-table__cell">
+                            <span class="orizon-table__primary">Brava Logistica</span>
+                            <span class="orizon-table__secondary">brava.ops@example.com</span>
+                        </div>
+                    </td>
+                    <td>
+                        <orizon-badge variant="warning" dot="true">Pendente</orizon-badge>
+                    </td>
+                    <td>Business</td>
+                    <td class="orizon-table__number">R$ 18.450,00</td>
+                    <td>14/07/2026</td>
+                    <td>
+                        <div class="orizon-table__actions">
+                            <orizon-button variant="ghost"
+                                           size="sm"
+                                           icon="ph ph-pencil-simple"
+                                           aria-label="Editar Brava Logistica">
+                                Editar
+                            </orizon-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="orizon-table__cell">
+                            <span class="orizon-table__primary">Clara Foods</span>
+                            <span class="orizon-table__secondary">financeiro@clara.example</span>
+                        </div>
+                    </td>
+                    <td>
+                        <orizon-badge variant="neutral">Rascunho</orizon-badge>
+                    </td>
+                    <td>Starter</td>
+                    <td class="orizon-table__number">R$ 7.990,00</td>
+                    <td>12/07/2026</td>
+                    <td>
+                        <div class="orizon-table__actions">
+                            <orizon-button variant="ghost"
+                                           size="sm"
+                                           icon="ph ph-pencil-simple"
+                                           aria-label="Editar Clara Foods">
+                                Editar
+                            </orizon-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="orizon-table__cell">
+                            <span class="orizon-table__primary">Norte Retail</span>
+                            <span class="orizon-table__secondary">contato@norte.example</span>
+                        </div>
+                    </td>
+                    <td>
+                        <orizon-badge variant="danger" dot="true">Bloqueado</orizon-badge>
+                    </td>
+                    <td>Business</td>
+                    <td class="orizon-table__number">R$ 0,00</td>
+                    <td>10/07/2026</td>
+                    <td>
+                        <div class="orizon-table__actions">
+                            <orizon-button variant="ghost"
+                                           size="sm"
+                                           icon="ph ph-pencil-simple"
+                                           aria-label="Editar Norte Retail">
+                                Editar
+                            </orizon-button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </orizon-table>
+    </section>
+</div>
