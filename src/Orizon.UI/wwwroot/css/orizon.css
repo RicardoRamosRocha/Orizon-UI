@@ -12,3 +12,51 @@
 
 @import url("utilities/spacing.css");
 @import url("utilities/colors.css");
+
+/*
+|--------------------------------------------------------------------------
+| ORIZON UI
+|--------------------------------------------------------------------------
+*/
+
+/* ===========================================
+   TOKENS
+=========================================== */
+
+@import url("./base/reset.css");
+@import url("./base/tokens.css");
+@import url("./base/typography.css");
+@import url("./base/utilities.css");
+
+/* ===========================================
+   THEMES
+=========================================== */
+
+@import url("./themes/light.css");
+@import url("./themes/dark.css");
+
+/* ===========================================
+   LAYOUT
+=========================================== */
+
+@import url("./layout/layout.css");
+@import url("./layout/sidebar.css");
+@import url("./layout/header.css");
+@import url("./layout/footer.css");
+
+/* ===========================================
+   COMPONENTS
+=========================================== */
+
+@import url("./components/buttons.css");
+@import url("./components/cards.css");
+@import url("./components/alerts.css");
+@import url("./components/badges.css");
+@import url("./components/breadcrumb.css");
+@import url("./components/dropdown.css");
+@import url("./components/form.css");
+@import url("./components/modal.css");
+@import url("./components/navbar.css");
+@import url("./components/pagination.css");
+@import url("./components/table.css");
+@import url("./components/tabs.css");

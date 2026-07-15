@@ -1,0 +1,170 @@
+.orizon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--orizon-space-2, 0.5rem);
+    min-height: 2.5rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-md, 0.625rem);
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.orizon-button:hover {
+    text-decoration: none;
+}
+
+.orizon-button:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(1px);
+}
+
+.orizon-button:focus-visible {
+    outline: 3px solid color-mix(
+        in srgb,
+        var(--orizon-color-primary-500, #6366f1) 28%,
+        transparent
+    );
+    outline-offset: 2px;
+}
+
+.orizon-button:disabled,
+.orizon-button[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.orizon-button--primary {
+    color: var(--orizon-color-primary-contrast, #ffffff);
+    background: var(--orizon-color-primary-600, #4f46e5);
+    border-color: var(--orizon-color-primary-600, #4f46e5);
+}
+
+.orizon-button--primary:hover {
+    background: var(--orizon-color-primary-700, #4338ca);
+    border-color: var(--orizon-color-primary-700, #4338ca);
+}
+
+.orizon-button--secondary {
+    color: var(--orizon-color-text-primary, #111827);
+    background: var(--orizon-color-surface, #ffffff);
+    border-color: var(--orizon-color-border, #d1d5db);
+}
+
+.orizon-button--secondary:hover {
+    background: var(--orizon-color-surface-secondary, #f9fafb);
+    border-color: var(--orizon-color-border-strong, #9ca3af);
+}
+
+.orizon-button--success {
+    color: #ffffff;
+    background: var(--orizon-color-success-600, #059669);
+    border-color: var(--orizon-color-success-600, #059669);
+}
+
+.orizon-button--success:hover {
+    background: var(--orizon-color-success-700, #047857);
+}
+
+.orizon-button--danger {
+    color: #ffffff;
+    background: var(--orizon-color-danger-600, #dc2626);
+    border-color: var(--orizon-color-danger-600, #dc2626);
+}
+
+.orizon-button--danger:hover {
+    background: var(--orizon-color-danger-700, #b91c1c);
+}
+
+.orizon-button--warning {
+    color: #111827;
+    background: var(--orizon-color-warning-400, #fbbf24);
+    border-color: var(--orizon-color-warning-400, #fbbf24);
+}
+
+.orizon-button--warning:hover {
+    background: var(--orizon-color-warning-500, #f59e0b);
+}
+
+.orizon-button--ghost {
+    color: var(--orizon-color-text-secondary, #4b5563);
+    background: transparent;
+    border-color: transparent;
+}
+
+.orizon-button--ghost:hover {
+    color: var(--orizon-color-text-primary, #111827);
+    background: var(--orizon-color-surface-secondary, #f3f4f6);
+}
+
+.orizon-button--link {
+    min-height: auto;
+    padding: 0;
+    color: var(--orizon-color-primary-600, #4f46e5);
+    background: transparent;
+    border-color: transparent;
+    border-radius: 0;
+}
+
+.orizon-button--link:hover {
+    color: var(--orizon-color-primary-700, #4338ca);
+    text-decoration: underline;
+}
+
+.orizon-button--sm {
+    min-height: 2rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8125rem;
+    border-radius: var(--orizon-radius-sm, 0.5rem);
+}
+
+.orizon-button--md {
+    min-height: 2.5rem;
+}
+
+.orizon-button--lg {
+    min-height: 3rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+}
+
+.orizon-button--block {
+    width: 100%;
+}
+
+.orizon-button__icon {
+    flex: 0 0 auto;
+    font-size: 1.125em;
+}
+
+.orizon-button__content {
+    display: inline-flex;
+    align-items: center;
+}
+
+.orizon-button__spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: orizon-button-spin 700ms linear infinite;
+}
+
+@keyframes orizon-button-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

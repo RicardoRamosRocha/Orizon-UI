@@ -1,0 +1,105 @@
+.orizon-alert {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-lg, 0.75rem);
+}
+
+.orizon-alert__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.orizon-alert__content {
+    min-width: 0;
+    flex: 1;
+}
+
+.orizon-alert__title {
+    margin-bottom: 0.25rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.orizon-alert__message {
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.orizon-alert__message p:last-child {
+    margin-bottom: 0;
+}
+
+.orizon-alert__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    color: currentColor;
+    background: transparent;
+    border: 0;
+    border-radius: var(--orizon-radius-sm, 0.5rem);
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.orizon-alert__close:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+    opacity: 1;
+}
+
+.orizon-alert__close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.orizon-alert--info {
+    color: #075985;
+    background: #f0f9ff;
+    border-color: #bae6fd;
+}
+
+.orizon-alert--success {
+    color: #065f46;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.orizon-alert--warning {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.orizon-alert--danger {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.orizon-alert--neutral {
+    color: var(--orizon-color-text-secondary, #4b5563);
+    background: var(--orizon-color-surface-secondary, #f9fafb);
+    border-color: var(--orizon-color-border, #e5e7eb);
+}
+
+.orizon-alert.is-closing {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+    transition:
+        opacity 160ms ease,
+        transform 160ms ease;
+}
