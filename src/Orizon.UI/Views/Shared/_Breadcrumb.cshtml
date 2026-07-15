@@ -1,0 +1,28 @@
+@{
+    var pageTitle = ViewData["Title"]?.ToString() ?? "Dashboard";
+}
+
+<nav class="orizon-breadcrumb" aria-label="Breadcrumb">
+
+    <ol class="orizon-breadcrumb-list">
+
+        <li class="orizon-breadcrumb-item">
+            <a href="/">
+                Início
+            </a>
+        </li>
+
+        <li class="orizon-breadcrumb-separator">
+            /
+        </li>
+
+        <li class="orizon-breadcrumb-item is-active"
+            aria-current="page">
+
+            @pageTitle
+
+        </li>
+
+    </ol>
+
+</nav>

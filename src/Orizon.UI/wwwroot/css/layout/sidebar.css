@@ -1,0 +1,346 @@
+.orizon-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--orizon-topbar-height);
+    padding: var(--orizon-space-4);
+    border-bottom: 1px solid var(--orizon-color-border);
+}
+
+.orizon-sidebar-brand {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: var(--orizon-space-3);
+    color: var(--orizon-color-text-primary);
+}
+
+.orizon-sidebar-brand:hover {
+    color: var(--orizon-color-text-primary);
+}
+
+.orizon-sidebar-brand-mark {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--orizon-color-text-inverse);
+    font-size: var(--orizon-font-size-lg);
+    font-weight: var(--orizon-font-weight-bold);
+    border-radius: var(--orizon-radius-lg);
+    background:
+        linear-gradient(
+            135deg,
+            var(--orizon-color-primary-500),
+            var(--orizon-color-primary-700)
+        );
+    box-shadow:
+        0 0.5rem 1.25rem
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 25%,
+            transparent
+        );
+}
+
+.orizon-sidebar-brand-content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    line-height: 1.15;
+    transition:
+        opacity var(--orizon-transition-normal),
+        transform var(--orizon-transition-normal);
+}
+
+.orizon-sidebar-brand-name {
+    overflow: hidden;
+    font-size: var(--orizon-font-size-md);
+    font-weight: var(--orizon-font-weight-bold);
+    letter-spacing: -0.02em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orizon-sidebar-brand-product {
+    overflow: hidden;
+    margin-top: var(--orizon-space-1);
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orizon-sidebar-collapse-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    color: var(--orizon-color-text-secondary);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-md);
+    background: var(--orizon-color-surface);
+    transition:
+        color var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast),
+        background-color var(--orizon-transition-fast),
+        transform var(--orizon-transition-normal);
+}
+
+.orizon-sidebar-collapse-button:hover {
+    color: var(--orizon-color-primary);
+    border-color:
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 35%,
+            var(--orizon-color-border)
+        );
+    background: var(--orizon-color-primary-soft);
+}
+
+.orizon-sidebar-navigation {
+    flex: 1;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: var(--orizon-space-4);
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--orizon-color-border-strong)
+        transparent;
+}
+
+.orizon-sidebar-navigation::-webkit-scrollbar {
+    width: 0.4rem;
+}
+
+.orizon-sidebar-navigation::-webkit-scrollbar-thumb {
+    border-radius: var(--orizon-radius-full);
+    background: var(--orizon-color-border-strong);
+}
+
+.orizon-sidebar-section + .orizon-sidebar-section {
+    margin-top: var(--orizon-space-6);
+}
+
+.orizon-sidebar-section-title {
+    display: block;
+    margin-bottom: var(--orizon-space-2);
+    padding-inline: var(--orizon-space-3);
+    color: var(--orizon-color-text-muted);
+    font-size: 0.6875rem;
+    font-weight: var(--orizon-font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+        opacity var(--orizon-transition-normal),
+        transform var(--orizon-transition-normal);
+}
+
+.orizon-sidebar-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    gap: var(--orizon-space-3);
+    padding: var(--orizon-space-2) var(--orizon-space-3);
+    color: var(--orizon-color-text-secondary);
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-lg);
+    transition:
+        color var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast),
+        background-color var(--orizon-transition-fast),
+        transform var(--orizon-transition-fast);
+}
+
+.orizon-sidebar-link + .orizon-sidebar-link {
+    margin-top: var(--orizon-space-1);
+}
+
+.orizon-sidebar-link:hover {
+    color: var(--orizon-color-text-primary);
+    background: var(--orizon-color-surface-secondary);
+    transform: translateX(0.125rem);
+}
+
+.orizon-sidebar-link.is-active {
+    color: var(--orizon-color-primary);
+    border-color:
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 18%,
+            transparent
+        );
+    background:
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 10%,
+            var(--orizon-color-surface)
+        );
+    box-shadow:
+        inset 0 0 0 1px
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 5%,
+            transparent
+        );
+}
+
+.orizon-sidebar-link.is-active::before {
+    position: absolute;
+    top: 50%;
+    left: -0.25rem;
+    width: 0.25rem;
+    height: 1.5rem;
+    content: "";
+    border-radius: 0 var(--orizon-radius-full) var(--orizon-radius-full) 0;
+    background: var(--orizon-color-primary);
+    transform: translateY(-50%);
+}
+
+.orizon-sidebar-link-icon {
+    flex: 0 0 auto;
+    transition: transform var(--orizon-transition-fast);
+}
+
+.orizon-sidebar-link:hover .orizon-sidebar-link-icon {
+    transform: scale(1.05);
+}
+
+.orizon-sidebar-link-label {
+    overflow: hidden;
+    min-width: 0;
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-medium);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition:
+        opacity var(--orizon-transition-normal),
+        transform var(--orizon-transition-normal);
+}
+
+.orizon-sidebar-footer {
+    padding: var(--orizon-space-4);
+    border-top: 1px solid var(--orizon-color-border);
+}
+
+.orizon-sidebar-user {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: var(--orizon-space-3);
+    padding: var(--orizon-space-2);
+    border-radius: var(--orizon-radius-lg);
+    background: var(--orizon-color-surface-secondary);
+}
+
+.orizon-sidebar-user-avatar {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--orizon-color-primary);
+    font-size: var(--orizon-font-size-xs);
+    font-weight: var(--orizon-font-weight-bold);
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--orizon-color-primary) 18%,
+            var(--orizon-color-border)
+        );
+    border-radius: var(--orizon-radius-full);
+    background: var(--orizon-color-primary-soft);
+}
+
+.orizon-sidebar-user-content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    transition:
+        opacity var(--orizon-transition-normal),
+        transform var(--orizon-transition-normal);
+}
+
+.orizon-sidebar-user-name,
+.orizon-sidebar-user-role {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orizon-sidebar-user-name {
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-semibold);
+}
+
+.orizon-sidebar-user-role {
+    margin-top: var(--orizon-space-1);
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-xs);
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-brand-content,
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-section-title,
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-link-label,
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-user-content {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-0.5rem);
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-header {
+    justify-content: center;
+    padding-inline: var(--orizon-space-3);
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-brand {
+    justify-content: center;
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-collapse-button {
+    position: absolute;
+    top: 3.4rem;
+    right: -1rem;
+    z-index: 2;
+    box-shadow: var(--orizon-shadow-sm);
+    transform: rotate(180deg);
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-navigation {
+    padding-inline: var(--orizon-space-3);
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-link.is-active::before {
+    left: -0.75rem;
+}
+
+.orizon-admin-shell.is-sidebar-collapsed
+.orizon-sidebar-user {
+    justify-content: center;
+    padding-inline: 0;
+}

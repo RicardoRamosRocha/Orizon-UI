@@ -1,0 +1,149 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["ApplicationName"] = "Orizon UI Sandbox";
+}
+
+@section Styles
+{
+    <link rel="stylesheet"
+          href="~/css/showcase.css"
+          asp-append-version="true" />
+}
+
+<div class="showcase-dashboard">
+
+    <header class="showcase-header">
+
+        <div>
+
+            <h1 class="orizon-display-md">
+                Orizon UI
+            </h1>
+
+            <p class="orizon-text-secondary">
+                Biblioteca oficial de componentes da Plataforma Orizon.
+            </p>
+
+        </div>
+
+        <div class="orizon-flex orizon-gap-3">
+
+            <orizon-button>
+                Novo Projeto
+            </orizon-button>
+
+            <orizon-button variant="secondary">
+                Documentação
+            </orizon-button>
+
+        </div>
+
+    </header>
+
+    <section class="showcase-grid">
+
+        <orizon-card>
+
+            <div class="stat">
+
+                <span class="stat-title">
+                    Design Tokens
+                </span>
+
+                <h2>128</h2>
+
+                <small>Fundação concluída</small>
+
+            </div>
+
+        </orizon-card>
+
+        <orizon-card>
+
+            <div class="stat">
+
+                <span class="stat-title">
+                    Componentes
+                </span>
+
+                <h2>2</h2>
+
+                <small>Card e Button</small>
+
+            </div>
+
+        </orizon-card>
+
+        <orizon-card>
+
+            <div class="stat">
+
+                <span class="stat-title">
+                    Layouts
+                </span>
+
+                <h2>1</h2>
+
+                <small>Admin Layout</small>
+
+            </div>
+
+        </orizon-card>
+
+    </section>
+
+    <section class="showcase-section">
+
+        <h2 class="orizon-heading-lg">
+            Componentes
+        </h2>
+
+        <div class="showcase-grid">
+
+            <orizon-card>
+
+                <h3>Button</h3>
+
+                <p>
+                    Botões reutilizáveis.
+                </p>
+
+                <div class="orizon-flex orizon-gap-2 orizon-mt-4">
+
+                    <orizon-button>
+                        Primary
+                    </orizon-button>
+
+                    <orizon-button variant="secondary">
+                        Secondary
+                    </orizon-button>
+
+                </div>
+
+            </orizon-card>
+
+            <orizon-card>
+
+                <h3>Card</h3>
+
+                <p>
+                    Container reutilizável para conteúdo.
+                </p>
+
+            </orizon-card>
+
+            <orizon-card>
+
+                <h3>Icons</h3>
+
+                <p>
+                    Sistema SVG utilizando Tag Helpers.
+                </p>
+
+            </orizon-card>
+
+        </div>
+
+    </section>
+
+</div>

@@ -1,0 +1,97 @@
+.orizon-display-lg {
+    font-size: var(--orizon-font-size-4xl);
+    font-weight: var(--orizon-font-weight-bold);
+    line-height: var(--orizon-line-height-tight);
+    letter-spacing: -0.03em;
+}
+
+.orizon-display-md {
+    font-size: var(--orizon-font-size-3xl);
+    font-weight: var(--orizon-font-weight-bold);
+    line-height: var(--orizon-line-height-tight);
+    letter-spacing: -0.025em;
+}
+
+.orizon-heading-xl {
+    font-size: var(--orizon-font-size-2xl);
+    font-weight: var(--orizon-font-weight-semibold);
+    line-height: var(--orizon-line-height-tight);
+    letter-spacing: -0.02em;
+}
+
+.orizon-heading-lg {
+    font-size: var(--orizon-font-size-xl);
+    font-weight: var(--orizon-font-weight-semibold);
+    line-height: var(--orizon-line-height-tight);
+    letter-spacing: -0.015em;
+}
+
+.orizon-heading-md {
+    font-size: var(--orizon-font-size-lg);
+    font-weight: var(--orizon-font-weight-semibold);
+    line-height: var(--orizon-line-height-tight);
+}
+
+.orizon-heading-sm {
+    font-size: var(--orizon-font-size-md);
+    font-weight: var(--orizon-font-weight-semibold);
+    line-height: var(--orizon-line-height-tight);
+}
+
+.orizon-text-lg {
+    font-size: var(--orizon-font-size-lg);
+    line-height: var(--orizon-line-height-normal);
+}
+
+.orizon-text-md {
+    font-size: var(--orizon-font-size-md);
+    line-height: var(--orizon-line-height-normal);
+}
+
+.orizon-text-sm {
+    font-size: var(--orizon-font-size-sm);
+    line-height: var(--orizon-line-height-normal);
+}
+
+.orizon-text-xs {
+    font-size: var(--orizon-font-size-xs);
+    line-height: var(--orizon-line-height-normal);
+}
+
+.orizon-text-primary {
+    color: var(--orizon-color-text-primary);
+}
+
+.orizon-text-secondary {
+    color: var(--orizon-color-text-secondary);
+}
+
+.orizon-text-muted {
+    color: var(--orizon-color-text-muted);
+}
+
+.orizon-font-medium {
+    font-weight: var(--orizon-font-weight-medium);
+}
+
+.orizon-font-semibold {
+    font-weight: var(--orizon-font-weight-semibold);
+}
+
+.orizon-font-bold {
+    font-weight: var(--orizon-font-weight-bold);
+}
+
+.orizon-text-balance {
+    text-wrap: balance;
+}
+
+.orizon-text-pretty {
+    text-wrap: pretty;
+}
+
+.orizon-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

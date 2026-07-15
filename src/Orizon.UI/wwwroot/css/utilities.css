@@ -1,0 +1,161 @@
+.orizon-container {
+    width: min(100% - 2rem, var(--orizon-container-xl));
+    margin-inline: auto;
+}
+
+.orizon-flex {
+    display: flex;
+}
+
+.orizon-inline-flex {
+    display: inline-flex;
+}
+
+.orizon-grid {
+    display: grid;
+}
+
+.orizon-block {
+    display: block;
+}
+
+.orizon-hidden {
+    display: none !important;
+}
+
+.orizon-items-center {
+    align-items: center;
+}
+
+.orizon-items-start {
+    align-items: flex-start;
+}
+
+.orizon-justify-between {
+    justify-content: space-between;
+}
+
+.orizon-justify-center {
+    justify-content: center;
+}
+
+.orizon-gap-1 {
+    gap: var(--orizon-space-1);
+}
+
+.orizon-gap-2 {
+    gap: var(--orizon-space-2);
+}
+
+.orizon-gap-3 {
+    gap: var(--orizon-space-3);
+}
+
+.orizon-gap-4 {
+    gap: var(--orizon-space-4);
+}
+
+.orizon-gap-6 {
+    gap: var(--orizon-space-6);
+}
+
+.orizon-w-full {
+    width: 100%;
+}
+
+.orizon-min-w-0 {
+    min-width: 0;
+}
+
+.orizon-mt-2 {
+    margin-top: var(--orizon-space-2);
+}
+
+.orizon-mt-4 {
+    margin-top: var(--orizon-space-4);
+}
+
+.orizon-mt-6 {
+    margin-top: var(--orizon-space-6);
+}
+
+.orizon-mb-2 {
+    margin-bottom: var(--orizon-space-2);
+}
+
+.orizon-mb-4 {
+    margin-bottom: var(--orizon-space-4);
+}
+
+.orizon-mb-6 {
+    margin-bottom: var(--orizon-space-6);
+}
+
+.orizon-p-4 {
+    padding: var(--orizon-space-4);
+}
+
+.orizon-p-6 {
+    padding: var(--orizon-space-6);
+}
+
+.orizon-px-4 {
+    padding-inline: var(--orizon-space-4);
+}
+
+.orizon-py-4 {
+    padding-block: var(--orizon-space-4);
+}
+
+.orizon-rounded-md {
+    border-radius: var(--orizon-radius-md);
+}
+
+.orizon-rounded-lg {
+    border-radius: var(--orizon-radius-lg);
+}
+
+.orizon-rounded-xl {
+    border-radius: var(--orizon-radius-xl);
+}
+
+.orizon-shadow-sm {
+    box-shadow: var(--orizon-shadow-sm);
+}
+
+.orizon-shadow-md {
+    box-shadow: var(--orizon-shadow-md);
+}
+
+.orizon-border {
+    border: 1px solid var(--orizon-color-border);
+}
+
+.orizon-surface {
+    background: var(--orizon-color-surface);
+}
+
+.orizon-surface-secondary {
+    background: var(--orizon-color-surface-secondary);
+}
+
+.orizon-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--orizon-color-border-strong)
+        transparent;
+}
+
+.orizon-scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.orizon-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: var(--orizon-radius-full);
+    background: var(--orizon-color-border-strong);
+}
+
+.orizon-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}

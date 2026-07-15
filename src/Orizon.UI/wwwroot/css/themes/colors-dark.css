@@ -1,0 +1,32 @@
+[data-theme="dark"] {
+
+    color-scheme: dark;
+
+    --orizon-color-background:
+        #0f172a;
+
+    --orizon-color-surface:
+        #162033;
+
+    --orizon-color-surface-secondary:
+        #1d2940;
+
+    --orizon-color-surface-elevated:
+        #22304a;
+
+    --orizon-color-text-primary:
+        #f8fafc;
+
+    --orizon-color-text-secondary:
+        #cbd5e1;
+
+    --orizon-color-text-muted:
+        #94a3b8;
+
+    --orizon-color-border:
+        #2b3b55;
+
+    --orizon-color-border-strong:
+        #3d4f6d;
+
+}

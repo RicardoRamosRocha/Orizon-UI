@@ -1,0 +1,107 @@
+.showcase-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--orizon-space-8);
+}
+
+.showcase-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--orizon-space-6);
+}
+
+.showcase-header p {
+    max-width: 42rem;
+    margin-top: var(--orizon-space-2);
+    font-size: var(--orizon-font-size-lg);
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--orizon-space-4);
+}
+
+.showcase-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--orizon-space-4);
+}
+
+.showcase-section h2 {
+    color: var(--orizon-color-text-primary);
+}
+
+.showcase-grid .orizon-card {
+    min-height: 10rem;
+}
+
+.showcase-grid .orizon-card h3 {
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-lg);
+    font-weight: var(--orizon-font-weight-semibold);
+}
+
+.showcase-grid .orizon-card p {
+    margin-top: var(--orizon-space-2);
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-font-size-sm);
+}
+
+.stat {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-title {
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-medium);
+}
+
+.stat h2 {
+    margin-top: var(--orizon-space-3);
+    color: var(--orizon-color-text-primary);
+    font-size: 2.25rem;
+    font-weight: var(--orizon-font-weight-bold);
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.stat small {
+    margin-top: var(--orizon-space-4);
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-xs);
+}
+
+@media (max-width: 1023px) {
+    .showcase-header {
+        flex-direction: column;
+    }
+
+    .showcase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .showcase-dashboard {
+        gap: var(--orizon-space-6);
+    }
+
+    .showcase-header > .orizon-flex {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .showcase-header .orizon-button {
+        flex: 1;
+    }
+
+    .showcase-grid {
+        grid-template-columns: 1fr;
+    }
+}

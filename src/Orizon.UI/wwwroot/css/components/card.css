@@ -1,0 +1,67 @@
+.orizon-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--orizon-space-3);
+
+    padding: var(--orizon-space-6);
+
+    background: var(--orizon-color-surface);
+
+    border: 1px solid var(--orizon-color-border);
+
+    border-radius: var(--orizon-radius-xl);
+
+    box-shadow: var(--orizon-shadow-sm);
+
+    transition:
+        transform var(--orizon-transition-fast),
+        box-shadow var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast);
+}
+
+.orizon-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--orizon-color-border-strong);
+
+    box-shadow: var(--orizon-shadow-md);
+}
+
+.orizon-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--orizon-space-3);
+}
+
+.orizon-card-title {
+    margin: 0;
+
+    color: var(--orizon-color-text-primary);
+
+    font-size: var(--orizon-font-size-lg);
+
+    font-weight: var(--orizon-font-weight-semibold);
+}
+
+.orizon-card-subtitle {
+    margin-top: var(--orizon-space-1);
+
+    color: var(--orizon-color-text-secondary);
+
+    font-size: var(--orizon-font-size-sm);
+}
+
+.orizon-card-body {
+    flex: 1;
+}
+
+.orizon-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding-top: var(--orizon-space-3);
+
+    border-top: 1px solid var(--orizon-color-border);
+}

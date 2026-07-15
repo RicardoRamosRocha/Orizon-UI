@@ -1,0 +1,101 @@
+@keyframes orizon-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes orizon-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(0.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes orizon-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes orizon-slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes orizon-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.orizon-animate-fade-in {
+    animation:
+        orizon-fade-in
+        var(--orizon-duration-normal)
+        var(--orizon-easing-standard)
+        both;
+}
+
+.orizon-animate-fade-up {
+    animation:
+        orizon-fade-up
+        var(--orizon-duration-normal)
+        var(--orizon-easing-standard)
+        both;
+}
+
+.orizon-animate-scale-in {
+    animation:
+        orizon-scale-in
+        var(--orizon-duration-normal)
+        var(--orizon-easing-standard)
+        both;
+}
+
+.orizon-animate-slide-in-left {
+    animation:
+        orizon-slide-in-left
+        var(--orizon-duration-normal)
+        var(--orizon-easing-standard)
+        both;
+}
+
+.orizon-animate-spin {
+    animation:
+        orizon-spin
+        0.8s
+        linear
+        infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orizon-animate-fade-in,
+    .orizon-animate-fade-up,
+    .orizon-animate-scale-in,
+    .orizon-animate-slide-in-left,
+    .orizon-animate-spin {
+        animation: none;
+    }
+}

@@ -1,0 +1,36 @@
+.orizon-breadcrumb {
+    width: min(100%, var(--orizon-container-2xl));
+    margin: 0 auto var(--orizon-space-4);
+}
+
+.orizon-breadcrumb-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--orizon-space-2);
+    list-style: none;
+}
+
+.orizon-breadcrumb-item {
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-sm);
+}
+
+.orizon-breadcrumb-item a {
+    color: var(--orizon-color-text-secondary);
+}
+
+.orizon-breadcrumb-item a:hover {
+    color: var(--orizon-color-primary);
+}
+
+.orizon-breadcrumb-item.is-active {
+    color: var(--orizon-color-text-primary);
+    font-weight: var(--orizon-font-weight-medium);
+}
+
+.orizon-breadcrumb-separator {
+    color: var(--orizon-color-border-strong);
+    font-size: var(--orizon-font-size-sm);
+    user-select: none;
+}

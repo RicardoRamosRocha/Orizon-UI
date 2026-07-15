@@ -1,0 +1,61 @@
+.orizon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    height: 2.75rem;
+
+    padding: 0 1rem;
+
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-lg);
+
+    background: var(--orizon-color-primary);
+    color: white;
+
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-semibold);
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast),
+        box-shadow var(--orizon-transition-fast),
+        transform var(--orizon-transition-fast);
+}
+
+.orizon-button:hover {
+    background: var(--orizon-color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--orizon-shadow-sm);
+}
+
+.orizon-button:active {
+    transform: translateY(0);
+}
+
+.orizon-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.orizon-button-secondary {
+    background: var(--orizon-color-surface);
+    color: var(--orizon-color-text-primary);
+    border-color: var(--orizon-color-border);
+}
+
+.orizon-button-secondary:hover {
+    background: var(--orizon-color-surface-secondary);
+}
+
+.orizon-button-danger {
+    background: var(--orizon-color-danger);
+}
+
+.orizon-button-danger:hover {
+    filter: brightness(.95);
+}

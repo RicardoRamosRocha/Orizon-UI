@@ -1,0 +1,25 @@
+.orizon-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(100%, var(--orizon-container-2xl));
+    min-height: 4rem;
+    margin-inline: auto;
+    padding: var(--orizon-space-4) var(--orizon-space-6);
+    gap: var(--orizon-space-4);
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-sm);
+    border-top: 1px solid var(--orizon-color-border);
+}
+
+.orizon-footer-left,
+.orizon-footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--orizon-space-2);
+}
+
+.orizon-footer strong {
+    color: var(--orizon-color-text-secondary);
+    font-weight: var(--orizon-font-weight-semibold);
+}

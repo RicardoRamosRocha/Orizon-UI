@@ -1,0 +1,70 @@
+@{
+    var pageTitle = ViewData["Title"]?.ToString() ?? "Dashboard";
+}
+
+<div class="orizon-topbar-content">
+    <div class="orizon-topbar-left">
+        <button type="button"
+                class="orizon-topbar-menu-button"
+                data-sidebar-toggle
+                aria-label="Abrir menu lateral"
+                aria-expanded="false">
+
+            <orizon-icon name="menu" size="22" />
+        </button>
+
+        <div class="orizon-topbar-title-group">
+            <span class="orizon-topbar-eyebrow">
+                Área administrativa
+            </span>
+
+            <strong class="orizon-topbar-title">
+                @pageTitle
+            </strong>
+        </div>
+    </div>
+
+    <div class="orizon-topbar-actions">
+        <button type="button"
+                class="orizon-topbar-action-button"
+                data-theme-toggle
+                aria-label="Ativar tema escuro"
+                aria-pressed="false">
+
+            <orizon-icon name="moon"
+                         size="20"
+                         data-theme-icon />
+        </button>
+
+        <button type="button"
+                class="orizon-topbar-action-button"
+                aria-label="Ver notificações">
+
+            <orizon-icon name="bell" size="20" />
+
+            <span class="orizon-topbar-notification-badge"
+                  aria-label="3 notificações não lidas">
+                3
+            </span>
+        </button>
+
+        <button type="button"
+                class="orizon-topbar-profile-button"
+                aria-label="Abrir menu do usuário">
+
+            <span class="orizon-topbar-profile-avatar"
+                  aria-hidden="true">
+                OR
+            </span>
+
+            <span class="orizon-topbar-profile-content">
+                <strong>Usuário Orizon</strong>
+                <small>Administrador</small>
+            </span>
+
+            <orizon-icon name="chevron-down"
+                         size="18"
+                         class="orizon-topbar-profile-chevron" />
+        </button>
+    </div>
+</div>
