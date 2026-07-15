@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Alerts";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Alerts</h1>
+            <p class="component-catalog__description">
+                Mensagens contextuais para orientar o usuário.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <div class="component-example component-example__stack">
+        <orizon-alert variant="info"
+                      title="Informação"
+                      icon="ph ph-info">
+            Esta é uma mensagem informativa.
+        </orizon-alert>
+
+        <orizon-alert variant="success"
+                      title="Operação concluída"
+                      icon="ph ph-check-circle"
+                      dismissible="true">
+            Os dados foram salvos com sucesso.
+        </orizon-alert>
+
+        <orizon-alert variant="warning"
+                      title="Atenção"
+                      icon="ph ph-warning"
+                      dismissible="true">
+            Revise os dados antes de continuar.
+        </orizon-alert>
+
+        <orizon-alert variant="danger"
+                      title="Erro"
+                      icon="ph ph-x-circle"
+                      dismissible="true">
+            Não foi possível concluir a operação.
+        </orizon-alert>
+    </div>
+</div>

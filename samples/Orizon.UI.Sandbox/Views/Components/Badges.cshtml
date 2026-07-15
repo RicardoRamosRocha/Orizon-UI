@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Badges";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Badges</h1>
+            <p class="component-catalog__description">
+                Indicadores compactos para status e categorias.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Variantes</h2>
+        </header>
+
+        <div class="component-example__preview">
+            <orizon-badge variant="neutral">Rascunho</orizon-badge>
+            <orizon-badge variant="primary">Novo</orizon-badge>
+            <orizon-badge variant="success" dot="true">Ativo</orizon-badge>
+            <orizon-badge variant="warning" dot="true">Pendente</orizon-badge>
+            <orizon-badge variant="danger" dot="true">Bloqueado</orizon-badge>
+            <orizon-badge variant="info" pill="true">Informação</orizon-badge>
+        </div>
+    </section>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Tamanhos</h2>
+        </header>
+
+        <div class="component-example__preview">
+            <orizon-badge size="sm" variant="primary">Small</orizon-badge>
+            <orizon-badge size="md" variant="primary">Medium</orizon-badge>
+            <orizon-badge size="lg" variant="primary">Large</orizon-badge>
+        </div>
+    </section>
+</div>

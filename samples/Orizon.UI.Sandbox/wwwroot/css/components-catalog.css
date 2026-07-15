@@ -1,0 +1,133 @@
+.component-catalog {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.component-catalog__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.component-catalog__title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.component-catalog__description {
+    max-width: 46rem;
+    margin: 0.5rem 0 0;
+    color: var(--orizon-color-text-secondary, #64748b);
+}
+
+.component-catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+}
+
+.component-example {
+    padding: 1.25rem;
+    background: var(--orizon-color-surface, #ffffff);
+    border: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-radius: 1rem;
+}
+
+.component-example__header {
+    margin-bottom: 1rem;
+}
+
+.component-example__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.component-example__description {
+    margin: 0.35rem 0 0;
+    color: var(--orizon-color-text-secondary, #64748b);
+    font-size: 0.875rem;
+}
+
+.component-example__preview {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.component-example__stack {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.component-catalog-card {
+    display: block;
+    min-height: 10rem;
+    padding: 1.25rem;
+    color: inherit;
+    background: var(--orizon-color-surface, #ffffff);
+    border: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-radius: 1rem;
+    text-decoration: none;
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.component-catalog-card:hover {
+    color: inherit;
+    border-color: var(--orizon-color-primary-500, #4f46e5);
+    box-shadow: 0 10px 25px rgb(15 23 42 / 0.08);
+    transform: translateY(-2px);
+}
+
+.component-catalog-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    color: var(--orizon-color-primary-600, #4f46e5);
+    background: var(--orizon-color-primary-50, #eef2ff);
+    border-radius: 0.75rem;
+    font-size: 1.35rem;
+}
+
+.component-catalog-card h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.component-catalog-card p {
+    margin: 0.5rem 0 0;
+    color: var(--orizon-color-text-secondary, #64748b);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 767.98px) {
+    .component-catalog__header {
+        flex-direction: column;
+    }
+
+    .component-catalog__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .component-example {
+        padding: 1rem;
+    }
+
+    .component-example__preview {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .component-example__preview .orizon-button {
+        width: 100%;
+    }
+}

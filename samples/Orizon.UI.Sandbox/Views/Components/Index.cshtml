@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Componentes";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Componentes</h1>
+            <p class="component-catalog__description">
+                Catálogo visual dos componentes reutilizáveis disponíveis no Orizon UI.
+            </p>
+        </div>
+    </header>
+
+    <div class="component-catalog__grid">
+        <a class="component-catalog-card"
+           asp-controller="Components"
+           asp-action="Buttons">
+            <span class="component-catalog-card__icon">
+                <i class="ph ph-cursor-click"></i>
+            </span>
+
+            <h2>Buttons</h2>
+            <p>Variantes, tamanhos, ícones e estados de carregamento.</p>
+        </a>
+
+        <a class="component-catalog-card"
+           asp-controller="Components"
+           asp-action="Cards">
+            <span class="component-catalog-card__icon">
+                <i class="ph ph-cards"></i>
+            </span>
+
+            <h2>Cards</h2>
+            <p>Containers reutilizáveis para conteúdos e indicadores.</p>
+        </a>
+
+        <a class="component-catalog-card"
+           asp-controller="Components"
+           asp-action="Alerts">
+            <span class="component-catalog-card__icon">
+                <i class="ph ph-warning-circle"></i>
+            </span>
+
+            <h2>Alerts</h2>
+            <p>Mensagens de informação, sucesso, atenção e erro.</p>
+        </a>
+
+        <a class="component-catalog-card"
+           asp-controller="Components"
+           asp-action="Badges">
+            <span class="component-catalog-card__icon">
+                <i class="ph ph-tag"></i>
+            </span>
+
+            <h2>Badges</h2>
+            <p>Status, categorias e indicadores compactos.</p>
+        </a>
+    </div>
+</div>
