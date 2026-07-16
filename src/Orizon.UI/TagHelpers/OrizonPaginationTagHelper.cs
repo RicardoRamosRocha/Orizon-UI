@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -15,7 +16,7 @@ public sealed class OrizonPaginationTagHelper : TagHelper
     public string HrefTemplate { get; set; } = "?page={0}";
 
     [HtmlAttributeName("label")]
-    public string Label { get; set; } = "Paginação";
+    public string Label { get; set; } = "Paginacao";
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
@@ -51,15 +52,19 @@ public sealed class OrizonPaginationTagHelper : TagHelper
 
     private string PageLink(int page, string label, bool disabled, bool current)
     {
+        var encodedLabel = HtmlEncoder.Default.Encode(label);
+
         if (disabled)
         {
-            return $"""<li><span class="orizon-pagination__item is-disabled" aria-disabled="true">{label}</span></li>""";
+            return $"""<li><span class="orizon-pagination__item is-disabled" aria-disabled="true">{encodedLabel}</span></li>""";
         }
+
+        var href = HtmlEncoder.Default.Encode(string.Format(HrefTemplate, page));
 
         return
             $"""
             <li>
-                <a class="orizon-pagination__item{(current ? " is-current" : string.Empty)}" href="{string.Format(HrefTemplate, page)}" {(current ? "aria-current=\"page\"" : string.Empty)}>{label}</a>
+                <a class="orizon-pagination__item{(current ? " is-current" : string.Empty)}" href="{href}" {(current ? "aria-current=\"page\"" : string.Empty)}>{encodedLabel}</a>
             </li>
             """;
     }

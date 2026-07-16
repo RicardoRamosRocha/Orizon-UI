@@ -13,6 +13,14 @@
     let activeModal = null;
     let previousFocus = null;
 
+    const findModal = (selector) => {
+        try {
+            return selector ? document.querySelector(selector) : null;
+        } catch {
+            return null;
+        }
+    };
+
     const closeModal = modal => {
         if (!modal) {
             return;
@@ -40,7 +48,7 @@
     document.addEventListener("click", event => {
         const openTrigger = event.target.closest("[data-orizon-modal-target]");
         if (openTrigger) {
-            const modal = document.querySelector(openTrigger.getAttribute("data-orizon-modal-target"));
+            const modal = findModal(openTrigger.getAttribute("data-orizon-modal-target"));
             if (modal) {
                 openModal(modal);
             }
@@ -69,6 +77,8 @@
 
         const focusable = [...activeModal.querySelectorAll(focusableSelector)];
         if (focusable.length === 0) {
+            event.preventDefault();
+            activeModal.querySelector(".orizon-modal__panel")?.focus();
             return;
         }
 

@@ -5,16 +5,14 @@
 */
 
 /* Base */
-@import url("./base/variables.css");
-@import url("./base/reset.css");
-@import url("./base/typography.css");
+@import url("./tokens.css");
+@import url("./base.css");
+@import url("./typography.css");
 
 /* Themes */
-@import url("./themes/light.css");
-@import url("./themes/dark.css");
+@import url("./themes/colors-dark.css");
 
 /* Layout */
-@import url("./layout/grid.css");
 @import url("./layout/sidebar.css");
 @import url("./layout/topbar.css");
 @import url("./layout/admin-layout.css");
@@ -24,12 +22,10 @@
 @import url("./components/cards.css");
 @import url("./components/alerts.css");
 @import url("./components/badges.css");
-@import url("./components/breadcrumb.css");
 @import url("./components/dropdown.css");
 @import url("./components/empty-state.css");
 @import url("./components/form.css");
 @import url("./components/modal.css");
-@import url("./components/navbar.css");
 @import url("./components/pagination.css");
 @import url("./components/progress.css");
 @import url("./components/spinner.css");
@@ -39,5 +35,4 @@
 @import url("./components/avatar.css");
 
 /* Utilities */
-@import url("./utilities/spacing.css");
-@import url("./utilities/colors.css");
+@import url("./utilities.css");

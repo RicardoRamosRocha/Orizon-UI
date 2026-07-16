@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -29,7 +30,7 @@ public sealed class OrizonToastTagHelper : TagHelper
 
         var title = string.IsNullOrWhiteSpace(Title)
             ? string.Empty
-            : $"""<div class="orizon-toast__title">{Title}</div>""";
+            : $"""<div class="orizon-toast__title">{HtmlEncoder.Default.Encode(Title)}</div>""";
         var close = Dismissible
             ? """<button class="orizon-toast__close" type="button" data-orizon-toast-close aria-label="Fechar notificacao"><span aria-hidden="true">&times;</span></button>"""
             : string.Empty;

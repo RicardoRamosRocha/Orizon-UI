@@ -5,6 +5,10 @@
         const tabs = tab.closest("[data-orizon-tabs]");
         const target = document.getElementById(tab.getAttribute("aria-controls"));
 
+        if (!tabs || !target) {
+            return;
+        }
+
         tabs.querySelectorAll("[role='tab']").forEach(item => {
             item.setAttribute("aria-selected", item === tab ? "true" : "false");
             item.setAttribute("tabindex", item === tab ? "0" : "-1");
@@ -34,10 +38,12 @@
         const index = tabs.indexOf(tab);
         const next = event.key === "ArrowRight" ? tabs[index + 1] || tabs[0] : null;
         const previous = event.key === "ArrowLeft" ? tabs[index - 1] || tabs[tabs.length - 1] : null;
+        const first = event.key === "Home" ? tabs[0] : null;
+        const last = event.key === "End" ? tabs[tabs.length - 1] : null;
 
-        if (next || previous) {
+        if (next || previous || first || last) {
             event.preventDefault();
-            activateTab(next || previous);
+            activateTab(next || previous || first || last);
         }
     });
 })();

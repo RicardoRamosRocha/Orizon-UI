@@ -54,12 +54,18 @@
         if (event.key === "ArrowDown") {
             event.preventDefault();
             openDropdown(dropdown);
+            if (items.length === 0) {
+                return;
+            }
             items[(currentIndex + 1 + items.length) % items.length]?.focus();
         }
 
         if (event.key === "ArrowUp") {
             event.preventDefault();
             openDropdown(dropdown);
+            if (items.length === 0) {
+                return;
+            }
             items[(currentIndex - 1 + items.length) % items.length]?.focus();
         }
     });

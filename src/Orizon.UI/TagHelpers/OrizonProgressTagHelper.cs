@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -39,7 +40,7 @@ public sealed class OrizonProgressTagHelper : TagHelper
         }
 
         var label = ShowLabel
-            ? $"""<span class="orizon-progress__label">{Label ?? "Progresso"} <strong>{percent}%</strong></span>"""
+            ? $"""<span class="orizon-progress__label">{HtmlEncoder.Default.Encode(Label ?? "Progresso")} <strong>{percent}%</strong></span>"""
             : string.Empty;
 
         output.Content.SetHtmlContent(
