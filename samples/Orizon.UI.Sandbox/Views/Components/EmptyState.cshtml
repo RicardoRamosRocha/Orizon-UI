@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Empty State";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Empty State</h1>
+            <p class="component-catalog__description">Estado vazio com mensagem clara, acao principal e suporte a dark mode.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview</h2>
+            <p class="component-example__description">O bloco centraliza conteudo e reorganiza acoes em telas estreitas.</p>
+        </header>
+        <orizon-empty-state title="Nenhum cliente encontrado"
+                            description="Ajuste os filtros ou cadastre um novo cliente para iniciar a lista."
+                            icon="ph ph-tray">
+            <orizon-button icon="ph ph-plus">Novo cliente</orizon-button>
+            <orizon-button variant="secondary">Limpar filtros</orizon-button>
+        </orizon-empty-state>
+    </section>
+</div>

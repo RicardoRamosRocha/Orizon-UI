@@ -1,0 +1,80 @@
+.orizon-modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--orizon-z-modal, 500);
+    display: grid;
+    place-items: center;
+    padding: var(--orizon-space-4, 1rem);
+}
+
+.orizon-modal[hidden] {
+    display: none;
+}
+
+.orizon-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(2 6 23 / 0.62);
+}
+
+.orizon-modal__panel {
+    position: relative;
+    width: min(100%, 32rem);
+    max-height: min(42rem, calc(100vh - 2rem));
+    overflow: auto;
+    color: var(--orizon-color-text-primary, #0f172a);
+    background: var(--orizon-color-surface, #ffffff);
+    border: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-radius: var(--orizon-radius-xl, 1.125rem);
+    box-shadow: var(--orizon-shadow-lg, 0 20px 50px rgb(15 23 42 / 14%));
+}
+
+.orizon-modal--sm .orizon-modal__panel {
+    width: min(100%, 24rem);
+}
+
+.orizon-modal--lg .orizon-modal__panel {
+    width: min(100%, 48rem);
+}
+
+.orizon-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--orizon-space-4, 1rem);
+    padding: var(--orizon-space-5, 1.25rem);
+    border-bottom: 1px solid var(--orizon-color-border, #e2e8f0);
+}
+
+.orizon-modal__title {
+    margin: 0;
+    font-size: var(--orizon-font-size-lg, 1.125rem);
+    font-weight: var(--orizon-font-weight-bold, 700);
+}
+
+.orizon-modal__body {
+    padding: var(--orizon-space-5, 1.25rem);
+}
+
+.orizon-modal__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--orizon-color-text-secondary, #475569);
+    background: transparent;
+    border: 0;
+    border-radius: var(--orizon-radius-md, 0.625rem);
+    cursor: pointer;
+}
+
+.orizon-modal__close:hover {
+    background: var(--orizon-color-surface-secondary, #f1f5f9);
+}
+
+.orizon-modal__close:focus-visible,
+.orizon-modal__panel:focus-visible {
+    box-shadow: var(--orizon-focus-ring);
+    outline: 0;
+}

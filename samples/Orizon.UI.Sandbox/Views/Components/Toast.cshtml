@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Toast";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Toast</h1>
+            <p class="component-catalog__description">Feedback nao bloqueante com aria-live polite e sem captura de foco.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview e variacoes</h2>
+            <p class="component-example__description">Pode ser dispensado por botao sem interromper a navegacao atual.</p>
+        </header>
+        <div class="component-example__stack">
+            <orizon-toast title="Salvo" variant="success">As alteracoes foram registradas.</orizon-toast>
+            <orizon-toast title="Atencao" variant="warning">Revise os campos obrigatorios antes de continuar.</orizon-toast>
+            <orizon-toast title="Erro" variant="danger">Nao foi possivel concluir a operacao.</orizon-toast>
+        </div>
+    </section>
+</div>

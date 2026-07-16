@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Avatar";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Avatar</h1>
+            <p class="component-catalog__description">Representacao visual de usuarios com iniciais, imagem, tamanho e status.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview e variacoes</h2>
+            <p class="component-example__description">As cores usam tokens e se adaptam ao tema claro ou escuro.</p>
+        </header>
+        <div class="component-example__preview">
+            <orizon-avatar name="Ana Martins" size="sm" status="online"></orizon-avatar>
+            <orizon-avatar name="Bruno Costa" status="busy"></orizon-avatar>
+            <orizon-avatar name="Carla Souza" size="lg" status="offline"></orizon-avatar>
+            <orizon-avatar name="Orizon UI" src="/favicon.ico" size="lg"></orizon-avatar>
+        </div>
+    </section>
+</div>

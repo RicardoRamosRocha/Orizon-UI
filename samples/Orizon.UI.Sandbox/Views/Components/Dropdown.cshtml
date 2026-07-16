@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Dropdown";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Dropdown</h1>
+            <p class="component-catalog__description">Menus responsivos com navegacao por teclado e Escape.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview</h2>
+            <p class="component-example__description">Use setas para navegar pelos itens quando o menu estiver aberto.</p>
+        </header>
+        <div class="component-example__preview">
+            <orizon-dropdown label="Acoes">
+                <a class="orizon-dropdown__item" role="menuitem" href="#">Editar</a>
+                <a class="orizon-dropdown__item" role="menuitem" href="#">Duplicar</a>
+                <button class="orizon-dropdown__item" role="menuitem" type="button">Arquivar</button>
+            </orizon-dropdown>
+
+            <orizon-dropdown label="Alinhado a direita" align="end">
+                <a class="orizon-dropdown__item" role="menuitem" href="#">Exportar CSV</a>
+                <a class="orizon-dropdown__item" role="menuitem" href="#">Enviar relatorio</a>
+            </orizon-dropdown>
+        </div>
+    </section>
+</div>

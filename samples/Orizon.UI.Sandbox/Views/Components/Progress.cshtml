@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Progress";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Progress</h1>
+            <p class="component-catalog__description">Barras com valor acessivel e rotulo opcional.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview e variacoes</h2>
+            <p class="component-example__description">Responsivo por largura do container e compativel com dark mode.</p>
+        </header>
+        <div class="component-example__stack">
+            <orizon-progress value="35" label="Configuracao" show-label="true"></orizon-progress>
+            <orizon-progress value="72" label="Importacao" show-label="true"></orizon-progress>
+            <orizon-progress value="100" label="Concluido"></orizon-progress>
+        </div>
+    </section>
+</div>

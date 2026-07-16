@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Tabs";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Tabs</h1>
+            <p class="component-catalog__description">Abas acessiveis com roles, foco e navegacao por setas.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview</h2>
+            <p class="component-example__description">O layout continua horizontal com rolagem em telas estreitas.</p>
+        </header>
+        <orizon-tabs label="Dados do cliente">
+            <div class="orizon-tabs__list orizon-scrollbar" role="tablist" aria-label="Dados do cliente">
+                <button class="orizon-tabs__tab" id="tab-overview" type="button" role="tab" aria-selected="true" aria-controls="panel-overview">Resumo</button>
+                <button class="orizon-tabs__tab" id="tab-billing" type="button" role="tab" aria-selected="false" aria-controls="panel-billing" tabindex="-1">Cobranca</button>
+                <button class="orizon-tabs__tab" id="tab-history" type="button" role="tab" aria-selected="false" aria-controls="panel-history" tabindex="-1">Historico</button>
+            </div>
+            <div class="orizon-tabs__panel" id="panel-overview" role="tabpanel" tabindex="0" aria-labelledby="tab-overview">Resumo operacional e status atual do cliente.</div>
+            <div class="orizon-tabs__panel" id="panel-billing" role="tabpanel" tabindex="0" aria-labelledby="tab-billing" hidden>Informacoes de plano, faturas e limites.</div>
+            <div class="orizon-tabs__panel" id="panel-history" role="tabpanel" tabindex="0" aria-labelledby="tab-history" hidden>Linha do tempo de interacoes recentes.</div>
+        </orizon-tabs>
+    </section>
+</div>

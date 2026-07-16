@@ -66,8 +66,15 @@
 }
 
 .component-example .orizon-form,
-.component-example .orizon-table-container {
+.component-example .orizon-table-container,
+.component-example .orizon-tabs,
+.component-example .orizon-progress,
+.component-example .orizon-empty-state {
     width: 100%;
+}
+
+.component-example__stack > .orizon-toast {
+    width: min(100%, 28rem);
 }
 
 .component-catalog-card {

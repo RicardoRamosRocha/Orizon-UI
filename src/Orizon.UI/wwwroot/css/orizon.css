@@ -26,12 +26,17 @@
 @import url("./components/badges.css");
 @import url("./components/breadcrumb.css");
 @import url("./components/dropdown.css");
+@import url("./components/empty-state.css");
 @import url("./components/form.css");
 @import url("./components/modal.css");
 @import url("./components/navbar.css");
 @import url("./components/pagination.css");
+@import url("./components/progress.css");
+@import url("./components/spinner.css");
 @import url("./components/table.css");
 @import url("./components/tabs.css");
+@import url("./components/toast.css");
+@import url("./components/avatar.css");
 
 /* Utilities */
 @import url("./utilities/spacing.css");
