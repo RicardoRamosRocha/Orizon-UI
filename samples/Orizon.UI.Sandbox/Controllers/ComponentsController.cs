@@ -46,4 +46,58 @@ public sealed class ComponentsController : Controller
     {
         return View();
     }
+
+    [HttpGet("modal")]
+    public IActionResult Modal()
+    {
+        return View();
+    }
+
+    [HttpGet("dropdown")]
+    public IActionResult Dropdown()
+    {
+        return View();
+    }
+
+    [HttpGet("tabs")]
+    public IActionResult Tabs()
+    {
+        return View();
+    }
+
+    [HttpGet("pagination")]
+    public IActionResult Pagination()
+    {
+        return View();
+    }
+
+    [HttpGet("avatar")]
+    public IActionResult Avatar()
+    {
+        return View();
+    }
+
+    [HttpGet("toast")]
+    public IActionResult Toast()
+    {
+        return View();
+    }
+
+    [HttpGet("progress")]
+    public IActionResult Progress()
+    {
+        return View();
+    }
+
+    [HttpGet("spinner")]
+    public IActionResult Spinner()
+    {
+        return View();
+    }
+
+    [HttpGet("empty-state")]
+    public IActionResult EmptyState()
+    {
+        return View();
+    }
 }

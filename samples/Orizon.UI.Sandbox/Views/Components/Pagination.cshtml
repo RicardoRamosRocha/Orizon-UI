@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Pagination";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Pagination</h1>
+            <p class="component-catalog__description">Navegacao semantica entre paginas, com estado atual e itens desabilitados.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview</h2>
+            <p class="component-example__description">Quebra linhas no mobile e preserva foco visivel.</p>
+        </header>
+        <orizon-pagination page="3" total-pages="6" href-template="/components/pagination?page={0}" label="Paginas de clientes"></orizon-pagination>
+    </section>
+</div>

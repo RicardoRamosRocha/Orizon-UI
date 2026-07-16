@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Modal";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Modal</h1>
+            <p class="component-catalog__description">Dialogos acessiveis, responsivos e compativeis com dark mode.</p>
+        </div>
+        <orizon-button href="/components" variant="secondary" icon="ph ph-arrow-left">Voltar</orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Preview</h2>
+            <p class="component-example__description">Abre por botao, prende o foco e fecha com Escape, backdrop ou botao.</p>
+        </header>
+        <div class="component-example__preview">
+            <orizon-button data-orizon-modal-target="#sandbox-modal">Abrir modal</orizon-button>
+        </div>
+        <orizon-modal id="sandbox-modal" title="Confirmar publicacao">
+            <p>Revise as informacoes antes de publicar. O painel se adapta a telas pequenas e usa os tokens do tema ativo.</p>
+            <div class="orizon-form-actions">
+                <orizon-button variant="secondary" type="button" data-orizon-modal-close>Cancelar</orizon-button>
+                <orizon-button type="button" data-orizon-modal-close>Confirmar</orizon-button>
+            </div>
+        </orizon-modal>
+    </section>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Variacoes</h2>
+            <p class="component-example__description">Tamanhos sm, md e lg preservam foco visivel e leitura por leitores de tela.</p>
+        </header>
+        <div class="component-example__preview">
+            <orizon-button variant="secondary" data-orizon-modal-target="#modal-sm">Small</orizon-button>
+            <orizon-button variant="secondary" data-orizon-modal-target="#modal-lg">Large</orizon-button>
+        </div>
+        <orizon-modal id="modal-sm" title="Modal compacto" size="sm"><p>Conteudo curto para confirmacoes simples.</p></orizon-modal>
+        <orizon-modal id="modal-lg" title="Modal amplo" size="lg"><p>Espaco extra para formularios, tabelas ou revisoes mais longas.</p></orizon-modal>
+    </section>
+</div>
