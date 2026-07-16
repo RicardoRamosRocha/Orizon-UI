@@ -9,10 +9,30 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+
+    <PackageId>Orizon.UI</PackageId>
+    <Version>1.0.0-mvp</Version>
+    <Authors>Ricardo Ramos Rocha</Authors>
+    <Company>Orizon Platform</Company>
+    <Description>Razor Class Library with reusable ASP.NET Core MVC/Razor UI components, admin layout, design tokens, dark mode, responsive styles, and Sandbox catalog.</Description>
+    <PackageTags>aspnetcore;razor;razor-class-library;ui;design-system;mvc;taghelpers</PackageTags>
+    <RepositoryUrl>https://github.com/RicardoRamosRocha/Orizon-UI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
