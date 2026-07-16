@@ -34,4 +34,16 @@ public sealed class ComponentsController : Controller
     {
         return View();
     }
+
+    [HttpGet("forms")]
+    public IActionResult Forms()
+    {
+        return View();
+    }
+
+    [HttpGet("tables")]
+    public IActionResult Tables()
+    {
+        return View();
+    }
 }

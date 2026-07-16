@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "Forms";
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <h1 class="component-catalog__title">Forms</h1>
+            <p class="component-catalog__description">
+                Campos acessiveis para formularios com ajuda, erro e estados de interacao.
+            </p>
+        </div>
+
+        <orizon-button href="/components"
+                       variant="secondary"
+                       icon="ph ph-arrow-left">
+            Voltar
+        </orizon-button>
+    </header>
+
+    <section class="component-example">
+        <header class="component-example__header">
+            <h2 class="component-example__title">Cadastro de cliente</h2>
+            <p class="component-example__description">
+                Exemplo com duas colunas em telas maiores e uma coluna no mobile.
+            </p>
+        </header>
+
+        <form class="orizon-form" action="#" method="post">
+            <div class="orizon-form-grid">
+                <orizon-input label="Nome"
+                              id="customer-name"
+                              name="customerName"
+                              placeholder="Ana Martins"
+                              autocomplete="name"
+                              required="true"
+                              hint="Informe o nome completo do cliente." />
+
+                <orizon-input label="E-mail"
+                              id="customer-email"
+                              name="customerEmail"
+                              type="email"
+                              value="ana@orizon.example"
+                              autocomplete="email"
+                              required="true" />
+
+                <orizon-input label="Telefone"
+                              id="customer-phone"
+                              name="customerPhone"
+                              type="tel"
+                              placeholder="(11) 90000-0000"
+                              autocomplete="tel" />
+
+                <orizon-select label="Plano"
+                               id="customer-plan"
+                               name="customerPlan"
+                               required="true"
+                               hint="Selecione o plano contratado.">
+                    <option value="">Selecione</option>
+                    <option value="starter">Starter</option>
+                    <option value="business" selected>Business</option>
+                    <option value="enterprise">Enterprise</option>
+                </orizon-select>
+
+                <orizon-input label="Documento"
+                              id="customer-document"
+                              name="customerDocument"
+                              value="12.345.678/0001-90"
+                              readonly="true"
+                              hint="Campo somente leitura." />
+
+                <orizon-input label="Codigo interno"
+                              id="customer-code"
+                              name="customerCode"
+                              value="CLI-2048"
+                              disabled="true" />
+            </div>
+
+            <orizon-textarea label="Observacoes"
+                             id="customer-notes"
+                             name="customerNotes"
+                             rows="5"
+                             placeholder="Resumo do relacionamento com o cliente"
+                             hint="Inclua detalhes uteis para atendimento futuro."></orizon-textarea>
+
+            <orizon-input label="Limite mensal"
+                          id="customer-limit"
+                          name="customerLimit"
+                          type="number"
+                          value="12000"
+                          required="true"
+                          error="O limite precisa ser revisado antes de salvar." />
+
+            <div class="orizon-form-actions">
+                <orizon-button variant="secondary"
+                               type="button">
+                    Cancelar
+                </orizon-button>
+
+                <orizon-button type="submit"
+                               icon="ph ph-floppy-disk">
+                    Salvar cliente
+                </orizon-button>
+            </div>
+        </form>
+    </section>
+</div>

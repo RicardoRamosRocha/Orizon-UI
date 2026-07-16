@@ -1,11 +1,24 @@
 # Orizon UI
 
-Biblioteca oficial de interface reutilizável da Orizon Platform.
+Biblioteca oficial de interface reutilizavel da Orizon Platform.
 
 ## Projetos
 
 - **Orizon.UI**: Razor Class Library com componentes, layouts, estilos e scripts compartilhados.
-- **Orizon.UI.Demo**: aplicação ASP.NET Core MVC para demonstração e validação dos componentes.
+- **samples/Orizon.UI.Sandbox**: aplicacao ASP.NET Core MVC para demonstracao e validacao visual dos componentes.
+
+## Componentes
+
+O catalogo visual esta disponivel em `/components` no Sandbox.
+
+Componentes atualmente disponiveis:
+
+- Buttons
+- Cards
+- Alerts
+- Badges
+- Forms
+- Tables
 
 ## Tecnologias
 
@@ -20,5 +33,5 @@ Biblioteca oficial de interface reutilizável da Orizon Platform.
 ```bash
 dotnet restore
 dotnet build
-dotnet run --project src/Orizon.UI.Demo
+dotnet run --project samples/Orizon.UI.Sandbox
 ```

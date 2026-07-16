@@ -1,6 +1,7 @@
 .component-catalog {
     display: grid;
     gap: 1.5rem;
+    min-width: 0;
 }
 
 .component-catalog__header {
@@ -29,6 +30,7 @@
 }
 
 .component-example {
+    min-width: 0;
     padding: 1.25rem;
     background: var(--orizon-color-surface, #ffffff);
     border: 1px solid var(--orizon-color-border, #e2e8f0);
@@ -61,6 +63,11 @@
 .component-example__stack {
     display: grid;
     gap: 0.75rem;
+}
+
+.component-example .orizon-form,
+.component-example .orizon-table-container {
+    width: 100%;
 }
 
 .component-catalog-card {
