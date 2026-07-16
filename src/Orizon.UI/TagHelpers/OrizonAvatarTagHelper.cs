@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -31,8 +32,8 @@ public sealed class OrizonAvatarTagHelper : TagHelper
         output.Attributes.SetAttribute("aria-label", Name);
 
         var media = string.IsNullOrWhiteSpace(Src)
-            ? $"""<span class="orizon-avatar__initials" aria-hidden="true">{initials}</span>"""
-            : $"""<img class="orizon-avatar__image" src="{Src}" alt="" aria-hidden="true" />""";
+            ? $"""<span class="orizon-avatar__initials" aria-hidden="true">{HtmlEncoder.Default.Encode(initials)}</span>"""
+            : $"""<img class="orizon-avatar__image" src="{HtmlEncoder.Default.Encode(Src)}" alt="" aria-hidden="true" />""";
         var status = string.IsNullOrWhiteSpace(Status)
             ? string.Empty
             : $"""<span class="orizon-avatar__status" aria-hidden="true"></span>""";

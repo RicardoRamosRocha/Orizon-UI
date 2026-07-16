@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -18,6 +19,7 @@ public sealed class OrizonEmptyStateTagHelper : TagHelper
     {
         var content = await output.GetChildContentAsync();
         var existingClass = output.Attributes["class"]?.Value?.ToString();
+        var encodedTitle = HtmlEncoder.Default.Encode(Title);
 
         output.TagName = "section";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -26,15 +28,15 @@ public sealed class OrizonEmptyStateTagHelper : TagHelper
 
         var icon = string.IsNullOrWhiteSpace(Icon)
             ? string.Empty
-            : $"""<div class="orizon-empty-state__icon"><i class="{Icon}" aria-hidden="true"></i></div>""";
+            : $"""<div class="orizon-empty-state__icon"><i class="{HtmlEncoder.Default.Encode(Icon)}" aria-hidden="true"></i></div>""";
         var description = string.IsNullOrWhiteSpace(Description)
             ? string.Empty
-            : $"""<p class="orizon-empty-state__description">{Description}</p>""";
+            : $"""<p class="orizon-empty-state__description">{HtmlEncoder.Default.Encode(Description)}</p>""";
 
         output.Content.SetHtmlContent(
             $"""
             {icon}
-            <h2 class="orizon-empty-state__title">{Title}</h2>
+            <h2 class="orizon-empty-state__title">{encodedTitle}</h2>
             {description}
             <div class="orizon-empty-state__actions">
                 {content.GetContent()}

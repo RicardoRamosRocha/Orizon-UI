@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -23,6 +24,8 @@ public sealed class OrizonModalTagHelper : TagHelper
         var modalId = string.IsNullOrWhiteSpace(Id) ? $"orizon-modal-{Guid.NewGuid():N}" : Id;
         var titleId = $"{modalId}-title";
         var existingClass = output.Attributes["class"]?.Value?.ToString();
+        var encodedTitleId = HtmlEncoder.Default.Encode(titleId);
+        var encodedTitle = HtmlEncoder.Default.Encode(Title ?? "Modal");
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -46,7 +49,7 @@ public sealed class OrizonModalTagHelper : TagHelper
             <div class="orizon-modal__backdrop" data-orizon-modal-close aria-hidden="true"></div>
             <div class="orizon-modal__panel" tabindex="-1">
                 <header class="orizon-modal__header">
-                    <h2 class="orizon-modal__title" id="{titleId}">{Title}</h2>
+                    <h2 class="orizon-modal__title" id="{encodedTitleId}">{encodedTitle}</h2>
                     <button class="orizon-modal__close" type="button" data-orizon-modal-close aria-label="Fechar modal">
                         <span aria-hidden="true">&times;</span>
                     </button>

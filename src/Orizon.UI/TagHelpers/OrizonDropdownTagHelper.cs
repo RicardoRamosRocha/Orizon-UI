@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Orizon.UI.TagHelpers;
@@ -16,6 +17,8 @@ public sealed class OrizonDropdownTagHelper : TagHelper
         var content = await output.GetChildContentAsync();
         var menuId = $"orizon-dropdown-{Guid.NewGuid():N}";
         var existingClass = output.Attributes["class"]?.Value?.ToString();
+        var encodedLabel = HtmlEncoder.Default.Encode(Label);
+        var encodedMenuId = HtmlEncoder.Default.Encode(menuId);
 
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
@@ -27,11 +30,11 @@ public sealed class OrizonDropdownTagHelper : TagHelper
 
         output.Content.SetHtmlContent(
             $"""
-            <button class="orizon-dropdown__trigger" type="button" data-orizon-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="{menuId}">
-                <span>{Label}</span>
+            <button class="orizon-dropdown__trigger" type="button" data-orizon-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="{encodedMenuId}">
+                <span>{encodedLabel}</span>
                 <span class="orizon-dropdown__chevron" aria-hidden="true">⌄</span>
             </button>
-            <div class="orizon-dropdown__menu" id="{menuId}" role="menu" data-orizon-dropdown-menu hidden>
+            <div class="orizon-dropdown__menu" id="{encodedMenuId}" role="menu" data-orizon-dropdown-menu hidden>
                 {content.GetContent()}
             </div>
             """);
