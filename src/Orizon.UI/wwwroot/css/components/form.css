@@ -132,6 +132,76 @@
         color-mix(in srgb, var(--orizon-color-danger) 22%, transparent);
 }
 
+.orizon-check,
+.orizon-radio,
+.orizon-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--orizon-space-2);
+    color: var(--orizon-color-text-primary);
+    cursor: pointer;
+    font-size: var(--orizon-font-size-sm);
+}
+
+.orizon-check input,
+.orizon-radio input {
+    width: var(--orizon-icon-md);
+    height: var(--orizon-icon-md);
+    margin: 0;
+    appearance: none;
+    background: var(--orizon-color-surface);
+    border: 1px solid var(--orizon-color-border-strong);
+    transition: background-color var(--orizon-transition-fast), border-color var(--orizon-transition-fast), box-shadow var(--orizon-transition-fast);
+}
+
+.orizon-check input { border-radius: var(--orizon-radius-sm); }
+.orizon-radio input { border-radius: var(--orizon-radius-full); }
+.orizon-check input:checked,
+.orizon-radio input:checked {
+    background: var(--orizon-brand-primary);
+    border-color: var(--orizon-brand-primary);
+    box-shadow: inset 0 0 0 0.25rem var(--orizon-color-surface);
+}
+
+.orizon-check input:focus-visible,
+.orizon-radio input:focus-visible,
+.orizon-switch input:focus-visible + .orizon-switch__track {
+    box-shadow: var(--orizon-focus-ring);
+    outline: 0;
+}
+
+.orizon-switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.orizon-switch__track {
+    position: relative;
+    width: 2.5rem;
+    height: 1.375rem;
+    border-radius: var(--orizon-radius-full);
+    background: var(--orizon-color-border-strong);
+    transition: background-color var(--orizon-transition-fast), box-shadow var(--orizon-transition-fast);
+}
+
+.orizon-switch__track::after {
+    position: absolute;
+    top: var(--orizon-space-0-5);
+    left: var(--orizon-space-0-5);
+    width: 1.125rem;
+    height: 1.125rem;
+    content: "";
+    border-radius: var(--orizon-radius-full);
+    background: var(--orizon-palette-white);
+    box-shadow: var(--orizon-shadow-xs);
+    transition: transform var(--orizon-transition-fast);
+}
+
+.orizon-switch input:checked + .orizon-switch__track { background: var(--orizon-brand-primary); }
+.orizon-switch input:checked + .orizon-switch__track::after { transform: translateX(1.125rem); }
+
 @media (max-width: 767.98px) {
     .orizon-form-grid {
         grid-template-columns: 1fr;

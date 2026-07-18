@@ -8,6 +8,7 @@
 @import url("./design-tokens.css");
 @import url("./base.css");
 @import url("./typography.css");
+@import url("./animations.css");
 
 /* Themes */
 @import url("./themes/light.css");
@@ -20,6 +21,9 @@
 @import url("./layout/sidebar.css");
 @import url("./layout/topbar.css");
 @import url("./layout/admin-layout.css");
+@import url("./layout/breadcrumb.css");
+@import url("./layout/footer.css");
+@import url("./layout/responsive.css");
 
 /* Components */
 @import url("./components/buttons.css");
