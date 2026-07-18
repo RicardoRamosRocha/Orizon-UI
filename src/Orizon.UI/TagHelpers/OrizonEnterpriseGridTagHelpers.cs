@@ -24,6 +24,15 @@ public sealed class OrizonEnterpriseGridTagHelper : TagHelper
     [HtmlAttributeName("infinite-scroll")] public bool InfiniteScroll { get; set; }
     [HtmlAttributeName("server-mode")] public bool ServerMode { get; set; }
     [HtmlAttributeName("server-url")] public string? ServerUrl { get; set; }
+    [HtmlAttributeName("server-sorting")] public bool ServerSorting { get; set; }
+    [HtmlAttributeName("server-filtering")] public bool ServerFiltering { get; set; }
+    [HtmlAttributeName("server-grouping")] public bool ServerGrouping { get; set; }
+    [HtmlAttributeName("server-paging")] public bool ServerPaging { get; set; }
+    [HtmlAttributeName("tree-data")] public bool TreeData { get; set; }
+    [HtmlAttributeName("parent-field")] public string ParentField { get; set; } = "ParentId";
+    [HtmlAttributeName("children-field")] public string ChildrenField { get; set; } = "Children";
+    [HtmlAttributeName("lazy-load")] public bool LazyLoad { get; set; }
+    [HtmlAttributeName("master-detail-template")] public string? MasterDetailTemplate { get; set; }
     [HtmlAttributeName("edit-mode")] public string EditMode { get; set; } = "readonly";
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -50,6 +59,14 @@ public sealed class OrizonEnterpriseGridTagHelper : TagHelper
         output.Attributes.SetAttribute("data-groupable", Groupable.ToString().ToLowerInvariant());
         output.Attributes.SetAttribute("data-infinite-scroll", InfiniteScroll.ToString().ToLowerInvariant());
         output.Attributes.SetAttribute("data-server-mode", ServerMode.ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-server-sorting", (ServerMode || ServerSorting).ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-server-filtering", (ServerMode || ServerFiltering).ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-server-grouping", (ServerMode || ServerGrouping).ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-server-paging", (ServerMode || ServerPaging).ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-tree-data", TreeData.ToString().ToLowerInvariant());
+        output.Attributes.SetAttribute("data-parent-field", ParentField);
+        output.Attributes.SetAttribute("data-children-field", ChildrenField);
+        output.Attributes.SetAttribute("data-lazy-load", LazyLoad.ToString().ToLowerInvariant());
         output.Attributes.SetAttribute("data-edit-mode", EditMode);
         if (PersistKey is not null) output.Attributes.SetAttribute("data-persist-key", PersistKey);
         if (ServerUrl is not null) output.Attributes.SetAttribute("data-server-url", ServerUrl);
@@ -57,6 +74,7 @@ public sealed class OrizonEnterpriseGridTagHelper : TagHelper
         output.Attributes.SetAttribute("style", $"--orizon-grid-height:{Height};--orizon-grid-row-height:{Math.Clamp(RowHeight, 28, 96)}px");
         output.Content.SetHtmlContent($$"""
             <script type="application/json" data-grid-data>{{data}}</script>
+            {{(MasterDetailTemplate is null ? "" : $"<template data-grid-detail-template>{MasterDetailTemplate}</template>")}}
             <div class="orizon-enterprise-grid__extensions">{{content.GetContent()}}</div>
             <div class="orizon-enterprise-grid__status" role="status" aria-live="polite" data-grid-status></div>
             <div class="orizon-enterprise-grid__viewport" role="grid" tabindex="0" aria-label="{{HtmlEncoder.Default.Encode(Label)}}" aria-rowcount="0" aria-colcount="0" data-grid-viewport>
@@ -85,11 +103,18 @@ public sealed class OrizonGridColumnTagHelper : TagHelper
     [HtmlAttributeName("pinned")] public string? Pinned { get; set; }
     [HtmlAttributeName("hidden")] public bool Hidden { get; set; }
     [HtmlAttributeName("editable")] public bool Editable { get; set; }
+    [HtmlAttributeName("required")] public bool Required { get; set; }
+    [HtmlAttributeName("regex")] public string? Regex { get; set; }
+    [HtmlAttributeName("min")] public decimal? Min { get; set; }
+    [HtmlAttributeName("max")] public decimal? Max { get; set; }
+    [HtmlAttributeName("min-length")] public int? MinLength { get; set; }
+    [HtmlAttributeName("max-length")] public int? MaxLength { get; set; }
+    [HtmlAttributeName("validation-message")] public string? ValidationMessage { get; set; }
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "script"; output.TagMode = TagMode.StartTagAndEndTag; output.Attributes.Clear();
         output.Attributes.SetAttribute("type", "application/json"); output.Attributes.SetAttribute("data-grid-column", "");
-        output.Content.SetHtmlContent(JsonSerializer.Serialize(new { field = Field, title = Title ?? Field, width = Width, minWidth = MinWidth, flex = Flex, format = Format, type = Type, sortable = Sortable, filterable = Filterable, resizable = Resizable, pinned = Pinned, hidden = Hidden, editable = Editable }));
+        output.Content.SetHtmlContent(JsonSerializer.Serialize(new { field = Field, title = Title ?? Field, width = Width, minWidth = MinWidth, flex = Flex, format = Format, type = Type, sortable = Sortable, filterable = Filterable, resizable = Resizable, pinned = Pinned, hidden = Hidden, editable = Editable, required = Required, regex = Regex, min = Min, max = Max, minLength = MinLength, maxLength = MaxLength, validationMessage = ValidationMessage }));
     }
 }
 

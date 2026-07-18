@@ -1,0 +1,59 @@
+@{ ViewData["Title"] = "Grid Benchmark"; }
+<div class="component-catalog">
+    <partial name="_GridHeader" model='@(("Grid Benchmark", "Medição automática com universos de 10.000, 50.000 e 100.000 registros."))' />
+    <div class="component-example">
+        <header class="component-example__header"><h2>Resultados</h2></header>
+        <div class="component-example__preview" style="width:100%">
+            <dl id="benchmark-results" aria-live="polite">
+                <dt>Render inicial</dt><dd data-bench="render">medindo…</dd>
+                <dt>Scroll</dt><dd data-bench="scroll">medindo…</dd>
+                <dt>FPS</dt><dd data-bench="fps">medindo…</dd>
+                <dt>Memória JS</dt><dd data-bench="memory">não disponível</dd>
+                <dt>Filtro/sort — 10.000</dt><dd data-bench-size="10000">medindo…</dd>
+                <dt>Filtro/sort — 50.000</dt><dd data-bench-size="50000">medindo…</dd>
+                <dt>Filtro/sort — 100.000</dt><dd data-bench-size="100000">medindo…</dd>
+                <dt>Consulta remota</dt><dd data-bench="remote">medindo…</dd>
+            </dl>
+        </div>
+    </div>
+    <partial name="_ServerGrid" model='@(("Benchmark 100.000 registros", true, true, false, true, false))' />
+</div>
+
+@section Scripts {
+<script>
+addEventListener("load", () => {
+    const root = document.querySelector("#server-demo-grid");
+    const result = document.querySelector("#benchmark-results");
+    const started = performance.now();
+    root.addEventListener("orizon:grid-data", event => {
+        result.querySelector('[data-bench="render"]').textContent = `${(performance.now() - started).toFixed(1)} ms`;
+        result.querySelector('[data-bench="remote"]').textContent = `${event.detail.result.executionTime.toFixed(2)} ms`;
+        result.querySelector('[data-bench="memory"]').textContent = performance.memory
+            ? `${(performance.memory.usedJSHeapSize / 1048576).toFixed(1)} MB`
+            : "API indisponível";
+    }, { once: true });
+
+    for (const size of [10000, 50000, 100000]) {
+        const values = Array.from({ length: size }, (_, index) => ({ id: index, value: (index * 7919) % size }));
+        const operationStarted = performance.now();
+        values.filter(item => item.value % 3 === 0).sort((left, right) => right.value - left.value);
+        result.querySelector(`[data-bench-size="${size}"]`).textContent = `${(performance.now() - operationStarted).toFixed(1)} ms`;
+    }
+
+    let frames = 0;
+    const frameStarted = performance.now();
+    const countFrames = () => {
+        frames++;
+        if (performance.now() - frameStarted < 1000) requestAnimationFrame(countFrames);
+        else result.querySelector('[data-bench="fps"]').textContent = `${frames} FPS`;
+    };
+    requestAnimationFrame(countFrames);
+    setTimeout(() => {
+        const viewport = root.querySelector("[data-grid-viewport]");
+        const scrollStarted = performance.now();
+        viewport.scrollTop = viewport.scrollHeight;
+        requestAnimationFrame(() => result.querySelector('[data-bench="scroll"]').textContent = `${(performance.now() - scrollStarted).toFixed(1)} ms`);
+    }, 800);
+});
+</script>
+}

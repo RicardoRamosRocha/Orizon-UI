@@ -1,8 +1,87 @@
-import{parseJson,buildView,saveLayout,restoreLayout,getValue,formatValue,csvValue}from"./enterprise-grid-core.js";import{renderHeader,renderChooser,renderFilters,renderGrouping,setupColumns}from"./enterprise-grid-columns.js";import{renderRows,focusCell}from"./enterprise-grid-virtual.js";import{setupSelection}from"./enterprise-grid-selection.js";
-function summaryValue(rows,field,type){if(type==="count")return rows.length;const values=rows.map(row=>Number(getValue(row,field))).filter(Number.isFinite);if(!values.length)return 0;if(type==="sum")return values.reduce((a,b)=>a+b,0);if(type==="average"||type==="avg")return values.reduce((a,b)=>a+b,0)/values.length;if(type==="max")return Math.max(...values);if(type==="min")return Math.min(...values);return rows.length}
-function renderSummary(state){const summaries=[...state.root.querySelectorAll("[data-grid-summary]")];state.footer.replaceChildren();if(!summaries.length)return;const row=document.createElement("div");row.className="orizon-enterprise-grid__summary";row.setAttribute("role","row");state.visibleColumns.forEach((column,index)=>{const cell=document.createElement("div");cell.className="orizon-enterprise-grid__cell";cell.setAttribute("role","gridcell");const summary=summaries.find(item=>item.dataset.field===column.field)||(!summaries[0].dataset.field&&index===0?summaries[0]:null);if(summary){const value=summaryValue(state.filtered,summary.dataset.field,summary.dataset.type);cell.textContent=`${summary.dataset.label||summary.dataset.type}: ${formatValue(value,column)}`}row.append(cell)});state.footer.append(row)}
-function renderPager(state){if(!state.pager)return;const pages=Math.max(1,Math.ceil(state.filtered.length/state.pageSize));state.pager.querySelector("[data-grid-page-info]").textContent=`Página ${state.page+1} de ${pages}`;state.pager.querySelectorAll("[data-grid-page]").forEach(button=>button.disabled=(button.dataset.gridPage==="first"||button.dataset.gridPage==="prev")?state.page===0:state.page>=pages-1);const select=state.pager.querySelector("[data-grid-page-size]");if(!select.options.length){state.pager.dataset.pageSizes.split(",").map(Number).filter(Boolean).forEach(size=>select.add(new Option(String(size),String(size))));select.value=String(state.pageSize)}}
-function exportCsv(state){const columns=state.visibleColumns;const content=[columns.map(x=>csvValue(x.title)).join(","),...state.filtered.map(row=>columns.map(column=>csvValue(getValue(row,column.field))).join(","))].join("\r\n");const blob=new Blob(["\ufeff",content],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download="orizon-grid.csv";link.click();setTimeout(()=>URL.revokeObjectURL(url),0)}
-function initialize(root){const columns=[...root.querySelectorAll("[data-grid-column]")].map(element=>{try{return JSON.parse(element.textContent)}catch{return null}}).filter(Boolean);const source=parseJson(root,"[data-grid-data]",[]);const selection=root.querySelector("[data-grid-selection]");const pager=root.querySelector("[data-grid-pager]");const state={root,source,columns,visibleColumns:[],view:[],filtered:[],sorts:[],filters:{},quickFilter:"",page:0,pageSize:Number(pager?.dataset.pageSize)||50,pager,key:row=>String(getValue(row,root.dataset.keyField)),rowHeight:Number(root.dataset.rowHeight)||44,virtual:root.dataset.virtualScroll==="true",persistKey:root.dataset.persistKey,selectionMode:selection?.dataset.mode||root.dataset.selectable||"multiple",selected:new Set(),lastSelected:null,active:{row:0,column:0},renderedStart:-1,renderedEnd:-1,collapsedGroups:new Set(),groupField:null,viewport:root.querySelector("[data-grid-viewport]"),header:root.querySelector("[data-grid-header]"),body:root.querySelector("[data-grid-body]"),spacer:root.querySelector("[data-grid-spacer]"),rows:root.querySelector("[data-grid-rows]"),footer:root.querySelector("[data-grid-footer]"),columnMenu:root.querySelector("[data-grid-column-menu]"),groupPanel:root.querySelector("[data-grid-group-panel]")};restoreLayout(state);const refresh=()=>{buildView(state);renderHeader(state);renderGrouping(state);renderChooser(state);renderFilters(state);renderRows(state,true);renderSummary(state);renderPager(state)};setupColumns(state,refresh);setupSelection(state);state.viewport.addEventListener("scroll",()=>requestAnimationFrame(()=>renderRows(state)));root.addEventListener("input",event=>{if(event.target.matches("[data-grid-quick-filter]")){state.quickFilter=event.target.value;state.page=0;refresh()}});root.addEventListener("click",event=>{const chooser=event.target.closest("[data-grid-column-chooser-toggle]");if(chooser)state.columnMenu.hidden=!state.columnMenu.hidden;const page=event.target.closest("[data-grid-page]");if(page){const pages=Math.max(1,Math.ceil(state.filtered.length/state.pageSize));if(page.dataset.gridPage==="first")state.page=0;if(page.dataset.gridPage==="prev")state.page--;if(page.dataset.gridPage==="next")state.page++;if(page.dataset.gridPage==="last")state.page=pages-1;state.page=Math.max(0,Math.min(pages-1,state.page));state.viewport.scrollTop=0;refresh()}if(event.target.closest("[data-grid-export]"))exportCsv(state);if(event.target.closest("[data-grid-refresh]")){root.dispatchEvent(new CustomEvent("orizon:grid-refresh",{bubbles:true}));refresh()}if(event.target.closest("[data-grid-filter-close]"))root.querySelector("[data-grid-filter-panel]").hidden=true});root.addEventListener("change",event=>{if(event.target.matches("[data-grid-page-size]")){state.pageSize=Number(event.target.value);state.page=0;saveLayout(state);refresh()}});root.addEventListener("contextmenu",event=>{const cell=event.target.closest("[role=gridcell]");const menu=root.querySelector("[data-grid-context-menu]");if(!cell||!menu)return;event.preventDefault();menu.hidden=false;menu.style.left=`${event.clientX}px`;menu.style.top=`${event.clientY}px`;menu.querySelector("[role=menuitem]")?.focus()});document.addEventListener("click",event=>{const menu=root.querySelector("[data-grid-context-menu]");if(menu&&!event.target.closest("[data-grid-context-menu]"))menu.hidden=true});refresh();root._orizonGrid={state,refresh,focusCell:(row,column)=>focusCell(state,row,column)}}
+import { parseJson, buildView, saveLayout, restoreLayout, getValue, formatValue, csvValue } from "./enterprise-grid-core.js";
+import { renderHeader, renderChooser, renderFilters, renderGrouping, setupColumns } from "./enterprise-grid-columns.js";
+import { renderRows, focusCell } from "./enterprise-grid-virtual.js";
+import { setupSelection } from "./enterprise-grid-selection.js";
+import { loadServerData } from "./enterprise-grid-server.js";
+import { prepareTree, setupAdvanced } from "./enterprise-grid-advanced.js";
+import { exportXlsx } from "./enterprise-grid-xlsx.js";
+
+function summaryValue(rows, field, type) {
+  if (type === "count") return rows.length;
+  const values = rows.map(row => Number(getValue(row, field))).filter(Number.isFinite);
+  if (!values.length) return 0;
+  if (type === "sum") return values.reduce((a, b) => a + b, 0);
+  if (type === "average" || type === "avg") return values.reduce((a, b) => a + b, 0) / values.length;
+  if (type === "max") return Math.max(...values);
+  if (type === "min") return Math.min(...values);
+  return rows.length;
+}
+
+function renderSummary(state) {
+  const summaries = [...state.root.querySelectorAll("[data-grid-summary]")]; state.footer.replaceChildren();
+  if (!summaries.length) return;
+  const row = document.createElement("div"); row.className = "orizon-enterprise-grid__summary"; row.setAttribute("role", "row");
+  state.visibleColumns.forEach((column, index) => {
+    const cell = document.createElement("div"); cell.className = "orizon-enterprise-grid__cell"; cell.setAttribute("role", "gridcell");
+    const summary = summaries.find(item => item.dataset.field === column.field) || (!summaries[0].dataset.field && index === 0 ? summaries[0] : null);
+    if (summary) {
+      const remoteKey = `${summary.dataset.field}:${summary.dataset.type}`;
+      const value = state.remoteSummary && remoteKey in state.remoteSummary ? state.remoteSummary[remoteKey] : summaryValue(state.filtered, summary.dataset.field, summary.dataset.type);
+      cell.textContent = `${summary.dataset.label || summary.dataset.type}: ${formatValue(value, column)}`;
+    }
+    row.append(cell);
+  });
+  state.footer.append(row);
+}
+
+function renderPager(state) {
+  if (!state.pager) return;
+  const total = state.serverMode ? state.serverTotal : state.filtered.length;
+  const pages = Math.max(1, Math.ceil(total / state.pageSize));
+  state.pager.querySelector("[data-grid-page-info]").textContent = `Página ${state.page + 1} de ${pages}`;
+  state.pager.querySelectorAll("[data-grid-page]").forEach(button => button.disabled = (button.dataset.gridPage === "first" || button.dataset.gridPage === "prev") ? state.page === 0 : state.page >= pages - 1);
+  const select = state.pager.querySelector("[data-grid-page-size]");
+  if (!select.options.length) { state.pager.dataset.pageSizes.split(",").map(Number).filter(Boolean).forEach(size => select.add(new Option(String(size), String(size)))); select.value = String(state.pageSize); }
+}
+
+function exportCsv(state) {
+  const columns = state.columns.filter(column => !column.hidden);
+  const content = [columns.map(column => csvValue(column.title)).join(","), ...state.filtered.map(row => columns.map(column => csvValue(getValue(row, column.field))).join(","))].join("\r\n");
+  const blob = new Blob(["\ufeff", content], { type: "text/csv;charset=utf-8" }); const url = URL.createObjectURL(blob), link = document.createElement("a"); link.href = url; link.download = "orizon-grid.csv"; link.click(); setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+function initialize(root) {
+  const columns = [...root.querySelectorAll("[data-grid-column]")].map(element => { try { return JSON.parse(element.textContent); } catch { return null; } }).filter(Boolean);
+  const source = parseJson(root, "[data-grid-data]", []), selection = root.querySelector("[data-grid-selection]"), pager = root.querySelector("[data-grid-pager]");
+  const state = { root, source, rawSource: source, columns, allVisibleColumns: [], visibleColumns: [], view: [], filtered: [], sorts: [], filters: {}, quickFilter: "", page: 0, pageSize: Number(pager?.dataset.pageSize) || 50, pager, key: row => String(getValue(row, root.dataset.keyField)), rowHeight: Number(root.dataset.rowHeight) || 44, virtual: root.dataset.virtualScroll === "true", virtualColumns: root.dataset.virtualColumns === "true", persistKey: root.dataset.persistKey, serverMode: root.dataset.serverMode === "true", serverUrl: root.dataset.serverUrl, serverTotal: source.length, remoteSummary: {}, selectionMode: selection?.dataset.mode || root.dataset.selectable || "multiple", selected: new Set(), lastSelected: null, active: { row: 0, column: 0 }, renderedStart: -1, renderedEnd: -1, renderedColumnStart: -1, renderedColumnEnd: -1, collapsedGroups: new Set(), groupField: null, viewport: root.querySelector("[data-grid-viewport]"), header: root.querySelector("[data-grid-header]"), body: root.querySelector("[data-grid-body]"), spacer: root.querySelector("[data-grid-spacer]"), rows: root.querySelector("[data-grid-rows]"), footer: root.querySelector("[data-grid-footer]"), columnMenu: root.querySelector("[data-grid-column-menu]"), groupPanel: root.querySelector("[data-grid-group-panel]"), loadingMore: false };
+  restoreLayout(state);
+  let refreshToken = 0;
+  const refresh = async ({ append = false } = {}) => {
+    const token = ++refreshToken;
+    if (state.serverMode) { await loadServerData(state, { append }); if (token !== refreshToken) return; state.rawSource = state.source; }
+    if (root.dataset.treeData === "true") prepareTree(state);
+    buildView(state); renderHeader(state); renderGrouping(state); renderChooser(state); renderFilters(state); renderRows(state, true); renderSummary(state); renderPager(state);
+    if (state.serverMode) root.querySelector("[data-grid-status]").textContent += ` · servidor ${state.executionTime.toFixed(2)} ms`;
+  };
+  setupColumns(state, refresh); setupSelection(state); setupAdvanced(state, refresh); restoreLayout(state);
+  state.viewport.addEventListener("scroll", () => requestAnimationFrame(async () => {
+    const columnStart = state.renderedColumnStart; renderHeader(state); if (columnStart !== state.renderedColumnStart) renderRows(state, true); else renderRows(state);
+    if (root.dataset.infiniteScroll === "true" && state.serverMode && !state.loadingMore && state.source.length < state.serverTotal && state.viewport.scrollTop + state.viewport.clientHeight >= state.viewport.scrollHeight - state.rowHeight * 3) { state.loadingMore = true; await refresh({ append: true }); state.loadingMore = false; }
+  }));
+  root.addEventListener("input", event => { if (event.target.matches("[data-grid-quick-filter]")) { state.quickFilter = event.target.value; state.page = 0; refresh(); } });
+  root.addEventListener("click", event => {
+    const chooser = event.target.closest("[data-grid-column-chooser-toggle]"); if (chooser) state.columnMenu.hidden = !state.columnMenu.hidden;
+    const page = event.target.closest("[data-grid-page]"); if (page) { const pages = Math.max(1, Math.ceil((state.serverMode ? state.serverTotal : state.filtered.length) / state.pageSize)); if (page.dataset.gridPage === "first") state.page = 0; if (page.dataset.gridPage === "prev") state.page--; if (page.dataset.gridPage === "next") state.page++; if (page.dataset.gridPage === "last") state.page = pages - 1; state.page = Math.max(0, Math.min(pages - 1, state.page)); state.viewport.scrollTop = 0; refresh(); }
+    if (event.target.closest("[data-grid-export]")) exportCsv(state);
+    if (event.target.closest("[data-grid-export-xlsx]")) exportXlsx(state);
+    if (event.target.closest("[data-grid-refresh]")) { root.dispatchEvent(new CustomEvent("orizon:grid-refresh", { bubbles: true })); refresh(); }
+    if (event.target.closest("[data-grid-filter-close]")) root.querySelector("[data-grid-filter-panel]").hidden = true;
+  });
+  root.addEventListener("change", event => { if (event.target.matches("[data-grid-page-size]")) { state.pageSize = Number(event.target.value); state.page = 0; saveLayout(state); refresh(); } });
+  root.addEventListener("contextmenu", event => { const cell = event.target.closest("[role=gridcell]"), menu = root.querySelector("[data-grid-context-menu]"); if (!cell || !menu) return; event.preventDefault(); menu.hidden = false; menu.style.left = `${event.clientX}px`; menu.style.top = `${event.clientY}px`; menu.querySelector("[role=menuitem]")?.focus(); });
+  document.addEventListener("click", event => { const menu = root.querySelector("[data-grid-context-menu]"); if (menu && !event.target.closest("[data-grid-context-menu]")) menu.hidden = true; });
+  root._orizonGrid = { state, refresh, focusCell: (row, column) => focusCell(state, row, column), exportToExcel: () => exportXlsx(state) }; refresh();
+}
+
 document.querySelectorAll("[data-orizon-enterprise-grid]").forEach(initialize);
-window.OrizonUI=Object.assign(window.OrizonUI||{},{enterpriseGrid(target){const root=typeof target==="string"?document.querySelector(target):target;return root?._orizonGrid}});
+window.OrizonUI = Object.assign(window.OrizonUI || {}, { enterpriseGrid(target) { const root = typeof target === "string" ? document.querySelector(target) : target; return root?._orizonGrid; }, exportToExcel(target) { return this.enterpriseGrid(target)?.exportToExcel(); } });

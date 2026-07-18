@@ -1,0 +1,16 @@
+@model (string Label, bool Sort, bool Filter, bool Group, bool Page, bool Infinite)
+<orizon-enterprise-grid id="server-demo-grid" items="Array.Empty<object>()" key-field="Id" label="@Model.Label" height="34rem" server-mode server-url="/grid/data" server-sorting="@Model.Sort" server-filtering="@Model.Filter" server-grouping="@Model.Group" server-paging="@Model.Page" infinite-scroll="@Model.Infinite" persist-key="server-demo">
+ <orizon-grid-toolbar search export refresh><button type="button" data-grid-export-xlsx>Exportar XLSX</button></orizon-grid-toolbar>
+ @if(Model.Group){<orizon-grid-group-panel />}
+ <orizon-grid-column-chooser />
+ <orizon-grid-column field="Code" title="Código" width="150" pinned="left" />
+ <orizon-grid-column field="Description" title="Descrição" width="270" />
+ <orizon-grid-column field="Category" title="Categoria" width="160" />
+ <orizon-grid-column field="Status" title="Status" width="140" />
+ <orizon-grid-column field="Amount" title="Valor" width="150" format="currency" type="currency" />
+ <orizon-grid-column field="Quantity" title="Quantidade" width="140" format="number" type="number" />
+ <orizon-grid-column field="Date" title="Data" width="140" format="date" />
+ <orizon-grid-selection mode="multiple" checkbox cell />
+ <orizon-grid-summary-row type="count" label="Registros" /><orizon-grid-summary-row field="Amount" type="sum" label="Total" />
+ @if(Model.Page){<orizon-grid-pager page-size="50" />}
+</orizon-enterprise-grid>

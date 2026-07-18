@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0C69
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orizon.UI.Sandbox", "samples\Orizon.UI.Sandbox\Orizon.UI.Sandbox.csproj", "{EFE116A8-7249-4733-B811-EC64A2318CF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orizon.UI.Tests", "tests\Orizon.UI.Tests\Orizon.UI.Tests.csproj", "{5A26E7B4-6D11-41F2-9D96-7BA73BDB1A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{EFE116A8-7249-4733-B811-EC64A2318CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFE116A8-7249-4733-B811-EC64A2318CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFE116A8-7249-4733-B811-EC64A2318CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A26E7B4-6D11-41F2-9D96-7BA73BDB1A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A26E7B4-6D11-41F2-9D96-7BA73BDB1A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A26E7B4-6D11-41F2-9D96-7BA73BDB1A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A26E7B4-6D11-41F2-9D96-7BA73BDB1A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{47B9376B-46DD-4C6E-A989-4FFD7D572ADF} = {E9432070-708D-4884-974D-982DF3464B40}

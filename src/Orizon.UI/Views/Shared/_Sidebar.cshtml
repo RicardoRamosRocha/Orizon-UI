@@ -1,5 +1,6 @@
 @{
     var applicationName = ViewData["ApplicationName"]?.ToString() ?? "Orizon Platform";
+    var currentPath = Context.Request.Path.Value?.TrimEnd('/').ToLowerInvariant() ?? "";
 }
 
 <div class="orizon-sidebar-header">
@@ -41,9 +42,9 @@
             Geral
         </span>
 
-        <a class="orizon-sidebar-link is-active"
+        <a class="orizon-sidebar-link @(currentPath == "/admin/dashboard" ? "is-active" : null)"
            href="/Admin/Dashboard"
-           aria-current="page">
+           aria-current="@(currentPath == "/admin/dashboard" ? "page" : null)">
 
             <orizon-icon name="house"
                          size="20"
@@ -107,6 +108,23 @@
                 Aparência
             </span>
         </a>
+    </div>
+
+    <div class="orizon-sidebar-section">
+        <span class="orizon-sidebar-section-title">Enterprise Grid</span>
+        @foreach (var item in new[] {
+            ("Basic Grid", "/grid"), ("Server Mode", "/grid/server-mode"), ("Server Sorting", "/grid/server-sorting"),
+            ("Server Filtering", "/grid/server-filtering"), ("Server Grouping", "/grid/server-grouping"), ("Server Paging", "/grid/server-paging"),
+            ("Infinite Scroll", "/grid/infinite-scroll"), ("Virtual Columns", "/grid/virtual-columns"), ("Tree Data", "/grid/tree-data"),
+            ("Master Detail", "/grid/master-detail"), ("Batch Editing", "/grid/batch-editing"), ("Cell Validation", "/grid/validation"),
+            ("Clipboard", "/grid/clipboard"), ("Export Excel", "/grid/export-excel"), ("Benchmark", "/grid/benchmark") })
+        {
+            var active = currentPath == item.Item2;
+            <a class="orizon-sidebar-link @(active ? "is-active" : null)" href="@item.Item2" aria-current="@(active ? "page" : null)">
+                <orizon-icon name="table" size="20" class="orizon-sidebar-link-icon" />
+                <span class="orizon-sidebar-link-label">@item.Item1</span>
+            </a>
+        }
     </div>
 </nav>
 
