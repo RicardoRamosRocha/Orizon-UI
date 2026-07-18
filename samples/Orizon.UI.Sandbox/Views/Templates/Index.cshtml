@@ -1,0 +1,16 @@
+@{ ViewData["Title"] = "Application Templates"; }
+<div class="template-page">
+ <partial name="~/Views/Templates/Shared/_TemplateHeader.cshtml" model='@(("Application Templates", "Aplicações completas compostas exclusivamente com componentes existentes do Orizon UI."))' />
+ <div class="template-gallery" aria-label="Templates disponíveis">
+  <a href="/components/templates/admin"><span>01</span><h2>Admin Dashboard</h2><p>Visão operacional completa com métricas e atividades.</p></a>
+  <a href="/components/templates/crud"><span>02</span><h2>CRUD Workspace</h2><p>Gestão de entidades, filtros e estados de dados.</p></a>
+  <a href="/components/templates/forms"><span>03</span><h2>Entity Form</h2><p>Cadastro premium com documentos, datas e uploads.</p></a>
+  <a href="/components/templates/master-detail"><span>04</span><h2>Master Detail</h2><p>Lista hierárquica e contexto detalhado lado a lado.</p></a>
+  <a href="/components/templates/kanban"><span>05</span><h2>Kanban Workspace</h2><p>Fluxo visual colaborativo com filtros e atividades.</p></a>
+  <a href="/components/templates/analytics"><span>06</span><h2>Analytics Dashboard</h2><p>Painel executivo com gráficos e indicadores.</p></a>
+  <a href="/components/templates/settings"><span>07</span><h2>Settings Workspace</h2><p>Preferências organizadas em navegação e seções.</p></a>
+  <a href="/components/templates/auth"><span>08</span><h2>Authentication</h2><p>Login, cadastro, recuperação, confirmação e 2FA.</p></a>
+  <a href="/components/templates/profile"><span>09</span><h2>User Profile</h2><p>Dados pessoais, segurança, preferências e sessões.</p></a>
+  <a href="/components/templates/errors"><span>10</span><h2>Errors &amp; Empty States</h2><p>Respostas consistentes para falhas e ausência de dados.</p></a>
+ </div>
+</div>

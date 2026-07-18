@@ -1,0 +1,38 @@
+@{ ViewData["Title"] = "Dashboard & Charts Premium"; }
+<div class="component-catalog">
+ <header class="component-catalog__header"><div><h1 class="component-catalog__title">Dashboard &amp; Charts Premium</h1><p class="component-catalog__description">Infraestrutura SVG responsiva e acessível, sem bibliotecas gráficas externas.</p></div><orizon-button href="/components" variant="outline" color="neutral" text="Voltar" /></header>
+
+ <orizon-dashboard-grid columns="12" gap="var(--orizon-space-4)" responsive>
+  <orizon-metric-card title="Receita recorrente" value="R$ 184.200" previous="R$ 161.300" variation="+14,2%" trend="positive" icon="currency-circle-dollar" sparkline="[18,24,22,31,34,42,48]" footer="Atualizado há 5 minutos" />
+  <orizon-metric-card title="Churn mensal" value="2,4%" previous="3,1%" variation="-0,7 p.p." trend="positive" icon="trend-down" sparkline="[4.2,3.9,3.5,3.7,3.0,2.7,2.4]" helper="Clientes cancelados" compact />
+  <orizon-metric-card title="Ticket médio" value="R$ 428" variation="+5,8%" trend="positive" icon="receipt" sparkline="[310,335,352,380,371,410,428]" />
+
+  <orizon-dashboard-widget title="Receita e custos" subtitle="Últimos seis meses" icon="chart-line" refresh collapsible fullscreen column-span="8" footer="Valores consolidados em milhares">
+   <orizon-chart type="line" title="Evolução financeira" subtitle="Receita versus custos" labels='["Jan","Fev","Mar","Abr","Mai","Jun"]' series='[{"name":"Receita","data":[120,148,156,181,205,238]},{"name":"Custos","data":[82,91,108,116,129,142]}]' height="300" legend tooltip grid axis animate responsive />
+  </orizon-dashboard-widget>
+  <orizon-dashboard-widget title="Meta trimestral" subtitle="Progresso acumulado" icon="target" column-span="4">
+   <div style="display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:1rem"><orizon-progress-ring value="78" label="Atingido" status="success" /><orizon-gauge min="0" max="100" value="72" label="Saúde da operação" unit="%" ticks="6" /></div>
+  </orizon-dashboard-widget>
+
+  <orizon-dashboard-widget title="Novos clientes" subtitle="Por canal de aquisição" column-span="6" refresh>
+   <orizon-chart type="bar" labels='["Orgânico","Indicação","Ads","Parceiros"]' series='[{"name":"Clientes","data":[82,64,49,37]}]' height="270" legend="false" tooltip />
+  </orizon-dashboard-widget>
+  <orizon-dashboard-widget title="Receita por produto" subtitle="Participação no total" column-span="6">
+   <orizon-chart type="doughnut" labels='["CRM","Analytics","Portal","Outros"]' series='[{"name":"Receita","data":[42,28,19,11]}]' height="270" legend tooltip axis="false" grid="false" />
+  </orizon-dashboard-widget>
+
+  <orizon-dashboard-widget title="Área acumulada" subtitle="Uso da plataforma" column-span="6">
+   <orizon-chart type="area" labels='["Jan","Fev","Mar","Abr","Mai"]' series='[{"name":"Sessões","data":[42,58,71,88,112]}]' height="250" legend tooltip />
+  </orizon-dashboard-widget>
+  <orizon-dashboard-widget title="Performance regional" subtitle="Receita por região" column-span="6">
+   <orizon-chart type="horizontal-bar" labels='["Sudeste","Sul","Nordeste","Centro-Oeste"]' series='[{"name":"Receita","data":[180,125,92,68]}]' height="250" legend="false" tooltip />
+  </orizon-dashboard-widget>
+
+  <orizon-dashboard-widget title="Composição da base" column-span="4"><orizon-chart type="pie" labels='["Ativos","Trial","Inativos"]' series='[{"name":"Clientes","data":[68,21,11]}]' height="230" legend tooltip grid="false" axis="false" /></orizon-dashboard-widget>
+  <orizon-dashboard-widget title="Atividade recente" column-span="4"><div style="display:grid;gap:1rem"><div><strong>Conversões</strong><orizon-sparkline type="line" values="[12,18,15,24,28,26,34]" label="Conversões crescendo" /></div><div><strong>Receita</strong><orizon-sparkline type="area" values="[8,13,17,14,22,29,31]" label="Receita crescente" /></div><div><strong>Tickets</strong><orizon-sparkline type="bar" values="[22,18,25,14,19,12,9]" label="Tickets diminuindo" /></div></div></orizon-dashboard-widget>
+  <orizon-dashboard-widget title="Sem resultados" empty column-span="4" /><orizon-dashboard-widget title="Falha de integração" error="O serviço de analytics não respondeu." column-span="4" /><orizon-dashboard-widget title="Carregando indicadores" loading column-span="4" />
+  <orizon-dashboard-widget title="Empty State reutilizável" column-span="4"><orizon-chart-empty-state icon="chart-line" title="Nenhum período selecionado" description="Escolha um intervalo para visualizar os indicadores." action-label="Selecionar período" action-href="#" /></orizon-dashboard-widget>
+ </orizon-dashboard-grid>
+
+ <section class="component-example" data-theme="dark" style="margin-top:1rem;padding:1rem;background:var(--orizon-color-background);border-radius:var(--orizon-radius-xl)"><header class="component-example__header"><h2>Tema escuro</h2></header><div class="component-example__preview" style="width:100%"><orizon-chart type="line" title="Retenção" labels='["S1","S2","S3","S4","S5"]' series='[{"name":"Retenção","data":[100,84,76,71,68]}]' height="240" legend tooltip /></div></section>
+</div>

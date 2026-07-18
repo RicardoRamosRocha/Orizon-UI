@@ -1,0 +1,57 @@
+@{ ViewData["Title"] = "Productivity Components"; }
+<div class="component-catalog">
+ <orizon-command-bar title="Central de operações" subtitle="Componentes para fluxos densos e eficientes" breadcrumb="Componentes / Produtividade" search search-placeholder="Pesquisar nesta página" primary-text="Novo cliente" sticky>
+  <button class="orizon-button orizon-button--outline orizon-button--neutral" type="button" data-command-palette-target="productivity-palette">Comandos <kbd>Ctrl K</kbd></button>
+  <button class="orizon-button orizon-button--outline orizon-button--neutral" type="button" data-drawer-target="filters-drawer">Filtros</button>
+ </orizon-command-bar>
+
+ <orizon-command-palette id="productivity-palette" title="Central de comandos" placeholder="Busque uma ação ou destino">
+  <section data-command-group><h3>Criação</h3>
+   <button type="button" role="option" data-command-item data-command="novo cliente"><span data-command-icon>＋</span><span>Novo cliente</span><kbd>N C</kbd></button>
+   <button type="button" role="option" data-command-item data-command="nova tarefa"><span data-command-icon>✓</span><span>Nova tarefa</span><kbd>N T</kbd></button>
+  </section>
+  <section data-command-group><h3>Navegação</h3>
+   <a href="#kanban" role="option" data-command-item data-command="abrir kanban"><span data-command-icon>▦</span><span>Abrir Kanban</span><kbd>G K</kbd></a>
+   <a href="#tree" role="option" data-command-item data-command="abrir estrutura"><span data-command-icon>⌘</span><span>Abrir estrutura</span><kbd>G E</kbd></a>
+  </section>
+ </orizon-command-palette>
+
+ <orizon-drawer id="filters-drawer" title="Filtros da operação" position="right" width="22rem">
+  <form style="display:grid;gap:1rem"><label>Status<select class="form-select"><option>Todos</option><option>Em andamento</option><option>Concluído</option></select></label><label>Responsável<input class="form-control" placeholder="Nome da pessoa" /></label><button class="orizon-button orizon-button--solid orizon-button--primary" type="button" data-drawer-close>Aplicar filtros</button></form>
+ </orizon-drawer>
+
+ <section class="component-example"><header class="component-example__header"><div><h2>Split View</h2><p>Arraste o separador ou use as setas quando ele estiver focado.</p></div></header><div class="component-example__preview" style="width:100%">
+  <orizon-split-view initial-size="38" min-size="25" max-size="70" resizable collapsible persist-key="productivity-demo-split">
+   <section data-split-primary><h3>Caixa de entrada</h3><p><strong>Contrato Enterprise</strong><br />Revisão jurídica pendente</p><p><strong>Integração de dados</strong><br />Aguardando credenciais</p></section>
+   <section data-split-secondary><h3>Contrato Enterprise</h3><p>Resumo e histórico do item selecionado, preservando o contexto da lista.</p><textarea class="form-control" rows="4" aria-label="Anotação">Alinhar cláusula de disponibilidade.</textarea></section>
+  </orizon-split-view>
+ </div></section>
+
+ <section class="component-example" id="tree"><header class="component-example__header"><div><h2>Tree View e Tree Grid</h2><p>Navegação hierárquica com expansão e seleção por teclado.</p></div></header><div class="component-example__preview" style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1rem">
+  <orizon-tree-view label="Estrutura da empresa" selection="single">
+   <ul><li role="treeitem" tabindex="0" aria-expanded="true"><div><button type="button" data-tree-toggle aria-label="Recolher Comercial">▾</button><span>Comercial</span></div><ul role="group"><li role="treeitem" tabindex="-1"><div><span>Grandes contas</span></div></li><li role="treeitem" tabindex="-1"><div><span>PMEs</span></div></li></ul></li><li role="treeitem" tabindex="-1" aria-expanded="false"><div><button type="button" data-tree-toggle aria-label="Expandir Produto">▸</button><span>Produto</span></div><ul role="group"><li role="treeitem" tabindex="-1"><div><span>Design System</span></div></li></ul></li></ul>
+  </orizon-tree-view>
+  <orizon-tree-grid label="Projetos hierárquicos" selectable striped>
+   <table><thead><tr><th>Projeto</th><th>Responsável</th><th>Status</th></tr></thead><tbody><tr role="row" data-node-id="platform"><td><button type="button" data-treegrid-toggle aria-label="Recolher Plataforma">▾</button> Plataforma</td><td>Marina</td><td>Ativo</td></tr><tr role="row" data-parent="platform"><td>↳ API pública</td><td>Caio</td><td>Em curso</td></tr><tr role="row" data-parent="platform"><td>↳ Portal</td><td>Lia</td><td>Planejado</td></tr></tbody></table>
+  </orizon-tree-grid>
+ </div></section>
+
+ <section class="component-example"><header class="component-example__header"><div><h2>Timeline</h2><p>Eventos, autores e estados em uma sequência legível.</p></div></header><div class="component-example__preview" style="width:100%"><orizon-timeline label="Histórico da proposta">
+  <article data-timeline-item role="listitem"><span data-timeline-marker>✓</span><div data-timeline-card><time>Hoje, 10:42</time><h3>Proposta aprovada</h3><p>Fernanda aprovou os termos comerciais.</p></div></article>
+  <article data-timeline-item role="listitem"><span data-timeline-marker>↗</span><div data-timeline-card><time>Ontem, 16:10</time><h3>Documento enviado</h3><p>Versão 4 compartilhada com o cliente.</p></div></article>
+  <article data-timeline-item role="listitem"><span data-timeline-marker>＋</span><div data-timeline-card><time>12 jul, 09:00</time><h3>Oportunidade criada</h3><p>Origem: indicação de parceiro.</p></div></article>
+ </orizon-timeline></div></section>
+
+ <section class="component-example" id="kanban"><header class="component-example__header"><div><h2>Kanban</h2><p>Arraste cartões entre as colunas; a ordem é salva localmente.</p></div></header><div class="component-example__preview" style="width:100%"><orizon-kanban label="Fluxo de entregas" draggable persist-key="productivity-demo-kanban">
+  <section data-kanban-column data-column-id="backlog"><header><h3>Backlog</h3><span>2</span></header><div data-kanban-list><article draggable="true" tabindex="0" data-kanban-card data-card-id="discovery" data-priority="high"><small>Produto</small><h4>Discovery de relatórios</h4><p>Mapear jornadas críticas</p></article><article draggable="true" tabindex="0" data-kanban-card data-card-id="tokens"><small>Design</small><h4>Revisar tokens</h4><p>Contraste e elevação</p></article></div></section>
+  <section data-kanban-column data-column-id="doing"><header><h3>Em andamento</h3><span>1</span></header><div data-kanban-list><article draggable="true" tabindex="0" data-kanban-card data-card-id="command"><small>Frontend</small><h4>Command Palette</h4><p>Atalhos e busca</p></article></div></section>
+  <section data-kanban-column data-column-id="done"><header><h3>Concluído</h3><span>1</span></header><div data-kanban-list><article draggable="true" tabindex="0" data-kanban-card data-card-id="audit"><small>Qualidade</small><h4>Auditoria de foco</h4><p>Teclado validado</p></article></div></section>
+ </orizon-kanban></div></section>
+
+ <section class="component-example"><header class="component-example__header"><div><h2>Activity Feed e Quick Actions</h2><p>Atualizações recentes e acessos frequentes.</p></div></header><div class="component-example__preview" style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1rem">
+  <orizon-activity-feed label="Atividade recente" grouped><section data-activity-group><h3>Hoje</h3><article data-activity-item><span data-activity-avatar>FM</span><div><p><strong>Fernanda</strong> aprovou a proposta Enterprise.</p><time>há 12 min</time></div></article><article data-activity-item><span data-activity-avatar>CR</span><div><p><strong>Caio</strong> moveu “Command Palette”.</p><time>há 38 min</time></div></article></section><section data-activity-group><h3>Ontem</h3><article data-activity-item><span data-activity-avatar>LS</span><div><p><strong>Lia</strong> publicou uma nova versão.</p><time>16:10</time></div></article></section></orizon-activity-feed>
+  <orizon-quick-actions label="Ações rápidas" columns="2" favorites persist-key="productivity-demo-actions"><div data-quick-action="customer"><span data-quick-icon>＋</span><a href="#"><strong>Novo cliente</strong><small>Criar cadastro</small></a><button type="button" data-quick-favorite aria-pressed="false" aria-label="Adicionar Novo cliente aos favoritos">☆</button></div><div data-quick-action="report"><span data-quick-icon>▥</span><a href="#"><strong>Gerar relatório</strong><small>Exportar indicadores</small></a><button type="button" data-quick-favorite aria-pressed="false" aria-label="Adicionar Gerar relatório aos favoritos">☆</button></div><div data-quick-action="invite"><span data-quick-icon>✉</span><a href="#"><strong>Convidar pessoa</strong><small>Adicionar ao time</small></a><button type="button" data-quick-favorite aria-pressed="false" aria-label="Adicionar Convidar pessoa aos favoritos">☆</button></div><div data-quick-action="settings"><span data-quick-icon>⚙</span><a href="#"><strong>Configurações</strong><small>Ajustar workspace</small></a><button type="button" data-quick-favorite aria-pressed="false" aria-label="Adicionar Configurações aos favoritos">☆</button></div></orizon-quick-actions>
+ </div></section>
+
+ <section class="component-example" data-theme="dark" style="padding:1rem;background:var(--orizon-color-background);border-radius:var(--orizon-radius-xl)"><header class="component-example__header"><h2>Tema escuro</h2></header><orizon-timeline label="Atividade noturna" compact><article data-timeline-item role="listitem"><span data-timeline-marker>✓</span><div data-timeline-card><time>22:18</time><h3>Deploy concluído</h3><p>Ambiente atualizado sem incidentes.</p></div></article></orizon-timeline></section>
+</div>

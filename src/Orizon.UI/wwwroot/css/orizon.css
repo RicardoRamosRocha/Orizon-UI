@@ -49,6 +49,14 @@
 @import url("./components/data-premium.css");
 @import url("./components/advanced-forms.css");
 @import url("./components/advanced-forms-fixes.css");
+@import url("./components/dashboard-premium.css");
+@import url("./components/charts-premium.css");
+@import url("./components/productivity-premium.css");
+@import url("./components/command-palette.css");
+@import url("./components/tree.css");
+@import url("./components/timeline.css");
+@import url("./components/kanban.css");
+@import url("./components/enterprise-grid.css");
 
 /* Utilities */
 @import url("./utilities.css");

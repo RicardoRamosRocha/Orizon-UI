@@ -20,6 +20,48 @@ public sealed class ComponentsController : Controller
     [HttpGet("forms-premium")]
     public IActionResult FormsPremium() => View();
 
+    [HttpGet("dashboard")]
+    public IActionResult Dashboard() => View();
+
+    [HttpGet("productivity")]
+    public IActionResult Productivity() => View();
+
+    [HttpGet("enterprise-grid")]
+    public IActionResult EnterpriseGrid() => View();
+
+    [HttpGet("templates")]
+    public IActionResult Templates() => View("~/Views/Templates/Index.cshtml");
+
+    [HttpGet("templates/admin")]
+    public IActionResult TemplateAdmin() => View("~/Views/Templates/Admin/Index.cshtml");
+
+    [HttpGet("templates/crud")]
+    public IActionResult TemplateCrud() => View("~/Views/Templates/Crud/Index.cshtml");
+
+    [HttpGet("templates/forms")]
+    public IActionResult TemplateForms() => View("~/Views/Templates/Forms/Index.cshtml");
+
+    [HttpGet("templates/master-detail")]
+    public IActionResult TemplateMasterDetail() => View("~/Views/Templates/MasterDetail/Index.cshtml");
+
+    [HttpGet("templates/kanban")]
+    public IActionResult TemplateKanban() => View("~/Views/Templates/Kanban/Index.cshtml");
+
+    [HttpGet("templates/analytics")]
+    public IActionResult TemplateAnalytics() => View("~/Views/Templates/Analytics/Index.cshtml");
+
+    [HttpGet("templates/settings")]
+    public IActionResult TemplateSettings() => View("~/Views/Templates/Settings/Index.cshtml");
+
+    [HttpGet("templates/auth")]
+    public IActionResult TemplateAuth() => View("~/Views/Templates/Authentication/Index.cshtml");
+
+    [HttpGet("templates/profile")]
+    public IActionResult TemplateProfile() => View("~/Views/Templates/Profile/Index.cshtml");
+
+    [HttpGet("templates/errors")]
+    public IActionResult TemplateErrors() => View("~/Views/Templates/Errors/Index.cshtml");
+
     [HttpGet("design-language")]
     public IActionResult DesignLanguage() => View();
 
