@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "Orizon Design Language";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/components-catalog.css" asp-append-version="true" />
+}
+
+<div class="component-catalog">
+    <header class="component-catalog__header">
+        <div>
+            <span class="orizon-badge orizon-badge--primary">ODL 1.0</span>
+            <h1 class="component-catalog__title">Orizon Design Language</h1>
+            <p class="component-catalog__description">Uma identidade consistente para todo o ecossistema Orizon.</p>
+        </div>
+        <label class="orizon-field">
+            <span class="orizon-field__label">Tema ativo</span>
+            <select class="orizon-select" data-theme-select aria-label="Selecionar tema">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="construction">Construction</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="corporate">Corporate</option>
+            </select>
+        </label>
+    </header>
+
+    <section class="component-section">
+        <h2>Temas</h2>
+        <div class="orizon-cluster">
+            <button class="orizon-button orizon-button--secondary" data-theme-value="light">Light</button>
+            <button class="orizon-button orizon-button--secondary" data-theme-value="dark">Dark</button>
+            <button class="orizon-button orizon-button--secondary" data-theme-value="construction">Construction</button>
+            <button class="orizon-button orizon-button--secondary" data-theme-value="real-estate">Real Estate</button>
+            <button class="orizon-button orizon-button--secondary" data-theme-value="corporate">Corporate</button>
+        </div>
+    </section>
+
+    <section class="component-section">
+        <h2>Componentes semanticos</h2>
+        <div class="component-catalog__grid">
+            <orizon-card title="Superficie ODL" subtitle="Este card muda apenas pelos tokens do tema." hoverable="true">
+                <div class="orizon-cluster">
+                    <orizon-button variant="primary">Acao primaria</orizon-button>
+                    <orizon-badge variant="success">Sucesso</orizon-badge>
+                    <orizon-badge variant="warning">Atencao</orizon-badge>
+                </div>
+            </orizon-card>
+            <orizon-card title="Controles premium" subtitle="Foco visivel e navegacao por teclado.">
+                <label class="orizon-check"><input type="checkbox" checked /> Checkbox</label>
+                <label class="orizon-radio"><input type="radio" checked /> Radio</label>
+                <label class="orizon-switch"><input type="checkbox" checked /><span class="orizon-switch__track"></span> Switch</label>
+            </orizon-card>
+        </div>
+    </section>
+</div>
