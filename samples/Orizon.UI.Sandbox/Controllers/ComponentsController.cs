@@ -14,6 +14,9 @@ public sealed class ComponentsController : Controller
     [HttpGet("design-language")]
     public IActionResult DesignLanguage() => View();
 
+    [HttpGet("appearance")]
+    public IActionResult Appearance() => View();
+
     [HttpGet("buttons")]
     public IActionResult Buttons()
     {

@@ -36,6 +36,11 @@
 
         shell.classList.toggle("is-sidebar-collapsed");
 
+        window.OrizonAppearance?.set(
+            "sidebar",
+            shell.classList.contains("is-sidebar-collapsed") ? "collapsed" : "expanded"
+        );
+
     }
 
     sidebarToggle?.addEventListener("click", () => {

@@ -1,3 +1,4 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var pageTitle = ViewData["Title"]?.ToString();
     var applicationName = ViewData["ApplicationName"]?.ToString() ?? "Orizon Platform";
@@ -5,6 +6,7 @@
     var fullTitle = string.IsNullOrWhiteSpace(pageTitle)
         ? applicationName
         : $"{pageTitle} | {applicationName}";
+    var requestToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 
 <!DOCTYPE html>
@@ -16,6 +18,7 @@
           content="width=device-width, initial-scale=1.0" />
 
     <title>@fullTitle</title>
+    <meta name="request-verification-token" content="@requestToken" />
 
     <link rel="stylesheet" href="~/_content/Orizon.UI/css/orizon.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)

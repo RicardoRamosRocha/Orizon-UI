@@ -1,5 +1,9 @@
 # Orizon UI
 
+## Theme Manager
+
+O Orizon UI inclui personalizacao em tempo real com oito temas oficiais, cor primaria, modo, densidade, sidebar, tipografia, bordas, sombras e animacoes. Use `OrizonAppearance` para aplicar preferencias sem refresh e conecte os endpoints de persistencia da aplicacao consumidora. Consulte [docs/Sprint-4.2-Aparencia](docs/Sprint-4.2-Aparencia/README.md).
+
 Orizon UI is a reusable ASP.NET Core Razor Class Library for MVC/Razor applications. It provides the Orizon Platform MVP design system, admin layout, Tag Helpers, CSS tokens, JavaScript behaviors, dark mode, responsive styles, and a Sandbox catalog for visual validation.
 
 ## MVP Status

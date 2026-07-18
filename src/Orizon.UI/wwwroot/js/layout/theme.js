@@ -104,4 +104,6 @@
     window.OrizonAppearance = Object.freeze({ themes: [...themes], defaults: { ...defaults }, get: () => ({ ...state }), set, apply, load, configure: options => { endpoints = { ...endpoints, ...options }; return window.OrizonAppearance; } });
     window.OrizonTheme = Object.freeze({ themes: [...themes], get: () => effectiveTheme(state), set: theme => set("theme", theme), reset: () => apply(defaults) });
     apply(state, false);
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load, { once: true });
+    else load();
 })();
