@@ -1,3 +1,4 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var pageTitle = ViewData["Title"]?.ToString();
     var applicationName = ViewData["ApplicationName"]?.ToString() ?? "Orizon Platform";
@@ -5,6 +6,7 @@
     var fullTitle = string.IsNullOrWhiteSpace(pageTitle)
         ? applicationName
         : $"{pageTitle} | {applicationName}";
+    var requestToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 
 <!DOCTYPE html>
@@ -16,58 +18,10 @@
           content="width=device-width, initial-scale=1.0" />
 
     <title>@fullTitle</title>
+    <meta name="request-verification-token" content="@requestToken" />
 
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/tokens.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/themes/colors-dark.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/base.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/typography.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/utilities.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/animations.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/admin-layout.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/sidebar.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/topbar.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/breadcrumb.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/footer.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/_content/Orizon.UI/css/layout/responsive.css"
-          asp-append-version="true" />
-
-    @await RenderSectionAsync("Styles", required: false)
     <link rel="stylesheet" href="~/_content/Orizon.UI/css/orizon.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/components-catalog.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body class="orizon-admin-body">

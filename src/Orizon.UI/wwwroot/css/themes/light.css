@@ -1,0 +1,21 @@
+:root,
+[data-theme="light"] {
+    color-scheme: light;
+    --orizon-color-background: var(--orizon-palette-slate-50);
+    --orizon-color-background-subtle: var(--orizon-palette-slate-100);
+    --orizon-color-surface: var(--orizon-palette-white);
+    --orizon-color-surface-secondary: var(--orizon-palette-slate-100);
+    --orizon-color-surface-elevated: var(--orizon-palette-white);
+    --orizon-color-surface-hover: var(--orizon-brand-primary-soft);
+    --orizon-color-surface-selected: var(--orizon-brand-primary-soft);
+    --orizon-color-text-primary: var(--orizon-palette-slate-900);
+    --orizon-color-text-secondary: var(--orizon-palette-slate-500);
+    --orizon-color-text-muted: var(--orizon-palette-slate-400);
+    --orizon-color-border: var(--orizon-palette-slate-200);
+    --orizon-color-border-strong: var(--orizon-palette-slate-300);
+    --orizon-sidebar-background: var(--orizon-palette-slate-900);
+    --orizon-sidebar-background-hover: var(--orizon-palette-slate-800);
+    --orizon-sidebar-text: var(--orizon-palette-slate-300);
+    --orizon-sidebar-text-active: var(--orizon-palette-white);
+    --orizon-shadow-color: 15 23 42;
+}

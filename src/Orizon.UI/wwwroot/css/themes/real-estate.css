@@ -1,0 +1,10 @@
+[data-theme="real-estate"] {
+    color-scheme: light;
+    --orizon-brand-primary: #0f766e;
+    --orizon-brand-primary-hover: #115e59;
+    --orizon-brand-primary-active: #134e4a;
+    --orizon-brand-primary-soft: #ccfbf1;
+    --orizon-sidebar-background: #042f2e;
+    --orizon-sidebar-background-hover: #134e4a;
+    --orizon-sidebar-indicator: #2dd4bf;
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - Theme Manager
+
+- Oito temas oficiais e seis cores primarias semanticas.
+- Runtime `OrizonAppearance` com preview instantaneo, LocalStorage e sincronizacao remota.
+- Densidade, sidebar, tipografia, radius, sombras e movimento configuraveis por tokens.
+- Tag Helpers `orizon-theme-card`, `orizon-appearance-option` e `orizon-preview-panel`.
+- Catalogo e documentacao da Sprint 4.2.
+
 ## [1.0.0-mvp] - 2026-07-15
 
 ### Added

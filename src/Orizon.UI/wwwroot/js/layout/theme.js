@@ -1,73 +1,115 @@
 (() => {
     "use strict";
 
-    const storageKey = "orizon-ui-theme";
+    const storageKey = "orizon-ui-appearance";
+    const themes = ["light", "dark", "corporate", "construction", "real-estate", "hair", "agents", "renova"];
+    const defaults = { theme: "light", primaryColor: "blue", mode: "auto", density: "normal", sidebar: "expanded", fontSize: "normal", radius: "rounded", shadow: "standard", motion: "normal", language: "pt-BR" };
     const root = document.documentElement;
-    const toggleButtons = document.querySelectorAll("[data-theme-toggle]");
+    let endpoints = { appearance: "/api/appearance", preferences: "/api/preferences", theme: "/api/theme", companyTheme: "/api/company/theme" };
+    let state = readLocal();
+    let saveTimer;
 
-    const getPreferredTheme = () => {
-        const storedTheme = localStorage.getItem(storageKey);
+    function readLocal() {
+        try { return { ...defaults, ...JSON.parse(localStorage.getItem(storageKey) || "{}") }; }
+        catch { return { ...defaults }; }
+    }
 
-        if (storedTheme === "light" || storedTheme === "dark") {
-            return storedTheme;
-        }
+    function effectiveTheme(value) {
+        return themes.includes(value.theme) ? value.theme : "light";
+    }
 
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-    };
+    function isDark(value) {
+        if (value.mode === "dark") return true;
+        if (value.mode === "light") return false;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
 
-    const updateButtons = (theme) => {
-        const isDark = theme === "dark";
+    function apply(next, persist = true) {
+        state = { ...state, ...next };
+        const theme = effectiveTheme(state);
+        root.dataset.theme = theme;
+        root.dataset.colorMode = isDark(state) ? "dark" : "light";
+        root.dataset.primaryColor = state.primaryColor;
+        root.dataset.density = state.density;
+        root.dataset.fontSize = state.fontSize;
+        root.dataset.radius = state.radius;
+        root.dataset.shadow = state.shadow;
+        root.dataset.motion = state.motion;
+        root.dataset.sidebarPreference = state.sidebar;
+        root.style.colorScheme = isDark(state) ? "dark" : "light";
+        document.querySelector("[data-admin-layout]")?.classList.toggle("is-sidebar-collapsed", state.sidebar !== "expanded");
+        document.body?.classList.toggle("is-sidebar-icons-only", state.sidebar === "icons");
+        if (persist) localStorage.setItem(storageKey, JSON.stringify(state));
+        syncControls();
+        window.dispatchEvent(new CustomEvent("orizon:appearancechange", { detail: { ...state, effectiveTheme: theme, colorMode: isDark(state) ? "dark" : "light" } }));
+        return { ...state };
+    }
 
-        toggleButtons.forEach((button) => {
-            button.setAttribute("aria-pressed", String(isDark));
-            button.setAttribute(
-                "aria-label",
-                isDark ? "Ativar tema claro" : "Ativar tema escuro"
-            );
-
-            const icon = button.querySelector("[data-theme-icon]");
-
-            if (icon) {
-                icon.style.transform = isDark
-                    ? "rotate(180deg)"
-                    : "rotate(0deg)";
+    function syncControls() {
+        document.querySelectorAll("[data-appearance-key]").forEach(control => {
+            const key = control.dataset.appearanceKey;
+            const value = control.dataset.appearanceValue;
+            if (control.matches("select")) control.value = state[key];
+            else {
+                const selected = value === state[key];
+                control.classList.toggle("is-selected", selected);
+                control.setAttribute("aria-pressed", String(selected));
+                if (control.matches("input")) control.checked = selected;
             }
         });
-    };
+        document.querySelectorAll("[data-theme-toggle]").forEach(button => {
+            const dark = isDark(state);
+            button.setAttribute("aria-pressed", String(dark));
+            button.setAttribute("aria-label", dark ? "Ativar tema claro" : "Ativar tema escuro");
+        });
+    }
 
-    const applyTheme = (theme, persist = false) => {
-        root.setAttribute("data-theme", theme);
-        root.style.colorScheme = theme;
+    function headers() {
+        const token = document.querySelector('meta[name="request-verification-token"]')?.content;
+        return { "Content-Type": "application/json", ...(token ? { "RequestVerificationToken": token } : {}) };
+    }
 
-        if (persist) {
-            localStorage.setItem(storageKey, theme);
-        }
+    function scheduleSave() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(async () => {
+            try {
+                const response = await fetch(endpoints.preferences, { method: "POST", headers: headers(), body: JSON.stringify(state) });
+                window.dispatchEvent(new CustomEvent(response.ok ? "orizon:appearancesaved" : "orizon:appearanceerror"));
+            } catch { window.dispatchEvent(new CustomEvent("orizon:appearanceerror")); }
+        }, 350);
+    }
 
-        updateButtons(theme);
-    };
+    async function load() {
+        try {
+            const response = await fetch(endpoints.appearance, { headers: { "Accept": "application/json" } });
+            if (response.ok) apply(await response.json());
+        } catch { apply(state, false); }
+        return { ...state };
+    }
 
-    const toggleTheme = () => {
-        const currentTheme = root.getAttribute("data-theme") || "light";
-        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    function set(key, value, save = true) {
+        apply(key === "theme"
+            ? { theme: value, mode: value === "dark" || value === "agents" ? "dark" : "light" }
+            : { [key]: value });
+        if (save) scheduleSave();
+    }
 
-        applyTheme(nextTheme, true);
-    };
-
-    applyTheme(getPreferredTheme());
-
-    toggleButtons.forEach((button) => {
-        button.addEventListener("click", toggleTheme);
+    document.addEventListener("click", event => {
+        const option = event.target.closest("[data-appearance-key][data-appearance-value]");
+        if (option) set(option.dataset.appearanceKey, option.dataset.appearanceValue);
+        const toggle = event.target.closest("[data-theme-toggle]");
+        if (toggle) set("mode", isDark(state) ? "light" : "dark");
     });
 
-    window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (event) => {
-            const storedTheme = localStorage.getItem(storageKey);
+    document.addEventListener("change", event => {
+        const control = event.target.closest("[data-appearance-key]");
+        if (control?.matches("select, input[type=color]")) set(control.dataset.appearanceKey, control.value);
+    });
 
-            if (!storedTheme) {
-                applyTheme(event.matches ? "dark" : "light");
-            }
-        });
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (state.mode === "auto") apply({}, false); });
+    window.OrizonAppearance = Object.freeze({ themes: [...themes], defaults: { ...defaults }, get: () => ({ ...state }), set, apply, load, configure: options => { endpoints = { ...endpoints, ...options }; return window.OrizonAppearance; } });
+    window.OrizonTheme = Object.freeze({ themes: [...themes], get: () => effectiveTheme(state), set: theme => set("theme", theme), reset: () => apply(defaults) });
+    apply(state, false);
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load, { once: true });
+    else load();
 })();

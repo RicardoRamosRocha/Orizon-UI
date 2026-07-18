@@ -6,7 +6,7 @@
     width: 100%;
     padding: 1rem;
     border: 1px solid transparent;
-    border-radius: var(--orizon-radius-lg, 0.75rem);
+    border-radius: var(--orizon-radius-lg);
 }
 
 .orizon-alert__icon {
@@ -51,7 +51,7 @@
     color: currentColor;
     background: transparent;
     border: 0;
-    border-radius: var(--orizon-radius-sm, 0.5rem);
+    border-radius: var(--orizon-radius-sm);
     cursor: pointer;
     opacity: 0.7;
 }
@@ -67,33 +67,33 @@
 }
 
 .orizon-alert--info {
-    color: #075985;
-    background: #f0f9ff;
-    border-color: #bae6fd;
+    color: var(--orizon-color-info);
+    background: var(--orizon-color-info-soft);
+    border-color: color-mix(in srgb, var(--orizon-color-info) 32%, transparent);
 }
 
 .orizon-alert--success {
-    color: #065f46;
-    background: #ecfdf5;
-    border-color: #a7f3d0;
+    color: var(--orizon-color-success);
+    background: var(--orizon-color-success-soft);
+    border-color: color-mix(in srgb, var(--orizon-color-success) 32%, transparent);
 }
 
 .orizon-alert--warning {
-    color: #92400e;
-    background: #fffbeb;
-    border-color: #fde68a;
+    color: var(--orizon-color-warning);
+    background: var(--orizon-color-warning-soft);
+    border-color: color-mix(in srgb, var(--orizon-color-warning) 32%, transparent);
 }
 
 .orizon-alert--danger {
-    color: #991b1b;
-    background: #fef2f2;
-    border-color: #fecaca;
+    color: var(--orizon-color-danger);
+    background: var(--orizon-color-danger-soft);
+    border-color: color-mix(in srgb, var(--orizon-color-danger) 32%, transparent);
 }
 
 .orizon-alert--neutral {
-    color: var(--orizon-color-text-secondary, #4b5563);
-    background: var(--orizon-color-surface-secondary, #f9fafb);
-    border-color: var(--orizon-color-border, #e5e7eb);
+    color: var(--orizon-color-text-secondary);
+    background: var(--orizon-color-surface-secondary);
+    border-color: var(--orizon-color-border);
 }
 
 .orizon-alert.is-closing {

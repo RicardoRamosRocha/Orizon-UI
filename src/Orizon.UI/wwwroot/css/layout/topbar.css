@@ -95,7 +95,7 @@
             var(--orizon-color-primary-500),
             var(--orizon-color-primary-700)
         );
-    color: white;
+    color: var(--orizon-color-text-inverse);
     font-size: .75rem;
     font-weight: 700;
 }
@@ -135,7 +135,7 @@
 
     background: var(--orizon-color-danger);
 
-    color: white;
+    color: var(--orizon-color-text-inverse);
 
     font-size: .60rem;
 

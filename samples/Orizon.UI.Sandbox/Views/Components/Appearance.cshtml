@@ -1,0 +1,19 @@
+@{ ViewData["Title"] = "Theme Manager"; }
+@section Styles { <link rel="stylesheet" href="~/css/components-catalog.css" asp-append-version="true" /> }
+<header class="component-catalog__header"><div><span class="orizon-badge orizon-badge--primary">Appearance</span><h1>Theme Manager</h1><p>Altere qualquer opcao e veja a interface responder sem refresh.</p></div></header>
+<div class="orizon-appearance-layout">
+    <div class="orizon-appearance-sections">
+        <section class="orizon-appearance-section"><header class="orizon-appearance-section__header"><div><h2>Temas oficiais</h2><p>Identidades prontas para produtos Orizon.</p></div></header><div class="orizon-theme-grid">
+            <orizon-theme-card theme="light" title="Light" description="Claro" /><orizon-theme-card theme="dark" title="Dark" description="Escuro" />
+            <orizon-theme-card theme="corporate" title="Corporate" description="Institucional" /><orizon-theme-card theme="construction" title="Construction" description="Operacional" />
+            <orizon-theme-card theme="real-estate" title="Real Estate" description="Imobiliario" /><orizon-theme-card theme="hair" title="Hair" description="Beleza" />
+            <orizon-theme-card theme="agents" title="Agents" description="Inteligencia artificial" /><orizon-theme-card theme="renova" title="Renova" description="Sustentabilidade" />
+        </div></section>
+        <section class="orizon-appearance-section"><header class="orizon-appearance-section__header"><div><h2>Densidade</h2></div></header><div class="orizon-appearance-options">
+            <orizon-appearance-option preference="density" value="compact" label="Compacta" icon="ph ph-arrows-in" />
+            <orizon-appearance-option preference="density" value="normal" label="Normal" icon="ph ph-square" />
+            <orizon-appearance-option preference="density" value="comfortable" label="Confortavel" icon="ph ph-arrows-out" />
+        </div></section>
+    </div>
+    <orizon-preview-panel />
+</div>

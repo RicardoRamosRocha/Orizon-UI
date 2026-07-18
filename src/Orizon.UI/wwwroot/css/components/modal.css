@@ -1,10 +1,10 @@
 .orizon-modal {
     position: fixed;
     inset: 0;
-    z-index: var(--orizon-z-modal, 500);
+    z-index: var(--orizon-z-modal);
     display: grid;
     place-items: center;
-    padding: var(--orizon-space-4, 1rem);
+    padding: var(--orizon-space-4);
 }
 
 .orizon-modal[hidden] {
@@ -14,7 +14,7 @@
 .orizon-modal__backdrop {
     position: absolute;
     inset: 0;
-    background: rgb(2 6 23 / 0.62);
+    background: var(--orizon-color-overlay);
 }
 
 .orizon-modal__panel {
@@ -22,11 +22,11 @@
     width: min(100%, 32rem);
     max-height: min(42rem, calc(100vh - 2rem));
     overflow: auto;
-    color: var(--orizon-color-text-primary, #0f172a);
-    background: var(--orizon-color-surface, #ffffff);
-    border: 1px solid var(--orizon-color-border, #e2e8f0);
-    border-radius: var(--orizon-radius-xl, 1.125rem);
-    box-shadow: var(--orizon-shadow-lg, 0 20px 50px rgb(15 23 42 / 14%));
+    color: var(--orizon-color-text-primary);
+    background: var(--orizon-color-surface);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-xl);
+    box-shadow: var(--orizon-shadow-lg);
 }
 
 .orizon-modal--sm .orizon-modal__panel {
@@ -41,19 +41,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--orizon-space-4, 1rem);
-    padding: var(--orizon-space-5, 1.25rem);
-    border-bottom: 1px solid var(--orizon-color-border, #e2e8f0);
+    gap: var(--orizon-space-4);
+    padding: var(--orizon-space-5);
+    border-bottom: 1px solid var(--orizon-color-border);
 }
 
 .orizon-modal__title {
     margin: 0;
-    font-size: var(--orizon-font-size-lg, 1.125rem);
-    font-weight: var(--orizon-font-weight-bold, 700);
+    font-size: var(--orizon-font-size-lg);
+    font-weight: var(--orizon-font-weight-bold);
 }
 
 .orizon-modal__body {
-    padding: var(--orizon-space-5, 1.25rem);
+    padding: var(--orizon-space-5);
 }
 
 .orizon-modal__close {
@@ -62,15 +62,15 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    color: var(--orizon-color-text-secondary, #475569);
+    color: var(--orizon-color-text-secondary);
     background: transparent;
     border: 0;
-    border-radius: var(--orizon-radius-md, 0.625rem);
+    border-radius: var(--orizon-radius-md);
     cursor: pointer;
 }
 
 .orizon-modal__close:hover {
-    background: var(--orizon-color-surface-secondary, #f1f5f9);
+    background: var(--orizon-color-surface-secondary);
 }
 
 .orizon-modal__close:focus-visible,

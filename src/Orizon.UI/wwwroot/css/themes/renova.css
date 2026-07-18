@@ -1,0 +1,10 @@
+[data-theme="renova"] {
+    color-scheme: light;
+    --orizon-brand-primary: #059669;
+    --orizon-brand-primary-hover: #047857;
+    --orizon-brand-primary-active: #065f46;
+    --orizon-brand-primary-soft: #d1fae5;
+    --orizon-sidebar-background: #064e3b;
+    --orizon-sidebar-background-hover: #065f46;
+    --orizon-sidebar-indicator: #34d399;
+}

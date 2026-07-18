@@ -1,0 +1,11 @@
+[data-theme="agents"] {
+    color-scheme: dark;
+    --orizon-brand-primary: #22d3ee;
+    --orizon-brand-primary-hover: #67e8f9;
+    --orizon-brand-primary-active: #06b6d4;
+    --orizon-brand-primary-soft: #164e63;
+    --orizon-brand-on-primary: #083344;
+    --orizon-sidebar-background: #020617;
+    --orizon-sidebar-background-hover: #0f172a;
+    --orizon-sidebar-indicator: #22d3ee;
+}

@@ -1,0 +1,10 @@
+[data-theme="corporate"] {
+    color-scheme: light;
+    --orizon-brand-primary: #4338ca;
+    --orizon-brand-primary-hover: #3730a3;
+    --orizon-brand-primary-active: #312e81;
+    --orizon-brand-primary-soft: #e0e7ff;
+    --orizon-sidebar-background: #1e1b4b;
+    --orizon-sidebar-background-hover: #312e81;
+    --orizon-sidebar-indicator: #818cf8;
+}

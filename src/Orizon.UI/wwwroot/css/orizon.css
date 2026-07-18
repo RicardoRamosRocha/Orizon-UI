@@ -5,17 +5,28 @@
 */
 
 /* Base */
-@import url("./tokens.css");
+@import url("./design-tokens.css");
 @import url("./base.css");
 @import url("./typography.css");
+@import url("./animations.css");
 
 /* Themes */
-@import url("./themes/colors-dark.css");
+@import url("./themes/light.css");
+@import url("./themes/dark.css");
+@import url("./themes/construction.css");
+@import url("./themes/real-estate.css");
+@import url("./themes/corporate.css");
+@import url("./themes/hair.css");
+@import url("./themes/agents.css");
+@import url("./themes/renova.css");
 
 /* Layout */
 @import url("./layout/sidebar.css");
 @import url("./layout/topbar.css");
 @import url("./layout/admin-layout.css");
+@import url("./layout/breadcrumb.css");
+@import url("./layout/footer.css");
+@import url("./layout/responsive.css");
 
 /* Components */
 @import url("./components/buttons.css");
@@ -33,6 +44,7 @@
 @import url("./components/tabs.css");
 @import url("./components/toast.css");
 @import url("./components/avatar.css");
+@import url("./components/theme-manager.css");
 
 /* Utilities */
 @import url("./utilities.css");

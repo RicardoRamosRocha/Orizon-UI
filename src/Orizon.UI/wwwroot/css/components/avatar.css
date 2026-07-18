@@ -6,24 +6,24 @@
     width: 2.5rem;
     height: 2.5rem;
     overflow: visible;
-    color: var(--orizon-color-primary-700, #2047af);
-    background: var(--orizon-color-primary-50, #eef5ff);
-    border: 1px solid var(--orizon-color-border, #e2e8f0);
-    border-radius: var(--orizon-radius-full, 9999px);
-    font-size: var(--orizon-font-size-sm, 0.875rem);
-    font-weight: var(--orizon-font-weight-bold, 700);
+    color: var(--orizon-color-primary-700);
+    background: var(--orizon-color-primary-50);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-full);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-bold);
 }
 
 .orizon-avatar--sm {
     width: 2rem;
     height: 2rem;
-    font-size: var(--orizon-font-size-xs, 0.75rem);
+    font-size: var(--orizon-font-size-xs);
 }
 
 .orizon-avatar--lg {
     width: 3.5rem;
     height: 3.5rem;
-    font-size: var(--orizon-font-size-md, 1rem);
+    font-size: var(--orizon-font-size-md);
 }
 
 .orizon-avatar__image {
@@ -39,15 +39,15 @@
     inset-inline-end: 0;
     width: 0.75rem;
     height: 0.75rem;
-    background: var(--orizon-color-success, #16a34a);
-    border: 2px solid var(--orizon-color-surface, #ffffff);
+    background: var(--orizon-color-success);
+    border: 2px solid var(--orizon-color-surface);
     border-radius: 50%;
 }
 
 .orizon-avatar--busy .orizon-avatar__status {
-    background: var(--orizon-color-warning, #d97706);
+    background: var(--orizon-color-warning);
 }
 
 .orizon-avatar--offline .orizon-avatar__status {
-    background: var(--orizon-color-neutral-400, #94a3b8);
+    background: var(--orizon-color-neutral-400);
 }
