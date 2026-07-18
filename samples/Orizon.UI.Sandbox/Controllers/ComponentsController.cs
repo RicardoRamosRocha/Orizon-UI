@@ -11,6 +11,15 @@ public sealed class ComponentsController : Controller
         return View();
     }
 
+    [HttpGet("premium")]
+    public IActionResult Premium() => View();
+
+    [HttpGet("data")]
+    public IActionResult Data() => View();
+
+    [HttpGet("forms-premium")]
+    public IActionResult FormsPremium() => View();
+
     [HttpGet("design-language")]
     public IActionResult DesignLanguage() => View();
 

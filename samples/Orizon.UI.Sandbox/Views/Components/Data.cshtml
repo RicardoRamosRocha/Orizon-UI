@@ -1,0 +1,25 @@
+@{ ViewData["Title"] = "Data Components Premium"; }
+<div class="component-catalog">
+ <header class="component-catalog__header"><div><h1 class="component-catalog__title">Data Components Premium</h1><p class="component-catalog__description">Componentes de produtividade para páginas administrativas orientadas a dados.</p></div><orizon-button href="/components" variant="outline" color="neutral" text="Voltar" /></header>
+
+ <section class="component-example"><header class="component-example__header"><h2>Toolbar, SearchBox e FilterBar</h2></header><div class="component-example__preview" style="display:grid;width:100%;gap:1rem">
+  <orizon-toolbar sticky label="Ações de produtos"><div data-toolbar-group><orizon-button text="Novo produto" icon="plus" /><orizon-button text="Excluir" variant="outline" color="danger" /></div><span data-toolbar-separator></span><div data-toolbar-right><orizon-search-box placeholder="Pesquisar produtos..." debounce="300" shortcut full-width /></div></orizon-toolbar>
+  <orizon-filter-bar count="3"><orizon-chip text="Ativos" color="success" selected removable /><orizon-chip text="Categoria: SaaS" color="primary" removable /><orizon-chip text="Em estoque" color="info" removable /></orizon-filter-bar>
+ </div></section>
+
+ <section class="component-example"><header class="component-example__header"><h2>DataTable</h2></header><div class="component-example__preview" style="display:grid;width:100%;gap:1rem">
+  <orizon-data-table label="Produtos" striped hover pageable sortable searchable selectable sticky-header page="1" total-pages="4">
+   <thead><tr><th><input type="checkbox" aria-label="Selecionar todos" /></th><th>Produto ↕</th><th>Categoria ↕</th><th>Status</th><th>Preço</th></tr></thead>
+   <tbody><tr tabindex="0"><td><input type="checkbox" aria-label="Selecionar Orizon CRM" /></td><td><strong>Orizon CRM</strong></td><td>SaaS</td><td><orizon-chip text="Ativo" size="sm" color="success" /></td><td>R$ 249,00</td></tr><tr tabindex="0"><td><input type="checkbox" aria-label="Selecionar Analytics" /></td><td><strong>Analytics Pro</strong></td><td>BI</td><td><orizon-chip text="Teste" size="sm" color="warning" /></td><td>R$ 189,00</td></tr><tr tabindex="0"><td><input type="checkbox" aria-label="Selecionar Portal" /></td><td><strong>Portal Cliente</strong></td><td>Experiência</td><td><orizon-chip text="Ativo" size="sm" color="success" /></td><td>R$ 99,00</td></tr></tbody>
+  </orizon-data-table>
+  <orizon-data-table label="Carregando dados" loading /><orizon-data-table label="Tabela vazia" empty empty-title="Nenhum produto encontrado" />
+ </div></section>
+
+ <section class="component-example"><header class="component-example__header"><h2>Loading Overlay e Confirm Dialog</h2></header><div class="component-example__preview" style="display:grid;width:100%;gap:1rem"><orizon-loading-overlay active text="Atualizando relatório..."><div style="min-height:10rem;padding:1rem;background:var(--orizon-color-surface-secondary);border-radius:var(--orizon-radius-lg)">Área bloqueada durante o processamento.</div></orizon-loading-overlay><div><button class="orizon-button orizon-button--solid orizon-button--danger" type="button" data-confirm-target="#delete-confirm">Excluir registro</button></div></div></section>
+ <orizon-confirm-dialog id="delete-confirm" title="Excluir produto?" message="Esta ação não poderá ser desfeita." type="danger" confirm-text="Sim, excluir" />
+
+ <section class="component-example"><header class="component-example__header"><h2>Notification Center</h2></header><div class="component-example__preview"><button class="orizon-button orizon-button--soft orizon-button--primary" id="notifications-trigger" type="button" data-notifications-target="#notification-center">Abrir notificações</button></div></section>
+ <orizon-notification-center id="notification-center" unread-count="2"><orizon-notification title="Novo pedido recebido" time="Há 2 minutos" unread href="#">O pedido #1284 foi confirmado.</orizon-notification><orizon-notification title="Relatório concluído" time="Há 15 minutos" unread href="#">Seu relatório mensal está disponível.</orizon-notification><orizon-notification title="Sistema atualizado" time="Ontem">A atualização foi concluída com sucesso.</orizon-notification></orizon-notification-center>
+
+ <section class="component-example"><header class="component-example__header"><h2>KPI Cards</h2></header><div class="component-example__preview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));width:100%"><orizon-kpi-card title="Receita recorrente" subtitle="MRR atual" value="R$ 84.200" percentage="+14,2%" trend-type="positive" indicator="74%" icon="chart-line" /><orizon-kpi-card title="Churn" subtitle="Últimos 30 dias" value="2,4%" percentage="-0,8%" trend-type="negative" color="danger" indicator="24%" icon="trend-down" /><orizon-kpi-card title="Conversão" subtitle="Trial para pago" value="31,8%" percentage="+2,1%" trend-type="positive" color="success" indicator="62%" icon="target" /><orizon-kpi-card title="Carregando" value="" loading /></div></section>
+</div>

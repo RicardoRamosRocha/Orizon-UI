@@ -1,0 +1,39 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+ ViewData["Title"] = "Advanced Forms Premium";
+ var categories = new[] { new SelectListItem("Software", "software"), new SelectListItem("Serviços", "services"), new SelectListItem("Educação", "education") };
+ var tags = new[] { new SelectListItem("Premium", "premium", true), new SelectListItem("Novo", "new"), new SelectListItem("Destaque", "featured") };
+ var cities = new[] { "São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre", "Recife" };
+}
+<div class="component-catalog">
+ <header class="component-catalog__header"><div><h1 class="component-catalog__title">Advanced Forms Premium</h1><p class="component-catalog__description">Campos profissionais para ASP.NET Core MVC/Razor, com binding e acessibilidade consistentes.</p></div><orizon-button href="/components" variant="outline" color="neutral" text="Voltar" /></header>
+ <form class="orizon-form" method="post" enctype="multipart/form-data">
+  <section class="component-example"><header class="component-example__header"><h2>Texto e identidade</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%">
+   <orizon-text-box name="Product.Name" label="Nome" placeholder="Digite o nome" helper-text="Campo obrigatório" icon="text-aa" required clearable maxlength="80" counter />
+   <orizon-textarea name="Product.Description" label="Descrição" placeholder="Descreva o produto" helper-text="Até 240 caracteres" rows="3" maxlength="240" counter auto-resize />
+   <orizon-password name="Password" label="Senha" placeholder="Crie uma senha forte" strength show-toggle required />
+   <orizon-email name="Email" label="E-mail" placeholder="nome@empresa.com" success />
+  </div></section>
+  <section class="component-example"><header class="component-example__header"><h2>Números e documentos</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%">
+   <orizon-number name="Quantity" label="Quantidade" min="0" max="999" step="1" value="12" /><orizon-currency name="Price" label="Preço" value="12990" symbol="R$" />
+   <orizon-phone name="Phone" label="Telefone" placeholder="(11) 90000-0000" /><orizon-cpf name="Cpf" label="CPF" placeholder="000.000.000-00" />
+   <orizon-cnpj name="Cnpj" label="CNPJ" placeholder="00.000.000/0000-00" /><orizon-cep name="Cep" label="CEP" placeholder="00000-000" helper-text="Preparado para integração ViaCEP" />
+  </div></section>
+  <section class="component-example"><header class="component-example__header"><h2>Data e hora</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%">
+   <orizon-date-picker name="StartDate" label="Data" min="2026-01-01" max="2027-12-31" /><orizon-time-picker name="StartTime" label="Horário" step="900" />
+   <orizon-date-time-picker name="PublishedAt" label="Publicação" /><orizon-color-picker name="Color" label="Cor da marca" value="#2563eb" format="hex" />
+  </div></section>
+  <section class="component-example"><header class="component-example__header"><h2>Seleções e sugestões</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%">
+   <orizon-select name="Category" label="Categoria" items="categories" placeholder="Selecione..." required searchable />
+   <orizon-multi-select name="Tags" label="Tags" items="tags" placeholder="Escolha tags" searchable select-all clearable />
+   <orizon-auto-complete name="City" label="Cidade" items="cities" placeholder="Digite uma cidade" debounce="250" min-length="1" />
+   <orizon-rating name="Rating" label="Avaliação" value="4" helper-text="Use as setas para ajustar." />
+  </div></section>
+  <section class="component-example"><header class="component-example__header"><h2>Uploads</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%">
+   <orizon-file-upload name="Cover" label="Imagem de capa" accept="image/*" preview helper-text="PNG ou JPG." />
+   <orizon-drag-drop-upload name="Attachments" label="Anexos" accept="image/*,.pdf" multiple preview helper-text="Arraste vários arquivos." />
+  </div></section>
+  <section class="component-example" data-theme="dark" style="padding:1rem;background:var(--orizon-color-background);border-radius:var(--orizon-radius-xl)"><header class="component-example__header"><h2>Estados em tema escuro</h2></header><div class="component-example__preview orizon-form-grid" style="width:100%"><orizon-text-box name="Loading" label="Carregando" loading /><orizon-text-box name="Invalid" label="Inválido" invalid helper-text="Revise este valor." /><orizon-text-box name="Disabled" label="Desabilitado" disabled value="Sem edição" /><orizon-text-box name="Readonly" label="Somente leitura" readonly value="Valor fixo" /></div></section>
+  <div class="orizon-form-actions"><orizon-button type="button" variant="outline" color="neutral" text="Cancelar" /><orizon-button type="submit" variant="gradient" text="Salvar formulário" /></div>
+ </form>
+</div>
