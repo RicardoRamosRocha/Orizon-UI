@@ -1,0 +1,4 @@
+.orizon-multi-select__panel[hidden],
+.orizon-autocomplete__results[hidden] {
+    display: none;
+}
