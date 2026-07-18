@@ -50,7 +50,7 @@
 }
 
 .orizon-card--padding-md {
-    padding: 1.25rem;
+    padding: var(--orizon-density-card-padding);
 }
 
 .orizon-card--padding-lg {

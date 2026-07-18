@@ -16,6 +16,9 @@
 @import url("./themes/construction.css");
 @import url("./themes/real-estate.css");
 @import url("./themes/corporate.css");
+@import url("./themes/hair.css");
+@import url("./themes/agents.css");
+@import url("./themes/renova.css");
 
 /* Layout */
 @import url("./layout/sidebar.css");
@@ -41,6 +44,7 @@
 @import url("./components/tabs.css");
 @import url("./components/toast.css");
 @import url("./components/avatar.css");
+@import url("./components/theme-manager.css");
 
 /* Utilities */
 @import url("./utilities.css");

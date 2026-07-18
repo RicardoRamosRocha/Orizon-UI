@@ -1,0 +1,10 @@
+[data-theme="hair"] {
+    color-scheme: light;
+    --orizon-brand-primary: #db2777;
+    --orizon-brand-primary-hover: #be185d;
+    --orizon-brand-primary-active: #9d174d;
+    --orizon-brand-primary-soft: #fce7f3;
+    --orizon-sidebar-background: #500724;
+    --orizon-sidebar-background-hover: #831843;
+    --orizon-sidebar-indicator: #f472b6;
+}

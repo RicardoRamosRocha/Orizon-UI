@@ -71,7 +71,7 @@
 
 .orizon-table th,
 .orizon-table td {
-    padding: 0.875rem 1rem;
+    padding: var(--orizon-density-cell-y) var(--orizon-density-cell-x);
     border-bottom: 1px solid var(--orizon-color-border);
     text-align: left;
     vertical-align: middle;
