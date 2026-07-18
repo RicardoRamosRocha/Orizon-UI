@@ -1,0 +1,31 @@
+[data-theme="dark"] {
+    color-scheme: dark;
+    --orizon-brand-primary: #60a5fa;
+    --orizon-brand-primary-hover: #93c5fd;
+    --orizon-brand-primary-active: #3b82f6;
+    --orizon-brand-primary-soft: #172554;
+    --orizon-brand-on-primary: #0f172a;
+    --orizon-color-background: #0b1120;
+    --orizon-color-background-subtle: #111827;
+    --orizon-color-surface: #141c2f;
+    --orizon-color-surface-secondary: #1b263b;
+    --orizon-color-surface-elevated: #22304a;
+    --orizon-color-surface-hover: #243552;
+    --orizon-color-surface-selected: #1e3a5f;
+    --orizon-color-overlay: rgb(2 6 23 / 72%);
+    --orizon-color-text-primary: #f8fafc;
+    --orizon-color-text-secondary: #cbd5e1;
+    --orizon-color-text-muted: #94a3b8;
+    --orizon-color-border: #2b3b55;
+    --orizon-color-border-strong: #3d4f6d;
+    --orizon-sidebar-background: #070d19;
+    --orizon-sidebar-background-hover: #172033;
+    --orizon-sidebar-text: #94a3b8;
+    --orizon-sidebar-text-active: #f8fafc;
+    --orizon-sidebar-border: rgb(148 163 184 / 14%);
+    --orizon-color-success-soft: #123524;
+    --orizon-color-warning-soft: #422f0b;
+    --orizon-color-danger-soft: #451a1a;
+    --orizon-color-info-soft: #0c3348;
+    --orizon-shadow-color: 0 0 0;
+}

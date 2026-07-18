@@ -18,8 +18,8 @@
 .orizon-spinner__track {
     width: 100%;
     height: 100%;
-    border: 2px solid color-mix(in srgb, var(--orizon-color-primary-600, #2458d8) 22%, transparent);
-    border-top-color: var(--orizon-color-primary-600, #2458d8);
+    border: 2px solid color-mix(in srgb, var(--orizon-color-primary-600) 22%, transparent);
+    border-top-color: var(--orizon-color-primary-600);
     border-radius: 50%;
     animation: orizon-spinner-spin 750ms linear infinite;
 }

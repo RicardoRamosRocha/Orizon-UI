@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--orizon-space-2, 0.5rem);
+    gap: var(--orizon-space-2);
     padding: 0;
     margin: 0;
     list-style: none;
@@ -19,18 +19,18 @@
     min-width: 2.25rem;
     min-height: 2.25rem;
     padding: 0.5rem 0.75rem;
-    color: var(--orizon-color-text-secondary, #475569);
-    background: var(--orizon-color-surface, #ffffff);
-    border: 1px solid var(--orizon-color-border, #e2e8f0);
-    border-radius: var(--orizon-radius-md, 0.625rem);
-    font-size: var(--orizon-font-size-sm, 0.875rem);
-    font-weight: var(--orizon-font-weight-semibold, 600);
+    color: var(--orizon-color-text-secondary);
+    background: var(--orizon-color-surface);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-md);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-semibold);
     text-decoration: none;
 }
 
 .orizon-pagination__item:hover {
-    color: var(--orizon-color-text-primary, #0f172a);
-    border-color: var(--orizon-color-border-strong, #cbd5e1);
+    color: var(--orizon-color-text-primary);
+    border-color: var(--orizon-color-border-strong);
 }
 
 .orizon-pagination__item:focus-visible {
@@ -39,9 +39,9 @@
 }
 
 .orizon-pagination__item.is-current {
-    color: var(--orizon-color-primary-contrast, #ffffff);
-    background: var(--orizon-color-primary-600, #2458d8);
-    border-color: var(--orizon-color-primary-600, #2458d8);
+    color: var(--orizon-color-primary-contrast);
+    background: var(--orizon-color-primary-600);
+    border-color: var(--orizon-color-primary-600);
 }
 
 .orizon-pagination__item.is-disabled {

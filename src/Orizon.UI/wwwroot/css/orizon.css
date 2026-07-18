@@ -5,12 +5,16 @@
 */
 
 /* Base */
-@import url("./tokens.css");
+@import url("./design-tokens.css");
 @import url("./base.css");
 @import url("./typography.css");
 
 /* Themes */
-@import url("./themes/colors-dark.css");
+@import url("./themes/light.css");
+@import url("./themes/dark.css");
+@import url("./themes/construction.css");
+@import url("./themes/real-estate.css");
+@import url("./themes/corporate.css");
 
 /* Layout */
 @import url("./layout/sidebar.css");

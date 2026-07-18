@@ -1,19 +1,16 @@
 .orizon-card {
     display: block;
-    color: var(--orizon-color-text-primary, #111827);
-    background: var(--orizon-color-surface, #ffffff);
-    border: 1px solid var(--orizon-color-border, #e5e7eb);
-    border-radius: var(--orizon-radius-xl, 1rem);
-    box-shadow: var(
-        --orizon-shadow-sm,
-        0 1px 2px rgb(0 0 0 / 0.05)
-    );
+    color: var(--orizon-color-text-primary);
+    background: var(--orizon-color-surface);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-xl);
+    box-shadow: var(--orizon-shadow-sm);
     text-decoration: none;
     overflow: hidden;
 }
 
 .orizon-card:hover {
-    color: var(--orizon-color-text-primary, #111827);
+    color: var(--orizon-color-text-primary);
     text-decoration: none;
 }
 
@@ -25,20 +22,14 @@
 }
 
 .orizon-card--hoverable:hover {
-    border-color: var(--orizon-color-border-strong, #d1d5db);
-    box-shadow: var(
-        --orizon-shadow-md,
-        0 8px 24px rgb(15 23 42 / 0.08)
-    );
+    border-color: var(--orizon-color-border-strong);
+    box-shadow: var(--orizon-shadow-md);
     transform: translateY(-2px);
 }
 
 .orizon-card--elevated {
     border-color: transparent;
-    box-shadow: var(
-        --orizon-shadow-lg,
-        0 12px 30px rgb(15 23 42 / 0.12)
-    );
+    box-shadow: var(--orizon-shadow-lg);
 }
 
 .orizon-card--outlined {
@@ -46,7 +37,7 @@
 }
 
 .orizon-card--muted {
-    background: var(--orizon-color-surface-secondary, #f9fafb);
+    background: var(--orizon-color-surface-secondary);
     box-shadow: none;
 }
 
@@ -80,9 +71,9 @@
     flex: 0 0 auto;
     width: 2.5rem;
     height: 2.5rem;
-    color: var(--orizon-color-primary-600, #4f46e5);
-    background: var(--orizon-color-primary-50, #eef2ff);
-    border-radius: var(--orizon-radius-lg, 0.75rem);
+    color: var(--orizon-color-primary-600);
+    background: var(--orizon-color-primary-50);
+    border-radius: var(--orizon-radius-lg);
     font-size: 1.25rem;
 }
 
@@ -93,7 +84,7 @@
 
 .orizon-card__title {
     margin: 0;
-    color: var(--orizon-color-text-primary, #111827);
+    color: var(--orizon-color-text-primary);
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
@@ -101,13 +92,13 @@
 
 .orizon-card__subtitle {
     margin: 0.25rem 0 0;
-    color: var(--orizon-color-text-secondary, #6b7280);
+    color: var(--orizon-color-text-secondary);
     font-size: 0.875rem;
     line-height: 1.5;
 }
 
 .orizon-card__body {
-    color: var(--orizon-color-text-secondary, #4b5563);
+    color: var(--orizon-color-text-secondary);
     font-size: 0.875rem;
     line-height: 1.6;
 }

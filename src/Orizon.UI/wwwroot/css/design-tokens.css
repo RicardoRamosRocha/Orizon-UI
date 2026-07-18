@@ -1,0 +1,193 @@
+/* Orizon Design Language - canonical design tokens. */
+:root {
+    color-scheme: light;
+
+    /* Brand */
+    --orizon-brand-primary: #2563eb;
+    --orizon-brand-primary-hover: #1d4ed8;
+    --orizon-brand-primary-active: #1e40af;
+    --orizon-brand-primary-soft: #dbeafe;
+    --orizon-brand-on-primary: #ffffff;
+
+    /* Primitive palette - theme files must map semantic tokens only. */
+    --orizon-palette-white: #ffffff;
+    --orizon-palette-slate-50: #f8fafc;
+    --orizon-palette-slate-100: #f1f5f9;
+    --orizon-palette-slate-200: #e2e8f0;
+    --orizon-palette-slate-300: #cbd5e1;
+    --orizon-palette-slate-400: #94a3b8;
+    --orizon-palette-slate-500: #64748b;
+    --orizon-palette-slate-600: #475569;
+    --orizon-palette-slate-700: #334155;
+    --orizon-palette-slate-800: #1e293b;
+    --orizon-palette-slate-900: #0f172a;
+    --orizon-palette-slate-950: #020617;
+
+    /* Semantic color */
+    --orizon-color-background: var(--orizon-palette-slate-50);
+    --orizon-color-background-subtle: var(--orizon-palette-slate-100);
+    --orizon-color-surface: var(--orizon-palette-white);
+    --orizon-color-surface-secondary: var(--orizon-palette-slate-100);
+    --orizon-color-surface-elevated: var(--orizon-palette-white);
+    --orizon-color-surface-hover: var(--orizon-brand-primary-soft);
+    --orizon-color-surface-selected: var(--orizon-brand-primary-soft);
+    --orizon-color-overlay: rgb(15 23 42 / 55%);
+    --orizon-color-text-primary: var(--orizon-palette-slate-900);
+    --orizon-color-text-secondary: var(--orizon-palette-slate-500);
+    --orizon-color-text-muted: var(--orizon-palette-slate-400);
+    --orizon-color-text-inverse: var(--orizon-palette-white);
+    --orizon-color-border: var(--orizon-palette-slate-200);
+    --orizon-color-border-strong: var(--orizon-palette-slate-300);
+    --orizon-color-focus: var(--orizon-brand-primary);
+
+    /* Sidebar */
+    --orizon-sidebar-background: var(--orizon-palette-slate-900);
+    --orizon-sidebar-background-hover: var(--orizon-palette-slate-800);
+    --orizon-sidebar-text: var(--orizon-palette-slate-300);
+    --orizon-sidebar-text-active: var(--orizon-palette-white);
+    --orizon-sidebar-border: rgb(148 163 184 / 16%);
+    --orizon-sidebar-indicator: var(--orizon-brand-primary);
+
+    /* Status */
+    --orizon-color-success: #16a34a;
+    --orizon-color-success-soft: #dcfce7;
+    --orizon-color-warning: #f59e0b;
+    --orizon-color-warning-soft: #fef3c7;
+    --orizon-color-danger: #dc2626;
+    --orizon-color-danger-soft: #fee2e2;
+    --orizon-color-info: #0ea5e9;
+    --orizon-color-info-soft: #e0f2fe;
+    --orizon-color-primary-contrast: var(--orizon-brand-on-primary);
+    --orizon-color-success-600: var(--orizon-color-success);
+    --orizon-color-success-700: color-mix(in srgb, var(--orizon-color-success) 82%, black);
+    --orizon-color-warning-400: var(--orizon-color-warning);
+    --orizon-color-warning-500: color-mix(in srgb, var(--orizon-color-warning) 82%, black);
+    --orizon-color-danger-600: var(--orizon-color-danger);
+    --orizon-color-danger-700: color-mix(in srgb, var(--orizon-color-danger) 82%, black);
+
+    /* Typography */
+    --orizon-font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --orizon-font-family-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    --orizon-font-size-xs: 0.75rem;
+    --orizon-font-size-sm: 0.875rem;
+    --orizon-font-size-md: 1rem;
+    --orizon-font-size-lg: 1.125rem;
+    --orizon-font-size-xl: 1.25rem;
+    --orizon-font-size-2xl: 1.5rem;
+    --orizon-font-size-3xl: 1.875rem;
+    --orizon-font-size-4xl: 2.25rem;
+    --orizon-font-weight-regular: 400;
+    --orizon-font-weight-medium: 500;
+    --orizon-font-weight-semibold: 600;
+    --orizon-font-weight-bold: 700;
+    --orizon-line-height-tight: 1.25;
+    --orizon-line-height-normal: 1.5;
+    --orizon-line-height-relaxed: 1.75;
+    --orizon-text-h1: var(--orizon-font-size-4xl);
+    --orizon-text-h2: var(--orizon-font-size-3xl);
+    --orizon-text-h3: var(--orizon-font-size-2xl);
+    --orizon-text-body: var(--orizon-font-size-md);
+    --orizon-text-caption: var(--orizon-font-size-xs);
+    --orizon-text-label: var(--orizon-font-size-sm);
+    --orizon-text-helper: var(--orizon-font-size-xs);
+
+    /* Spacing: 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64 */
+    --orizon-space-0: 0;
+    --orizon-space-0-5: 0.125rem;
+    --orizon-space-1: 0.25rem;
+    --orizon-space-2: 0.5rem;
+    --orizon-space-3: 0.75rem;
+    --orizon-space-4: 1rem;
+    --orizon-space-5: 1.25rem;
+    --orizon-space-6: 1.5rem;
+    --orizon-space-8: 2rem;
+    --orizon-space-10: 2.5rem;
+    --orizon-space-12: 3rem;
+    --orizon-space-16: 4rem;
+    --orizon-space-20: 5rem;
+
+    /* Radius */
+    --orizon-radius-none: 0;
+    --orizon-radius-sm: 0.375rem;
+    --orizon-radius-md: 0.625rem;
+    --orizon-radius-lg: 0.875rem;
+    --orizon-radius-xl: 1.125rem;
+    --orizon-radius-2xl: 1.5rem;
+    --orizon-radius-full: 9999px;
+
+    /* Elevation */
+    --orizon-shadow-color: 15 23 42;
+    --orizon-shadow-xs: 0 1px 2px rgb(var(--orizon-shadow-color) / 5%);
+    --orizon-shadow-sm: 0 1px 3px rgb(var(--orizon-shadow-color) / 8%), 0 1px 2px rgb(var(--orizon-shadow-color) / 4%);
+    --orizon-shadow-md: 0 10px 30px rgb(var(--orizon-shadow-color) / 9%), 0 2px 8px rgb(var(--orizon-shadow-color) / 5%);
+    --orizon-shadow-lg: 0 20px 50px rgb(var(--orizon-shadow-color) / 14%), 0 8px 20px rgb(var(--orizon-shadow-color) / 7%);
+    --orizon-shadow-xl: 0 32px 72px rgb(var(--orizon-shadow-color) / 20%), 0 12px 28px rgb(var(--orizon-shadow-color) / 10%);
+
+    /* Motion */
+    --orizon-duration-fast: 120ms;
+    --orizon-duration-normal: 200ms;
+    --orizon-duration-slow: 300ms;
+    --orizon-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --orizon-easing-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+    --orizon-transition-fast: var(--orizon-duration-fast) var(--orizon-easing-standard);
+    --orizon-transition-normal: var(--orizon-duration-normal) var(--orizon-easing-standard);
+    --orizon-transition-slow: var(--orizon-duration-slow) var(--orizon-easing-standard);
+
+    /* Layout and layers */
+    --orizon-container-sm: 40rem;
+    --orizon-container-md: 48rem;
+    --orizon-container-lg: 64rem;
+    --orizon-container-xl: 80rem;
+    --orizon-container-2xl: 100rem;
+    --orizon-breakpoint-sm: 640px;
+    --orizon-breakpoint-md: 768px;
+    --orizon-breakpoint-lg: 1024px;
+    --orizon-breakpoint-xl: 1280px;
+    --orizon-breakpoint-2xl: 1536px;
+    --orizon-z-base: 0;
+    --orizon-z-dropdown: 100;
+    --orizon-z-sticky: 200;
+    --orizon-z-overlay: 300;
+    --orizon-z-drawer: 400;
+    --orizon-z-modal: 500;
+    --orizon-z-toast: 600;
+    --orizon-control-height-sm: 2rem;
+    --orizon-control-height-md: 2.5rem;
+    --orizon-control-height-lg: 3rem;
+    --orizon-icon-sm: 1rem;
+    --orizon-icon-md: 1.25rem;
+    --orizon-icon-lg: 1.5rem;
+    --orizon-focus-ring: 0 0 0 3px color-mix(in srgb, var(--orizon-color-focus) 25%, transparent);
+
+    /* Backward-compatible aliases. */
+    --orizon-color-primary-50: var(--orizon-brand-primary-soft);
+    --orizon-color-primary-100: var(--orizon-brand-primary-soft);
+    --orizon-color-primary-500: var(--orizon-brand-primary);
+    --orizon-color-primary-600: var(--orizon-brand-primary);
+    --orizon-color-primary-700: var(--orizon-brand-primary-hover);
+    --orizon-color-primary-800: var(--orizon-brand-primary-active);
+    --orizon-color-primary: var(--orizon-brand-primary);
+    --orizon-color-primary-hover: var(--orizon-brand-primary-hover);
+    --orizon-color-primary-active: var(--orizon-brand-primary-active);
+    --orizon-color-primary-soft: var(--orizon-brand-primary-soft);
+    --orizon-color-neutral-0: var(--orizon-palette-white);
+    --orizon-color-neutral-50: var(--orizon-palette-slate-50);
+    --orizon-color-neutral-100: var(--orizon-palette-slate-100);
+    --orizon-color-neutral-200: var(--orizon-palette-slate-200);
+    --orizon-color-neutral-300: var(--orizon-palette-slate-300);
+    --orizon-color-neutral-400: var(--orizon-palette-slate-400);
+    --orizon-color-neutral-500: var(--orizon-palette-slate-500);
+    --orizon-color-neutral-600: var(--orizon-palette-slate-600);
+    --orizon-color-neutral-700: var(--orizon-palette-slate-700);
+    --orizon-color-neutral-800: var(--orizon-palette-slate-800);
+    --orizon-color-neutral-900: var(--orizon-palette-slate-900);
+    --orizon-color-neutral-950: var(--orizon-palette-slate-950);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --orizon-duration-fast: 0ms;
+        --orizon-duration-normal: 0ms;
+        --orizon-duration-slow: 0ms;
+    }
+}

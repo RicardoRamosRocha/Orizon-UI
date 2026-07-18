@@ -1,31 +1,31 @@
 .orizon-tabs {
     display: grid;
-    gap: var(--orizon-space-4, 1rem);
+    gap: var(--orizon-space-4);
     min-width: 0;
 }
 
 .orizon-tabs__list {
     display: flex;
-    gap: var(--orizon-space-2, 0.5rem);
+    gap: var(--orizon-space-2);
     overflow-x: auto;
-    border-bottom: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-bottom: 1px solid var(--orizon-color-border);
 }
 
 .orizon-tabs__tab {
     flex: 0 0 auto;
     padding: 0.75rem 0.875rem;
-    color: var(--orizon-color-text-secondary, #475569);
+    color: var(--orizon-color-text-secondary);
     background: transparent;
     border: 0;
     border-bottom: 2px solid transparent;
     font: inherit;
-    font-size: var(--orizon-font-size-sm, 0.875rem);
-    font-weight: var(--orizon-font-weight-semibold, 600);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-semibold);
     cursor: pointer;
 }
 
 .orizon-tabs__tab:hover {
-    color: var(--orizon-color-text-primary, #0f172a);
+    color: var(--orizon-color-text-primary);
 }
 
 .orizon-tabs__tab:focus-visible {
@@ -34,12 +34,12 @@
 }
 
 .orizon-tabs__tab[aria-selected="true"] {
-    color: var(--orizon-color-primary-600, #2458d8);
-    border-bottom-color: var(--orizon-color-primary-600, #2458d8);
+    color: var(--orizon-color-primary-600);
+    border-bottom-color: var(--orizon-color-primary-600);
 }
 
 .orizon-tabs__panel {
-    color: var(--orizon-color-text-secondary, #475569);
+    color: var(--orizon-color-text-secondary);
 }
 
 .orizon-tabs__panel:focus-visible {

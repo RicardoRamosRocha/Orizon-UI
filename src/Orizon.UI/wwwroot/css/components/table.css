@@ -1,10 +1,10 @@
 .orizon-table-container {
     width: 100%;
     overflow-x: auto;
-    background: var(--orizon-color-surface, #ffffff);
-    border: 1px solid var(--orizon-color-border, #e2e8f0);
-    border-radius: var(--orizon-radius-lg, 0.875rem);
-    box-shadow: var(--orizon-shadow-xs, 0 1px 2px rgb(15 23 42 / 5%));
+    background: var(--orizon-color-surface);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-lg);
+    box-shadow: var(--orizon-shadow-xs);
 }
 
 .orizon-table-container:focus-visible {
@@ -17,29 +17,29 @@
     min-width: 44rem;
     border-collapse: separate;
     border-spacing: 0;
-    color: var(--orizon-color-text-primary, #0f172a);
-    font-size: var(--orizon-font-size-sm, 0.875rem);
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-sm);
 }
 
 .orizon-table caption {
-    padding: var(--orizon-space-3, 0.75rem) var(--orizon-space-4, 1rem);
-    color: var(--orizon-color-text-secondary, #475569);
+    padding: var(--orizon-space-3) var(--orizon-space-4);
+    color: var(--orizon-color-text-secondary);
     text-align: left;
 }
 
 .orizon-table th,
 .orizon-table td {
     padding: 0.875rem 1rem;
-    border-bottom: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-bottom: 1px solid var(--orizon-color-border);
     text-align: left;
     vertical-align: middle;
 }
 
 .orizon-table th {
-    color: var(--orizon-color-text-secondary, #475569);
-    background: var(--orizon-color-surface-secondary, #f1f5f9);
-    font-size: var(--orizon-font-size-xs, 0.75rem);
-    font-weight: var(--orizon-font-weight-bold, 700);
+    color: var(--orizon-color-text-secondary);
+    background: var(--orizon-color-surface-secondary);
+    font-size: var(--orizon-font-size-xs);
+    font-weight: var(--orizon-font-weight-bold);
     letter-spacing: 0;
     text-transform: uppercase;
 }
@@ -51,7 +51,7 @@
 .orizon-table--striped tbody tr:nth-child(even) td {
     background: color-mix(
         in srgb,
-        var(--orizon-color-surface-secondary, #f1f5f9) 55%,
+        var(--orizon-color-surface-secondary) 55%,
         transparent
     );
 }
@@ -59,7 +59,7 @@
 .orizon-table--hoverable tbody tr:hover td {
     background: color-mix(
         in srgb,
-        var(--orizon-color-primary-50, #eef5ff) 72%,
+        var(--orizon-color-primary-50) 72%,
         transparent
     );
 }
@@ -71,7 +71,7 @@
 
 .orizon-table--bordered th,
 .orizon-table--bordered td {
-    border-right: 1px solid var(--orizon-color-border, #e2e8f0);
+    border-right: 1px solid var(--orizon-color-border);
 }
 
 .orizon-table--bordered th:last-child,
@@ -85,13 +85,13 @@
 }
 
 .orizon-table__primary {
-    color: var(--orizon-color-text-primary, #0f172a);
-    font-weight: var(--orizon-font-weight-semibold, 600);
+    color: var(--orizon-color-text-primary);
+    font-weight: var(--orizon-font-weight-semibold);
 }
 
 .orizon-table__secondary {
-    color: var(--orizon-color-text-muted, #64748b);
-    font-size: var(--orizon-font-size-xs, 0.75rem);
+    color: var(--orizon-color-text-muted);
+    font-size: var(--orizon-font-size-xs);
 }
 
 .orizon-table__number,
@@ -104,13 +104,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--orizon-space-2, 0.5rem);
+    gap: var(--orizon-space-2);
     white-space: nowrap;
 }
 
 @media (max-width: 767.98px) {
     .orizon-table-container {
-        border-radius: var(--orizon-radius-md, 0.625rem);
+        border-radius: var(--orizon-radius-md);
     }
 
     .orizon-table {

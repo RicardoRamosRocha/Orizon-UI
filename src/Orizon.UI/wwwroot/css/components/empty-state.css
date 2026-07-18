@@ -1,13 +1,13 @@
 .orizon-empty-state {
     display: grid;
     justify-items: center;
-    gap: var(--orizon-space-3, 0.75rem);
-    padding: var(--orizon-space-8, 2rem);
-    color: var(--orizon-color-text-secondary, #475569);
+    gap: var(--orizon-space-3);
+    padding: var(--orizon-space-8);
+    color: var(--orizon-color-text-secondary);
     text-align: center;
-    background: var(--orizon-color-surface, #ffffff);
-    border: 1px dashed var(--orizon-color-border-strong, #cbd5e1);
-    border-radius: var(--orizon-radius-xl, 1.125rem);
+    background: var(--orizon-color-surface);
+    border: 1px dashed var(--orizon-color-border-strong);
+    border-radius: var(--orizon-radius-xl);
 }
 
 .orizon-empty-state__icon {
@@ -16,16 +16,16 @@
     justify-content: center;
     width: 3rem;
     height: 3rem;
-    color: var(--orizon-color-primary-600, #2458d8);
-    background: var(--orizon-color-primary-50, #eef5ff);
-    border-radius: var(--orizon-radius-lg, 0.875rem);
+    color: var(--orizon-color-primary-600);
+    background: var(--orizon-color-primary-50);
+    border-radius: var(--orizon-radius-lg);
     font-size: 1.5rem;
 }
 
 .orizon-empty-state__title {
     margin: 0;
-    color: var(--orizon-color-text-primary, #0f172a);
-    font-size: var(--orizon-font-size-lg, 1.125rem);
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-lg);
 }
 
 .orizon-empty-state__description {
@@ -37,6 +37,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--orizon-space-2, 0.5rem);
-    margin-top: var(--orizon-space-2, 0.5rem);
+    gap: var(--orizon-space-2);
+    margin-top: var(--orizon-space-2);
 }

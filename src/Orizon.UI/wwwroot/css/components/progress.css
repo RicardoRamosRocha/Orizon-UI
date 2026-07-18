@@ -1,14 +1,14 @@
 .orizon-progress {
     display: grid;
-    gap: var(--orizon-space-2, 0.5rem);
+    gap: var(--orizon-space-2);
 }
 
 .orizon-progress__label {
     display: flex;
     justify-content: space-between;
-    gap: var(--orizon-space-3, 0.75rem);
-    color: var(--orizon-color-text-secondary, #475569);
-    font-size: var(--orizon-font-size-sm, 0.875rem);
+    gap: var(--orizon-space-3);
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-font-size-sm);
 }
 
 .orizon-progress__track {
@@ -16,14 +16,14 @@
     width: 100%;
     height: 0.625rem;
     overflow: hidden;
-    background: var(--orizon-color-surface-secondary, #f1f5f9);
-    border-radius: var(--orizon-radius-full, 9999px);
+    background: var(--orizon-color-surface-secondary);
+    border-radius: var(--orizon-radius-full);
 }
 
 .orizon-progress__bar {
     display: block;
     height: 100%;
-    background: var(--orizon-color-primary-600, #2458d8);
+    background: var(--orizon-color-primary-600);
     border-radius: inherit;
-    transition: width var(--orizon-transition-normal, 200ms ease);
+    transition: width var(--orizon-transition-normal);
 }
