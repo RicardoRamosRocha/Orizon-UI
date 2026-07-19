@@ -15,6 +15,29 @@
     --orizon-brand-orange: #ea580c;
     --orizon-brand-cyan: #0891b2;
 
+    /* ==========================================
+   Premium Accent Palette
+========================================== */
+
+--orizon-accent-blue: #3b82f6;
+--orizon-accent-azure: #2563eb;
+--orizon-accent-indigo: #4f46e5;
+--orizon-accent-violet: #7c3aed;
+--orizon-accent-purple: #9333ea;
+--orizon-accent-pink: #db2777;
+--orizon-accent-rose: #e11d48;
+--orizon-accent-red: #dc2626;
+--orizon-accent-orange: #ea580c;
+--orizon-accent-amber: #d97706;
+--orizon-accent-yellow: #ca8a04;
+--orizon-accent-lime: #65a30d;
+--orizon-accent-green: #16a34a;
+--orizon-accent-emerald: #059669;
+--orizon-accent-teal: #0f766e;
+--orizon-accent-cyan: #0891b2;
+--orizon-accent-sky: #0284c7;
+--orizon-accent-slate: #475569;
+
     /* Primitive palette - theme files must map semantic tokens only. */
     --orizon-palette-white: #ffffff;
     --orizon-palette-slate-50: #f8fafc;
@@ -45,6 +68,20 @@
     --orizon-color-border: var(--orizon-palette-slate-200);
     --orizon-color-border-strong: var(--orizon-palette-slate-300);
     --orizon-color-focus: var(--orizon-brand-primary);
+
+    /* ==========================================
+   Premium Surface Levels
+========================================== */
+
+--orizon-surface-0: #ffffff;
+--orizon-surface-1: #fcfcfd;
+--orizon-surface-2: #f8fafc;
+--orizon-surface-3: #f1f5f9;
+--orizon-surface-4: #e2e8f0;
+--orizon-surface-5: #cbd5e1;
+
+--orizon-surface-glass: rgb(255 255 255 / 72%);
+--orizon-surface-glass-strong: rgb(255 255 255 / 84%);
 
     /* Sidebar */
     --orizon-sidebar-background: var(--orizon-palette-slate-900);
@@ -129,6 +166,27 @@
     --orizon-shadow-lg: 0 20px 50px rgb(var(--orizon-shadow-color) / 14%), 0 8px 20px rgb(var(--orizon-shadow-color) / 7%);
     --orizon-shadow-xl: 0 32px 72px rgb(var(--orizon-shadow-color) / 20%), 0 12px 28px rgb(var(--orizon-shadow-color) / 10%);
 
+    /* ==========================================
+   Premium Shadows
+========================================== */
+
+--orizon-shadow-2xs: 0 1px 2px rgb(var(--orizon-shadow-color) / 0.03);
+
+--orizon-shadow-2xl:
+0 36px 80px rgb(var(--orizon-shadow-color) /.22);
+
+--orizon-shadow-3xl:
+0 50px 120px rgb(var(--orizon-shadow-color) /.28);
+
+--orizon-shadow-primary:
+0 10px 35px rgb(37 99 235 /.18);
+
+--orizon-shadow-success:
+0 10px 35px rgb(22 163 74 /.18);
+
+--orizon-shadow-danger:
+0 10px 35px rgb(220 38 38 /.18);
+
     /* Motion */
     --orizon-duration-fast: 120ms;
     --orizon-duration-normal: 200ms;
@@ -138,6 +196,106 @@
     --orizon-transition-fast: var(--orizon-duration-fast) var(--orizon-easing-standard);
     --orizon-transition-normal: var(--orizon-duration-normal) var(--orizon-easing-standard);
     --orizon-transition-slow: var(--orizon-duration-slow) var(--orizon-easing-standard);
+
+    /* ==========================================
+   Glow
+========================================== */
+
+--orizon-glow-blue:
+0 0 18px rgb(59 130 246 /.18);
+
+--orizon-glow-purple:
+0 0 18px rgb(147 51 234 /.18);
+
+--orizon-glow-cyan:
+0 0 18px rgb(8 145 178 /.18);
+
+--orizon-glow-green:
+0 0 18px rgb(22 163 74 /.18);
+
+--orizon-glow-orange:
+0 0 18px rgb(234 88 12 /.18);
+
+--orizon-glow-red:
+0 0 18px rgb(220 38 38 /.18);
+
+--orizon-glow-pink:
+0 0 18px rgb(219 39 119 /.18);
+
+/* ==========================================
+   Premium Borders
+========================================== */
+
+--orizon-border-soft:
+rgba(148,163,184,.18);
+
+--orizon-border-default:
+rgba(148,163,184,.28);
+
+--orizon-border-medium:
+rgba(148,163,184,.40);
+
+--orizon-border-strong:
+rgba(148,163,184,.58);
+
+--orizon-border-accent:
+rgba(59,130,246,.40);
+
+/* ==========================================
+   Gradients
+========================================== */
+
+--orizon-gradient-primary:
+linear-gradient(135deg,#2563eb,#4f46e5);
+
+--orizon-gradient-purple:
+linear-gradient(135deg,#7c3aed,#9333ea);
+
+--orizon-gradient-ocean:
+linear-gradient(135deg,#0891b2,#2563eb);
+
+--orizon-gradient-success:
+linear-gradient(135deg,#059669,#16a34a);
+
+--orizon-gradient-sunset:
+linear-gradient(135deg,#ea580c,#dc2626);
+
+--orizon-gradient-ai:
+linear-gradient(135deg,#2563eb,#7c3aed,#db2777);
+
+/* ==========================================
+   Glass
+========================================== */
+
+--orizon-glass-background:
+rgb(255 255 255 /.70);
+
+--orizon-glass-background-strong:
+rgb(255 255 255 /.82);
+
+--orizon-glass-border:
+rgb(255 255 255 /.45);
+
+--orizon-glass-backdrop:
+blur(18px);
+
+--orizon-glass-shadow:
+0 20px 50px rgb(15 23 42 /.10);
+
+/* ==========================================
+   Dashboard
+========================================== */
+
+--orizon-chart-1:#2563eb;
+--orizon-chart-2:#7c3aed;
+--orizon-chart-3:#16a34a;
+--orizon-chart-4:#ea580c;
+--orizon-chart-5:#0891b2;
+--orizon-chart-6:#db2777;
+
+--orizon-kpi-positive:#16a34a;
+--orizon-kpi-negative:#dc2626;
+--orizon-kpi-neutral:#64748b;
 
     /* Layout and layers */
     --orizon-container-sm: 40rem;

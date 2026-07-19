@@ -1,12 +1,29 @@
-.orizon-card {
-    display: block;
-    color: var(--orizon-color-text-primary);
-    background: var(--orizon-color-surface);
-    border: 1px solid var(--orizon-color-border);
-    border-radius: var(--orizon-radius-xl);
-    box-shadow: var(--orizon-shadow-sm);
-    text-decoration: none;
-    overflow: hidden;
+.orizon-card{
+
+    position:relative;
+
+    display:block;
+
+    overflow:hidden;
+
+    color:var(--orizon-color-text-primary);
+
+    background:var(--orizon-surface-0);
+
+    border:1px solid var(--orizon-border-soft);
+
+    border-radius:var(--orizon-radius-xl);
+
+    box-shadow:var(--orizon-shadow-sm);
+
+    text-decoration:none;
+
+    transition:
+        background .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease,
+        transform .22s ease;
+
 }
 
 .orizon-card:hover {
@@ -14,11 +31,14 @@
     text-decoration: none;
 }
 
-.orizon-card--hoverable {
-    transition:
-        border-color 180ms ease,
-        box-shadow 180ms ease,
-        transform 180ms ease;
+.orizon-card--hoverable:hover{
+
+    border-color:var(--orizon-border-accent);
+
+    box-shadow:var(--orizon-shadow-xl);
+
+    transform:translateY(-4px);
+
 }
 
 .orizon-card--hoverable:hover {
@@ -57,24 +77,42 @@
     padding: 1.5rem;
 }
 
-.orizon-card__header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.875rem;
-    margin-bottom: 1rem;
+.orizon-card__header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1rem;
+
+    margin-bottom:1.25rem;
+
 }
 
-.orizon-card__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    width: 2.5rem;
-    height: 2.5rem;
-    color: var(--orizon-color-primary-600);
-    background: var(--orizon-color-primary-50);
-    border-radius: var(--orizon-radius-lg);
-    font-size: 1.25rem;
+.orizon-card__icon{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:52px;
+
+    height:52px;
+
+    flex:0 0 auto;
+
+    color:white;
+
+    background:var(--orizon-gradient-primary);
+
+    border-radius:var(--orizon-radius-lg);
+
+    box-shadow:var(--orizon-shadow-primary);
+
+    font-size:1.3rem;
+
 }
 
 .orizon-card__heading {
@@ -82,25 +120,36 @@
     flex: 1;
 }
 
-.orizon-card__title {
-    margin: 0;
-    color: var(--orizon-color-text-primary);
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.4;
+.orizon-card__title{
+
+    margin:0;
+
+    font-size:1.05rem;
+
+    font-weight:700;
+
+    letter-spacing:-.02em;
+
+    color:var(--orizon-color-text-primary);
+
 }
 
-.orizon-card__subtitle {
-    margin: 0.25rem 0 0;
-    color: var(--orizon-color-text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
+.orizon-card__subtitle{
+
+    margin-top:.35rem;
+
+    color:var(--orizon-color-text-secondary);
+
+    font-size:.85rem;
+
 }
 
-.orizon-card__body {
-    color: var(--orizon-color-text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.6;
+.orizon-card__body{
+
+    color:var(--orizon-color-text-secondary);
+
+    line-height:1.75;
+
 }
 
 .orizon-card__body > :first-child {
@@ -109,4 +158,154 @@
 
 .orizon-card__body > :last-child {
     margin-bottom: 0;
+}
+
+.orizon-card--glass{
+
+    background:var(--orizon-glass-background);
+
+    backdrop-filter:var(--orizon-glass-backdrop);
+
+    border:1px solid var(--orizon-glass-border);
+
+    box-shadow:var(--orizon-glass-shadow);
+
+}
+
+.orizon-card--gradient{
+
+    color:white;
+
+    background:var(--orizon-gradient-primary);
+
+    border:none;
+
+}
+
+.orizon-card--gradient
+.orizon-card__title,
+
+.orizon-card--gradient
+.orizon-card__subtitle,
+
+.orizon-card--gradient
+.orizon-card__body{
+
+    color:white;
+
+}
+
+.orizon-card--premium{
+
+    border:1px solid var(--orizon-border-soft);
+
+    box-shadow:var(--orizon-shadow-lg);
+
+}
+
+.orizon-card--premium:hover{
+
+    border-color:var(--orizon-border-accent);
+
+    box-shadow:var(--orizon-shadow-2xl);
+
+}
+
+.orizon-card--neon{
+
+    border:1px solid rgba(59,130,246,.28);
+
+    box-shadow:
+
+        var(--orizon-glow-blue),
+
+        var(--orizon-shadow-primary);
+
+}
+
+.orizon-card--neon:hover{
+
+    box-shadow:
+
+        0 0 35px rgba(59,130,246,.22),
+
+        var(--orizon-shadow-primary);
+
+}
+
+.orizon-card--analytics{
+
+    background:linear-gradient(
+        180deg,
+        white,
+        #fbfcff
+    );
+
+}
+
+.orizon-card--kpi{
+
+    padding:2rem;
+
+}
+
+.orizon-card--accent{
+
+    border-top:4px solid var(--orizon-color-primary);
+
+}
+
+.orizon-card--ai{
+
+    background:var(--orizon-gradient-ai);
+
+    border:none;
+
+    color:white;
+
+}
+
+.orizon-card--ai *{
+
+    color:white;
+
+}
+
+.orizon-card--glow:hover{
+
+    box-shadow:
+
+        var(--orizon-glow-blue),
+
+        var(--orizon-shadow-xl);
+
+}
+
+.orizon-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.05),
+        transparent);
+
+    opacity:0;
+
+    transition:.35s;
+
+    pointer-events:none;
+
+}
+
+.orizon-card:hover::before{
+
+    opacity:1;
+
 }

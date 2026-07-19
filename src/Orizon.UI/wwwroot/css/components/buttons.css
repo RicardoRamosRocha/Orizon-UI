@@ -1,42 +1,60 @@
 .orizon-button {
+    position: relative;
+    overflow: hidden;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--orizon-space-2);
+
     min-height: var(--orizon-control-height-md);
+
     padding: var(--orizon-space-2) var(--orizon-space-4);
+
     border: 1px solid transparent;
     border-radius: var(--orizon-radius-md);
+
     font-family: inherit;
     font-size: var(--orizon-font-size-sm);
     font-weight: var(--orizon-font-weight-semibold);
     line-height: 1;
-    text-decoration: none;
+
     white-space: nowrap;
+    text-decoration: none;
+
     cursor: pointer;
+
+    user-select: none;
+
     transition:
-        background-color var(--orizon-transition-fast),
-        border-color var(--orizon-transition-fast),
-        color var(--orizon-transition-fast),
-        box-shadow var(--orizon-transition-fast),
-        transform var(--orizon-transition-fast);
+        background .18s ease,
+        color .18s ease,
+        border-color .18s ease,
+        box-shadow .22s ease,
+        transform .18s ease,
+        filter .18s ease;
+
+    box-shadow: var(--orizon-shadow-xs);
+
+    isolation: isolate;
 }
 
 .orizon-button:hover {
     text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: var(--orizon-shadow-md);
 }
 
 .orizon-button:active:not(:disabled):not([aria-disabled="true"]) {
-    transform: translateY(1px);
+    transform: translateY(0);
+    scale: .985;
 }
 
 .orizon-button:focus-visible {
-    outline: 3px solid color-mix(
-        in srgb,
-        var(--orizon-color-primary-500) 28%,
-        transparent
-    );
-    outline-offset: 2px;
+    outline: none;
+    box-shadow:
+        var(--orizon-focus-ring),
+        var(--orizon-shadow-md);
 }
 
 .orizon-button:disabled,
@@ -55,6 +73,159 @@
 .orizon-button--primary:hover {
     background: var(--orizon-color-primary-700);
     border-color: var(--orizon-color-primary-700);
+}
+
+.orizon-button--soft{
+    color:var(--orizon-color-primary);
+    background:var(--orizon-color-primary-soft);
+    border-color:transparent;
+}
+
+.orizon-button--soft:hover{
+    background:color-mix(in srgb,var(--orizon-color-primary-soft) 82%,white);
+}
+
+.orizon-button--outline{
+
+    color:var(--orizon-color-primary);
+
+    background:transparent;
+
+    border-color:var(--orizon-border-accent);
+}
+
+.orizon-button--outline:hover{
+
+    background:var(--orizon-color-primary-soft);
+
+    border-color:var(--orizon-color-primary);
+}
+
+.orizon-button--glass{
+
+    color:var(--orizon-color-text-primary);
+
+    background:var(--orizon-glass-background);
+
+    backdrop-filter:var(--orizon-glass-backdrop);
+
+    border:1px solid var(--orizon-glass-border);
+
+    box-shadow:var(--orizon-glass-shadow);
+}
+
+.orizon-button--glass:hover{
+
+    background:var(--orizon-glass-background-strong);
+
+}
+
+.orizon-button--gradient{
+
+    color:white;
+
+    background:var(--orizon-gradient-primary);
+
+    border:none;
+}
+
+.orizon-button--gradient:hover{
+
+    filter:brightness(1.05);
+
+}
+
+.orizon-button--neon{
+
+    color:white;
+
+    background:var(--orizon-gradient-primary);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        var(--orizon-glow-blue),
+        var(--orizon-shadow-primary);
+
+}
+
+.orizon-button--neon:hover{
+
+    box-shadow:
+
+        0 0 28px rgba(59,130,246,.24),
+
+        var(--orizon-shadow-primary);
+
+}
+
+.orizon-button--premium{
+
+    color:var(--orizon-color-text-primary);
+
+    background:var(--orizon-surface-0);
+
+    border:1px solid var(--orizon-border-soft);
+
+    box-shadow:var(--orizon-shadow-sm);
+
+}
+
+.orizon-button--premium:hover{
+
+    border-color:var(--orizon-border-accent);
+
+    box-shadow:var(--orizon-shadow-lg);
+
+}
+
+.orizon-button--ai{
+
+    color:white;
+
+    background:var(--orizon-gradient-ai);
+
+    border:none;
+
+}
+
+.orizon-button--ai:hover{
+
+    box-shadow:var(--orizon-glow-purple);
+
+}
+
+.orizon-button--pill{
+
+    border-radius:999px;
+
+}
+
+.orizon-button--circle{
+
+    width:44px;
+
+    height:44px;
+
+    min-height:44px;
+
+    padding:0;
+
+    border-radius:999px;
+
+}
+
+.orizon-button--elevated{
+
+    box-shadow:var(--orizon-shadow-lg);
+
+}
+
+.orizon-button--elevated:hover{
+
+    box-shadow:var(--orizon-shadow-2xl);
+
 }
 
 .orizon-button--secondary {
@@ -144,9 +315,20 @@
     width: 100%;
 }
 
-.orizon-button__icon {
-    flex: 0 0 auto;
-    font-size: 1.125em;
+.orizon-button__icon{
+
+    flex:0 0 auto;
+
+    font-size:1.125em;
+
+    transition:transform .18s ease;
+
+}
+
+.orizon-button:hover .orizon-button__icon{
+
+    transform:translateX(2px);
+
 }
 
 .orizon-button__content {

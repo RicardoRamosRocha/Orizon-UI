@@ -1,10 +1,23 @@
-.orizon-topbar-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding-inline: var(--orizon-space-6);
-    gap: var(--orizon-space-6);
+.orizon-topbar-content{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:var(--orizon-space-6);
+
+    height:100%;
+
+    padding-inline:2rem;
+
+    background:var(--orizon-surface-0);
+
+    border-bottom:1px solid var(--orizon-border-soft);
+
+    backdrop-filter:blur(16px);
+
 }
 
 .orizon-topbar-left,
@@ -23,30 +36,42 @@
 }
 
 .orizon-topbar-menu-button,
-.orizon-topbar-action-button,
-.orizon-topbar-profile-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    background: transparent;
-    color: var(--orizon-color-text-secondary);
-    transition:
-        all var(--orizon-transition-fast);
-}
+.orizon-topbar-action-button{
 
-.orizon-topbar-menu-button,
-.orizon-topbar-action-button {
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: var(--orizon-radius-lg);
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    border:1px solid transparent;
+
+    background:transparent;
+
+    transition:
+        .18s ease;
+
 }
 
 .orizon-topbar-menu-button:hover,
-.orizon-topbar-action-button:hover {
-    color: var(--orizon-color-primary);
-    background: var(--orizon-color-surface-secondary);
-    border-color: var(--orizon-color-border);
+.orizon-topbar-action-button:hover{
+
+    color:var(--orizon-color-primary);
+
+    background:var(--orizon-surface-2);
+
+    border-color:var(--orizon-border-soft);
+
+    box-shadow:var(--orizon-shadow-sm);
+
+    transform:translateY(-1px);
+
 }
 
 .orizon-topbar-title-group {
@@ -63,41 +88,58 @@
     font-weight: var(--orizon-font-weight-semibold);
 }
 
-.orizon-topbar-title {
-    margin-top: .125rem;
-    color: var(--orizon-color-text-primary);
-    font-size: 1.25rem;
-    font-weight: var(--orizon-font-weight-bold);
-    letter-spacing: -.02em;
+.orizon-topbar-title{
+
+    margin-top:2px;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    letter-spacing:-.03em;
+
 }
 
-.orizon-topbar-profile-button {
-    gap: var(--orizon-space-3);
-    padding: .35rem .55rem;
-    border-radius: var(--orizon-radius-xl);
+.orizon-topbar-profile-button{
+
+    gap:1rem;
+
+    padding:.45rem .65rem;
+
+    border-radius:16px;
+
+    border:1px solid transparent;
+
+    transition:.18s;
+
 }
 
-.orizon-topbar-profile-button:hover {
-    background: var(--orizon-color-surface-secondary);
-    border-color: var(--orizon-color-border);
+.orizon-topbar-profile-button:hover{
+
+    background:var(--orizon-surface-2);
+
+    border-color:var(--orizon-border-soft);
+
+    box-shadow:var(--orizon-shadow-sm);
+
 }
 
-.orizon-topbar-profile-avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.35rem;
-    height: 2.35rem;
-    border-radius: 999px;
-    background:
-        linear-gradient(
-            135deg,
-            var(--orizon-color-primary-500),
-            var(--orizon-color-primary-700)
-        );
-    color: var(--orizon-color-text-inverse);
-    font-size: .75rem;
-    font-weight: 700;
+.orizon-topbar-profile-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:var(--orizon-gradient-primary);
+
+    color:white;
+
+    font-weight:700;
+
+    box-shadow:var(--orizon-shadow-primary);
+
 }
 
 .orizon-topbar-profile-content {
@@ -119,29 +161,36 @@
     opacity: .65;
 }
 
-.orizon-topbar-notification-badge {
-    position: absolute;
-    margin-left: 1rem;
-    margin-top: -.9rem;
+.orizon-topbar-notification-badge{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position:absolute;
 
-    width: 1.15rem;
-    height: 1.15rem;
+    top:6px;
 
-    border-radius: 999px;
+    right:6px;
 
-    background: var(--orizon-color-danger);
+    width:18px;
 
-    color: var(--orizon-color-text-inverse);
+    height:18px;
 
-    font-size: .60rem;
+    display:flex;
 
-    font-weight: 700;
+    align-items:center;
 
-    box-shadow: var(--orizon-shadow-sm);
+    justify-content:center;
+
+    border-radius:999px;
+
+    background:var(--orizon-gradient-sunset);
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    box-shadow:var(--orizon-shadow-danger);
+
 }
 
 .orizon-topbar-action-button {
@@ -158,4 +207,122 @@
 .orizon-topbar-action-button:hover .orizon-icon,
 .orizon-topbar-menu-button:hover .orizon-icon {
     transform: scale(1.08);
+}
+
+.orizon-topbar-search{
+
+    width:420px;
+
+    max-width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.75rem;
+
+    padding:0 .9rem;
+
+    height:46px;
+
+    border:1px solid var(--orizon-border-soft);
+
+    border-radius:14px;
+
+    background:var(--orizon-surface-1);
+
+    transition:.18s;
+
+}
+
+.orizon-topbar-search:hover{
+
+    border-color:var(--orizon-border-accent);
+
+}
+
+.orizon-topbar-search:focus-within{
+
+    border-color:var(--orizon-color-primary);
+
+    box-shadow:var(--orizon-focus-ring);
+
+}
+
+.orizon-topbar-search input{
+
+    flex:1;
+
+    border:none;
+
+    background:none;
+
+    outline:none;
+
+    font:inherit;
+
+}
+
+.orizon-topbar-shortcut{
+
+    padding:4px 8px;
+
+    border-radius:8px;
+
+    background:var(--orizon-surface-2);
+
+    color:var(--orizon-color-text-secondary);
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.orizon-topbar-environment{
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    background:var(--orizon-gradient-primary);
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.orizon-topbar-sync{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.5rem;
+
+    font-size:.82rem;
+
+    color:var(--orizon-color-success);
+
+}
+
+.orizon-topbar-divider{
+
+    width:1px;
+
+    height:30px;
+
+    background:var(--orizon-border-soft);
+
+}
+
+.orizon-topbar--glass{
+
+    backdrop-filter:blur(18px);
+
+    background:var(--orizon-glass-background);
+
 }
