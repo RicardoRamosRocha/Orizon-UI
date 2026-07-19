@@ -1,8 +1,1201 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Orizon UI";
+    ViewData["ApplicationName"] = "Orizon UI";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles
+{
+    <link rel="stylesheet"
+          href="~/css/showcase.css"
+          asp-append-version="true" />
+}
+
+<div class="showcase">
+
+    <!-- ===================================================== -->
+    <!-- HERO                                                   -->
+    <!-- ===================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-background">
+
+            <div class="gradient gradient-1"></div>
+            <div class="gradient gradient-2"></div>
+            <div class="gradient gradient-3"></div>
+
+        </div>
+
+        <div class="hero-content">
+
+            <div class="hero-left">
+
+                <span class="hero-badge">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L15 8L22 9L17 14L18 22L12 19L6 22L7 14L2 9L9 8Z"/>
+                    </svg>
+
+                    Enterprise UI Library
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    Build Enterprise
+                    <br />
+                    Applications Faster
+
+                </h1>
+
+                <p class="hero-description">
+
+                    Modern UI components for ASP.NET Core MVC.
+
+                    Build dashboards, ERPs, CRMs and enterprise
+                    applications with a professional Design System.
+
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="/components"
+                       class="hero-button hero-button-primary">
+
+                        Explore Components
+
+                    </a>
+
+                    <a href="/grid"
+                       class="hero-button hero-button-secondary">
+
+                        Enterprise Grid
+
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+
+                        <strong>320+</strong>
+
+                        <span>Components</span>
+
+                    </div>
+
+                    <div class="hero-stat">
+
+                        <strong>160+</strong>
+
+                        <span>SVG Icons</span>
+
+                    </div>
+
+                    <div class="hero-stat">
+
+                        <strong>9</strong>
+
+                        <span>Themes</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-right">
+
+                <div class="preview-window">
+
+                    <div class="preview-header">
+
+                        <div class="window-actions">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="window-title">
+
+                            Dashboard Preview
+
+                        </div>
+
+                    </div>
+
+                    <div class="preview-body">
+
+                        <div class="preview-sidebar">
+
+                            <div class="sidebar-logo">
+
+                                O
+
+                            </div>
+
+                            <div class="sidebar-item active"></div>
+                            <div class="sidebar-item"></div>
+                            <div class="sidebar-item"></div>
+                            <div class="sidebar-item"></div>
+                            <div class="sidebar-item"></div>
+
+                        </div>
+
+                        <div class="preview-content">
+
+                            <div class="preview-topbar">
+
+                                <div class="search"></div>
+
+                                <div class="avatar"></div>
+
+                            </div>
+
+                            <div class="mini-kpis">
+
+                                <div class="mini-card">
+
+                                    <small>Revenue</small>
+
+                                    <h3>$42,580</h3>
+
+                                    <span class="positive">
+
+                                        ▲ 12%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="mini-card">
+
+                                    <small>Orders</small>
+
+                                    <h3>8,254</h3>
+
+                                    <span class="positive">
+
+                                        ▲ 9%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="mini-card">
+
+                                    <small>Customers</small>
+
+                                    <h3>2,914</h3>
+
+                                    <span class="positive">
+
+                                        ▲ 17%
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-grid">
+
+                                                                <div class="grid-card">
+
+                                    <div class="grid-card-header">
+
+                                        <div class="grid-title">
+
+                                            Enterprise Grid
+
+                                        </div>
+
+                                        <span class="grid-badge">
+
+                                            Server Mode
+
+                                        </span>
+
+                                    </div>
+
+                                    <table class="demo-grid">
+
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>ID</th>
+                                                <th>Customer</th>
+                                                <th>Status</th>
+                                                <th>Total</th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr>
+
+                                                <td>#1025</td>
+
+                                                <td>Acme Inc.</td>
+
+                                                <td>
+
+                                                    <span class="status success">
+
+                                                        Active
+
+                                                    </span>
+
+                                                </td>
+
+                                                <td>$12,450</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>#1026</td>
+
+                                                <td>Northwind</td>
+
+                                                <td>
+
+                                                    <span class="status warning">
+
+                                                        Pending
+
+                                                    </span>
+
+                                                </td>
+
+                                                <td>$8,920</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>#1027</td>
+
+                                                <td>Contoso</td>
+
+                                                <td>
+
+                                                    <span class="status success">
+
+                                                        Paid
+
+                                                    </span>
+
+                                                </td>
+
+                                                <td>$5,640</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>#1028</td>
+
+                                                <td>Adventure</td>
+
+                                                <td>
+
+                                                    <span class="status danger">
+
+                                                        Overdue
+
+                                                    </span>
+
+                                                </td>
+
+                                                <td>$2,190</td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="preview-side">
+
+                                    <div class="activity-card">
+
+                                        <h4>
+
+                                            Recent Activity
+
+                                        </h4>
+
+                                        <ul>
+
+                                            <li>
+                                                <span class="dot green"></span>
+                                                User created
+                                            </li>
+
+                                            <li>
+                                                <span class="dot blue"></span>
+                                                Product updated
+                                            </li>
+
+                                            <li>
+                                                <span class="dot orange"></span>
+                                                Price changed
+                                            </li>
+
+                                            <li>
+                                                <span class="dot purple"></span>
+                                                Report exported
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                    <div class="chart-card">
+
+                                        <h4>
+
+                                            Monthly Revenue
+
+                                        </h4>
+
+                                        <div class="fake-chart">
+
+                                            <span style="height:32%"></span>
+                                            <span style="height:48%"></span>
+                                            <span style="height:60%"></span>
+                                            <span style="height:74%"></span>
+                                            <span style="height:52%"></span>
+                                            <span style="height:86%"></span>
+                                            <span style="height:100%"></span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- KPI SECTION                                            -->
+    <!-- ===================================================== -->
+
+    <section class="kpi-section">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                Enterprise Ready
+
+            </span>
+
+            <h2>
+
+                Everything you need to build
+                modern business applications.
+
+            </h2>
+
+        </div>
+
+        <div class="kpi-grid">
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    ⚡
+
+                </div>
+
+                <h3>
+
+                    320+
+
+                </h3>
+
+                <p>
+
+                    Enterprise Components
+
+                </p>
+
+            </article>
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    🎨
+
+                </div>
+
+                <h3>
+
+                    160+
+
+                </h3>
+
+                <p>
+
+                    SVG Icons
+
+                </p>
+
+            </article>
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    🌙
+
+                </div>
+
+                <h3>
+
+                    9
+
+                </h3>
+
+                <p>
+
+                    Built-in Themes
+
+                </p>
+
+            </article>
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+
+                    🚀
+
+                </div>
+
+                <h3>
+
+                    .NET 8
+
+                </h3>
+
+                <p>
+
+                    ASP.NET Core MVC
+
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+        <!-- ===================================================== -->
+    <!-- COMPONENT CATEGORIES                                  -->
+    <!-- ===================================================== -->
+
+    <section class="categories-section">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                Components
+            </span>
+
+            <h2>
+                Everything organized by category
+            </h2>
+
+            <p>
+                Build dashboards, ERPs, CRMs and enterprise systems with reusable components.
+            </p>
+
+        </div>
+
+        <div class="categories-grid">
+
+            <article class="category-card">
+
+                <div class="category-icon foundation"></div>
+
+                <h3>
+                    Foundations
+                </h3>
+
+                <p>
+                    Colors, Typography, Spacing, Elevation and Design Tokens.
+                </p>
+
+                <ul>
+
+                    <li>Design Tokens</li>
+
+                    <li>Typography</li>
+
+                    <li>Colors</li>
+
+                    <li>Spacing</li>
+
+                </ul>
+
+                <a href="/components">
+                    Explore →
+                </a>
+
+            </article>
+
+            <article class="category-card">
+
+                <div class="category-icon forms"></div>
+
+                <h3>
+                    Forms
+                </h3>
+
+                <p>
+                    Complete form controls for enterprise applications.
+                </p>
+
+                <ul>
+
+                    <li>Input</li>
+
+                    <li>Select</li>
+
+                    <li>Textarea</li>
+
+                    <li>Checkbox</li>
+
+                </ul>
+
+                <a href="/components/forms">
+                    Explore →
+                </a>
+
+            </article>
+
+            <article class="category-card">
+
+                <div class="category-icon data"></div>
+
+                <h3>
+                    Data
+                </h3>
+
+                <p>
+                    Powerful data visualization components.
+                </p>
+
+                <ul>
+
+                    <li>Grid</li>
+
+                    <li>Tables</li>
+
+                    <li>Pagination</li>
+
+                    <li>Virtualization</li>
+
+                </ul>
+
+                <a href="/grid">
+                    Explore →
+                </a>
+
+            </article>
+
+            <article class="category-card">
+
+                <div class="category-icon navigation"></div>
+
+                <h3>
+                    Navigation
+                </h3>
+
+                <p>
+                    Modern navigation experience.
+                </p>
+
+                <ul>
+
+                    <li>Sidebar</li>
+
+                    <li>Tabs</li>
+
+                    <li>Dropdown</li>
+
+                    <li>Breadcrumb</li>
+
+                </ul>
+
+                <a href="/components">
+                    Explore →
+                </a>
+
+            </article>
+
+            <article class="category-card">
+
+                <div class="category-icon feedback"></div>
+
+                <h3>
+                    Feedback
+                </h3>
+
+                <p>
+                    Inform users with elegant interactions.
+                </p>
+
+                <ul>
+
+                    <li>Alert</li>
+
+                    <li>Toast</li>
+
+                    <li>Progress</li>
+
+                    <li>Spinner</li>
+
+                </ul>
+
+                <a href="/components">
+                    Explore →
+                </a>
+
+            </article>
+
+            <article class="category-card featured">
+
+                <span class="featured-badge">
+                    Enterprise
+                </span>
+
+                <div class="category-icon enterprise"></div>
+
+                <h3>
+                    Enterprise Grid
+                </h3>
+
+                <p>
+                    The flagship component of Orizon UI.
+                </p>
+
+                <ul>
+
+                    <li>Server Mode</li>
+
+                    <li>Grouping</li>
+
+                    <li>Filtering</li>
+
+                    <li>Batch Editing</li>
+
+                    <li>Infinite Scroll</li>
+
+                    <li>Tree Data</li>
+
+                </ul>
+
+                <a href="/grid">
+                    Open Showcase →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ENTERPRISE GRID SPOTLIGHT                             -->
+    <!-- ===================================================== -->
+
+    <section class="spotlight-section">
+
+        <div class="spotlight-content">
+
+            <div class="spotlight-left">
+
+                <span class="section-tag">
+                    Flagship Component
+                </span>
+
+                <h2>
+                    Enterprise Grid
+                </h2>
+
+                <p>
+
+                    Designed for high performance applications with thousands of records.
+
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Server Mode
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Virtualization
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Batch Editing
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Tree Data
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Master Detail
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <span class="feature-check"></span>
+
+                        Export XLSX
+
+                    </div>
+
+                </div>
+
+                <div class="hero-actions">
+
+                    <a href="/grid"
+                       class="hero-button hero-button-primary">
+
+                        View Grid
+
+                    </a>
+
+                    <a href="/components"
+                       class="hero-button hero-button-secondary">
+
+                        Documentation
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="spotlight-right">
+
+                <div class="spotlight-preview">
+
+                    <div class="preview-toolbar">
+
+                        <div class="toolbar-search"></div>
+
+                        <div class="toolbar-buttons">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="preview-table">
+
+                        <div class="table-row header"></div>
+
+                        <div class="table-row"></div>
+
+                        <div class="table-row"></div>
+
+                        <div class="table-row"></div>
+
+                        <div class="table-row"></div>
+
+                        <div class="table-row"></div>
+
+                        <div class="table-row"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ===================================================== -->
+    <!-- TEMPLATES                                              -->
+    <!-- ===================================================== -->
+
+    <section class="templates-section">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                Starter Kits
+            </span>
+
+            <h2>
+                Ready for real-world applications
+            </h2>
+
+            <p>
+                Accelerate development with complete enterprise templates.
+            </p>
+
+        </div>
+
+        <div class="templates-grid">
+
+            <article class="template-card">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        CRM
+                    </span>
+
+                </div>
+
+                <h3>
+                    Customer Relationship
+                </h3>
+
+                <p>
+                    Sales pipeline, customers, dashboards and reports.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <article class="template-card">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        ERP
+                    </span>
+
+                </div>
+
+                <h3>
+                    Enterprise Resource Planning
+                </h3>
+
+                <p>
+                    Purchasing, inventory, finance and operations.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <article class="template-card">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        DISTRIBUTION
+                    </span>
+
+                </div>
+
+                <h3>
+                    Distribution Platform
+                </h3>
+
+                <p>
+                    Products, pricing, warehouse and logistics.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <article class="template-card">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        REAL ESTATE
+                    </span>
+
+                </div>
+
+                <h3>
+                    Real Estate Platform
+                </h3>
+
+                <p>
+                    Properties, brokers, clients and proposals.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <article class="template-card">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        DASHBOARD
+                    </span>
+
+                </div>
+
+                <h3>
+                    Analytics Dashboard
+                </h3>
+
+                <p>
+                    Charts, KPIs, reports and business intelligence.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <article class="template-card premium">
+
+                <div class="template-header">
+
+                    <span class="template-label">
+                        COMING SOON
+                    </span>
+
+                </div>
+
+                <h3>
+                    AI Workspace
+                </h3>
+
+                <p>
+                    Enterprise AI interface integrated with Orizon Agents.
+                </p>
+
+                <a href="#">
+                    Preview →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ROADMAP                                                -->
+    <!-- ===================================================== -->
+
+    <section class="roadmap-section">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                Roadmap
+            </span>
+
+            <h2>
+                Product evolution
+            </h2>
+
+        </div>
+
+        <div class="roadmap">
+
+            <div class="roadmap-item completed">
+
+                <div class="roadmap-marker"></div>
+
+                <div class="roadmap-content">
+
+                    <small>v1.0</small>
+
+                    <h3>
+                        Foundation
+                    </h3>
+
+                    <p>
+                        Design System, Layout, Forms and Components.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="roadmap-item completed">
+
+                <div class="roadmap-marker"></div>
+
+                <div class="roadmap-content">
+
+                    <small>v1.1</small>
+
+                    <h3>
+                        Enterprise Grid
+                    </h3>
+
+                    <p>
+                        Virtualization, Server Mode and Batch Editing.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="roadmap-item current">
+
+                <div class="roadmap-marker"></div>
+
+                <div class="roadmap-content">
+
+                    <small>v1.2</small>
+
+                    <h3>
+                        Charts & Dashboard
+                    </h3>
+
+                    <p>
+                        Native charts, KPIs and dashboard widgets.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="roadmap-item">
+
+                <div class="roadmap-marker"></div>
+
+                <div class="roadmap-content">
+
+                    <small>v2.0</small>
+
+                    <h3>
+                        Enterprise Suite
+                    </h3>
+
+                    <p>
+                        Complete commercial component library.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- FOOTER                                                 -->
+    <!-- ===================================================== -->
+
+    <footer class="showcase-footer">
+
+        <div class="footer-brand">
+
+            <h2>
+                Orizon UI
+            </h2>
+
+            <p>
+                Enterprise UI Library for ASP.NET Core MVC.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="/components">
+                Components
+            </a>
+
+            <a href="/grid">
+                Enterprise Grid
+            </a>
+
+            <a href="#">
+                Documentation
+            </a>
+
+            <a href="#">
+                GitHub
+            </a>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Orizon UI
+            </span>
+
+            <span>
+                Version 1.0.0
+            </span>
+
+        </div>
+
+    </footer>
+
 </div>
