@@ -73,16 +73,6 @@ internal static class ActionIcons
                 <path d="M6.2 6.2A18 18 0 0 0 2 12s4 6 10 6c1.2 0 2.3-.2 3.3-.6"/>
                 """,
 
-            ["lock"] = """
-                <rect x="5" y="11" width="14" height="10" rx="2"/>
-                <path d="M8 11V8a4 4 0 1 1 8 0v3"/>
-                """,
-
-            ["unlock"] = """
-                <rect x="5" y="11" width="14" height="10" rx="2"/>
-                <path d="M8 11V8a4 4 0 0 1 8 0"/>
-                """,
-
             ["play"] = """
                 <path d="M8 5v14l11-7z"/>
                 """,
