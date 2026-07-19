@@ -1,0 +1,55 @@
+@model CatalogPageViewModel
+
+@section Styles {
+    @if (new[] { "foundations", "components", "layout", "data" }.Contains(Model.Category, StringComparer.OrdinalIgnoreCase))
+    {
+        <link rel="stylesheet" href="~/css/documentation-experience.css" asp-append-version="true" />
+    }
+    else if (Model.Category.Equals("templates", StringComparison.OrdinalIgnoreCase))
+    {
+        <link rel="stylesheet" href="~/css/template-applications.css" asp-append-version="true" />
+    }
+}
+
+@if (Model.Category.Equals("foundations", StringComparison.OrdinalIgnoreCase))
+{
+    <partial name="_FoundationsPage" model="Model" />
+}
+else if (Model.Category.Equals("components", StringComparison.OrdinalIgnoreCase))
+{
+    <partial name="_ComponentsPage" model="Model" />
+}
+else if (Model.Category.Equals("layout", StringComparison.OrdinalIgnoreCase))
+{
+    <partial name="_LayoutPage" model="Model" />
+}
+else if (Model.Category.Equals("data", StringComparison.OrdinalIgnoreCase))
+{
+    <partial name="_DataPage" model="Model" />
+}
+else if (Model.Category.Equals("templates", StringComparison.OrdinalIgnoreCase))
+{
+    <partial name="_TemplatesPage" model="Model" />
+}
+else
+{
+    <article class="component-catalog">
+        <header class="component-catalog__header">
+            <div>
+                <h1 class="component-catalog__title">@Model.Title</h1>
+                <p class="component-catalog__description">@Model.Description</p>
+            </div>
+        </header>
+
+        @foreach (var catalogSection in Model.Sections)
+        {
+            var sectionId = $"section-{catalogSection.ToLowerInvariant().Replace(" ", "-")}";
+            <section class="component-example" aria-labelledby="@sectionId">
+                <header class="component-example__header">
+                    <h2 class="component-example__title" id="@sectionId">@catalogSection</h2>
+                </header>
+                <div class="component-example__preview"></div>
+            </section>
+        }
+    </article>
+}

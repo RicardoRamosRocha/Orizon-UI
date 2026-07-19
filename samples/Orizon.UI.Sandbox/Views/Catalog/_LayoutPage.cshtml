@@ -1,0 +1,79 @@
+@model CatalogPageViewModel
+
+@{
+    var structureItems = Model.Slug switch
+    {
+        "sidebar" => new[] { ("01", "Brand", "Identidade e acesso ao início."), ("02", "Groups", "Seções que organizam a navegação."), ("03", "Navigation", "Links, ícones e item ativo."), ("04", "Footer", "Contexto do usuário ou produto.") },
+        "topbar" => new[] { ("01", "Context", "Título e localização da página."), ("02", "Search", "Acesso rápido a recursos."), ("03", "Actions", "Tema e notificações."), ("04", "Profile", "Identidade e menu do usuário.") },
+        "breadcrumb" => new[] { ("01", "Root", "Ponto inicial da hierarquia."), ("02", "Ancestors", "Níveis navegáveis intermediários."), ("03", "Current", "Página atual sem link."), ("04", "Separator", "Relação visual entre níveis.") },
+        _ => new[] { ("01", "Sidebar", "Navegação persistente."), ("02", "Topbar", "Contexto e ações globais."), ("03", "Breadcrumb", "Localização hierárquica."), ("04", "Content", "Cards e área principal.") }
+    };
+
+    var razorCode = Model.Slug switch
+    {
+        "sidebar" => "<aside class=\"orizon-admin-sidebar\" aria-label=\"Navegação principal\">\n    <partial name=\"_Sidebar\" />\n</aside>",
+        "topbar" => "<header class=\"orizon-admin-topbar\">\n    <partial name=\"_Topbar\" />\n</header>",
+        "breadcrumb" => "<nav class=\"orizon-breadcrumb\" aria-label=\"Breadcrumb\">\n    <ol class=\"orizon-breadcrumb-list\">\n        <li class=\"orizon-breadcrumb-item\"><a href=\"/\">Home</a></li>\n        <li class=\"orizon-breadcrumb-separator\">/</li>\n        <li class=\"orizon-breadcrumb-item is-active\" aria-current=\"page\">Dashboard</li>\n    </ol>\n</nav>",
+        _ => "<div class=\"orizon-admin-shell\" data-admin-layout>\n    <aside class=\"orizon-admin-sidebar\"><partial name=\"_Sidebar\" /></aside>\n    <div class=\"orizon-admin-main\">\n        <header class=\"orizon-admin-topbar\"><partial name=\"_Topbar\" /></header>\n        <main class=\"orizon-admin-content\">\n            <partial name=\"_Breadcrumb\" />\n            @@RenderBody()\n        </main>\n    </div>\n</div>"
+    };
+}
+
+<article class="layout-doc">
+    <header class="layout-doc__hero">
+        <span>Layout</span>
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
+    </header>
+
+    <section class="layout-doc__section" aria-labelledby="layout-preview-title">
+        <header><span>01</span><div><h2 id="layout-preview-title">Preview</h2><p>Exemplo amplo construído com a linguagem visual da biblioteca.</p></div></header>
+        <div class="layout-stage">
+            @switch (Model.Slug)
+            {
+                case "sidebar":
+                    <div class="layout-sidebar-showcase">
+                        <aside class="layout-demo-sidebar">
+                            <div class="orizon-sidebar-header"><div class="orizon-sidebar-brand"><span class="orizon-sidebar-brand-mark">O</span><span class="orizon-sidebar-brand-content"><strong class="orizon-sidebar-brand-name">Orizon UI</strong><small class="orizon-sidebar-brand-product">Enterprise</small></span></div></div>
+                            <nav class="orizon-sidebar-navigation" aria-label="Preview da navegação"><div class="orizon-sidebar-section"><span class="orizon-sidebar-section-title">Workspace</span><a class="orizon-sidebar-link is-active" href="#"><orizon-icon name="dashboard" size="19" class="orizon-sidebar-link-icon" /><span class="orizon-sidebar-link-label">Dashboard</span></a><a class="orizon-sidebar-link" href="#"><orizon-icon name="users" size="19" class="orizon-sidebar-link-icon" /><span class="orizon-sidebar-link-label">Customers</span></a></div><div class="orizon-sidebar-section"><span class="orizon-sidebar-section-title">Management</span><a class="orizon-sidebar-link" href="#"><orizon-icon name="chart-bar" size="19" class="orizon-sidebar-link-icon" /><span class="orizon-sidebar-link-label">Analytics</span></a><a class="orizon-sidebar-link" href="#"><orizon-icon name="gear" size="19" class="orizon-sidebar-link-icon" /><span class="orizon-sidebar-link-label">Settings</span></a></div></nav>
+                        </aside>
+                        <aside class="layout-demo-sidebar layout-demo-sidebar--collapsed" aria-label="Sidebar recolhida"><div class="orizon-sidebar-header"><span class="orizon-sidebar-brand-mark">O</span></div><nav class="orizon-sidebar-navigation"><a class="orizon-sidebar-link is-active" href="#" title="Dashboard"><orizon-icon name="dashboard" size="19" class="orizon-sidebar-link-icon" /></a><a class="orizon-sidebar-link" href="#" title="Customers"><orizon-icon name="users" size="19" class="orizon-sidebar-link-icon" /></a><a class="orizon-sidebar-link" href="#" title="Settings"><orizon-icon name="gear" size="19" class="orizon-sidebar-link-icon" /></a></nav></aside>
+                    </div>
+                    break;
+                case "topbar":
+                    <div class="layout-demo-topbar"><div class="orizon-topbar-content"><div class="orizon-topbar-left"><div class="orizon-topbar-title-container"><span class="orizon-topbar-eyebrow">Workspace / Operations</span><strong class="orizon-topbar-title">Customer overview</strong></div></div><div class="layout-demo-search"><orizon-icon name="search" size="18" /><span>Search anything…</span><kbd>⌘ K</kbd></div><div class="orizon-topbar-actions"><button class="orizon-topbar-action-button" type="button" aria-label="Alternar tema"><orizon-icon name="moon" size="19" /></button><button class="orizon-topbar-action-button" type="button" aria-label="Notificações"><orizon-icon name="bell" size="19" /><span class="orizon-topbar-notification-badge">3</span></button><span class="orizon-topbar-divider"></span><button class="orizon-topbar-profile-button" type="button"><span class="orizon-topbar-profile-avatar">MC</span><span class="orizon-topbar-profile-content"><strong>Marina Costa</strong><small>Administrator</small></span><orizon-icon name="chevron-down" size="16" /></button></div></div></div>
+                    break;
+                case "breadcrumb":
+                    <div class="layout-breadcrumb-showcase"><article><small>Simple hierarchy</small><nav class="orizon-breadcrumb" aria-label="Breadcrumb simples"><ol class="orizon-breadcrumb-list"><li class="orizon-breadcrumb-item"><a href="#"><orizon-icon name="home" size="15" /> Home</a></li><li class="orizon-breadcrumb-separator">/</li><li class="orizon-breadcrumb-item is-active" aria-current="page">Customers</li></ol></nav></article><article><small>Deep hierarchy</small><nav class="orizon-breadcrumb" aria-label="Breadcrumb profundo"><ol class="orizon-breadcrumb-list"><li class="orizon-breadcrumb-item"><a href="#"><orizon-icon name="home" size="15" /></a></li><li class="orizon-breadcrumb-separator">/</li><li class="orizon-breadcrumb-item"><a href="#">Workspace</a></li><li class="orizon-breadcrumb-separator">/</li><li class="orizon-breadcrumb-item"><a href="#">Customers</a></li><li class="orizon-breadcrumb-separator">/</li><li class="orizon-breadcrumb-item is-active" aria-current="page">Atlas Energy</li></ol></nav></article></div>
+                    break;
+                default:
+                    <div class="layout-dashboard-demo"><aside class="layout-dashboard-sidebar"><span class="orizon-sidebar-brand-mark">O</span><nav><i class="is-active"></i><i></i><i></i><i></i></nav></aside><div><header><div><small>OVERVIEW</small><strong>Operations dashboard</strong></div><span><orizon-icon name="search" size="16" /><orizon-icon name="bell" size="17" /><b>MC</b></span></header><main><nav class="layout-dashboard-breadcrumb"><span>Home</span><i>/</i><strong>Dashboard</strong></nav><div class="layout-dashboard-cards"><orizon-card title="Revenue" subtitle="This month" variant="elevated"><strong>$84,240</strong><small>+12.4%</small></orizon-card><orizon-card title="Orders" subtitle="This month" variant="elevated"><strong>1,429</strong><small>+8.1%</small></orizon-card><orizon-card title="Customers" subtitle="Active" variant="elevated"><strong>8,492</strong><small>+5.7%</small></orizon-card></div><orizon-card title="Performance overview" subtitle="Last six months"><div class="layout-dashboard-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></orizon-card></main></div></div>
+                    break;
+            }
+        </div>
+    </section>
+
+    <section class="layout-doc__section" aria-labelledby="layout-structure-title">
+        <header><span>02</span><div><h2 id="layout-structure-title">Exemplos</h2><p>Regiões e variações que compõem o layout.</p></div></header>
+        <div class="layout-structure-grid">@foreach (var item in structureItems){<article><span>@item.Item1</span><div><h3>@item.Item2</h3><p>@item.Item3</p></div></article>}</div>
+    </section>
+
+    <section class="layout-doc__section" aria-labelledby="layout-code-title">
+        <header><span>03</span><div><h2 id="layout-code-title">Código Razor</h2><p>Estrutura completa pronta para adaptação.</p></div></header>
+        <div class="layout-code"><div><i></i><i></i><i></i><span>RAZOR</span></div><pre><code>@razorCode</code></pre></div>
+    </section>
+
+    <section class="layout-doc__section" aria-labelledby="layout-api-title">
+        <header><span>04</span><div><h2 id="layout-api-title">API</h2><p>Regiões e classes públicas utilizadas na composição.</p></div></header>
+        <div class="doc-api"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Valor padrão</th><th>Descrição</th></tr></thead><tbody>@foreach(var item in structureItems){<tr><td><code>@item.Item2</code></td><td>region</td><td><code>enabled</code></td><td>@item.Item3</td></tr>}</tbody></table></div>
+    </section>
+
+    <section class="layout-doc__section" aria-labelledby="layout-practices-title">
+        <header><span>05</span><div><h2 id="layout-practices-title">Boas práticas</h2><p>Orientações para layouts robustos e acessíveis.</p></div></header>
+        <div class="layout-practices"><article><span>✓</span><div><strong>Hierarquia estável</strong><p>Mantenha regiões globais previsíveis entre as páginas.</p></div></article><article><span>✓</span><div><strong>Navegação acessível</strong><p>Use landmarks, labels e estado atual explícito.</p></div></article><article><span>✓</span><div><strong>Adaptação progressiva</strong><p>Priorize conteúdo e ações essenciais em telas menores.</p></div></article></div>
+    </section>
+
+    <section class="layout-doc__section" aria-labelledby="layout-notes-title">
+        <header><span>06</span><div><h2 id="layout-notes-title">Observações</h2><p>Informações complementares para implementação.</p></div></header>
+        <div class="doc-notes"><orizon-icon name="info" size="20" /><p>Os previews não repetem hooks globais de JavaScript. Na aplicação, use os partials oficiais para preservar colapso, tema e responsividade.</p></div>
+    </section>
+</article>

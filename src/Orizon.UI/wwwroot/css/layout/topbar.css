@@ -1,23 +1,14 @@
-.orizon-topbar-content{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:var(--orizon-space-6);
-
-    height:100%;
-
-    padding-inline:2rem;
-
-    background:var(--orizon-surface-0);
-
-    border-bottom:1px solid var(--orizon-border-soft);
-
-    backdrop-filter:blur(16px);
-
+/* ==========================================================
+   Topbar structure
+   ========================================================== */
+.orizon-topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding-inline: clamp(var(--orizon-space-4), 3vw, var(--orizon-space-6));
+    gap: var(--orizon-space-5);
 }
 
 .orizon-topbar-left,
@@ -28,301 +19,249 @@
 
 .orizon-topbar-left {
     min-width: 0;
-    gap: var(--orizon-space-4);
+    gap: var(--orizon-space-3);
 }
 
 .orizon-topbar-actions {
+    flex: 0 0 auto;
     gap: var(--orizon-space-2);
 }
 
-.orizon-topbar-menu-button,
-.orizon-topbar-action-button{
-
-    width:44px;
-
-    height:44px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:14px;
-
-    border:1px solid transparent;
-
-    background:transparent;
-
-    transition:
-        .18s ease;
-
-}
-
-.orizon-topbar-menu-button:hover,
-.orizon-topbar-action-button:hover{
-
-    color:var(--orizon-color-primary);
-
-    background:var(--orizon-surface-2);
-
-    border-color:var(--orizon-border-soft);
-
-    box-shadow:var(--orizon-shadow-sm);
-
-    transform:translateY(-1px);
-
-}
-
-.orizon-topbar-title-group {
+.orizon-topbar-title-container {
     display: flex;
-    flex-direction: column;
     min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.15;
 }
 
 .orizon-topbar-eyebrow {
     color: var(--orizon-color-text-muted);
-    font-size: .72rem;
-    text-transform: uppercase;
-    letter-spacing: .08em;
+    font-size: 0.625rem;
     font-weight: var(--orizon-font-weight-semibold);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
 }
 
-.orizon-topbar-title{
-
-    margin-top:2px;
-
-    font-size:1.35rem;
-
-    font-weight:700;
-
-    letter-spacing:-.03em;
-
+.orizon-topbar-title {
+    overflow: hidden;
+    max-width: min(38vw, 36rem);
+    margin-top: 0.2rem;
+    color: var(--orizon-color-text-primary);
+    font-size: 1rem;
+    font-weight: var(--orizon-font-weight-semibold);
+    letter-spacing: -0.015em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.orizon-topbar-profile-button{
-
-    gap:1rem;
-
-    padding:.45rem .65rem;
-
-    border-radius:16px;
-
-    border:1px solid transparent;
-
-    transition:.18s;
-
-}
-
-.orizon-topbar-profile-button:hover{
-
-    background:var(--orizon-surface-2);
-
-    border-color:var(--orizon-border-soft);
-
-    box-shadow:var(--orizon-shadow-sm);
-
-}
-
-.orizon-topbar-profile-avatar{
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:50%;
-
-    background:var(--orizon-gradient-primary);
-
-    color:white;
-
-    font-weight:700;
-
-    box-shadow:var(--orizon-shadow-primary);
-
-}
-
-.orizon-topbar-profile-content {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    line-height: 1.2;
-}
-
-.orizon-topbar-profile-content strong {
-    font-size: .88rem;
-}
-
-.orizon-topbar-profile-content small {
-    color: var(--orizon-color-text-muted);
-}
-
-.orizon-topbar-profile-chevron {
-    opacity: .65;
-}
-
-.orizon-topbar-notification-badge{
-
-    position:absolute;
-
-    top:6px;
-
-    right:6px;
-
-    width:18px;
-
-    height:18px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:999px;
-
-    background:var(--orizon-gradient-sunset);
-
-    color:white;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    box-shadow:var(--orizon-shadow-danger);
-
-}
-
+/* ==========================================================
+   Icon actions
+   ========================================================== */
+.orizon-topbar-menu-button,
 .orizon-topbar-action-button {
     position: relative;
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    color: var(--orizon-color-text-secondary);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-lg);
+    cursor: pointer;
+    line-height: 0;
+    transition:
+        color var(--orizon-transition-fast),
+        background-color var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast),
+        box-shadow var(--orizon-transition-fast),
+        transform var(--orizon-transition-fast);
 }
 
-.orizon-topbar-action-button .orizon-icon,
 .orizon-topbar-menu-button .orizon-icon,
+.orizon-topbar-action-button .orizon-icon,
 .orizon-topbar-profile-chevron {
-    transition:
-        transform var(--orizon-transition-normal);
+    display: block;
+    flex: none;
+    color: currentColor;
+    stroke: currentColor;
+    opacity: 1;
+    transition: transform var(--orizon-transition-fast);
+}
+
+.orizon-topbar-menu-button:hover,
+.orizon-topbar-action-button:hover {
+    color: var(--orizon-color-text-primary);
+    background: var(--orizon-color-surface-secondary);
+    border-color: var(--orizon-color-border);
+    box-shadow: var(--orizon-shadow-xs);
+    transform: translateY(-1px);
+}
+
+.orizon-topbar-menu-button:active,
+.orizon-topbar-action-button:active {
+    background: var(--orizon-color-surface-selected);
+    transform: translateY(0) scale(0.96);
+}
+
+.orizon-topbar-menu-button:focus-visible,
+.orizon-topbar-action-button:focus-visible,
+.orizon-topbar-profile-button:focus-visible {
+    outline: none;
+    box-shadow: var(--orizon-focus-ring);
 }
 
 .orizon-topbar-action-button:hover .orizon-icon,
 .orizon-topbar-menu-button:hover .orizon-icon {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
-.orizon-topbar-search{
-
-    width:420px;
-
-    max-width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:.75rem;
-
-    padding:0 .9rem;
-
-    height:46px;
-
-    border:1px solid var(--orizon-border-soft);
-
-    border-radius:14px;
-
-    background:var(--orizon-surface-1);
-
-    transition:.18s;
-
+/* ==========================================================
+   Notification state
+   ========================================================== */
+.orizon-topbar-notification-badge {
+    position: absolute;
+    top: 0.18rem;
+    right: 0.12rem;
+    display: grid;
+    place-items: center;
+    min-width: 1.05rem;
+    height: 1.05rem;
+    padding-inline: 0.2rem;
+    color: var(--orizon-color-text-inverse);
+    background: var(--orizon-color-danger);
+    border: 2px solid var(--orizon-color-surface);
+    border-radius: var(--orizon-radius-full);
+    box-shadow: 0 0.15rem 0.45rem color-mix(in srgb, var(--orizon-color-danger) 35%, transparent);
+    font-size: 0.5625rem;
+    font-weight: var(--orizon-font-weight-bold);
+    line-height: 1;
 }
 
-.orizon-topbar-search:hover{
-
-    border-color:var(--orizon-border-accent);
-
+/* ==========================================================
+   Compact profile
+   ========================================================== */
+.orizon-topbar-divider {
+    width: 1px;
+    height: 1.75rem;
+    margin-inline: var(--orizon-space-1);
+    background: var(--orizon-color-border);
 }
 
-.orizon-topbar-search:focus-within{
-
-    border-color:var(--orizon-color-primary);
-
-    box-shadow:var(--orizon-focus-ring);
-
+.orizon-topbar-profile-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.3rem;
+    color: var(--orizon-color-text-primary);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--orizon-radius-lg);
+    cursor: pointer;
+    transition:
+        background-color var(--orizon-transition-fast),
+        border-color var(--orizon-transition-fast),
+        box-shadow var(--orizon-transition-fast);
 }
 
-.orizon-topbar-search input{
-
-    flex:1;
-
-    border:none;
-
-    background:none;
-
-    outline:none;
-
-    font:inherit;
-
+.orizon-topbar-profile-button:hover {
+    background: var(--orizon-color-surface-secondary);
+    border-color: var(--orizon-color-border);
+    box-shadow: var(--orizon-shadow-xs);
 }
 
-.orizon-topbar-shortcut{
-
-    padding:4px 8px;
-
-    border-radius:8px;
-
-    background:var(--orizon-surface-2);
-
-    color:var(--orizon-color-text-secondary);
-
-    font-size:11px;
-
-    font-weight:600;
-
+.orizon-topbar-profile-avatar {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--orizon-color-primary-contrast);
+    background: var(--orizon-gradient-primary);
+    border: 1px solid color-mix(in srgb, var(--orizon-color-primary) 55%, transparent);
+    border-radius: 50%;
+    box-shadow: var(--orizon-shadow-xs);
+    font-size: 0.625rem;
+    font-weight: var(--orizon-font-weight-bold);
+    letter-spacing: 0.025em;
 }
 
-.orizon-topbar-environment{
-
-    padding:6px 10px;
-
-    border-radius:999px;
-
-    background:var(--orizon-gradient-primary);
-
-    color:white;
-
-    font-size:11px;
-
-    font-weight:700;
-
+.orizon-topbar-profile-content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.08rem;
+    text-align: left;
+    line-height: 1.15;
 }
 
-.orizon-topbar-sync{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:.5rem;
-
-    font-size:.82rem;
-
-    color:var(--orizon-color-success);
-
+.orizon-topbar-profile-content strong,
+.orizon-topbar-profile-content small {
+    overflow: hidden;
+    max-width: 9rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.orizon-topbar-divider{
-
-    width:1px;
-
-    height:30px;
-
-    background:var(--orizon-border-soft);
-
+.orizon-topbar-profile-content strong {
+    color: var(--orizon-color-text-primary);
+    font-size: 0.75rem;
+    font-weight: var(--orizon-font-weight-semibold);
 }
 
-.orizon-topbar--glass{
+.orizon-topbar-profile-content small {
+    color: var(--orizon-color-text-muted);
+    font-size: 0.625rem;
+}
 
-    backdrop-filter:blur(18px);
+.orizon-topbar-profile-chevron {
+    color: var(--orizon-color-text-muted);
+}
 
-    background:var(--orizon-glass-background);
+.orizon-topbar-profile-button:hover .orizon-topbar-profile-chevron {
+    color: var(--orizon-color-text-secondary);
+    transform: translateY(1px);
+}
 
+/* ==========================================================
+   Optional topbar utilities
+   ========================================================== */
+.orizon-topbar-search {
+    display: flex;
+    align-items: center;
+    width: min(26rem, 100%);
+    height: 2.625rem;
+    padding-inline: var(--orizon-space-3);
+    gap: var(--orizon-space-2);
+    color: var(--orizon-color-text-secondary);
+    background: var(--orizon-color-surface-secondary);
+    border: 1px solid var(--orizon-color-border);
+    border-radius: var(--orizon-radius-lg);
+    transition: border-color var(--orizon-transition-fast), box-shadow var(--orizon-transition-fast);
+}
+
+.orizon-topbar-search:focus-within { border-color: var(--orizon-color-primary); box-shadow: var(--orizon-focus-ring); }
+.orizon-topbar-search input { flex: 1; min-width: 0; color: var(--orizon-color-text-primary); background: transparent; border: 0; outline: 0; font: inherit; }
+.orizon-topbar-shortcut { padding: 0.2rem 0.4rem; color: var(--orizon-color-text-muted); background: var(--orizon-color-surface); border: 1px solid var(--orizon-color-border); border-radius: var(--orizon-radius-sm); font-size: 0.625rem; }
+.orizon-topbar-environment { padding: 0.3rem 0.55rem; color: var(--orizon-color-primary); background: var(--orizon-color-primary-soft); border-radius: var(--orizon-radius-full); font-size: 0.625rem; font-weight: var(--orizon-font-weight-bold); }
+.orizon-topbar-sync { display: flex; align-items: center; gap: var(--orizon-space-2); color: var(--orizon-color-success); font-size: var(--orizon-font-size-sm); }
+.orizon-topbar--glass { background: color-mix(in srgb, var(--orizon-color-surface) 84%, transparent); backdrop-filter: blur(1rem); }
+
+@media (max-width: 767px) {
+    .orizon-topbar-divider { display: none; }
+    .orizon-topbar-title { max-width: 13rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orizon-topbar-menu-button,
+    .orizon-topbar-action-button,
+    .orizon-topbar-profile-button,
+    .orizon-topbar-menu-button .orizon-icon,
+    .orizon-topbar-action-button .orizon-icon,
+    .orizon-topbar-profile-chevron { transition: none; }
 }

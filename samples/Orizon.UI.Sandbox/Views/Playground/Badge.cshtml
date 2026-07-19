@@ -1,0 +1,15 @@
+@{ ViewData["Title"] = "Badge Playground"; ViewData["ApplicationName"] = "Orizon UI Playground"; }
+@section Styles { <link rel="stylesheet" href="~/css/playground.css" asp-append-version="true" /> }
+<main class="playground" data-playground-kind="badge">
+ <header class="playground__header"><span>Interactive Playground</span><h1>Badge</h1><p>Configure status, formato e densidade do Orizon Badge.</p></header>
+ <nav class="playground__tabs" aria-label="Playgrounds"><a href="/playground/buttons">Buttons</a><a href="/playground/cards">Cards</a><a class="is-active" href="/playground/badge">Badge</a><a href="/playground/inputs">Inputs</a></nav>
+ <div class="playground__workspace">
+  <aside class="playground-panel playground-config"><header><span>01</span><div><h2>Configuração</h2><p>Personalize as propriedades.</p></div></header><div class="playground-fields">
+   <label>Texto<input type="text" value="Active" data-control="text" /></label><label>Cor<select data-control="color"><option value="neutral">Neutral</option><option value="primary">Primary</option><option value="success" selected>Success</option><option value="warning">Warning</option><option value="danger">Danger</option><option value="info">Info</option></select></label>
+   <label>Variant<select data-control="shape"><option value="default">Default</option><option value="pill" selected>Pill</option><option value="dot">Dot</option></select></label><label>Tamanho<select data-control="size"><option value="sm">Small</option><option value="md" selected>Medium</option><option value="lg">Large</option></select></label>
+  </div></aside>
+  <section class="playground-panel playground-preview"><header><span>02</span><div><h2>Preview</h2><p>Componente real da Orizon UI.</p></div></header><div class="playground-stage" data-preview><orizon-badge variant="success" size="md" pill>Active</orizon-badge></div></section>
+  <aside class="playground-panel playground-code"><header><span>03</span><div><h2>Código Razor</h2><p>Atualizado automaticamente.</p></div></header><div class="playground-code__block"><div><i></i><i></i><i></i><small>RAZOR</small></div><pre><code data-generated-code>&lt;orizon-badge variant=&quot;success&quot; size=&quot;md&quot; pill&gt;Active&lt;/orizon-badge&gt;</code></pre></div><button class="playground-copy" type="button" data-copy-code><orizon-icon name="copy" size="17" /><span>Copiar Código</span></button><p class="playground-copy__status" data-copy-status aria-live="polite"></p></aside>
+ </div>
+</main>
+@section Scripts { <script src="~/js/playground.js" asp-append-version="true"></script> }

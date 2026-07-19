@@ -1,0 +1,104 @@
+@model CatalogPageViewModel
+
+@{
+    var gridRows = Enumerable.Range(1, 18).Select(index => new
+    {
+        Id = index,
+        Customer = new[] { "Atlas Energia", "Northstar Labs", "Vertex Health", "Apex Systems", "Orion Retail", "Lumina Group" }[index % 6],
+        Segment = new[] { "Enterprise", "Business", "Growth" }[index % 3],
+        Status = new[] { "Ativo", "Pendente", "Em análise" }[index % 3],
+        Revenue = 8200m + index * 1275m,
+        UpdatedAt = DateTime.Today.AddDays(-index)
+    }).ToArray();
+
+    var properties = Model.Slug switch
+    {
+        "enterprise-grid" => new[] { ("items", "IEnumerable", "Coleção exibida pelo grid.", "null"), ("key-field", "string", "Campo de identidade das linhas.", "Id"), ("height", "string", "Altura da área virtualizada.", "auto"), ("selectable", "string", "Modo de seleção.", "none"), ("virtual-scroll", "bool", "Ativa virtualização vertical.", "false") },
+        "tables" => new[] { ("label", "string", "Nome acessível da tabela.", "Tabela de dados"), ("striped", "bool", "Alterna o fundo das linhas.", "false"), ("hoverable", "bool", "Destaca a linha apontada.", "false"), ("compact", "bool", "Reduz a densidade.", "false"), ("bordered", "bool", "Exibe bordas internas.", "false") },
+        "pagination" => new[] { ("page", "int", "Página atual.", "1"), ("total-pages", "int", "Total de páginas.", "1"), ("href-template", "string", "Modelo da URL de navegação.", "?page={0}"), ("label", "string", "Nome acessível.", "Paginacao") },
+        "loading-states" => new[] { ("size", "string", "Tamanho do Spinner.", "md"), ("label", "string", "Descrição acessível.", "Carregando"), ("value", "int", "Valor atual do Progress.", "0"), ("max", "int", "Valor máximo do Progress.", "100"), ("show-label", "bool", "Exibe percentual.", "false") },
+        "empty-states" => new[] { ("title", "string", "Mensagem principal.", "Nada por aqui"), ("description", "string", "Orientação complementar.", "null"), ("icon", "string", "Classe opcional de ícone.", "null"), ("child content", "Razor", "Ações para recuperação.", "vazio") },
+        _ => Array.Empty<(string, string, string, string)>()
+    };
+
+    var razorCode = Model.Slug switch
+    {
+        "enterprise-grid" => "<orizon-enterprise-grid items=\"rows\" key-field=\"Id\" selectable=\"multiple\">\n    <orizon-grid-toolbar search export refresh />\n    <orizon-grid-column field=\"Customer\" title=\"Cliente\" />\n    <orizon-grid-pager page-size=\"10\" />\n</orizon-enterprise-grid>",
+        "tables" => "<orizon-table label=\"Clientes\" striped hoverable bordered>\n    <thead>...</thead>\n    <tbody>...</tbody>\n</orizon-table>",
+        "pagination" => "<orizon-pagination page=\"3\" total-pages=\"12\" href-template=\"?page={0}\" />",
+        "loading-states" => "<orizon-spinner size=\"md\" label=\"Carregando dados\" />\n<orizon-progress value=\"64\" max=\"100\" label=\"Importação\" show-label />",
+        "empty-states" => "<orizon-empty-state title=\"Nenhum registro\" description=\"Crie o primeiro item.\">\n    <orizon-button>Novo registro</orizon-button>\n</orizon-empty-state>",
+        "charts" => "@* Placeholder reservado para o componente de Charts. *@",
+        _ => "@* Placeholder reservado para o componente TreeView. *@"
+    };
+}
+
+<article class="data-doc">
+    <header class="data-doc__hero"><span>Data</span><h1>@Model.Title</h1><p>@Model.Description</p></header>
+
+    <section class="data-doc__section" aria-labelledby="data-preview-title">
+        <header><span>01</span><div><h2 id="data-preview-title">Preview</h2><p>@(Model.Slug is "charts" or "tree-view" ? "Área preparada para evolução futura." : "Componente real com dados fictícios e configuração recomendada.")</p></div></header>
+        <div class="data-stage @(Model.Slug is "enterprise-grid" ? "data-stage--wide" : null)">
+            @switch (Model.Slug)
+            {
+                case "enterprise-grid":
+                    <orizon-enterprise-grid id="catalog-data-grid" items="gridRows" key-field="Id" label="Clientes do catálogo" height="28rem" selectable="multiple" virtual-scroll>
+                        <orizon-grid-toolbar search export refresh />
+                        <orizon-grid-column field="Customer" title="Cliente" width="220" pinned="left" />
+                        <orizon-grid-column field="Segment" title="Segmento" width="140" />
+                        <orizon-grid-column field="Status" title="Status" width="140" />
+                        <orizon-grid-column field="Revenue" title="Receita" width="150" type="currency" format="currency" />
+                        <orizon-grid-column field="UpdatedAt" title="Atualizado" width="150" format="date" />
+                        <orizon-grid-selection mode="multiple" checkbox cell />
+                        <orizon-grid-filter-panel><p>Use os filtros das colunas para refinar os resultados.</p></orizon-grid-filter-panel>
+                        <orizon-grid-pager page-size="10" />
+                    </orizon-enterprise-grid>
+                    break;
+                case "tables":
+                    <div class="data-table-preview"><orizon-table label="Contas empresariais" striped hoverable><thead><tr><th>Conta</th><th>Status</th><th>Plano</th><th>Receita</th></tr></thead><tbody><tr><td>Atlas Energia</td><td><orizon-badge variant="success" dot>Ativo</orizon-badge></td><td>Enterprise</td><td>R$ 42.800</td></tr><tr><td>Northstar Labs</td><td><orizon-badge variant="warning" dot>Pendente</orizon-badge></td><td>Business</td><td>R$ 18.450</td></tr><tr><td>Vertex Health</td><td><orizon-badge variant="neutral">Rascunho</orizon-badge></td><td>Growth</td><td>R$ 9.920</td></tr></tbody></orizon-table></div>
+                    break;
+                case "pagination": <orizon-pagination page="4" total-pages="9" href-template="?page={0}" label="Resultados do catálogo" /> break;
+                case "loading-states": <div class="data-loading-preview"><div><orizon-spinner size="lg" label="Carregando relatório" /><strong>Preparando relatório</strong><p>Isso pode levar alguns segundos.</p></div><orizon-progress value="64" max="100" label="Importação dos dados" show-label /></div> break;
+                case "empty-states": <orizon-empty-state title="Nenhum registro encontrado" description="Crie um novo registro para começar."><orizon-button>Novo registro</orizon-button></orizon-empty-state> break;
+                case "charts": <div class="data-placeholder"><span><orizon-icon name="chart-bar" size="34" /></span><strong>Charts</strong><p>Área reservada para a futura API de visualização de dados.</p><small>PLANNED</small></div> break;
+                default: <div class="data-placeholder"><span><orizon-icon name="boxes" size="34" /></span><strong>TreeView</strong><p>Área reservada para o futuro componente de dados hierárquicos.</p><small>PLANNED</small></div> break;
+            }
+        </div>
+    </section>
+
+    <section class="data-doc__section" aria-labelledby="data-examples-title">
+        <header><span>02</span><div><h2 id="data-examples-title">Exemplos</h2><p>Variações e estados relevantes para aplicações reais.</p></div></header>
+        <div class="data-examples">
+            @switch (Model.Slug)
+            {
+                case "enterprise-grid":
+                    <div class="data-feature-grid"><article><orizon-icon name="arrow-up" size="20" /><strong>Ordenação</strong><p>Cabeçalhos interativos e multi-sort.</p></article><article><orizon-icon name="filter" size="20" /><strong>Filtros</strong><p>Refinamento por coluna.</p></article><article><orizon-icon name="check" size="20" /><strong>Seleção</strong><p>Linha, célula e múltipla.</p></article><article><orizon-icon name="more-horizontal" size="20" /><strong>Toolbar</strong><p>Busca, exportação e refresh.</p></article><article><orizon-icon name="refresh" size="20" /><strong>Loading</strong><p>Feedback durante consultas.</p></article><article><orizon-icon name="tablet" size="20" /><strong>Responsividade</strong><p>Rolagem e colunas adaptáveis.</p></article></div>
+                    <div class="data-state-row"><orizon-empty-state title="Sem dados" description="Nenhum item corresponde à consulta." /><div class="data-loading-card"><orizon-spinner label="Carregando grid" /><span>Carregando registros…</span></div></div>
+                    break;
+                case "tables":
+                    <div class="data-table-variants"><article><h3>Bordered</h3><orizon-table label="Tabela com bordas" bordered compact><thead><tr><th>Produto</th><th>Qtd.</th></tr></thead><tbody><tr><td>Licença Pro</td><td>24</td></tr><tr><td>Suporte</td><td>8</td></tr></tbody></orizon-table></article><article><h3>Compact & striped</h3><orizon-table label="Tabela compacta" striped compact><thead><tr><th>Região</th><th>Total</th></tr></thead><tbody><tr><td>Sudeste</td><td>184</td></tr><tr><td>Sul</td><td>96</td></tr></tbody></orizon-table></article></div>
+                    break;
+                case "pagination":
+                    <div class="data-pagination-stack"><div><small>Primeira página</small><orizon-pagination page="1" total-pages="5" /></div><div><small>Página intermediária</small><orizon-pagination page="3" total-pages="7" /></div><div><small>Última página</small><orizon-pagination page="5" total-pages="5" /></div></div>
+                    break;
+                case "loading-states":
+                    <div class="data-loading-grid"><article><span><orizon-spinner size="sm" /></span><strong>Small</strong></article><article><span><orizon-spinner size="md" /></span><strong>Medium</strong></article><article><span><orizon-spinner size="lg" /></span><strong>Large</strong></article></div><div class="data-progress-stack"><orizon-progress value="20" label="Preparando" show-label /><orizon-progress value="55" label="Processando" show-label /><orizon-progress value="100" label="Concluído" show-label /></div>
+                    break;
+                case "empty-states":
+                    <div class="data-empty-grid"><orizon-empty-state title="Sem dados" description="Crie o primeiro registro."><orizon-button>Novo registro</orizon-button></orizon-empty-state><orizon-empty-state title="Sem resultados" description="Tente ajustar os termos da pesquisa."><orizon-button variant="outline">Limpar busca</orizon-button></orizon-empty-state><orizon-empty-state title="Não foi possível carregar" description="Ocorreu um erro ao buscar os dados."><orizon-button variant="outline">Tentar novamente</orizon-button></orizon-empty-state><orizon-empty-state title="Acesso restrito" description="Você não possui permissão para visualizar esta área."><orizon-button variant="outline">Voltar</orizon-button></orizon-empty-state></div>
+                    break;
+                default:
+                    <div class="data-placeholder-detail"><span>API</span><div><strong>Contrato ainda não publicado</strong><p>Este placeholder não simula comportamento nem antecipa propriedades do componente.</p></div></div>
+                    break;
+            }
+        </div>
+    </section>
+
+    <section class="data-doc__section" aria-labelledby="data-code-title"><header><span>03</span><div><h2 id="data-code-title">Código Razor</h2><p>Exemplo pronto para integração.</p></div></header><div class="data-code"><div><i></i><i></i><i></i><span>RAZOR</span></div><pre><code>@razorCode</code></pre></div></section>
+
+    <section class="data-doc__section" aria-labelledby="data-properties-title"><header><span>04</span><div><h2 id="data-properties-title">API</h2><p>Principais parâmetros da API existente.</p></div></header><div class="data-properties"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Valor padrão</th><th>Descrição</th></tr></thead><tbody>@if(properties.Length > 0){foreach(var property in properties){<tr><td><code>@property.Item1</code></td><td>@property.Item2</td><td><code>@property.Item4</code></td><td>@property.Item3</td></tr>}}else{<tr><td><code>planned</code></td><td>status</td><td><code>true</code></td><td>API ainda não publicada.</td></tr>}</tbody></table></div></section>
+
+    <section class="data-doc__section" aria-labelledby="data-practices-title"><header><span>05</span><div><h2 id="data-practices-title">Boas práticas</h2><p>Recomendações para experiências de dados confiáveis.</p></div></header><div class="data-practices"><article><span>✓</span><div><strong>Priorize legibilidade</strong><p>Mostre apenas informações necessárias para a decisão atual.</p></div></article><article><span>✓</span><div><strong>Comunique estados</strong><p>Nunca deixe loading, vazio ou erro sem orientação clara.</p></div></article><article><span>✓</span><div><strong>Preserve contexto</strong><p>Mantenha filtros, seleção e paginação previsíveis.</p></div></article></div></section>
+
+    <section class="data-doc__section" aria-labelledby="data-notes-title"><header><span>06</span><div><h2 id="data-notes-title">Observações</h2><p>Informações complementares para implementação.</p></div></header><div class="doc-notes"><orizon-icon name="info" size="20" /><p>Charts e TreeView permanecem placeholders intencionais. Nenhuma API futura é simulada nesta documentação.</p></div></section>
+</article>

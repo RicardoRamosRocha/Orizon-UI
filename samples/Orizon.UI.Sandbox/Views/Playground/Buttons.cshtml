@@ -1,0 +1,18 @@
+@{ ViewData["Title"] = "Button Playground"; ViewData["ApplicationName"] = "Orizon UI Playground"; }
+@section Styles { <link rel="stylesheet" href="~/css/playground.css" asp-append-version="true" /> }
+<main class="playground" data-playground-kind="button">
+ <header class="playground__header"><span>Interactive Playground</span><h1>Buttons</h1><p>Configure a aparência e os estados do Orizon Button em tempo real.</p></header>
+ <nav class="playground__tabs" aria-label="Playgrounds"><a class="is-active" href="/playground/buttons">Buttons</a><a href="/playground/cards">Cards</a><a href="/playground/badge">Badge</a><a href="/playground/inputs">Inputs</a></nav>
+ <div class="playground__workspace">
+  <aside class="playground-panel playground-config"><header><span>01</span><div><h2>Configuração</h2><p>Personalize as propriedades.</p></div></header><div class="playground-fields">
+   <label>Texto<input type="text" value="Salvar alterações" data-control="text" /></label>
+   <label>Variant<select data-control="variant"><option value="solid">Solid</option><option value="soft">Soft</option><option value="outline">Outline</option><option value="ghost">Ghost</option><option value="gradient">Gradient</option><option value="glass">Glass</option><option value="link">Link</option></select></label>
+   <label>Size<select data-control="size"><option value="xs">Extra small</option><option value="sm">Small</option><option value="md" selected>Medium</option><option value="lg">Large</option></select></label>
+   <label>Icon<select data-control="icon"><option value="">Sem ícone</option><option value="plus">Plus</option><option value="check">Check</option><option value="download">Download</option><option value="save">Save</option></select></label>
+   <div class="playground-checks"><label><input type="checkbox" data-control="disabled" /> Disabled</label><label><input type="checkbox" data-control="loading" /> Loading</label><label><input type="checkbox" data-control="fullWidth" /> Full Width</label></div>
+  </div></aside>
+  <section class="playground-panel playground-preview"><header><span>02</span><div><h2>Preview</h2><p>Componente real da Orizon UI.</p></div></header><div class="playground-stage" data-preview><orizon-button variant="solid" color="primary" size="md">Salvar alterações</orizon-button></div></section>
+  <aside class="playground-panel playground-code"><header><span>03</span><div><h2>Código Razor</h2><p>Atualizado automaticamente.</p></div></header><div class="playground-code__block"><div><i></i><i></i><i></i><small>RAZOR</small></div><pre><code data-generated-code>&lt;orizon-button variant=&quot;solid&quot; color=&quot;primary&quot; size=&quot;md&quot;&gt;Salvar alterações&lt;/orizon-button&gt;</code></pre></div><button class="playground-copy" type="button" data-copy-code><orizon-icon name="copy" size="17" /><span>Copiar Código</span></button><p class="playground-copy__status" data-copy-status aria-live="polite"></p></aside>
+ </div>
+</main>
+@section Scripts { <script src="~/js/playground.js" asp-append-version="true"></script> }

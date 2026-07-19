@@ -1,0 +1,101 @@
+@model CatalogPageViewModel
+
+@{
+    var template = Model.Slug switch
+    {
+        "erp" => new { Name = "Orizon ERP", Kicker = "FINANCE & OPERATIONS", Greeting = "Financial overview", Description = "Controle financeiro, pedidos, produtos e clientes em uma única operação.", Icon = "calculator", Nav = new[] { "Dashboard", "Pedidos", "Produtos", "Clientes" }, Kpis = new[] { ("Receita líquida", "R$ 842 mil", "+12,4%", "positive"), ("Pedidos", "1.429", "+8,1%", "positive"), ("Contas a pagar", "R$ 96 mil", "-3,2%", "positive"), ("Ticket médio", "R$ 589", "+4,7%", "positive") }, Entity = "Pedido", Search = "Buscar pedidos…", Filter = "Status do pedido" },
+        "crm" => new { Name = "Orizon CRM", Kicker = "SALES INTELLIGENCE", Greeting = "Pipeline overview", Description = "Pipeline, leads, funil comercial e agenda para equipes de alta performance.", Icon = "users", Nav = new[] { "Dashboard", "Pipeline", "Leads", "Agenda" }, Kpis = new[] { ("Pipeline", "R$ 2,4 mi", "+18,2%", "positive"), ("Leads ativos", "284", "+24", "positive"), ("Conversão", "28,6%", "+3,8%", "positive"), ("Ciclo médio", "18 dias", "-2 dias", "positive") }, Entity = "Lead", Search = "Buscar leads…", Filter = "Etapa do funil" },
+        "distribution" => new { Name = "Orizon Distribution", Kicker = "SUPPLY & LOGISTICS", Greeting = "Distribution center", Description = "Produtos, estoque, preços e movimentações com visibilidade operacional.", Icon = "truck", Nav = new[] { "Dashboard", "Produtos", "Estoque", "Movimentações" }, Kpis = new[] { ("Itens em estoque", "18.492", "+4,1%", "positive"), ("Giro mensal", "6,8x", "+0,6", "positive"), ("Rupturas", "24", "-18%", "positive"), ("Valor estoque", "R$ 3,2 mi", "+7,4%", "positive") }, Entity = "Produto", Search = "Buscar produtos…", Filter = "Disponibilidade" },
+        "real-estate" => new { Name = "Orizon Real Estate", Kicker = "PROPERTY MANAGEMENT", Greeting = "Portfolio overview", Description = "Imóveis, captação, agenda e clientes para operações imobiliárias.", Icon = "building", Nav = new[] { "Dashboard", "Imóveis", "Captação", "Agenda" }, Kpis = new[] { ("Imóveis ativos", "1.248", "+32", "positive"), ("Novas captações", "86", "+14,2%", "positive"), ("Visitas agendadas", "142", "+21", "positive"), ("VGV", "R$ 84 mi", "+8,6%", "positive") }, Entity = "Imóvel", Search = "Buscar imóveis…", Filter = "Tipo do imóvel" },
+        "hair" => new { Name = "Orizon Hair", Kicker = "SALON MANAGEMENT", Greeting = "Today at a glance", Description = "Agenda, profissionais, serviços e caixa para uma gestão completa do salão.", Icon = "calendar", Nav = new[] { "Dashboard", "Agenda", "Profissionais", "Caixa" }, Kpis = new[] { ("Agendamentos", "48", "+8", "positive"), ("Ocupação", "86%", "+6,4%", "positive"), ("Faturamento", "R$ 12.840", "+11,2%", "positive"), ("Ticket médio", "R$ 267", "+4,5%", "positive") }, Entity = "Agendamento", Search = "Buscar agenda…", Filter = "Profissional" },
+        _ => new { Name = "Orizon Healthcare", Kicker = "CLINICAL OPERATIONS", Greeting = "Clinical overview", Description = "Pacientes, consultas, agenda e prontuário em uma operação clínica segura.", Icon = "activity", Nav = new[] { "Dashboard", "Pacientes", "Consultas", "Prontuário" }, Kpis = new[] { ("Consultas hoje", "64", "+12", "positive"), ("Pacientes ativos", "8.429", "+2,8%", "positive"), ("Ocupação", "91%", "+4,2%", "positive"), ("Tempo médio", "24 min", "-3 min", "positive") }, Entity = "Paciente", Search = "Buscar pacientes…", Filter = "Especialidade" }
+    };
+
+    var rows = Enumerable.Range(1, 16).Select(index => new
+    {
+        Id = index,
+        Code = $"{template.Entity[..Math.Min(3, template.Entity.Length)].ToUpperInvariant()}-{2400 + index}",
+        Description = Model.Slug switch
+        {
+            "erp" => new[] { "Pedido Atlas Energia", "Compra Northstar Labs", "Venda Vertex Group", "Pedido Apex Systems" }[index % 4],
+            "crm" => new[] { "Atlas Energia", "Northstar Labs", "Vertex Group", "Apex Systems" }[index % 4],
+            "distribution" => new[] { "Kit Professional", "Linha Premium", "Equipamento Pro", "Insumo Essencial" }[index % 4],
+            "real-estate" => new[] { "Residencial Aurora", "Corporate Tower", "Vila das Artes", "Parque Central" }[index % 4],
+            "hair" => new[] { "Marina Costa · Corte", "Ana Lima · Coloração", "Bruno Reis · Barba", "Carla Souza · Tratamento" }[index % 4],
+            _ => new[] { "Marina Costa", "Ana Lima", "Bruno Reis", "Carla Souza" }[index % 4]
+        },
+        Category = template.Nav[1 + index % 3],
+        Status = new[] { "Ativo", "Pendente", "Concluído" }[index % 3],
+        Amount = 890m + index * 427m,
+        UpdatedAt = DateTime.Today.AddDays(-(index % 9))
+    }).ToArray();
+    var modalId = $"template-{Model.Slug}-modal";
+}
+
+<main class="template-app template-app--@Model.Slug">
+    <header class="template-app__intro">
+        <span>Application Template</span>
+        <h1>@template.Name</h1>
+        <p>@template.Description</p>
+        <div><orizon-badge variant="primary" pill>Production-ready composition</orizon-badge><span>ASP.NET Core MVC · Razor · .NET 8</span></div>
+    </header>
+
+    <section class="template-frame" aria-label="Demonstração do template @template.Name">
+        <aside class="template-sidebar">
+            <div class="template-brand"><span><orizon-icon name="@template.Icon" size="21" /></span><div><strong>@template.Name</strong><small>Enterprise Suite</small></div></div>
+            <nav aria-label="Navegação do template">
+                <small>WORKSPACE</small>
+                @for (var index = 0; index < template.Nav.Length; index++)
+                {
+                    <a class="@(index == 0 ? "is-active" : null)" href="#"><orizon-icon name="@(index == 0 ? "dashboard" : index == 1 ? template.Icon : index == 2 ? "clipboard" : "calendar")" size="18" /><span>@template.Nav[index]</span>@if(index == 1){<orizon-badge variant="primary" size="sm">12</orizon-badge>}</a>
+                }
+                <small>MANAGEMENT</small>
+                <a href="#"><orizon-icon name="users" size="18" /><span>Equipe</span></a>
+                <a href="#"><orizon-icon name="gear" size="18" /><span>Configurações</span></a>
+            </nav>
+            <div class="template-sidebar__user"><orizon-avatar name="Marina Costa" size="sm" status="online" /><div><strong>Marina Costa</strong><small>Administrator</small></div></div>
+        </aside>
+
+        <div class="template-workspace">
+            <header class="template-topbar">
+                <div class="template-mobile-brand"><orizon-icon name="menu" size="20" /><strong>@template.Name</strong></div>
+                <div class="template-global-search"><orizon-icon name="search" size="17" /><span>Buscar em @template.Name…</span><kbd>⌘ K</kbd></div>
+                <div class="template-topbar__actions"><button type="button" aria-label="Alternar tema"><orizon-icon name="moon" size="18" /></button><button type="button" aria-label="Notificações"><orizon-icon name="bell" size="18" /><i></i></button><span></span><orizon-avatar name="Marina Costa" size="sm" /></div>
+            </header>
+
+            <div class="template-content">
+                <nav class="template-breadcrumb" aria-label="Breadcrumb"><a href="#">Home</a><span>/</span><a href="#">@template.Nav[0]</a><span>/</span><strong>Overview</strong></nav>
+                <div class="template-page-title"><div><small>@template.Kicker</small><h2>@template.Greeting</h2><p>Atualizado hoje, às @DateTime.Now.ToString("HH:mm")</p></div><div><orizon-button variant="outline" color="neutral" icon="download">Exportar</orizon-button><orizon-button data-orizon-modal-target="#@modalId" icon="plus">Novo @template.Entity.ToLowerInvariant()</orizon-button></div></div>
+
+                <section class="template-kpis" aria-label="Indicadores principais">
+                    @foreach (var kpi in template.Kpis)
+                    {
+                        <orizon-stat-card title="@kpi.Item1" value="@kpi.Item2" trend="@kpi.Item3" trend-type="@kpi.Item4" description="vs. período anterior" />
+                    }
+                </section>
+
+                <section class="template-dashboard-row">
+                    <orizon-card title="Performance" subtitle="Últimos 7 períodos" variant="elevated">
+                        <div class="template-chart" aria-label="Gráfico demonstrativo"><i style="--value:42%"></i><i style="--value:58%"></i><i style="--value:51%"></i><i style="--value:72%"></i><i style="--value:65%"></i><i style="--value:84%"></i><i style="--value:96%"></i></div>
+                        <div class="template-chart__labels"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div>
+                    </orizon-card>
+                    <orizon-card title="Atividade recente" subtitle="Atualizações da operação" variant="elevated">
+                        <ul class="template-activity"><li><span><orizon-icon name="check" size="15" /></span><div><strong>@template.Entity atualizado</strong><small>Há 4 minutos</small></div></li><li><span><orizon-icon name="user" size="15" /></span><div><strong>Novo cliente adicionado</strong><small>Há 18 minutos</small></div></li><li><span><orizon-icon name="download" size="15" /></span><div><strong>Relatório exportado</strong><small>Há 1 hora</small></div></li></ul>
+                    </orizon-card>
+                </section>
+
+                <section class="template-data-section">
+                    <header><div><h3>@template.Nav[1]</h3><p>Gerencie os registros mais recentes da operação.</p></div></header>
+                    <div class="template-filters"><orizon-input name="TemplateSearch" label="Pesquisa" placeholder="@template.Search" /><orizon-select name="TemplateStatus" label="@template.Filter" placeholder="Todos"><option>Ativo</option><option>Pendente</option><option>Concluído</option></orizon-select><orizon-select name="TemplatePeriod" label="Período"><option>Últimos 30 dias</option><option>Este trimestre</option><option>Este ano</option></orizon-select><orizon-button variant="outline" color="neutral" icon="filter">Aplicar filtros</orizon-button></div>
+                    <div class="template-grid-wrap"><orizon-enterprise-grid id="template-grid-@Model.Slug" items="rows" key-field="Id" label="@template.Nav[1]" height="25rem" selectable="multiple"><orizon-grid-toolbar search export refresh /><orizon-grid-column field="Code" title="Código" width="125" pinned="left" /><orizon-grid-column field="Description" title="Descrição" width="260" /><orizon-grid-column field="Category" title="Categoria" width="150" /><orizon-grid-column field="Status" title="Status" width="130" /><orizon-grid-column field="Amount" title="Valor" width="145" type="currency" format="currency" /><orizon-grid-column field="UpdatedAt" title="Atualizado" width="140" format="date" /><orizon-grid-selection mode="multiple" checkbox /><orizon-grid-pager page-size="8" /></orizon-enterprise-grid></div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <orizon-modal id="@modalId" title="Novo @template.Entity" size="md">
+        <form class="template-modal-form"><orizon-input name="TemplateEntityName" label="Nome" required /><orizon-select name="TemplateEntityStatus" label="Status"><option>Ativo</option><option>Pendente</option></orizon-select><orizon-textarea name="TemplateEntityNotes" label="Observações" rows="3" /><div><orizon-button variant="outline" color="neutral" type="button" data-orizon-modal-close>Cancelar</orizon-button><orizon-button type="button" data-orizon-modal-close>Salvar @template.Entity.ToLowerInvariant()</orizon-button></div></form>
+    </orizon-modal>
+
+    <div class="template-toast"><orizon-toast variant="success" title="Template conectado" dismissible="false">Todos os componentes estão operando com a API pública da Orizon UI.</orizon-toast></div>
+</main>

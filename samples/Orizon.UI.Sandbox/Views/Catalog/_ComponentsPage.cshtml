@@ -1,0 +1,159 @@
+@model CatalogPageViewModel
+
+@{
+    var properties = Model.Slug switch
+    {
+        "buttons" => new[] { ("variant", "string", "Estilo visual do botão.", "solid"), ("color", "string", "Cor semântica.", "primary"), ("size", "string", "Tamanho xs, sm, md ou lg.", "md"), ("loading", "bool", "Exibe carregamento e bloqueia a ação.", "false"), ("disabled", "bool", "Desabilita a interação.", "false"), ("icon", "string", "Nome da classe do ícone.", "null") },
+        "cards" => new[] { ("title", "string", "Título do card.", "null"), ("subtitle", "string", "Texto complementar.", "null"), ("variant", "string", "Tratamento visual da superfície.", "default"), ("padding", "string", "Espaçamento interno.", "md"), ("hoverable", "bool", "Ativa resposta ao hover.", "false") },
+        "forms" => new[] { ("method", "string", "Método HTTP do formulário.", "post"), ("label", "string", "Rótulo acessível do campo.", "null"), ("required", "bool", "Indica preenchimento obrigatório.", "false"), ("error", "string", "Mensagem de validação.", "null") },
+        "inputs" => new[] { ("type", "string", "Tipo HTML do campo.", "text"), ("label", "string", "Rótulo acessível.", "null"), ("placeholder", "string", "Texto de apoio interno.", "null"), ("error", "string", "Mensagem e estado inválido.", "null"), ("readonly", "bool", "Impede edição mantendo o valor legível.", "false"), ("disabled", "bool", "Desabilita o campo.", "false") },
+        "select" => new[] { ("label", "string", "Rótulo acessível.", "null"), ("placeholder", "string", "Opção inicial informativa.", "null"), ("multiple", "bool", "Permite múltiplas escolhas.", "false"), ("searchable", "bool", "Prepara busca nas opções.", "false"), ("invalid", "bool", "Aplica estado inválido.", "false"), ("disabled", "bool", "Desabilita a seleção.", "false") },
+        "textarea" => new[] { ("label", "string", "Rótulo acessível.", "null"), ("rows", "int", "Número inicial de linhas.", "4"), ("maxlength", "int?", "Limite de caracteres.", "null"), ("counter", "bool", "Exibe contagem de caracteres.", "false"), ("auto-resize", "bool", "Ajusta a altura ao conteúdo.", "true"), ("error", "string", "Mensagem de validação.", "null") },
+        "badge" => new[] { ("variant", "string", "Cor semântica.", "neutral"), ("size", "string", "Tamanho sm, md ou lg.", "md"), ("pill", "bool", "Usa formato de cápsula.", "false"), ("dot", "bool", "Adiciona indicador de status.", "false") },
+        "avatar" => new[] { ("name", "string", "Nome usado nas iniciais e acessibilidade.", "Usuario"), ("src", "string", "URL opcional da imagem.", "null"), ("size", "string", "Tamanho sm, md ou lg.", "md"), ("status", "string", "Estado online, busy ou offline.", "null") },
+        "modal" => new[] { ("id", "string", "Identificador do diálogo.", "gerado"), ("title", "string", "Título acessível.", "Modal"), ("size", "string", "Largura sm, md ou lg.", "md"), ("open", "bool", "Define o estado inicial.", "false") },
+        "tabs" => new[] { ("label", "string", "Nome acessível do conjunto.", "Abas"), ("role", "HTML", "Roles tablist, tab e tabpanel.", "manual"), ("aria-selected", "bool", "Indica a aba selecionada.", "false"), ("hidden", "bool", "Oculta painéis inativos.", "false") },
+        "toast" => new[] { ("variant", "string", "Tipo semântico da mensagem.", "info"), ("title", "string", "Título opcional.", "null"), ("dismissible", "bool", "Exibe ação para fechar.", "true") },
+        "dropdown" => new[] { ("label", "string", "Texto do acionador.", "Abrir menu"), ("align", "string", "Alinhamento start ou end.", "start"), ("role", "HTML", "Role dos itens do menu.", "menuitem") },
+        "table" => new[] { ("label", "string", "Nome acessível da tabela.", "Tabela de dados"), ("striped", "bool", "Alterna fundo das linhas.", "false"), ("hoverable", "bool", "Destaca a linha apontada.", "false"), ("compact", "bool", "Reduz o espaçamento das células.", "false"), ("bordered", "bool", "Exibe bordas entre células.", "false") },
+        "pagination" => new[] { ("page", "int", "Página atual.", "1"), ("total-pages", "int", "Quantidade total de páginas.", "1"), ("href-template", "string", "Template de URL com {0}.", "?page={0}"), ("label", "string", "Nome acessível da navegação.", "Paginacao") },
+        "spinner" => new[] { ("size", "string", "Tamanho sm, md ou lg.", "md"), ("label", "string", "Descrição para leitores de tela.", "Carregando") },
+        "progress" => new[] { ("value", "int", "Valor atual.", "0"), ("max", "int", "Valor máximo.", "100"), ("label", "string", "Descrição acessível.", "null"), ("show-label", "bool", "Exibe rótulo e percentual.", "false") },
+        _ => new[] { ("title", "string", "Título principal.", "Nada por aqui"), ("description", "string", "Orientação para o usuário.", "null"), ("icon", "string", "Classe opcional do ícone.", "null"), ("child content", "Razor", "Ações exibidas no estado vazio.", "vazio") }
+    };
+
+    var razorCode = Model.Slug switch
+    {
+        "buttons" => "<orizon-button variant=\"solid\" color=\"primary\">Salvar alterações</orizon-button>",
+        "cards" => "<orizon-card title=\"Resultado mensal\" subtitle=\"Atualizado agora\">Conteúdo</orizon-card>",
+        "forms" => "<form method=\"post\">\n    <orizon-input name=\"Name\" label=\"Nome\" required />\n    <orizon-button type=\"submit\">Salvar</orizon-button>\n</form>",
+        "inputs" => "<orizon-input name=\"Email\" type=\"email\" label=\"E-mail\" required />",
+        "select" => "<orizon-select name=\"Status\" label=\"Status\"><option>Ativo</option></orizon-select>",
+        "textarea" => "<orizon-textarea name=\"Notes\" label=\"Observações\" rows=\"5\" counter />",
+        "badge" => "<orizon-badge variant=\"success\" dot>Ativo</orizon-badge>",
+        "avatar" => "<orizon-avatar name=\"Marina Costa\" size=\"md\" status=\"online\" />",
+        "modal" => "<orizon-modal id=\"confirm-modal\" title=\"Confirmar ação\">Conteúdo</orizon-modal>",
+        "tabs" => "<orizon-tabs label=\"Dados do cliente\">...</orizon-tabs>",
+        "toast" => "<orizon-toast variant=\"success\" title=\"Concluído\">Registro salvo.</orizon-toast>",
+        "dropdown" => "<orizon-dropdown label=\"Ações\">...</orizon-dropdown>",
+        "table" => "<orizon-table label=\"Clientes\" striped hoverable>...</orizon-table>",
+        "pagination" => "<orizon-pagination page=\"2\" total-pages=\"8\" href-template=\"?page={0}\" />",
+        "spinner" => "<orizon-spinner size=\"md\" label=\"Carregando dados\" />",
+        "progress" => "<orizon-progress value=\"68\" max=\"100\" label=\"Upload\" show-label />",
+        _ => "<orizon-empty-state title=\"Nenhum resultado\" description=\"Ajuste os filtros.\" />"
+    };
+}
+
+<article class="component-doc">
+    <header class="component-doc__hero">
+        <span>Components</span>
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
+    </header>
+
+    <section class="component-doc__section" aria-labelledby="component-preview-title">
+        <header><span>01</span><div><h2 id="component-preview-title">Preview</h2><p>Componente real renderizado com sua configuração recomendada.</p></div></header>
+        <div class="component-stage">
+            @switch (Model.Slug)
+            {
+                case "buttons": <orizon-button variant="solid" color="primary">Salvar alterações</orizon-button> break;
+                case "cards": <orizon-card title="Resultado mensal" subtitle="Atualizado há poucos minutos" variant="elevated"><p>A operação atingiu 92% da meta prevista.</p></orizon-card> break;
+                case "forms": <form class="component-form-demo"><orizon-input name="FormName" label="Nome completo" placeholder="Digite seu nome" required /><orizon-input name="FormEmail" type="email" label="E-mail" placeholder="nome@empresa.com" required /><orizon-button type="button">Continuar</orizon-button></form> break;
+                case "inputs": <div class="component-form-demo"><orizon-input name="PreviewEmail" type="email" label="E-mail corporativo" placeholder="nome@empresa.com" hint="Usaremos este endereço para notificações." /></div> break;
+                case "select": <div class="component-form-demo"><orizon-select name="PreviewStatus" label="Status" placeholder="Selecione"><option value="active">Ativo</option><option value="pending">Pendente</option></orizon-select></div> break;
+                case "textarea": <div class="component-form-demo"><orizon-textarea name="PreviewNotes" label="Observações" placeholder="Adicione contexto…" rows="4" maxlength="240" counter /></div> break;
+                case "badge": <orizon-badge variant="success" dot pill>Operação ativa</orizon-badge> break;
+                case "avatar": <orizon-avatar name="Marina Costa" size="lg" status="online" /> break;
+                case "modal": <div><orizon-button data-orizon-modal-target="#component-doc-modal">Abrir modal</orizon-button><orizon-modal id="component-doc-modal" title="Confirmar publicação"><p>Revise as informações antes de continuar.</p></orizon-modal></div> break;
+                case "tabs": <orizon-tabs label="Dados do cliente"><div class="orizon-tabs__list" role="tablist"><button class="orizon-tabs__tab" id="doc-tab-one" type="button" role="tab" aria-selected="true" aria-controls="doc-panel-one">Resumo</button><button class="orizon-tabs__tab" id="doc-tab-two" type="button" role="tab" aria-selected="false" aria-controls="doc-panel-two">Atividade</button></div><div class="orizon-tabs__panel" id="doc-panel-one" role="tabpanel" aria-labelledby="doc-tab-one">Visão geral da conta e indicadores recentes.</div><div class="orizon-tabs__panel" id="doc-panel-two" role="tabpanel" aria-labelledby="doc-tab-two" hidden>Atividades recentes da conta.</div></orizon-tabs> break;
+                case "toast": <orizon-toast variant="success" title="Alterações salvas">As informações foram atualizadas com sucesso.</orizon-toast> break;
+                case "dropdown": <orizon-dropdown label="Ações"><button class="orizon-dropdown__item" role="menuitem" type="button">Editar</button><button class="orizon-dropdown__item" role="menuitem" type="button">Duplicar</button></orizon-dropdown> break;
+                case "table": <div class="component-table-demo"><orizon-table label="Clientes" striped hoverable><thead><tr><th>Cliente</th><th>Status</th><th>Plano</th></tr></thead><tbody><tr><td>Atlas Energia</td><td><orizon-badge variant="success">Ativo</orizon-badge></td><td>Enterprise</td></tr><tr><td>Norte Digital</td><td><orizon-badge variant="warning">Pendente</orizon-badge></td><td>Business</td></tr></tbody></orizon-table></div> break;
+                case "pagination": <orizon-pagination page="3" total-pages="7" href-template="?page={0}" label="Resultados" /> break;
+                case "spinner": <orizon-spinner size="lg" label="Carregando dados" /> break;
+                case "progress": <div class="component-progress-demo"><orizon-progress value="68" max="100" label="Upload dos arquivos" show-label /></div> break;
+                default: <orizon-empty-state title="Nenhum resultado encontrado" description="Ajuste os filtros ou crie um novo registro."><orizon-button>Novo registro</orizon-button></orizon-empty-state> break;
+            }
+        </div>
+    </section>
+
+    <section class="component-doc__section" aria-labelledby="component-variants-title">
+        <header><span>02</span><div><h2 id="component-variants-title">Exemplos</h2><p>Variações e estados disponíveis na API atual.</p></div></header>
+        <div class="component-variants">
+            @switch (Model.Slug)
+            {
+                case "buttons":
+                    <orizon-button variant="solid" color="primary">Primary</orizon-button><orizon-button variant="solid" color="secondary">Secondary</orizon-button><orizon-button variant="outline" color="primary">Outline</orizon-button><orizon-button variant="solid" color="danger">Danger</orizon-button><orizon-button variant="solid" color="success">Success</orizon-button><orizon-button loading>Loading</orizon-button><orizon-button disabled>Disabled</orizon-button><orizon-button icon="plus">Com ícone</orizon-button><orizon-button size="xs">Extra small</orizon-button><orizon-button size="sm">Small</orizon-button><orizon-button size="lg">Large</orizon-button>
+                    break;
+                case "cards":
+                    <orizon-card title="Default" padding="sm">Superfície padrão.</orizon-card><orizon-card title="Elevated" variant="elevated">Com elevação.</orizon-card><orizon-card title="Outlined" variant="outlined">Com contorno.</orizon-card><orizon-card title="Muted" variant="muted" hoverable>Interativo.</orizon-card>
+                    break;
+                case "forms":
+                    <div class="component-field-grid"><orizon-input name="FormBasic" label="Basic" /><orizon-input name="FormRequired" label="Required" required /><orizon-input name="FormSuccess" label="Success" value="Valor válido" /><orizon-input name="FormInvalid" label="Validation" error="Revise este campo." /></div>
+                    break;
+                case "inputs":
+                    <div class="component-field-grid"><orizon-input name="InputText" label="Text" value="Orizon UI" /><orizon-input name="InputEmail" type="email" label="Email" value="team@orizon.io" /><orizon-input name="InputPassword" type="password" label="Password" value="password" /><orizon-input name="InputReadonly" label="Readonly" value="Somente leitura" readonly /><orizon-input name="InputDisabled" label="Disabled" value="Indisponível" disabled /><orizon-input name="InputError" label="Validation" value="inválido" error="Revise este valor." /></div>
+                    break;
+                case "select":
+                    <div class="component-field-grid"><orizon-select name="SelectBasic" label="Basic"><option>Opção A</option><option>Opção B</option></orizon-select><orizon-select name="SelectSuccess" label="Success" success><option>Selecionado</option></orizon-select><orizon-select name="SelectInvalid" label="Invalid" error="Selecione uma opção."><option>Inválido</option></orizon-select><orizon-select name="SelectDisabled" label="Disabled" disabled><option>Indisponível</option></orizon-select></div>
+                    break;
+                case "textarea":
+                    <div class="component-field-grid"><orizon-textarea name="TextareaBasic" label="Basic" /><orizon-textarea name="TextareaCounter" label="Com contador" maxlength="120" counter /><orizon-textarea name="TextareaReadonly" label="Readonly" value="Conteúdo fixo" readonly /><orizon-textarea name="TextareaInvalid" label="Validation" error="A descrição é obrigatória." /></div>
+                    break;
+                case "badge":
+                    <orizon-badge variant="neutral">Neutral</orizon-badge><orizon-badge variant="primary">Primary</orizon-badge><orizon-badge variant="success" dot>Success</orizon-badge><orizon-badge variant="warning">Warning</orizon-badge><orizon-badge variant="danger">Danger</orizon-badge><orizon-badge variant="info" pill>Info</orizon-badge><orizon-badge size="sm">Small</orizon-badge><orizon-badge size="lg">Large</orizon-badge>
+                    break;
+                case "avatar":
+                    <orizon-avatar name="Ana Lima" size="sm" /><orizon-avatar name="Bruno Reis" size="md" status="online" /><orizon-avatar name="Carla Souza" size="lg" status="busy" /><orizon-avatar name="Diego Alves" size="lg" status="offline" />
+                    break;
+                case "modal":
+                    <orizon-button variant="outline" data-orizon-modal-target="#modal-doc-sm">Small</orizon-button><orizon-button variant="outline" data-orizon-modal-target="#modal-doc-md">Medium</orizon-button><orizon-button variant="outline" data-orizon-modal-target="#modal-doc-lg">Large</orizon-button><orizon-modal id="modal-doc-sm" title="Modal small" size="sm"><p>Conteúdo compacto.</p></orizon-modal><orizon-modal id="modal-doc-md" title="Modal medium"><p>Conteúdo padrão.</p></orizon-modal><orizon-modal id="modal-doc-lg" title="Modal large" size="lg"><p>Conteúdo amplo.</p></orizon-modal>
+                    break;
+                case "toast":
+                    <orizon-toast variant="info" title="Informação">Nova atualização disponível.</orizon-toast><orizon-toast variant="success" title="Sucesso">Operação concluída.</orizon-toast><orizon-toast variant="warning" title="Atenção">Revise os dados.</orizon-toast><orizon-toast variant="danger" title="Erro">Não foi possível salvar.</orizon-toast>
+                    break;
+                case "dropdown":
+                    <orizon-dropdown label="Alinhado ao início"><button class="orizon-dropdown__item" role="menuitem">Editar</button></orizon-dropdown><orizon-dropdown label="Alinhado ao fim" align="end"><button class="orizon-dropdown__item" role="menuitem">Exportar</button></orizon-dropdown>
+                    break;
+                case "table":
+                    <span class="component-note">Disponível com linhas striped, hoverable, compact e bordered — combináveis conforme a densidade necessária.</span>
+                    break;
+                case "pagination":
+                    <orizon-pagination page="1" total-pages="3" /><orizon-pagination page="2" total-pages="5" />
+                    break;
+                case "spinner":
+                    <div class="component-size-set"><span><orizon-spinner size="sm" />Small</span><span><orizon-spinner size="md" />Medium</span><span><orizon-spinner size="lg" />Large</span></div>
+                    break;
+                case "progress":
+                    <div class="component-progress-stack"><orizon-progress value="25" label="Preparando" show-label /><orizon-progress value="60" label="Processando" show-label /><orizon-progress value="100" label="Concluído" show-label /></div>
+                    break;
+                case "empty-state":
+                    <orizon-empty-state title="Sem dados" description="Os registros aparecerão aqui." /><orizon-empty-state title="Busca sem resultados" description="Tente usar termos diferentes."><orizon-button variant="outline">Limpar filtros</orizon-button></orizon-empty-state>
+                    break;
+                default:
+                    <span class="component-note">A navegação por teclado, seleção ativa e painéis responsivos fazem parte da variação padrão.</span>
+                    break;
+            }
+        </div>
+    </section>
+
+    <section class="component-doc__section" aria-labelledby="component-code-title">
+        <header><span>03</span><div><h2 id="component-code-title">Código Razor</h2><p>Exemplo mínimo pronto para copiar.</p></div></header>
+        <div class="component-code"><div><i></i><i></i><i></i><span>RAZOR</span></div><pre><code>@razorCode</code></pre></div>
+    </section>
+
+    <section class="component-doc__section" aria-labelledby="component-properties-title">
+        <header><span>04</span><div><h2 id="component-properties-title">API</h2><p>Parâmetros públicos disponíveis no componente.</p></div></header>
+        <div class="component-properties"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Valor padrão</th><th>Descrição</th></tr></thead><tbody>@foreach (var property in properties){<tr><td><code>@property.Item1</code></td><td>@property.Item2</td><td><code>@property.Item4</code></td><td>@property.Item3</td></tr>}</tbody></table></div>
+    </section>
+
+    <section class="component-doc__section" aria-labelledby="component-practices-title">
+        <header><span>05</span><div><h2 id="component-practices-title">Boas práticas</h2><p>Recomendações para experiências claras e acessíveis.</p></div></header>
+        <div class="component-practices"><article><span>✓</span><div><strong>Escolha pela intenção</strong><p>Use a variação semântica que representa a função, não apenas a aparência.</p></div></article><article><span>✓</span><div><strong>Preserve acessibilidade</strong><p>Forneça labels claros e mantenha estados de foco e teclado disponíveis.</p></div></article><article><span>✓</span><div><strong>Evite excesso</strong><p>Priorize uma ação ou mensagem principal por contexto.</p></div></article></div>
+    </section>
+
+    <section class="component-doc__section" aria-labelledby="component-notes-title">
+        <header><span>06</span><div><h2 id="component-notes-title">Observações</h2><p>Informações complementares para implementação.</p></div></header>
+        <div class="doc-notes"><orizon-icon name="info" size="20" /><p>Os exemplos usam exclusivamente a API pública atual. Valide sempre acessibilidade, conteúdo e comportamento nos temas Light e Dark.</p></div>
+    </section>
+</article>

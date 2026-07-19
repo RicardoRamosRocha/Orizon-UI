@@ -1,20 +1,112 @@
-@{ ViewData["Title"] = "Componentes Principais Premium"; }
-<div class="component-catalog">
- <header class="component-catalog__header"><div><h1 class="component-catalog__title">Componentes Principais Premium</h1><p class="component-catalog__description">Catálogo central dos componentes premium, seus estados e variantes.</p></div><orizon-button href="/components" variant="outline" color="neutral" icon="arrow-left">Voltar</orizon-button></header>
- <section class="component-example"><header class="component-example__header"><h2>OrizonButton</h2></header><div class="component-example__preview">
- @foreach (var variant in new[] { "solid", "soft", "outline", "ghost", "gradient", "glass", "link" }) { <orizon-button text="@variant" variant="@variant" color="primary" /> }
- @foreach (var color in new[] { "primary", "secondary", "success", "warning", "danger", "info", "neutral" }) { <orizon-button text="@color" variant="soft" color="@color" /> }
- <orizon-button text="Extra small" size="xs" icon="check-circle" /><orizon-button text="Small" size="sm" icon="download" /><orizon-button text="Large" size="lg" icon="floppy-disk" icon-position="end" variant="gradient" /><orizon-button text="Carregando" loading /><orizon-button text="Desabilitado" disabled /><orizon-button text="Largura total" full-width />
- </div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonIcon e OrizonIconButton</h2></header><div class="component-example__preview">
- @foreach (var icon in new[] { "house", "bell", "users", "building", "gear", "sun", "moon" }) { <orizon-icon name="@icon" size="24" aria-label="@icon" /> }
- <orizon-icon name="gear" size="32" weight="thin" /><orizon-icon name="gear" size="32" weight="bold" />
- <orizon-icon-button icon="pencil-simple" label="Editar produto" tooltip="Editar produto" /><orizon-icon-button icon="trash" label="Excluir" variant="outline" color="danger" shape="circle" /><orizon-icon-button icon="plus" label="Adicionar" size="sm" /><orizon-icon-button icon="plus" label="Adicionar" size="lg" disabled />
- </div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonChip</h2></header><div class="component-example__preview"><orizon-chip text="Em estoque" icon="check-circle" color="success" variant="solid" /><orizon-chip text="Selecionável" color="primary" selectable value="selected" /><orizon-chip text="Removível" color="info" variant="outline" removable /><orizon-chip text="Desabilitado" disabled /></div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonSwitch</h2></header><div class="component-example__preview"><orizon-switch name="small" label="Pequeno" size="sm" /><orizon-switch name="normal" label="Produto ativo" description="Disponível nas operações." checked /><orizon-switch name="large" label="Grande" size="lg" color="success" /><orizon-switch name="disabled" label="Desabilitado" checked disabled /></div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonAccordion</h2></header><div class="component-example__preview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));width:100%"><orizon-accordion mode="single"><orizon-accordion-item title="Informações fiscais" icon="receipt" expanded>Conteúdo fiscal demonstrativo.</orizon-accordion-item><orizon-accordion-item title="Entrega">Opções de entrega.</orizon-accordion-item><orizon-accordion-item title="Indisponível" disabled>Não disponível.</orizon-accordion-item></orizon-accordion><orizon-accordion mode="multiple"><orizon-accordion-item title="Primeiro" expanded>Painel aberto.</orizon-accordion-item><orizon-accordion-item title="Segundo">Outro painel independente.</orizon-accordion-item></orizon-accordion></div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonTooltip</h2></header><div class="component-example__preview">@foreach (var pos in new[] { "top", "right", "bottom", "left" }) { <orizon-tooltip text="Tooltip @pos" position="@pos"><orizon-icon-button icon="info" label="Ajuda: @pos" /></orizon-tooltip> }</div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonSkeleton</h2></header><div class="component-example__preview" style="align-items:center;width:100%"><orizon-skeleton variant="text" width="15rem" lines="3" /><orizon-skeleton variant="circle" /><orizon-skeleton variant="rectangle" width="10rem" /><orizon-skeleton variant="card" width="12rem" /><orizon-skeleton variant="table-row" width="15rem" /></div></section>
- <section class="component-example"><header class="component-example__header"><h2>OrizonStatCard</h2></header><div class="component-example__preview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));width:100%"><orizon-stat-card title="Total de vendas" value="R$ 24.780,50" icon="shopping-cart" trend="+12,5%" trend-type="positive" description="Último mês" /><orizon-stat-card title="Custos" value="R$ 8.420" icon="trend-down" trend="-3,2%" trend-type="negative" color="danger" /><orizon-stat-card title="Pedidos" value="284" trend="0%" trend-type="neutral" href="/components/premium" action-label="Ver pedidos" /><orizon-stat-card title="Carregando" value="" loading /></div></section>
-</div>
+@{
+    ViewData["Title"] = "Featured Components";
+    ViewData["ApplicationName"] = "Orizon UI Catalog";
+    var accounts = Enumerable.Range(1, 8).Select(index => new
+    {
+        Id = index,
+        Customer = new[] { "Atlas Energy", "Northstar Labs", "Vertex Health", "Apex Systems" }[index % 4],
+        Status = index % 3 == 0 ? "Pending" : "Active",
+        Revenue = 12400m + index * 2180m
+    }).ToArray();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/featured-components.css" asp-append-version="true" />
+}
+
+<main class="featured-showcase">
+    <header class="featured-hero">
+        <span class="featured-eyebrow"><i></i> Featured Components</span>
+        <h1>The building blocks behind<br /><em>exceptional products.</em></h1>
+        <p>A curated collection of Orizon UI’s most capable components—designed for demanding enterprise experiences.</p>
+        <div class="featured-hero__meta"><span><strong>12</strong> featured components</span><span><strong>100%</strong> Razor native</span><span><strong>0</strong> external dependencies</span></div>
+    </header>
+
+    <section class="featured-grid" aria-label="Componentes em destaque">
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon"><orizon-icon name="star" size="22" /></span><div><small>INTERACTION</small><h2>Buttons Premium</h2><p>Ações expressivas com estilos, cores, estados e densidades para qualquer fluxo.</p></div><span class="featured-card__number">01</span></header>
+            <div class="featured-preview featured-preview--buttons"><orizon-button variant="gradient" color="primary" size="lg">Create workspace</orizon-button><orizon-button variant="glass" color="primary">Explore</orizon-button><orizon-button variant="soft" color="success" icon="check">Approved</orizon-button><orizon-button loading>Processing</orizon-button></div>
+            <ul><li>7 estilos visuais</li><li>Cores semânticas</li><li>Loading e disabled</li><li>Ícones e tamanhos</li></ul>
+            <div class="featured-code"><code>&lt;orizon-button variant=&quot;gradient&quot; color=&quot;primary&quot;&gt;Create&lt;/orizon-button&gt;</code></div>
+            <footer><a href="/catalog/components/buttons">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon featured-card__icon--violet"><orizon-icon name="box" size="22" /></span><div><small>SURFACES</small><h2>Cards Premium</h2><p>Superfícies ricas para métricas, conteúdo editorial e experiências interativas.</p></div><span class="featured-card__number">02</span></header>
+            <div class="featured-preview featured-preview--cards"><orizon-card title="Premium surface" subtitle="Orizon Intelligence" variant="premium" hoverable><strong>84.2k</strong><p>Monthly active users</p></orizon-card><orizon-card title="AI insight" subtitle="Updated now" variant="ai" hoverable><strong>+18.4%</strong><p>Predicted growth</p></orizon-card></div>
+            <ul><li>Premium e gradient</li><li>Glass e neon</li><li>Padding configurável</li><li>Hover interativo</li></ul>
+            <div class="featured-code"><code>&lt;orizon-card title=&quot;Insight&quot; variant=&quot;premium&quot; hoverable&gt;...&lt;/orizon-card&gt;</code></div>
+            <footer><a href="/catalog/components/cards">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon featured-card__icon--cyan"><orizon-icon name="edit" size="22" /></span><div><small>PRODUCTIVITY</small><h2>Forms Premium</h2><p>Campos completos com validação, ajuda contextual e estados operacionais.</p></div><span class="featured-card__number">03</span></header>
+            <div class="featured-preview"><div class="featured-form"><orizon-input name="FeaturedName" label="Workspace name" value="Orizon Enterprise" /><orizon-select name="FeaturedPlan" label="Plan"><option>Enterprise</option><option>Business</option></orizon-select><orizon-textarea name="FeaturedDescription" label="Description" rows="2" value="Mission-critical product workspace." /></div></div>
+            <ul><li>Inputs acessíveis</li><li>Select avançado</li><li>Textarea responsivo</li><li>Validação integrada</li></ul>
+            <div class="featured-code"><code>&lt;orizon-input name=&quot;Name&quot; label=&quot;Workspace name&quot; required /&gt;</code></div>
+            <footer><a href="/catalog/components/forms">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon featured-card__icon--slate"><orizon-icon name="menu" size="22" /></span><div><small>NAVIGATION</small><h2>Sidebar Enterprise</h2><p>Navegação hierárquica preparada para produtos complexos e modo recolhido.</p></div><span class="featured-card__number">04</span></header>
+            <div class="featured-preview"><aside class="featured-sidebar"><div><b>O</b><strong>Orizon UI</strong></div><small>WORKSPACE</small><a class="is-active"><orizon-icon name="dashboard" size="18" /> Overview</a><a><orizon-icon name="users" size="18" /> Customers</a><a><orizon-icon name="chart-bar" size="18" /> Analytics</a><small>MANAGEMENT</small><a><orizon-icon name="gear" size="18" /> Settings</a></aside></div>
+            <ul><li>Grupos hierárquicos</li><li>Active e focus</li><li>Modo collapsed</li><li>Mobile drawer</li></ul>
+            <div class="featured-code"><code>&lt;aside class=&quot;orizon-admin-sidebar&quot;&gt;&lt;partial name=&quot;_Sidebar&quot; /&gt;&lt;/aside&gt;</code></div>
+            <footer><a href="/catalog/layout/sidebar">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--full">
+            <header><span class="featured-card__icon featured-card__icon--blue"><orizon-icon name="table" size="22" /></span><div><small>FLAGSHIP COMPONENT</small><h2>Enterprise Grid</h2><p>Performance, seleção, filtros e produtividade para operações orientadas a dados.</p></div><span class="featured-card__number">05</span></header>
+            <div class="featured-preview featured-preview--grid"><orizon-enterprise-grid id="featured-grid" items="accounts" key-field="Id" label="Featured accounts" height="22rem" selectable="multiple"><orizon-grid-toolbar search export refresh /><orizon-grid-column field="Customer" title="Customer" width="240" /><orizon-grid-column field="Status" title="Status" width="140" /><orizon-grid-column field="Revenue" title="Revenue" width="160" type="currency" format="currency" /><orizon-grid-selection mode="multiple" checkbox /><orizon-grid-pager page-size="5" /></orizon-enterprise-grid></div>
+            <ul><li>Virtualização</li><li>Sorting e filtering</li><li>Seleção múltipla</li><li>Toolbar e paginação</li></ul>
+            <div class="featured-code"><code>&lt;orizon-enterprise-grid items=&quot;accounts&quot; key-field=&quot;Id&quot; selectable=&quot;multiple&quot;&gt;...&lt;/orizon-enterprise-grid&gt;</code></div>
+            <footer><a href="/catalog/data/enterprise-grid">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon featured-card__icon--slate"><orizon-icon name="dashboard" size="22" /></span><div><small>APPLICATION SHELL</small><h2>Topbar Enterprise</h2><p>Contexto global, busca, notificações, tema e perfil em uma região compacta.</p></div><span class="featured-card__number">06</span></header>
+            <div class="featured-preview"><div class="featured-topbar"><div><small>WORKSPACE</small><strong>Analytics overview</strong></div><span class="featured-search"><orizon-icon name="search" size="16" /> Search…</span><button><orizon-icon name="moon" size="18" /></button><button><orizon-icon name="bell" size="18" /><i>3</i></button><b>MC</b></div></div>
+            <ul><li>Título contextual</li><li>Busca global</li><li>Ações compactas</li><li>Perfil responsivo</li></ul>
+            <div class="featured-code"><code>&lt;header class=&quot;orizon-admin-topbar&quot;&gt;&lt;partial name=&quot;_Topbar&quot; /&gt;&lt;/header&gt;</code></div>
+            <footer><a href="/catalog/layout/topbar">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card featured-card--wide">
+            <header><span class="featured-card__icon featured-card__icon--green"><orizon-icon name="kpi" size="22" /></span><div><small>INSIGHTS</small><h2>Dashboard Cards</h2><p>Métricas de negócio com tendência, contexto e ação opcional.</p></div><span class="featured-card__number">07</span></header>
+            <div class="featured-preview featured-preview--stats"><orizon-stat-card title="Revenue" value="$84,240" icon="chart-line" trend="+12.4%" trend-type="positive" description="This month" /><orizon-stat-card title="Orders" value="1,429" icon="package" trend="+8.1%" trend-type="positive" description="This month" /></div>
+            <ul><li>Indicadores semânticos</li><li>Trends positivos e negativos</li><li>Loading</li><li>Ações opcionais</li></ul>
+            <div class="featured-code"><code>&lt;orizon-stat-card title=&quot;Revenue&quot; value=&quot;$84,240&quot; trend=&quot;+12.4%&quot; /&gt;</code></div>
+            <footer><a href="/catalog/layout/dashboard">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card">
+            <header><span class="featured-card__icon featured-card__icon--green"><orizon-icon name="badge" size="22" /></span><div><small>STATUS</small><h2>Badge</h2><p>Estados compactos com semântica imediata.</p></div><span class="featured-card__number">08</span></header>
+            <div class="featured-preview featured-preview--compact"><orizon-badge variant="primary" pill>New</orizon-badge><orizon-badge variant="success" dot>Active</orizon-badge><orizon-badge variant="warning">Pending</orizon-badge><orizon-badge variant="danger">Blocked</orizon-badge></div>
+            <ul><li>6 variantes</li><li>Dot e pill</li><li>3 tamanhos</li></ul><div class="featured-code"><code>&lt;orizon-badge variant=&quot;success&quot; dot&gt;Active&lt;/orizon-badge&gt;</code></div><footer><a href="/catalog/components/badge">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card">
+            <header><span class="featured-card__icon featured-card__icon--orange"><orizon-icon name="bell" size="22" /></span><div><small>FEEDBACK</small><h2>Toast</h2><p>Mensagens temporárias claras e acessíveis.</p></div><span class="featured-card__number">09</span></header>
+            <div class="featured-preview featured-preview--compact"><orizon-toast variant="success" title="Changes saved">Your workspace is up to date.</orizon-toast></div>
+            <ul><li>Estados semânticos</li><li>Dismissible</li><li>ARIA live</li></ul><div class="featured-code"><code>&lt;orizon-toast variant=&quot;success&quot; title=&quot;Saved&quot;&gt;Done.&lt;/orizon-toast&gt;</code></div><footer><a href="/catalog/components/toast">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card">
+            <header><span class="featured-card__icon featured-card__icon--violet"><orizon-icon name="box" size="22" /></span><div><small>OVERLAY</small><h2>Modal</h2><p>Diálogos focados para decisões importantes.</p></div><span class="featured-card__number">10</span></header>
+            <div class="featured-preview featured-preview--compact"><orizon-button data-orizon-modal-target="#featured-modal">Open modal</orizon-button><orizon-modal id="featured-modal" title="Confirm action"><p>Review the information before continuing.</p></orizon-modal></div>
+            <ul><li>Foco gerenciado</li><li>3 tamanhos</li><li>Escape e backdrop</li></ul><div class="featured-code"><code>&lt;orizon-modal id=&quot;confirm&quot; title=&quot;Confirm action&quot;&gt;...&lt;/orizon-modal&gt;</code></div><footer><a href="/catalog/components/modal">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card">
+            <header><span class="featured-card__icon featured-card__icon--cyan"><orizon-icon name="more-horizontal" size="22" /></span><div><small>NAVIGATION</small><h2>Tabs</h2><p>Conteúdo relacionado em uma navegação compacta.</p></div><span class="featured-card__number">11</span></header>
+            <div class="featured-preview featured-preview--compact"><orizon-tabs label="Account details"><div class="orizon-tabs__list" role="tablist"><button class="orizon-tabs__tab" id="featured-tab-one" role="tab" aria-selected="true" aria-controls="featured-panel-one">Overview</button><button class="orizon-tabs__tab" id="featured-tab-two" role="tab" aria-selected="false" aria-controls="featured-panel-two">Activity</button></div><div class="orizon-tabs__panel" id="featured-panel-one" role="tabpanel" aria-labelledby="featured-tab-one">Account overview and status.</div><div id="featured-panel-two" role="tabpanel" aria-labelledby="featured-tab-two" hidden>Recent activity.</div></orizon-tabs></div>
+            <ul><li>Teclado</li><li>ARIA tabs</li><li>Responsivo</li></ul><div class="featured-code"><code>&lt;orizon-tabs label=&quot;Account details&quot;&gt;...&lt;/orizon-tabs&gt;</code></div><footer><a href="/catalog/components/tabs">Ver documentação <span>→</span></a></footer>
+        </article>
+
+        <article class="featured-card">
+            <header><span class="featured-card__icon featured-card__icon--blue"><orizon-icon name="more-vertical" size="22" /></span><div><small>ACTIONS</small><h2>Dropdown</h2><p>Ações contextuais organizadas e acessíveis.</p></div><span class="featured-card__number">12</span></header>
+            <div class="featured-preview featured-preview--compact"><orizon-dropdown label="Actions" align="end"><button class="orizon-dropdown__item" role="menuitem">Edit</button><button class="orizon-dropdown__item" role="menuitem">Duplicate</button><button class="orizon-dropdown__item" role="menuitem">Archive</button></orizon-dropdown></div>
+            <ul><li>Start e end</li><li>Navegação por teclado</li><li>Escape</li></ul><div class="featured-code"><code>&lt;orizon-dropdown label=&quot;Actions&quot; align=&quot;end&quot;&gt;...&lt;/orizon-dropdown&gt;</code></div><footer><a href="/catalog/components/dropdown">Ver documentação <span>→</span></a></footer>
+        </article>
+    </section>
+</main>

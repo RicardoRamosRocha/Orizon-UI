@@ -1,0 +1,201 @@
+@model CatalogPageViewModel
+
+@{
+    var colors = new[]
+    {
+        ("Primary", "--orizon-color-primary"),
+        ("Secondary", "--orizon-color-text-secondary"),
+        ("Success", "--orizon-color-success"),
+        ("Warning", "--orizon-color-warning"),
+        ("Danger", "--orizon-color-danger"),
+        ("Info", "--orizon-color-info"),
+        ("Surface", "--orizon-color-surface"),
+        ("Background", "--orizon-color-background"),
+        ("Border", "--orizon-color-border"),
+        ("Text Primary", "--orizon-color-text-primary"),
+        ("Text Secondary", "--orizon-color-text-secondary")
+    };
+    var typography = new[]
+    {
+        ("Display", "foundation-type--display", "Display", "Product experiences, built beautifully."),
+        ("Heading 1", "foundation-type--h1", "Heading 1", "Enterprise design at scale"),
+        ("Heading 2", "foundation-type--h2", "Heading 2", "A foundation for every product"),
+        ("Heading 3", "foundation-type--h3", "Heading 3", "Consistent by design"),
+        ("Heading 4", "foundation-type--h4", "Heading 4", "Clear visual hierarchy"),
+        ("Body", "foundation-type--body", "Body", "Orizon UI provides the foundations for precise and dependable interfaces."),
+        ("Small", "foundation-type--small", "Small", "Supporting information for the current context."),
+        ("Caption", "foundation-type--caption", "Caption", "UPDATED 2 MINUTES AGO")
+    };
+    var icons = new[]
+    {
+        "home", "dashboard", "menu", "search", "filter", "plus", "check", "edit",
+        "trash", "eye", "star", "bookmark", "user", "users", "building", "calendar",
+        "clock", "bell", "gear", "download", "upload", "refresh", "chart-bar", "package"
+    };
+    var spacing = new[]
+    {
+        ("xs", "--orizon-space-1", "4 px"),
+        ("sm", "--orizon-space-2", "8 px"),
+        ("md", "--orizon-space-4", "16 px"),
+        ("lg", "--orizon-space-6", "24 px"),
+        ("xl", "--orizon-space-8", "32 px"),
+        ("2xl", "--orizon-space-12", "48 px")
+    };
+    var radii = new[]
+    {
+        ("None", "--orizon-radius-none"),
+        ("Small", "--orizon-radius-sm"),
+        ("Medium", "--orizon-radius-md"),
+        ("Large", "--orizon-radius-lg"),
+        ("Extra Large", "--orizon-radius-xl"),
+        ("2XL", "--orizon-radius-2xl"),
+        ("Full", "--orizon-radius-full")
+    };
+    var shadows = new[]
+    {
+        ("Extra Small", "--orizon-shadow-xs"),
+        ("Small", "--orizon-shadow-sm"),
+        ("Medium", "--orizon-shadow-md"),
+        ("Large", "--orizon-shadow-lg"),
+        ("Extra Large", "--orizon-shadow-xl"),
+        ("2XL", "--orizon-shadow-2xl")
+    };
+    var apiRows = Model.Slug switch
+    {
+        "colors" => colors.Select(item => (item.Item2, "color", "tema atual", $"Cor semântica {item.Item1}.")).ToArray(),
+        "typography" => new[] { ("--orizon-font-size-4xl", "length", "2.25rem", "Escala para Heading 1."), ("--orizon-font-size-md", "length", "1rem", "Escala padrão de corpo."), ("--orizon-font-size-xs", "length", "0.75rem", "Escala para captions.") },
+        "icons" => new[] { ("name", "string", "obrigatório", "Nome registrado do ícone."), ("size", "int", "20", "Dimensão em pixels."), ("weight", "string", "regular", "Peso visual do traço.") },
+        "spacing" => spacing.Select(item => (item.Item2, "length", item.Item3, $"Token de espaçamento {item.Item1}.")).ToArray(),
+        "border-radius" => radii.Select(item => (item.Item2, "length", "token", $"Raio {item.Item1}.")).ToArray(),
+        _ => shadows.Select(item => (item.Item2, "shadow", "token", $"Elevação {item.Item1}.")).ToArray()
+    };
+}
+
+<article class="foundation-doc">
+    <header class="foundation-doc__hero">
+        <span class="foundation-doc__eyebrow">Foundations</span>
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
+    </header>
+
+    <section class="foundation-doc__section" aria-labelledby="preview-title">
+        <header class="foundation-doc__section-header">
+            <span>01</span>
+            <div><h2 id="preview-title">Preview</h2><p>Visão geral dos tokens e estilos disponíveis.</p></div>
+        </header>
+        <div class="foundation-preview">
+            @switch (Model.Slug)
+            {
+                case "colors":
+                    <div class="foundation-color-hero"><span></span><div><small>Primary</small><strong>Brand confidence</strong><code>var(--orizon-color-primary)</code></div></div>
+                    break;
+                case "typography":
+                    <div class="foundation-type-preview"><span>Orizon UI</span><strong>Interfaces that feel inevitable.</strong><p>Built on a deliberate type scale for products that demand clarity.</p></div>
+                    break;
+                case "icons":
+                    <div class="foundation-icon-preview"><orizon-icon name="star" size="34" /><orizon-icon name="dashboard" size="34" /><orizon-icon name="chart-bar" size="34" /><orizon-icon name="package" size="34" /><orizon-icon name="gear" size="34" /></div>
+                    break;
+                case "spacing":
+                    <div class="foundation-spacing-preview"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                    break;
+                case "border-radius":
+                    <div class="foundation-radius-preview"><span></span><span></span><span></span><span></span></div>
+                    break;
+                case "shadows":
+                    <div class="foundation-shadow-preview"><span>xs</span><span>md</span><span>xl</span></div>
+                    break;
+            }
+        </div>
+    </section>
+
+    <section class="foundation-doc__section" aria-labelledby="examples-title">
+        <header class="foundation-doc__section-header">
+            <span>02</span>
+            <div><h2 id="examples-title">Exemplos</h2><p>Referência visual pronta para consulta.</p></div>
+        </header>
+
+        @switch (Model.Slug)
+        {
+            case "colors":
+                <div class="foundation-color-grid">
+                    @foreach (var color in colors)
+                    {
+                        <article class="foundation-color-card"><span class="foundation-color-card__swatch" style="--foundation-value:var(@color.Item2)"></span><div><strong>@color.Item1</strong><code>@color.Item2</code></div></article>
+                    }
+                </div>
+                break;
+            case "typography":
+                <div class="foundation-type-list">
+                    @foreach (var type in typography)
+                    {
+                        <article><div><span>@type.Item1</span><code>.@type.Item2</code></div><p class="@type.Item2">@type.Item4</p></article>
+                    }
+                </div>
+                break;
+            case "icons":
+                <div class="foundation-icon-tools"><label for="icon-search">Pesquisar ícones</label><div><orizon-icon name="search" size="18" /><input id="icon-search" type="search" placeholder="Digite o nome de um ícone…" autocomplete="off" data-icon-search /></div></div>
+                <div class="foundation-icon-grid" data-icon-grid>
+                    @foreach (var icon in icons)
+                    {
+                        <article data-icon-name="@icon"><orizon-icon name="@icon" size="24" /><strong>@icon</strong><code>&lt;orizon-icon name=&quot;@icon&quot; /&gt;</code></article>
+                    }
+                </div>
+                break;
+            case "spacing":
+                <div class="foundation-token-list foundation-spacing-list">
+                    @foreach (var space in spacing)
+                    {
+                        <article><div><strong>@space.Item1</strong><code>@space.Item2</code><small>@space.Item3</small></div><span style="--foundation-space:var(@space.Item2)"></span></article>
+                    }
+                </div>
+                break;
+            case "border-radius":
+                <div class="foundation-token-grid">
+                    @foreach (var radius in radii)
+                    {
+                        <article><span class="foundation-radius-sample" style="--foundation-radius:var(@radius.Item2)"></span><strong>@radius.Item1</strong><code>@radius.Item2</code></article>
+                    }
+                </div>
+                break;
+            case "shadows":
+                <div class="foundation-token-grid foundation-shadow-grid">
+                    @foreach (var shadow in shadows)
+                    {
+                        <article><span class="foundation-shadow-sample" style="--foundation-shadow:var(@shadow.Item2)"></span><strong>@shadow.Item1</strong><code>@shadow.Item2</code></article>
+                    }
+                </div>
+                break;
+        }
+    </section>
+
+    <section class="foundation-doc__section" aria-labelledby="code-title">
+        <header class="foundation-doc__section-header">
+            <span>03</span>
+            <div><h2 id="code-title">Código Razor</h2><p>Trecho básico para começar.</p></div>
+        </header>
+        <div class="foundation-code"><div><span></span><span></span><span></span><small>RAZOR</small></div><pre><code>@switch (Model.Slug)
+{
+    case "colors": @("<div style=\"color: var(--orizon-color-primary)\">Primary text</div>") break;
+    case "typography": @("<h1 class=\"foundation-type--h1\">Heading 1</h1>") break;
+    case "icons": @("<orizon-icon name=\"home\" />") break;
+    case "spacing": @("<div style=\"padding: var(--orizon-space-4)\">Content</div>") break;
+    case "border-radius": @("<div style=\"border-radius: var(--orizon-radius-lg)\">Content</div>") break;
+    case "shadows": @("<div style=\"box-shadow: var(--orizon-shadow-md)\">Content</div>") break;
+}</code></pre></div>
+    </section>
+
+    <section class="foundation-doc__section" aria-labelledby="api-title">
+        <header class="foundation-doc__section-header"><span>04</span><div><h2 id="api-title">API</h2><p>Tokens e propriedades disponíveis nesta foundation.</p></div></header>
+        <div class="doc-api"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Valor padrão</th><th>Descrição</th></tr></thead><tbody>@foreach (var row in apiRows){<tr><td><code>@row.Item1</code></td><td>@row.Item2</td><td><code>@row.Item3</code></td><td>@row.Item4</td></tr>}</tbody></table></div>
+    </section>
+
+    <section class="foundation-doc__section" aria-labelledby="practices-title-standard">
+        <header class="foundation-doc__section-header"><span>05</span><div><h2 id="practices-title-standard">Boas práticas</h2><p>Recomendações para manter consistência no produto.</p></div></header>
+        <ul class="foundation-practices"><li><span>✓</span><div><strong>Use tokens semânticos</strong><p>Prefira variáveis Orizon a valores fixos.</p></div></li><li><span>✓</span><div><strong>Mantenha a hierarquia</strong><p>Escolha cada token pela função que desempenha.</p></div></li><li><span>✓</span><div><strong>Valide os temas</strong><p>Confira Light e Dark antes de publicar.</p></div></li></ul>
+    </section>
+
+    <section class="foundation-doc__section" aria-labelledby="foundation-notes-title">
+        <header class="foundation-doc__section-header"><span>06</span><div><h2 id="foundation-notes-title">Observações</h2><p>Informações complementares para implementação.</p></div></header>
+        <div class="doc-notes"><orizon-icon name="info" size="20" /><p>Os valores respondem ao tema e às preferências do Design System. Evite substituir tokens por valores fixos.</p></div>
+    </section>
+</article>
