@@ -8,7 +8,7 @@
     overflow: visible;
     color: var(--orizon-color-primary-700);
     background: var(--orizon-color-primary-50);
-    border: 1px solid var(--orizon-color-border);
+    border: 1px solid var(--orizon-surface-1-border);
     border-radius: var(--orizon-radius-full);
     font-size: var(--orizon-font-size-sm);
     font-weight: var(--orizon-font-weight-bold);
@@ -40,7 +40,7 @@
     width: 0.75rem;
     height: 0.75rem;
     background: var(--orizon-color-success);
-    border: 2px solid var(--orizon-color-surface);
+    border: 2px solid var(--orizon-surface-1-background);
     border-radius: 50%;
 }
 

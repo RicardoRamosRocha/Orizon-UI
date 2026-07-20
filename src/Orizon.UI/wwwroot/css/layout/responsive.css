@@ -10,7 +10,7 @@
         width: var(--orizon-sidebar-width);
         max-width: calc(100vw - 3rem);
         transform: translateX(-100%);
-        transition: transform var(--orizon-transition-normal);
+        transition: transform var(--orizon-motion-fade);
         box-shadow: var(--orizon-shadow-lg);
     }
 

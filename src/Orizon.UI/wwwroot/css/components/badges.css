@@ -32,8 +32,8 @@
 
 .orizon-badge--neutral {
     color: var(--orizon-color-text-secondary);
-    background: var(--orizon-color-surface-secondary);
-    border-color: var(--orizon-color-border);
+    background: var(--orizon-surface-1-hover);
+    border-color: var(--orizon-surface-1-border);
 }
 
 .orizon-badge--primary {

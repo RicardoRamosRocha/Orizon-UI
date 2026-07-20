@@ -1,44 +1,20 @@
-/* Orizon Design Language - canonical design tokens. */
+/*
+ * Orizon Design Language 2.0
+ *
+ * Contract: primitive -> semantic -> component -> theme.
+ * Existing public custom properties remain aliases so 1.x consumers continue to work.
+ */
+
 :root {
     color-scheme: light;
 
-    /* Brand */
-    --orizon-brand-primary: #2563eb;
-    --orizon-brand-primary-hover: #1d4ed8;
-    --orizon-brand-primary-active: #1e40af;
-    --orizon-brand-primary-soft: #dbeafe;
-    --orizon-brand-on-primary: #ffffff;
-    --orizon-brand-blue: #2563eb;
-    --orizon-brand-green: #16a34a;
-    --orizon-brand-purple: #7c3aed;
-    --orizon-brand-red: #dc2626;
-    --orizon-brand-orange: #ea580c;
-    --orizon-brand-cyan: #0891b2;
+    /* ======================================================================
+       1. Primitive tokens — raw, context-free values
+       ====================================================================== */
 
-    /* ==========================================
-   Premium Accent Palette
-========================================== */
-
---orizon-accent-blue: #3b82f6;
---orizon-accent-azure: #2563eb;
---orizon-accent-indigo: #4f46e5;
---orizon-accent-violet: #7c3aed;
---orizon-accent-purple: #9333ea;
---orizon-accent-pink: #db2777;
---orizon-accent-rose: #e11d48;
---orizon-accent-red: #dc2626;
---orizon-accent-orange: #ea580c;
---orizon-accent-amber: #d97706;
---orizon-accent-yellow: #ca8a04;
---orizon-accent-lime: #65a30d;
---orizon-accent-green: #16a34a;
---orizon-accent-emerald: #059669;
---orizon-accent-teal: #0f766e;
---orizon-accent-cyan: #0891b2;
---orizon-accent-sky: #0284c7;
---orizon-accent-slate: #475569;
-
-    /* Primitive palette - theme files must map semantic tokens only. */
+    /* Palette */
+    --orizon-palette-transparent: transparent;
+    --orizon-palette-black: #000000;
     --orizon-palette-white: #ffffff;
     --orizon-palette-slate-50: #f8fafc;
     --orizon-palette-slate-100: #f1f5f9;
@@ -51,8 +27,261 @@
     --orizon-palette-slate-800: #1e293b;
     --orizon-palette-slate-900: #0f172a;
     --orizon-palette-slate-950: #020617;
+    --orizon-palette-blue-50: #eff6ff;
+    --orizon-palette-blue-100: #dbeafe;
+    --orizon-palette-blue-200: #bfdbfe;
+    --orizon-palette-blue-300: #93c5fd;
+    --orizon-palette-blue-400: #60a5fa;
+    --orizon-palette-blue-500: #3b82f6;
+    --orizon-palette-blue-600: #2563eb;
+    --orizon-palette-blue-700: #1d4ed8;
+    --orizon-palette-blue-800: #1e40af;
+    --orizon-palette-blue-900: #1e3a8a;
+    --orizon-palette-green-50: #f0fdf4;
+    --orizon-palette-green-100: #dcfce7;
+    --orizon-palette-green-500: #22c55e;
+    --orizon-palette-green-600: #16a34a;
+    --orizon-palette-green-700: #15803d;
+    --orizon-palette-amber-50: #fffbeb;
+    --orizon-palette-amber-100: #fef3c7;
+    --orizon-palette-amber-400: #fbbf24;
+    --orizon-palette-amber-500: #f59e0b;
+    --orizon-palette-amber-600: #d97706;
+    --orizon-palette-amber-800: #92400e;
+    --orizon-palette-red-50: #fef2f2;
+    --orizon-palette-red-100: #fee2e2;
+    --orizon-palette-red-500: #ef4444;
+    --orizon-palette-red-600: #dc2626;
+    --orizon-palette-red-700: #b91c1c;
+    --orizon-palette-sky-100: #e0f2fe;
+    --orizon-palette-sky-500: #0ea5e9;
+    --orizon-palette-sky-600: #0284c7;
+    --orizon-palette-cyan-600: #0891b2;
+    --orizon-palette-teal-700: #0f766e;
+    --orizon-palette-emerald-600: #059669;
+    --orizon-palette-lime-600: #65a30d;
+    --orizon-palette-yellow-600: #ca8a04;
+    --orizon-palette-orange-600: #ea580c;
+    --orizon-palette-rose-600: #e11d48;
+    --orizon-palette-pink-600: #db2777;
+    --orizon-palette-purple-600: #9333ea;
+    --orizon-palette-violet-600: #7c3aed;
+    --orizon-palette-indigo-600: #4f46e5;
 
-    /* Semantic color */
+    /* Spacing — 4px base grid, with a 2px exception */
+    --orizon-space-0: 0;
+    --orizon-space-0-5: 0.125rem;
+    --orizon-space-1: 0.25rem;
+    --orizon-space-1-5: 0.375rem;
+    --orizon-space-2: 0.5rem;
+    --orizon-space-2-5: 0.625rem;
+    --orizon-space-3: 0.75rem;
+    --orizon-space-3-5: 0.875rem;
+    --orizon-space-4: 1rem;
+    --orizon-space-5: 1.25rem;
+    --orizon-space-6: 1.5rem;
+    --orizon-space-7: 1.75rem;
+    --orizon-space-8: 2rem;
+    --orizon-space-9: 2.25rem;
+    --orizon-space-10: 2.5rem;
+    --orizon-space-12: 3rem;
+    --orizon-space-14: 3.5rem;
+    --orizon-space-16: 4rem;
+    --orizon-space-20: 5rem;
+    --orizon-space-24: 6rem;
+    --orizon-space-32: 8rem;
+
+    /* Radius */
+    --orizon-radius-none: 0;
+    --orizon-radius-xs: 0.25rem;
+    --orizon-radius-sm: 0.375rem;
+    --orizon-radius-md: 0.625rem;
+    --orizon-radius-lg: 0.875rem;
+    --orizon-radius-xl: 1.125rem;
+    --orizon-radius-2xl: 1.5rem;
+    --orizon-radius-full: 9999px;
+
+    /* Border */
+    --orizon-border-width-0: 0;
+    --orizon-border-width-1: 1px;
+    --orizon-border-width-2: 2px;
+    --orizon-border-width-4: 4px;
+    --orizon-border-style-solid: solid;
+    --orizon-border-style-dashed: dashed;
+
+    /* Opacity */
+    --orizon-opacity-0: 0;
+    --orizon-opacity-5: 0.05;
+    --orizon-opacity-8: 0.08;
+    --orizon-opacity-10: 0.1;
+    --orizon-opacity-16: 0.16;
+    --orizon-opacity-20: 0.2;
+    --orizon-opacity-25: 0.25;
+    --orizon-opacity-40: 0.4;
+    --orizon-opacity-50: 0.5;
+    --orizon-opacity-60: 0.6;
+    --orizon-opacity-70: 0.7;
+    --orizon-opacity-80: 0.8;
+    --orizon-opacity-100: 1;
+
+    /* Typography */
+    --orizon-font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --orizon-font-family-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    --orizon-font-size-2xs: 0.6875rem;
+    --orizon-font-size-xs: 0.75rem;
+    --orizon-font-size-sm: 0.875rem;
+    --orizon-font-size-md: 1rem;
+    --orizon-font-size-lg: 1.125rem;
+    --orizon-font-size-xl: 1.25rem;
+    --orizon-font-size-2xl: 1.5rem;
+    --orizon-font-size-3xl: 1.875rem;
+    --orizon-font-size-4xl: 2.25rem;
+    --orizon-font-size-5xl: 3rem;
+    --orizon-font-weight-regular: 400;
+    --orizon-font-weight-medium: 500;
+    --orizon-font-weight-semibold: 600;
+    --orizon-font-weight-bold: 700;
+    --orizon-line-height-none: 1;
+    --orizon-line-height-tight: 1.25;
+    --orizon-line-height-snug: 1.375;
+    --orizon-line-height-normal: 1.5;
+    --orizon-line-height-relaxed: 1.75;
+    --orizon-letter-spacing-tight: -0.025em;
+    --orizon-letter-spacing-normal: 0;
+    --orizon-letter-spacing-wide: 0.025em;
+
+    /* Orizon Motion Language: duration -> delay -> timing -> property -> intent. */
+    --orizon-motion-transition-duration-instant: 0ms;
+    --orizon-motion-transition-duration-fast: 120ms;
+    --orizon-motion-transition-duration-normal: 200ms;
+    --orizon-motion-transition-duration-slow: 300ms;
+    --orizon-motion-transition-duration-complex: 500ms;
+    --orizon-motion-transition-delay-instant: var(--orizon-motion-transition-duration-instant);
+    --orizon-motion-transition-delay-fast: var(--orizon-motion-transition-duration-fast);
+    --orizon-motion-transition-delay-normal: var(--orizon-motion-transition-duration-normal);
+    --orizon-motion-transition-delay-slow: var(--orizon-motion-transition-duration-slow);
+    --orizon-motion-transition-delay-complex: var(--orizon-motion-transition-duration-complex);
+    --orizon-motion-transition-timing-linear: linear;
+    --orizon-motion-transition-timing-ease: ease;
+    --orizon-motion-transition-timing-ease-out: ease-out;
+    --orizon-motion-transition-timing-ease-in: ease-in;
+    --orizon-motion-transition-timing-ease-in-out: ease-in-out;
+    --orizon-motion-transition-timing-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+    --orizon-motion-transition-timing-decelerate: cubic-bezier(0, 0, 0, 1);
+    --orizon-motion-transition-timing-accelerate: cubic-bezier(0.3, 0, 1, 1);
+    --orizon-motion-transition-property-none: none;
+    --orizon-motion-transition-property-colors: color, background-color, border-color;
+    --orizon-motion-transition-property-surface: background-color, border-color, box-shadow;
+    --orizon-motion-transition-property-transform: transform;
+    --orizon-motion-transition-property-opacity: opacity;
+    --orizon-motion-transition-property-expand: height, max-height, grid-template-rows;
+    --orizon-motion-transition-property-glass: background-color, border-color, box-shadow, backdrop-filter;
+    --orizon-motion-transition-property-progress: width, stroke-dashoffset;
+    --orizon-motion-duration-instant: var(--orizon-motion-transition-duration-instant);
+    --orizon-motion-duration-fast: var(--orizon-motion-transition-duration-fast);
+    --orizon-motion-duration-normal: var(--orizon-motion-transition-duration-normal);
+    --orizon-motion-duration-slow: var(--orizon-motion-transition-duration-slow);
+    --orizon-motion-duration-complex: var(--orizon-motion-transition-duration-complex);
+    --orizon-motion-delay-instant: var(--orizon-motion-transition-delay-instant);
+    --orizon-motion-delay-fast: var(--orizon-motion-transition-delay-fast);
+    --orizon-motion-delay-normal: var(--orizon-motion-transition-delay-normal);
+    --orizon-motion-delay-slow: var(--orizon-motion-transition-delay-slow);
+    --orizon-motion-delay-complex: var(--orizon-motion-transition-delay-complex);
+    --orizon-motion-ease-linear: var(--orizon-motion-transition-timing-linear);
+    --orizon-motion-ease: var(--orizon-motion-transition-timing-ease);
+    --orizon-motion-ease-out: var(--orizon-motion-transition-timing-ease-out);
+    --orizon-motion-ease-in: var(--orizon-motion-transition-timing-ease-in);
+    --orizon-motion-ease-in-out: var(--orizon-motion-transition-timing-ease-in-out);
+    --orizon-motion-ease-emphasized: var(--orizon-motion-transition-timing-emphasized);
+    --orizon-motion-ease-decelerate: var(--orizon-motion-transition-timing-decelerate);
+    --orizon-motion-ease-accelerate: var(--orizon-motion-transition-timing-accelerate);
+    --orizon-motion-property-none: var(--orizon-motion-transition-property-none);
+    --orizon-motion-property-colors: var(--orizon-motion-transition-property-colors);
+    --orizon-motion-property-surface: var(--orizon-motion-transition-property-surface);
+    --orizon-motion-property-transform: var(--orizon-motion-transition-property-transform);
+    --orizon-motion-property-opacity: var(--orizon-motion-transition-property-opacity);
+    --orizon-motion-property-expand: var(--orizon-motion-transition-property-expand);
+    --orizon-motion-property-glass: var(--orizon-motion-transition-property-glass);
+    --orizon-motion-property-progress: var(--orizon-motion-transition-property-progress);
+    --orizon-motion-hover: var(--orizon-motion-duration-fast) var(--orizon-motion-ease-out);
+    --orizon-motion-active: var(--orizon-motion-duration-fast) var(--orizon-motion-ease-in);
+    --orizon-motion-focus: var(--orizon-motion-duration-fast) var(--orizon-motion-ease-out);
+    --orizon-motion-pressed: var(--orizon-motion-duration-fast) var(--orizon-motion-ease-emphasized);
+    --orizon-motion-expand: var(--orizon-motion-duration-slow) var(--orizon-motion-ease-decelerate);
+    --orizon-motion-collapse: var(--orizon-motion-duration-normal) var(--orizon-motion-ease-accelerate);
+    --orizon-motion-fade: var(--orizon-motion-duration-normal) var(--orizon-motion-ease-in-out);
+    --orizon-motion-slide: var(--orizon-motion-duration-slow) var(--orizon-motion-ease-decelerate);
+    --orizon-motion-scale: var(--orizon-motion-duration-normal) var(--orizon-motion-ease-emphasized);
+    --orizon-motion-glass: var(--orizon-motion-duration-slow) var(--orizon-motion-ease-in-out);
+    --orizon-motion-ripple: var(--orizon-motion-duration-complex) var(--orizon-motion-ease-out);
+    --orizon-motion-loading: var(--orizon-motion-duration-complex) var(--orizon-motion-ease-linear);
+    --orizon-motion-transition-colors: color var(--orizon-motion-hover), background-color var(--orizon-motion-hover), border-color var(--orizon-motion-hover);
+    --orizon-motion-transition-surface: background-color var(--orizon-motion-hover), border-color var(--orizon-motion-hover), box-shadow var(--orizon-motion-hover);
+    --orizon-motion-transition-interaction: var(--orizon-motion-transition-surface), color var(--orizon-motion-hover), transform var(--orizon-motion-pressed), filter var(--orizon-motion-hover);
+    --orizon-motion-transition-focus: border-color var(--orizon-motion-focus), box-shadow var(--orizon-motion-focus), background-color var(--orizon-motion-focus);
+    --orizon-motion-transition-expand: height var(--orizon-motion-expand), max-height var(--orizon-motion-expand), grid-template-rows var(--orizon-motion-expand), transform var(--orizon-motion-expand);
+    --orizon-motion-transition-fade: opacity var(--orizon-motion-fade), visibility var(--orizon-motion-duration-instant) linear var(--orizon-motion-delay-normal);
+    --orizon-motion-transition-slide: opacity var(--orizon-motion-fade), transform var(--orizon-motion-slide);
+    --orizon-motion-transition-scale: opacity var(--orizon-motion-fade), transform var(--orizon-motion-scale);
+    --orizon-motion-transition-glass: background-color var(--orizon-motion-glass), border-color var(--orizon-motion-glass), box-shadow var(--orizon-motion-glass), backdrop-filter var(--orizon-motion-glass);
+    --orizon-motion-transition-ripple: opacity var(--orizon-motion-ripple), transform var(--orizon-motion-ripple);
+
+    /* Deprecated motion aliases retained for 1.x/2.x consumers. */
+    --orizon-duration-instant: var(--orizon-motion-duration-instant);
+    --orizon-duration-fast: var(--orizon-motion-duration-fast);
+    --orizon-duration-normal: var(--orizon-motion-duration-normal);
+    --orizon-duration-slow: var(--orizon-motion-duration-slow);
+    --orizon-duration-slower: var(--orizon-motion-duration-complex);
+    --orizon-easing-linear: var(--orizon-motion-ease-linear);
+    --orizon-easing-standard: var(--orizon-motion-ease-decelerate);
+    --orizon-easing-decelerate: var(--orizon-motion-ease-decelerate);
+    --orizon-easing-accelerate: var(--orizon-motion-ease-accelerate);
+    --orizon-easing-emphasized: var(--orizon-motion-ease-emphasized);
+
+    /* Icon sizes */
+    --orizon-icon-size-xs: 0.75rem;
+    --orizon-icon-size-sm: 1rem;
+    --orizon-icon-size-md: 1.25rem;
+    --orizon-icon-size-lg: 1.5rem;
+    --orizon-icon-size-xl: 2rem;
+    --orizon-icon-size-2xl: 3rem;
+
+    /* ======================================================================
+       2. Semantic tokens — meaning and interaction
+       ====================================================================== */
+
+    /* Brand and accents */
+    --orizon-brand-primary: var(--orizon-palette-blue-600);
+    --orizon-brand-primary-hover: var(--orizon-palette-blue-700);
+    --orizon-brand-primary-active: var(--orizon-palette-blue-800);
+    --orizon-brand-primary-soft: var(--orizon-palette-blue-100);
+    --orizon-brand-on-primary: var(--orizon-palette-white);
+    --orizon-brand-blue: var(--orizon-palette-blue-600);
+    --orizon-brand-green: var(--orizon-palette-green-600);
+    --orizon-brand-purple: var(--orizon-palette-violet-600);
+    --orizon-brand-red: var(--orizon-palette-red-600);
+    --orizon-brand-orange: var(--orizon-palette-orange-600);
+    --orizon-brand-cyan: var(--orizon-palette-cyan-600);
+    --orizon-accent-blue: var(--orizon-palette-blue-500);
+    --orizon-accent-azure: var(--orizon-palette-blue-600);
+    --orizon-accent-indigo: var(--orizon-palette-indigo-600);
+    --orizon-accent-violet: var(--orizon-palette-violet-600);
+    --orizon-accent-purple: var(--orizon-palette-purple-600);
+    --orizon-accent-pink: var(--orizon-palette-pink-600);
+    --orizon-accent-rose: var(--orizon-palette-rose-600);
+    --orizon-accent-red: var(--orizon-palette-red-600);
+    --orizon-accent-orange: var(--orizon-palette-orange-600);
+    --orizon-accent-amber: var(--orizon-palette-amber-600);
+    --orizon-accent-yellow: var(--orizon-palette-yellow-600);
+    --orizon-accent-lime: var(--orizon-palette-lime-600);
+    --orizon-accent-green: var(--orizon-palette-green-600);
+    --orizon-accent-emerald: var(--orizon-palette-emerald-600);
+    --orizon-accent-teal: var(--orizon-palette-teal-700);
+    --orizon-accent-cyan: var(--orizon-palette-cyan-600);
+    --orizon-accent-sky: var(--orizon-palette-sky-600);
+    --orizon-accent-slate: var(--orizon-palette-slate-600);
+
+    /* Surfaces and content */
     --orizon-color-background: var(--orizon-palette-slate-50);
     --orizon-color-background-subtle: var(--orizon-palette-slate-100);
     --orizon-color-surface: var(--orizon-palette-white);
@@ -64,240 +293,368 @@
     --orizon-color-text-primary: var(--orizon-palette-slate-900);
     --orizon-color-text-secondary: var(--orizon-palette-slate-500);
     --orizon-color-text-muted: var(--orizon-palette-slate-400);
+    --orizon-color-text-disabled: color-mix(in srgb, var(--orizon-color-text-muted) 72%, transparent);
     --orizon-color-text-inverse: var(--orizon-palette-white);
     --orizon-color-border: var(--orizon-palette-slate-200);
     --orizon-color-border-strong: var(--orizon-palette-slate-300);
     --orizon-color-focus: var(--orizon-brand-primary);
 
-    /* ==========================================
-   Premium Surface Levels
-========================================== */
+    /* States */
+    --orizon-color-success: var(--orizon-palette-green-600);
+    --orizon-color-success-soft: var(--orizon-palette-green-100);
+    --orizon-color-warning: var(--orizon-palette-amber-500);
+    --orizon-color-warning-soft: var(--orizon-palette-amber-100);
+    --orizon-color-danger: var(--orizon-palette-red-600);
+    --orizon-color-danger-soft: var(--orizon-palette-red-100);
+    --orizon-color-info: var(--orizon-palette-sky-500);
+    --orizon-color-info-soft: var(--orizon-palette-sky-100);
+    --orizon-state-hover-overlay: color-mix(in srgb, currentColor 8%, transparent);
+    --orizon-state-active-overlay: color-mix(in srgb, currentColor 16%, transparent);
+    --orizon-state-selected-overlay: color-mix(in srgb, var(--orizon-brand-primary) 12%, transparent);
+    --orizon-state-disabled-opacity: var(--orizon-opacity-50);
+    --orizon-state-readonly-opacity: var(--orizon-opacity-80);
+    --orizon-state-dragging-opacity: var(--orizon-opacity-60);
 
---orizon-surface-0: #ffffff;
---orizon-surface-1: #fcfcfd;
---orizon-surface-2: #f8fafc;
---orizon-surface-3: #f1f5f9;
---orizon-surface-4: #e2e8f0;
---orizon-surface-5: #cbd5e1;
+    /* Borders */
+    --orizon-border-soft: color-mix(in srgb, var(--orizon-palette-slate-400) 18%, transparent);
+    --orizon-border-default: color-mix(in srgb, var(--orizon-palette-slate-400) 28%, transparent);
+    --orizon-border-medium: color-mix(in srgb, var(--orizon-palette-slate-400) 40%, transparent);
+    --orizon-border-strong: color-mix(in srgb, var(--orizon-palette-slate-400) 58%, transparent);
+    --orizon-border-accent: color-mix(in srgb, var(--orizon-accent-blue) 40%, transparent);
 
---orizon-surface-glass: rgb(255 255 255 / 72%);
---orizon-surface-glass-strong: rgb(255 255 255 / 84%);
+    /* Elevation: every level is ambient + directional key shadow. */
+    --orizon-shadow-color: 15 23 42;
+    --orizon-elevation-0-ambient: 0 0 0 0 rgb(var(--orizon-shadow-color) / 0%);
+    --orizon-elevation-0-key: 0 0 0 0 rgb(var(--orizon-shadow-color) / 0%);
+    --orizon-elevation-0: none;
+    --orizon-elevation-1-ambient: 0 1px 2px 0 rgb(var(--orizon-shadow-color) / 3%);
+    --orizon-elevation-1-key: 0 1px 1px -1px rgb(var(--orizon-shadow-color) / 5%);
+    --orizon-elevation-1: var(--orizon-elevation-1-ambient), var(--orizon-elevation-1-key);
+    --orizon-elevation-2-ambient: 0 3px 8px 0 rgb(var(--orizon-shadow-color) / 6%);
+    --orizon-elevation-2-key: 0 1px 3px -1px rgb(var(--orizon-shadow-color) / 8%);
+    --orizon-elevation-2: var(--orizon-elevation-2-ambient), var(--orizon-elevation-2-key);
+    --orizon-elevation-3-ambient: 0 10px 30px -4px rgb(var(--orizon-shadow-color) / 9%);
+    --orizon-elevation-3-key: 0 3px 8px -2px rgb(var(--orizon-shadow-color) / 7%);
+    --orizon-elevation-3: var(--orizon-elevation-3-ambient), var(--orizon-elevation-3-key);
+    --orizon-elevation-4-ambient: 0 20px 50px -8px rgb(var(--orizon-shadow-color) / 14%);
+    --orizon-elevation-4-key: 0 8px 20px -6px rgb(var(--orizon-shadow-color) / 9%);
+    --orizon-elevation-4: var(--orizon-elevation-4-ambient), var(--orizon-elevation-4-key);
+    --orizon-elevation-5-ambient: 0 32px 72px -12px rgb(var(--orizon-shadow-color) / 20%);
+    --orizon-elevation-5-key: 0 12px 28px -8px rgb(var(--orizon-shadow-color) / 12%);
+    --orizon-elevation-5: var(--orizon-elevation-5-ambient), var(--orizon-elevation-5-key);
 
-    /* Sidebar */
-    --orizon-sidebar-background: var(--orizon-palette-slate-900);
-    --orizon-sidebar-background-hover: var(--orizon-palette-slate-800);
-    --orizon-sidebar-text: var(--orizon-palette-slate-300);
-    --orizon-sidebar-text-active: var(--orizon-palette-white);
-    --orizon-sidebar-border: rgb(148 163 184 / 16%);
-    --orizon-sidebar-indicator: var(--orizon-brand-primary);
+    /* Deprecated shadow aliases. */
+    --orizon-shadow-2xs: var(--orizon-elevation-1-ambient);
+    --orizon-shadow-xs: var(--orizon-elevation-1);
+    --orizon-shadow-sm: var(--orizon-elevation-2);
+    --orizon-shadow-md: var(--orizon-elevation-3);
+    --orizon-shadow-lg: var(--orizon-elevation-4);
+    --orizon-shadow-xl: var(--orizon-elevation-5);
+    --orizon-shadow-2xl: var(--orizon-elevation-5);
+    --orizon-shadow-3xl: var(--orizon-elevation-5);
+    --orizon-shadow-primary: 0 10px 35px color-mix(in srgb, var(--orizon-brand-primary) 18%, transparent);
+    --orizon-shadow-success: 0 10px 35px color-mix(in srgb, var(--orizon-color-success) 18%, transparent);
+    --orizon-shadow-danger: 0 10px 35px color-mix(in srgb, var(--orizon-color-danger) 18%, transparent);
+    --orizon-glow-blue: 0 0 18px color-mix(in srgb, var(--orizon-accent-blue) 18%, transparent);
+    --orizon-glow-purple: 0 0 18px color-mix(in srgb, var(--orizon-accent-purple) 18%, transparent);
+    --orizon-glow-cyan: 0 0 18px color-mix(in srgb, var(--orizon-accent-cyan) 18%, transparent);
+    --orizon-glow-green: 0 0 18px color-mix(in srgb, var(--orizon-accent-green) 18%, transparent);
+    --orizon-glow-orange: 0 0 18px color-mix(in srgb, var(--orizon-accent-orange) 18%, transparent);
+    --orizon-glow-red: 0 0 18px color-mix(in srgb, var(--orizon-accent-red) 18%, transparent);
+    --orizon-glow-pink: 0 0 18px color-mix(in srgb, var(--orizon-accent-pink) 18%, transparent);
 
-    /* Status */
-    --orizon-color-success: #16a34a;
-    --orizon-color-success-soft: #dcfce7;
-    --orizon-color-warning: #f59e0b;
-    --orizon-color-warning-soft: #fef3c7;
-    --orizon-color-danger: #dc2626;
-    --orizon-color-danger-soft: #fee2e2;
-    --orizon-color-info: #0ea5e9;
-    --orizon-color-info-soft: #e0f2fe;
-    --orizon-color-primary-contrast: var(--orizon-brand-on-primary);
-    --orizon-color-success-600: var(--orizon-color-success);
-    --orizon-color-success-700: color-mix(in srgb, var(--orizon-color-success) 82%, black);
-    --orizon-color-warning-400: var(--orizon-color-warning);
-    --orizon-color-warning-500: color-mix(in srgb, var(--orizon-color-warning) 82%, black);
-    --orizon-color-danger-600: var(--orizon-color-danger);
-    --orizon-color-danger-700: color-mix(in srgb, var(--orizon-color-danger) 82%, black);
+    /* Gradients and glass */
+    --orizon-gradient-primary: linear-gradient(135deg, var(--orizon-brand-primary), var(--orizon-accent-indigo));
+    --orizon-gradient-purple: linear-gradient(135deg, var(--orizon-accent-violet), var(--orizon-accent-purple));
+    --orizon-gradient-ocean: linear-gradient(135deg, var(--orizon-accent-cyan), var(--orizon-accent-azure));
+    --orizon-gradient-success: linear-gradient(135deg, var(--orizon-accent-emerald), var(--orizon-accent-green));
+    --orizon-gradient-sunset: linear-gradient(135deg, var(--orizon-accent-orange), var(--orizon-accent-red));
+    --orizon-gradient-ai: linear-gradient(135deg, var(--orizon-accent-azure), var(--orizon-accent-violet), var(--orizon-accent-pink));
+    --orizon-glass-background: color-mix(in srgb, var(--orizon-color-surface) 70%, transparent);
+    --orizon-glass-background-strong: color-mix(in srgb, var(--orizon-color-surface) 82%, transparent);
+    --orizon-glass-border: color-mix(in srgb, var(--orizon-palette-white) 45%, transparent);
+    --orizon-glass-backdrop: blur(18px);
+    --orizon-glass-shadow: 0 20px 50px rgb(var(--orizon-shadow-color) / 10%);
 
-    /* Typography */
-    --orizon-font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --orizon-font-family-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-    --orizon-font-size-xs: 0.75rem;
-    --orizon-font-size-sm: 0.875rem;
-    --orizon-font-size-md: 1rem;
-    --orizon-font-size-lg: 1.125rem;
-    --orizon-font-size-xl: 1.25rem;
-    --orizon-font-size-2xl: 1.5rem;
-    --orizon-font-size-3xl: 1.875rem;
-    --orizon-font-size-4xl: 2.25rem;
-    --orizon-font-weight-regular: 400;
-    --orizon-font-weight-medium: 500;
-    --orizon-font-weight-semibold: 600;
-    --orizon-font-weight-bold: 700;
-    --orizon-line-height-tight: 1.25;
-    --orizon-line-height-normal: 1.5;
-    --orizon-line-height-relaxed: 1.75;
+    /* Official surface hierarchy: 0 background, 1 card, 2 elevated card,
+       3 dropdown, 4 modal, 5 popover, 6 overlay. */
+    --orizon-surface-disabled-mix: 62%;
+    --orizon-surface-0-background: var(--orizon-color-background);
+    --orizon-surface-0-border: var(--orizon-palette-transparent);
+    --orizon-surface-0-shadow: var(--orizon-elevation-0);
+    --orizon-surface-0-glass: color-mix(in srgb, var(--orizon-surface-0-background) 88%, transparent);
+    --orizon-surface-0-hover: var(--orizon-color-background-subtle);
+    --orizon-surface-0-active: color-mix(in srgb, var(--orizon-color-background-subtle) 82%, var(--orizon-brand-primary));
+    --orizon-surface-0-selected: color-mix(in srgb, var(--orizon-brand-primary) 10%, var(--orizon-surface-0-background));
+    --orizon-surface-0-disabled: color-mix(in srgb, var(--orizon-surface-0-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background-subtle));
+
+    --orizon-surface-1-background: var(--orizon-color-surface);
+    --orizon-surface-1-border: var(--orizon-color-border);
+    --orizon-surface-1-shadow: var(--orizon-elevation-1);
+    --orizon-surface-1-glass: color-mix(in srgb, var(--orizon-surface-1-background) 72%, transparent);
+    --orizon-surface-1-hover: color-mix(in srgb, var(--orizon-brand-primary) 6%, var(--orizon-surface-1-background));
+    --orizon-surface-1-active: color-mix(in srgb, var(--orizon-brand-primary) 10%, var(--orizon-surface-1-background));
+    --orizon-surface-1-selected: color-mix(in srgb, var(--orizon-brand-primary) 12%, var(--orizon-surface-1-background));
+    --orizon-surface-1-disabled: color-mix(in srgb, var(--orizon-surface-1-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background));
+
+    --orizon-surface-2-background: var(--orizon-color-surface-elevated);
+    --orizon-surface-2-border: var(--orizon-color-border);
+    --orizon-surface-2-shadow: var(--orizon-elevation-2);
+    --orizon-surface-2-glass: color-mix(in srgb, var(--orizon-surface-2-background) 78%, transparent);
+    --orizon-surface-2-hover: color-mix(in srgb, var(--orizon-brand-primary) 7%, var(--orizon-surface-2-background));
+    --orizon-surface-2-active: color-mix(in srgb, var(--orizon-brand-primary) 11%, var(--orizon-surface-2-background));
+    --orizon-surface-2-selected: color-mix(in srgb, var(--orizon-brand-primary) 14%, var(--orizon-surface-2-background));
+    --orizon-surface-2-disabled: color-mix(in srgb, var(--orizon-surface-2-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background));
+
+    --orizon-surface-3-background: var(--orizon-color-surface-elevated);
+    --orizon-surface-3-border: var(--orizon-color-border-strong);
+    --orizon-surface-3-shadow: var(--orizon-elevation-3);
+    --orizon-surface-3-glass: color-mix(in srgb, var(--orizon-surface-3-background) 82%, transparent);
+    --orizon-surface-3-hover: color-mix(in srgb, var(--orizon-brand-primary) 8%, var(--orizon-surface-3-background));
+    --orizon-surface-3-active: color-mix(in srgb, var(--orizon-brand-primary) 13%, var(--orizon-surface-3-background));
+    --orizon-surface-3-selected: color-mix(in srgb, var(--orizon-brand-primary) 16%, var(--orizon-surface-3-background));
+    --orizon-surface-3-disabled: color-mix(in srgb, var(--orizon-surface-3-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background));
+
+    --orizon-surface-4-background: var(--orizon-color-surface-elevated);
+    --orizon-surface-4-border: var(--orizon-color-border-strong);
+    --orizon-surface-4-shadow: var(--orizon-elevation-5);
+    --orizon-surface-4-glass: color-mix(in srgb, var(--orizon-surface-4-background) 86%, transparent);
+    --orizon-surface-4-hover: color-mix(in srgb, var(--orizon-brand-primary) 7%, var(--orizon-surface-4-background));
+    --orizon-surface-4-active: color-mix(in srgb, var(--orizon-brand-primary) 12%, var(--orizon-surface-4-background));
+    --orizon-surface-4-selected: color-mix(in srgb, var(--orizon-brand-primary) 15%, var(--orizon-surface-4-background));
+    --orizon-surface-4-disabled: color-mix(in srgb, var(--orizon-surface-4-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background));
+
+    --orizon-surface-5-background: var(--orizon-color-surface-elevated);
+    --orizon-surface-5-border: var(--orizon-color-border-strong);
+    --orizon-surface-5-shadow: var(--orizon-elevation-4);
+    --orizon-surface-5-glass: color-mix(in srgb, var(--orizon-surface-5-background) 84%, transparent);
+    --orizon-surface-5-hover: color-mix(in srgb, var(--orizon-brand-primary) 8%, var(--orizon-surface-5-background));
+    --orizon-surface-5-active: color-mix(in srgb, var(--orizon-brand-primary) 13%, var(--orizon-surface-5-background));
+    --orizon-surface-5-selected: color-mix(in srgb, var(--orizon-brand-primary) 16%, var(--orizon-surface-5-background));
+    --orizon-surface-5-disabled: color-mix(in srgb, var(--orizon-surface-5-background) var(--orizon-surface-disabled-mix), var(--orizon-color-background));
+
+    --orizon-surface-6-background: var(--orizon-color-overlay);
+    --orizon-surface-6-border: var(--orizon-palette-transparent);
+    --orizon-surface-6-shadow: var(--orizon-elevation-0);
+    --orizon-surface-6-glass: color-mix(in srgb, var(--orizon-surface-6-background) 72%, transparent);
+    --orizon-surface-6-hover: color-mix(in srgb, var(--orizon-surface-6-background) 92%, var(--orizon-palette-white));
+    --orizon-surface-6-active: color-mix(in srgb, var(--orizon-surface-6-background) 86%, var(--orizon-palette-black));
+    --orizon-surface-6-selected: color-mix(in srgb, var(--orizon-surface-6-background) 88%, var(--orizon-brand-primary));
+    --orizon-surface-6-disabled: color-mix(in srgb, var(--orizon-surface-6-background) var(--orizon-surface-disabled-mix), transparent);
+
+    /* Type roles */
+    --orizon-text-display: var(--orizon-font-size-5xl);
     --orizon-text-h1: var(--orizon-font-size-4xl);
     --orizon-text-h2: var(--orizon-font-size-3xl);
     --orizon-text-h3: var(--orizon-font-size-2xl);
+    --orizon-text-h4: var(--orizon-font-size-xl);
     --orizon-text-body: var(--orizon-font-size-md);
+    --orizon-text-body-small: var(--orizon-font-size-sm);
     --orizon-text-caption: var(--orizon-font-size-xs);
     --orizon-text-label: var(--orizon-font-size-sm);
     --orizon-text-helper: var(--orizon-font-size-xs);
 
-    /* Spacing: 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64 */
-    --orizon-space-0: 0;
-    --orizon-space-0-5: 0.125rem;
-    --orizon-space-1: 0.25rem;
-    --orizon-space-2: 0.5rem;
-    --orizon-space-3: 0.75rem;
-    --orizon-space-4: 1rem;
-    --orizon-space-5: 1.25rem;
-    --orizon-space-6: 1.5rem;
-    --orizon-space-8: 2rem;
-    --orizon-space-10: 2.5rem;
-    --orizon-space-12: 3rem;
-    --orizon-space-16: 4rem;
-    --orizon-space-20: 5rem;
-
-    /* Radius */
-    --orizon-radius-none: 0;
-    --orizon-radius-sm: 0.375rem;
-    --orizon-radius-md: 0.625rem;
-    --orizon-radius-lg: 0.875rem;
-    --orizon-radius-xl: 1.125rem;
-    --orizon-radius-2xl: 1.5rem;
-    --orizon-radius-full: 9999px;
-
-    /* Elevation */
-    --orizon-shadow-color: 15 23 42;
-    --orizon-shadow-xs: 0 1px 2px rgb(var(--orizon-shadow-color) / 5%);
-    --orizon-shadow-sm: 0 1px 3px rgb(var(--orizon-shadow-color) / 8%), 0 1px 2px rgb(var(--orizon-shadow-color) / 4%);
-    --orizon-shadow-md: 0 10px 30px rgb(var(--orizon-shadow-color) / 9%), 0 2px 8px rgb(var(--orizon-shadow-color) / 5%);
-    --orizon-shadow-lg: 0 20px 50px rgb(var(--orizon-shadow-color) / 14%), 0 8px 20px rgb(var(--orizon-shadow-color) / 7%);
-    --orizon-shadow-xl: 0 32px 72px rgb(var(--orizon-shadow-color) / 20%), 0 12px 28px rgb(var(--orizon-shadow-color) / 10%);
-
-    /* ==========================================
-   Premium Shadows
-========================================== */
-
---orizon-shadow-2xs: 0 1px 2px rgb(var(--orizon-shadow-color) / 0.03);
-
---orizon-shadow-2xl:
-0 36px 80px rgb(var(--orizon-shadow-color) /.22);
-
---orizon-shadow-3xl:
-0 50px 120px rgb(var(--orizon-shadow-color) /.28);
-
---orizon-shadow-primary:
-0 10px 35px rgb(37 99 235 /.18);
-
---orizon-shadow-success:
-0 10px 35px rgb(22 163 74 /.18);
-
---orizon-shadow-danger:
-0 10px 35px rgb(220 38 38 /.18);
-
-    /* Motion */
-    --orizon-duration-fast: 120ms;
-    --orizon-duration-normal: 200ms;
-    --orizon-duration-slow: 300ms;
-    --orizon-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-    --orizon-easing-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+    /* Transitions and focus */
     --orizon-transition-fast: var(--orizon-duration-fast) var(--orizon-easing-standard);
     --orizon-transition-normal: var(--orizon-duration-normal) var(--orizon-easing-standard);
     --orizon-transition-slow: var(--orizon-duration-slow) var(--orizon-easing-standard);
+    --orizon-transition-colors: color var(--orizon-transition-fast), background-color var(--orizon-transition-fast), border-color var(--orizon-transition-fast);
+    --orizon-transition-transform: transform var(--orizon-transition-normal);
+    --orizon-transition-opacity: opacity var(--orizon-transition-normal);
+    /* Orizon Accessibility & Focus Language. */
+    --orizon-focus-color: var(--orizon-brand-primary);
+    --orizon-focus-width: 3px;
+    --orizon-focus-offset: 2px;
+    --orizon-focus-radius: var(--orizon-radius-md);
+    --orizon-focus-opacity: 0.9;
+    --orizon-focus-shadow: 0 0 0 var(--orizon-focus-width) color-mix(in srgb, var(--orizon-focus-color) calc(var(--orizon-focus-opacity) * 100%), transparent);
+    --orizon-focus-outline: var(--orizon-border-width-2) solid transparent;
+    --orizon-focus-outline-color: transparent;
+    --orizon-focus-keyboard-color: var(--orizon-focus-color);
+    --orizon-focus-keyboard-shadow: var(--orizon-focus-shadow);
+    --orizon-focus-visible-color: var(--orizon-focus-color);
+    --orizon-focus-visible-shadow: var(--orizon-focus-shadow);
+    --orizon-focus-within-color: var(--orizon-focus-color);
+    --orizon-focus-within-shadow: var(--orizon-focus-shadow);
+    --orizon-focus-error-color: var(--orizon-palette-red-700);
+    --orizon-focus-error-shadow: 0 0 0 var(--orizon-focus-width) color-mix(in srgb, var(--orizon-focus-error-color) calc(var(--orizon-focus-opacity) * 100%), transparent);
+    --orizon-focus-warning-color: var(--orizon-palette-amber-800);
+    --orizon-focus-warning-shadow: 0 0 0 var(--orizon-focus-width) color-mix(in srgb, var(--orizon-focus-warning-color) calc(var(--orizon-focus-opacity) * 100%), transparent);
+    --orizon-focus-success-color: var(--orizon-palette-green-700);
+    --orizon-focus-success-shadow: 0 0 0 var(--orizon-focus-width) color-mix(in srgb, var(--orizon-focus-success-color) calc(var(--orizon-focus-opacity) * 100%), transparent);
+    --orizon-focus-disabled-color: transparent;
+    --orizon-focus-disabled-shadow: none;
+    --orizon-focus-disabled-outline: none;
+    --orizon-focus-selected-color: var(--orizon-brand-primary);
+    --orizon-focus-selected-shadow: inset 0 0 0 var(--orizon-border-width-2) var(--orizon-focus-selected-color);
+    --orizon-focus-current-color: var(--orizon-brand-primary);
+    --orizon-focus-high-contrast-color: Highlight;
+    --orizon-focus-high-contrast-width: 3px;
+    --orizon-focus-high-contrast-offset: 3px;
 
-    /* ==========================================
-   Glow
-========================================== */
+    /* Deprecated focus aliases retained for 1.x/2.x consumers. */
+    --orizon-focus-ring-width: var(--orizon-focus-width);
+    --orizon-focus-ring-offset: var(--orizon-focus-offset);
+    --orizon-focus-ring: var(--orizon-focus-shadow);
 
---orizon-glow-blue:
-0 0 18px rgb(59 130 246 /.18);
+    /* Layers */
+    --orizon-z-base: 0;
+    --orizon-z-raised: 10;
+    --orizon-z-dropdown: 100;
+    --orizon-z-sticky: 200;
+    --orizon-z-overlay: 300;
+    --orizon-z-drawer: 400;
+    --orizon-z-modal: 500;
+    --orizon-z-popover: 550;
+    --orizon-z-toast: 600;
+    --orizon-z-tooltip: 700;
 
---orizon-glow-purple:
-0 0 18px rgb(147 51 234 /.18);
+    /* ======================================================================
+       3. Component tokens — stable customization hooks
+       ====================================================================== */
 
---orizon-glow-cyan:
-0 0 18px rgb(8 145 178 /.18);
+    /* Controls */
+    --orizon-control-height-sm: 2rem;
+    --orizon-control-height-md: 2.5rem;
+    --orizon-control-height-lg: 3rem;
+    --orizon-control-padding-inline-sm: var(--orizon-space-3);
+    --orizon-control-padding-inline-md: var(--orizon-space-4);
+    --orizon-control-padding-inline-lg: var(--orizon-space-5);
+    --orizon-control-radius: var(--orizon-radius-md);
+    --orizon-control-border-width: var(--orizon-border-width-1);
+    --orizon-control-border-color: var(--orizon-surface-1-border);
+    --orizon-control-background: var(--orizon-surface-1-background);
+    --orizon-control-text: var(--orizon-color-text-primary);
+    --orizon-control-placeholder: var(--orizon-color-text-muted);
+    --orizon-control-focus-ring: var(--orizon-focus-shadow);
 
---orizon-glow-green:
-0 0 18px rgb(22 163 74 /.18);
+    /* Buttons */
+    --orizon-button-height-xs: var(--orizon-space-7);
+    --orizon-button-height-sm: var(--orizon-control-height-sm);
+    --orizon-button-height-md: var(--orizon-control-height-md);
+    --orizon-button-height-lg: var(--orizon-control-height-lg);
+    --orizon-button-padding-block-xs: var(--orizon-space-1);
+    --orizon-button-padding-block-sm: var(--orizon-space-1-5);
+    --orizon-button-padding-block-md: var(--orizon-space-2);
+    --orizon-button-padding-block-lg: var(--orizon-space-2-5);
+    --orizon-button-padding-inline-xs: var(--orizon-space-2-5);
+    --orizon-button-padding-inline-sm: var(--orizon-control-padding-inline-sm);
+    --orizon-button-padding-inline-md: var(--orizon-control-padding-inline-md);
+    --orizon-button-padding-inline-lg: var(--orizon-control-padding-inline-lg);
+    --orizon-button-icon-spacing-xs: var(--orizon-space-1);
+    --orizon-button-icon-spacing-sm: var(--orizon-space-1-5);
+    --orizon-button-icon-spacing-md: var(--orizon-space-2);
+    --orizon-button-icon-spacing-lg: var(--orizon-space-2-5);
+    --orizon-button-icon-size-xs: var(--orizon-icon-size-xs);
+    --orizon-button-icon-size-sm: var(--orizon-icon-size-sm);
+    --orizon-button-icon-size-md: var(--orizon-icon-size-md);
+    --orizon-button-icon-size-lg: var(--orizon-icon-size-lg);
+    --orizon-button-font-size-xs: var(--orizon-font-size-xs);
+    --orizon-button-font-size-sm: var(--orizon-font-size-xs);
+    --orizon-button-font-size-md: var(--orizon-font-size-sm);
+    --orizon-button-font-size-lg: var(--orizon-font-size-md);
+    --orizon-button-font-weight: var(--orizon-font-weight-semibold);
+    --orizon-button-letter-spacing: var(--orizon-letter-spacing-normal);
+    --orizon-button-line-height: var(--orizon-line-height-none);
+    --orizon-button-radius-xs: var(--orizon-radius-sm);
+    --orizon-button-radius-sm: var(--orizon-radius-sm);
+    --orizon-button-radius-md: var(--orizon-control-radius);
+    --orizon-button-radius-lg: var(--orizon-radius-lg);
+    --orizon-button-radius: var(--orizon-button-radius-md);
+    --orizon-button-border-width: var(--orizon-border-width-1);
+    --orizon-button-border-style: var(--orizon-border-style-solid);
+    --orizon-button-shadow: var(--orizon-elevation-1);
+    --orizon-button-shadow-hover: var(--orizon-elevation-3);
+    --orizon-button-shadow-active: var(--orizon-elevation-1);
+    --orizon-button-disabled-opacity: var(--orizon-state-disabled-opacity);
+    --orizon-button-hover-translate-y: calc(var(--orizon-space-0-5) * -1);
+    --orizon-button-active-translate-y: var(--orizon-space-0);
+    --orizon-button-pressed-scale: 0.98;
+    --orizon-button-spinner-size: var(--orizon-icon-size-sm);
+    --orizon-button-spinner-border-width: var(--orizon-border-width-2);
+    --orizon-button-primary-background: var(--orizon-brand-primary);
+    --orizon-button-primary-background-hover: var(--orizon-brand-primary-hover);
+    --orizon-button-primary-background-active: var(--orizon-brand-primary-active);
+    --orizon-button-primary-text: var(--orizon-brand-on-primary);
+    --orizon-button-transition: var(--orizon-motion-transition-interaction);
 
---orizon-glow-orange:
-0 0 18px rgb(234 88 12 /.18);
+    /* Cards */
+    --orizon-card-background: var(--orizon-surface-1-background);
+    --orizon-card-background-hover: var(--orizon-surface-1-hover);
+    --orizon-card-background-selected: var(--orizon-surface-1-selected);
+    --orizon-card-border: var(--orizon-surface-1-border);
+    --orizon-card-border-hover: var(--orizon-surface-2-border);
+    --orizon-card-border-selected: var(--orizon-focus-selected-color);
+    --orizon-card-border-width: var(--orizon-border-width-1);
+    --orizon-card-border-style: var(--orizon-border-style-solid);
+    --orizon-card-radius: var(--orizon-radius-xl);
+    --orizon-card-padding-none: var(--orizon-space-0);
+    --orizon-card-padding-compact: var(--orizon-space-4);
+    --orizon-card-padding-default: var(--orizon-space-5);
+    --orizon-card-padding-spacious: var(--orizon-space-6);
+    --orizon-card-padding: var(--orizon-card-padding-default);
+    --orizon-card-gap-compact: var(--orizon-space-2);
+    --orizon-card-gap-default: var(--orizon-space-3);
+    --orizon-card-gap-spacious: var(--orizon-space-4);
+    --orizon-card-header-gap: var(--orizon-space-3);
+    --orizon-card-header-spacing: var(--orizon-space-4);
+    --orizon-card-title-spacing: var(--orizon-space-1);
+    --orizon-card-footer-gap: var(--orizon-space-3);
+    --orizon-card-footer-padding-block: var(--orizon-space-3);
+    --orizon-card-footer-padding-inline: var(--orizon-space-5);
+    --orizon-card-media-spacing: var(--orizon-space-4);
+    --orizon-card-icon-spacing: var(--orizon-space-3);
+    --orizon-card-icon-size-compact: var(--orizon-control-height-md);
+    --orizon-card-icon-size: var(--orizon-control-height-lg);
+    --orizon-card-action-gap: var(--orizon-space-2);
+    --orizon-card-skeleton-line-height: var(--orizon-space-7);
+    --orizon-card-title-size: var(--orizon-font-size-lg);
+    --orizon-card-title-weight: var(--orizon-font-weight-semibold);
+    --orizon-card-title-letter-spacing: var(--orizon-letter-spacing-tight);
+    --orizon-card-subtitle-size: var(--orizon-font-size-sm);
+    --orizon-card-description-size: var(--orizon-font-size-sm);
+    --orizon-card-shadow: var(--orizon-surface-1-shadow);
+    --orizon-card-shadow-hover: var(--orizon-surface-2-shadow);
+    --orizon-card-shadow-elevated: var(--orizon-surface-3-shadow);
+    --orizon-card-shadow-selected: var(--orizon-focus-selected-shadow), var(--orizon-surface-2-shadow);
+    --orizon-card-disabled-opacity: var(--orizon-state-disabled-opacity);
+    --orizon-card-hover-translate-y: calc(var(--orizon-space-0-5) * -1);
+    --orizon-card-active-translate-y: var(--orizon-space-0);
+    --orizon-card-pressed-scale: 0.99;
+    --orizon-card-transition: var(--orizon-motion-transition-glass), transform var(--orizon-motion-pressed);
 
---orizon-glow-red:
-0 0 18px rgb(220 38 38 /.18);
+    /* Overlays, menus and feedback */
+    --orizon-overlay-opacity: 0.55;
+    --orizon-modal-background: var(--orizon-surface-4-background);
+    --orizon-modal-radius: var(--orizon-radius-xl);
+    --orizon-modal-shadow: var(--orizon-surface-4-shadow);
+    --orizon-dropdown-background: var(--orizon-surface-3-background);
+    --orizon-dropdown-radius: var(--orizon-radius-md);
+    --orizon-dropdown-shadow: var(--orizon-surface-3-shadow);
+    --orizon-toast-background: var(--orizon-surface-5-background);
+    --orizon-toast-radius: var(--orizon-radius-lg);
+    --orizon-toast-shadow: var(--orizon-surface-5-shadow);
+    --orizon-tooltip-delay: var(--orizon-motion-delay-slow);
 
---orizon-glow-pink:
-0 0 18px rgb(219 39 119 /.18);
+    /* Data display */
+    --orizon-table-header-background: var(--orizon-surface-1-hover);
+    --orizon-table-row-background: var(--orizon-surface-1-background);
+    --orizon-table-row-hover-background: var(--orizon-surface-1-hover);
+    --orizon-table-border: var(--orizon-surface-1-border);
+    --orizon-grid-height: 32rem;
+    --orizon-grid-row-height: 2.75rem;
+    --orizon-chart-height: 20rem;
+    --orizon-chart-1: var(--orizon-accent-azure);
+    --orizon-chart-2: var(--orizon-accent-violet);
+    --orizon-chart-3: var(--orizon-accent-green);
+    --orizon-chart-4: var(--orizon-accent-orange);
+    --orizon-chart-5: var(--orizon-accent-cyan);
+    --orizon-chart-6: var(--orizon-accent-pink);
+    --orizon-kpi-positive: var(--orizon-color-success);
+    --orizon-kpi-negative: var(--orizon-color-danger);
+    --orizon-kpi-neutral: var(--orizon-color-text-secondary);
 
-/* ==========================================
-   Premium Borders
-========================================== */
-
---orizon-border-soft:
-rgba(148,163,184,.18);
-
---orizon-border-default:
-rgba(148,163,184,.28);
-
---orizon-border-medium:
-rgba(148,163,184,.40);
-
---orizon-border-strong:
-rgba(148,163,184,.58);
-
---orizon-border-accent:
-rgba(59,130,246,.40);
-
-/* ==========================================
-   Gradients
-========================================== */
-
---orizon-gradient-primary:
-linear-gradient(135deg,#2563eb,#4f46e5);
-
---orizon-gradient-purple:
-linear-gradient(135deg,#7c3aed,#9333ea);
-
---orizon-gradient-ocean:
-linear-gradient(135deg,#0891b2,#2563eb);
-
---orizon-gradient-success:
-linear-gradient(135deg,#059669,#16a34a);
-
---orizon-gradient-sunset:
-linear-gradient(135deg,#ea580c,#dc2626);
-
---orizon-gradient-ai:
-linear-gradient(135deg,#2563eb,#7c3aed,#db2777);
-
-/* ==========================================
-   Glass
-========================================== */
-
---orizon-glass-background:
-rgb(255 255 255 /.70);
-
---orizon-glass-background-strong:
-rgb(255 255 255 /.82);
-
---orizon-glass-border:
-rgb(255 255 255 /.45);
-
---orizon-glass-backdrop:
-blur(18px);
-
---orizon-glass-shadow:
-0 20px 50px rgb(15 23 42 /.10);
-
-/* ==========================================
-   Dashboard
-========================================== */
-
---orizon-chart-1:#2563eb;
---orizon-chart-2:#7c3aed;
---orizon-chart-3:#16a34a;
---orizon-chart-4:#ea580c;
---orizon-chart-5:#0891b2;
---orizon-chart-6:#db2777;
-
---orizon-kpi-positive:#16a34a;
---orizon-kpi-negative:#dc2626;
---orizon-kpi-neutral:#64748b;
-
-    /* Layout and layers */
+    /* Layout */
     --orizon-container-sm: 40rem;
     --orizon-container-md: 48rem;
     --orizon-container-lg: 64rem;
@@ -308,26 +665,20 @@ blur(18px);
     --orizon-breakpoint-lg: 1024px;
     --orizon-breakpoint-xl: 1280px;
     --orizon-breakpoint-2xl: 1536px;
-    --orizon-z-base: 0;
-    --orizon-z-dropdown: 100;
-    --orizon-z-sticky: 200;
-    --orizon-z-overlay: 300;
-    --orizon-z-drawer: 400;
-    --orizon-z-modal: 500;
-    --orizon-z-toast: 600;
-    --orizon-control-height-sm: 2rem;
-    --orizon-control-height-md: 2.5rem;
-    --orizon-control-height-lg: 3rem;
     --orizon-density-cell-y: var(--orizon-space-3);
     --orizon-density-cell-x: var(--orizon-space-4);
-    --orizon-density-card-padding: var(--orizon-space-5);
+    --orizon-density-card-padding: var(--orizon-card-padding-default);
     --orizon-density-list-gap: var(--orizon-space-3);
-    --orizon-icon-sm: 1rem;
-    --orizon-icon-md: 1.25rem;
-    --orizon-icon-lg: 1.5rem;
-    --orizon-focus-ring: 0 0 0 3px color-mix(in srgb, var(--orizon-color-focus) 25%, transparent);
+    --orizon-sidebar-background: var(--orizon-palette-slate-900);
+    --orizon-sidebar-background-hover: var(--orizon-palette-slate-800);
+    --orizon-sidebar-text: var(--orizon-palette-slate-300);
+    --orizon-sidebar-text-active: var(--orizon-palette-white);
+    --orizon-sidebar-border: color-mix(in srgb, var(--orizon-palette-slate-400) 16%, transparent);
+    --orizon-sidebar-indicator: var(--orizon-brand-primary);
 
-    /* Backward-compatible aliases. */
+    /* ======================================================================
+       4. Compatibility aliases — public ODL 1.x contract
+       ====================================================================== */
     --orizon-color-primary-50: var(--orizon-brand-primary-soft);
     --orizon-color-primary-100: var(--orizon-brand-primary-soft);
     --orizon-color-primary-500: var(--orizon-brand-primary);
@@ -338,6 +689,7 @@ blur(18px);
     --orizon-color-primary-hover: var(--orizon-brand-primary-hover);
     --orizon-color-primary-active: var(--orizon-brand-primary-active);
     --orizon-color-primary-soft: var(--orizon-brand-primary-soft);
+    --orizon-color-primary-contrast: var(--orizon-brand-on-primary);
     --orizon-color-neutral-0: var(--orizon-palette-white);
     --orizon-color-neutral-50: var(--orizon-palette-slate-50);
     --orizon-color-neutral-100: var(--orizon-palette-slate-100);
@@ -350,8 +702,41 @@ blur(18px);
     --orizon-color-neutral-800: var(--orizon-palette-slate-800);
     --orizon-color-neutral-900: var(--orizon-palette-slate-900);
     --orizon-color-neutral-950: var(--orizon-palette-slate-950);
+    --orizon-color-success-50: var(--orizon-palette-green-50);
+    --orizon-color-success-100: var(--orizon-palette-green-100);
+    --orizon-color-success-600: var(--orizon-color-success);
+    --orizon-color-success-700: var(--orizon-palette-green-700);
+    --orizon-color-warning-50: var(--orizon-palette-amber-50);
+    --orizon-color-warning-100: var(--orizon-palette-amber-100);
+    --orizon-color-warning-400: var(--orizon-palette-amber-400);
+    --orizon-color-warning-500: var(--orizon-color-warning);
+    --orizon-color-warning-800: var(--orizon-palette-amber-800);
+    --orizon-color-danger-50: var(--orizon-palette-red-50);
+    --orizon-color-danger-100: var(--orizon-palette-red-100);
+    --orizon-color-danger-600: var(--orizon-color-danger);
+    --orizon-color-danger-700: var(--orizon-palette-red-700);
+    --orizon-surface-0: var(--orizon-surface-0-background);
+    --orizon-surface-1: var(--orizon-surface-1-background);
+    --orizon-surface-2: var(--orizon-surface-2-background);
+    --orizon-surface-3: var(--orizon-surface-3-background);
+    --orizon-surface-4: var(--orizon-surface-4-background);
+    --orizon-surface-5: var(--orizon-surface-5-background);
+    --orizon-surface-6: var(--orizon-surface-6-background);
+    --orizon-surface-glass: var(--orizon-surface-1-glass);
+    --orizon-surface-glass-strong: var(--orizon-surface-4-glass);
+    --orizon-icon-sm: var(--orizon-icon-size-sm);
+    --orizon-icon-md: var(--orizon-icon-size-md);
+    --orizon-icon-lg: var(--orizon-icon-size-lg);
+    --orizon-primary: var(--orizon-brand-primary);
+    --orizon-background: var(--orizon-color-background);
+    --orizon-surface: var(--orizon-color-surface);
+    --orizon-text: var(--orizon-color-text-primary);
+    --orizon-border: var(--orizon-color-border);
 }
 
+/* ========================================================================
+   Theme tokens — override semantic intent, never component implementation
+   ======================================================================== */
 [data-primary-color="blue"] { --orizon-brand-primary: var(--orizon-brand-blue); }
 [data-primary-color="green"] { --orizon-brand-primary: var(--orizon-brand-green); }
 [data-primary-color="purple"] { --orizon-brand-primary: var(--orizon-brand-purple); }
@@ -377,8 +762,8 @@ blur(18px);
     --orizon-density-list-gap: var(--orizon-space-4);
 }
 
-[data-font-size="small"] { font-size: 0.875rem; }
-[data-font-size="large"] { font-size: 1.125rem; }
+[data-font-size="small"] { font-size: var(--orizon-font-size-sm); }
+[data-font-size="large"] { font-size: var(--orizon-font-size-lg); }
 
 [data-radius="square"] {
     --orizon-radius-sm: var(--orizon-radius-none);
@@ -389,11 +774,11 @@ blur(18px);
 }
 
 [data-radius="soft"] {
-    --orizon-radius-sm: 0.25rem;
-    --orizon-radius-md: 0.5rem;
-    --orizon-radius-lg: 0.75rem;
-    --orizon-radius-xl: 1rem;
-    --orizon-radius-2xl: 1.25rem;
+    --orizon-radius-sm: var(--orizon-radius-xs);
+    --orizon-radius-md: var(--orizon-space-2);
+    --orizon-radius-lg: var(--orizon-space-3);
+    --orizon-radius-xl: var(--orizon-space-4);
+    --orizon-radius-2xl: var(--orizon-space-5);
 }
 
 [data-shadow="minimal"] {
@@ -411,21 +796,62 @@ blur(18px);
 }
 
 [data-motion="reduced"] {
-    --orizon-duration-fast: 60ms;
-    --orizon-duration-normal: 100ms;
-    --orizon-duration-slow: 150ms;
+    --orizon-motion-transition-duration-fast: 60ms;
+    --orizon-motion-transition-duration-normal: 100ms;
+    --orizon-motion-transition-duration-slow: 150ms;
+    --orizon-motion-transition-duration-complex: 200ms;
 }
 
 [data-motion="none"] {
-    --orizon-duration-fast: 0ms;
-    --orizon-duration-normal: 0ms;
-    --orizon-duration-slow: 0ms;
+    --orizon-motion-transition-duration-fast: var(--orizon-motion-transition-duration-instant);
+    --orizon-motion-transition-duration-normal: var(--orizon-motion-transition-duration-instant);
+    --orizon-motion-transition-duration-slow: var(--orizon-motion-transition-duration-instant);
+    --orizon-motion-transition-duration-complex: var(--orizon-motion-transition-duration-instant);
 }
 
 @media (prefers-reduced-motion: reduce) {
     :root {
-        --orizon-duration-fast: 0ms;
-        --orizon-duration-normal: 0ms;
-        --orizon-duration-slow: 0ms;
+        --orizon-motion-transition-duration-fast: var(--orizon-motion-transition-duration-instant);
+        --orizon-motion-transition-duration-normal: var(--orizon-motion-transition-duration-instant);
+        --orizon-motion-transition-duration-slow: var(--orizon-motion-transition-duration-instant);
+        --orizon-motion-transition-duration-complex: var(--orizon-motion-transition-duration-instant);
+    }
+}
+/* High Contrast Focus Contract */
+@media (prefers-contrast: more) {
+    :root {
+        --orizon-focus-opacity: 1;
+        --orizon-focus-width: var(--orizon-border-width-4);
+        --orizon-focus-offset: 3px;
+    }
+}
+
+@media (forced-colors: active) {
+    :root {
+        --orizon-focus-color: var(--orizon-focus-high-contrast-color);
+        --orizon-focus-keyboard-color: var(--orizon-focus-high-contrast-color);
+        --orizon-focus-visible-color: var(--orizon-focus-high-contrast-color);
+        --orizon-focus-within-color: var(--orizon-focus-high-contrast-color);
+        --orizon-focus-width: var(--orizon-focus-high-contrast-width);
+        --orizon-focus-offset: var(--orizon-focus-high-contrast-offset);
+        --orizon-focus-shadow: none;
+        --orizon-focus-keyboard-shadow: none;
+        --orizon-focus-visible-shadow: none;
+        --orizon-focus-within-shadow: none;
+        --orizon-focus-outline: var(--orizon-focus-high-contrast-width) solid transparent;
+        --orizon-focus-outline-color: var(--orizon-focus-high-contrast-color);
+    }
+
+    :is(
+        [class^="orizon-"],
+        [class*=" orizon-"]
+    ) :focus-visible,
+    :is(
+        [class^="orizon-"],
+        [class*=" orizon-"]
+    ):focus-visible {
+        outline: var(--orizon-focus-high-contrast-width) solid var(--orizon-focus-high-contrast-color);
+        outline-offset: var(--orizon-focus-high-contrast-offset);
+        forced-color-adjust: auto;
     }
 }

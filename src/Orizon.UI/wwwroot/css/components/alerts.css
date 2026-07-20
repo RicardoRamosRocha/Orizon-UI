@@ -62,8 +62,8 @@
 }
 
 .orizon-alert__close:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
+    outline: var(--orizon-focus-outline);
+    outline-offset: var(--orizon-focus-offset);
 }
 
 .orizon-alert--info {
@@ -92,8 +92,8 @@
 
 .orizon-alert--neutral {
     color: var(--orizon-color-text-secondary);
-    background: var(--orizon-color-surface-secondary);
-    border-color: var(--orizon-color-border);
+    background: var(--orizon-surface-1-hover);
+    border-color: var(--orizon-surface-1-border);
 }
 
 .orizon-alert.is-closing {

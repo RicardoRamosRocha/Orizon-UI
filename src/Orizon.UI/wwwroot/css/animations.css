@@ -53,32 +53,32 @@
 .orizon-animate-fade-in {
     animation:
         orizon-fade-in
-        var(--orizon-duration-normal)
-        var(--orizon-easing-standard)
+        var(--orizon-motion-duration-normal)
+        var(--orizon-motion-ease-decelerate)
         both;
 }
 
 .orizon-animate-fade-up {
     animation:
         orizon-fade-up
-        var(--orizon-duration-normal)
-        var(--orizon-easing-standard)
+        var(--orizon-motion-duration-normal)
+        var(--orizon-motion-ease-decelerate)
         both;
 }
 
 .orizon-animate-scale-in {
     animation:
         orizon-scale-in
-        var(--orizon-duration-normal)
-        var(--orizon-easing-standard)
+        var(--orizon-motion-duration-normal)
+        var(--orizon-motion-ease-decelerate)
         both;
 }
 
 .orizon-animate-slide-in-left {
     animation:
         orizon-slide-in-left
-        var(--orizon-duration-normal)
-        var(--orizon-easing-standard)
+        var(--orizon-motion-duration-normal)
+        var(--orizon-motion-ease-decelerate)
         both;
 }
 
@@ -97,5 +97,20 @@
     .orizon-animate-slide-in-left,
     .orizon-animate-spin {
         animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :where([class^="orizon-"], [class*=" orizon-"]) {
+        scroll-behavior: auto !important;
+    }
+
+    :where([class^="orizon-"], [class*=" orizon-"]),
+    :where([class^="orizon-"], [class*=" orizon-"])::before,
+    :where([class^="orizon-"], [class*=" orizon-"])::after {
+        animation-duration: var(--orizon-motion-duration-instant) !important;
+        animation-iteration-count: 1 !important;
+        transition-delay: var(--orizon-motion-delay-instant) !important;
+        transition-duration: var(--orizon-motion-duration-instant) !important;
     }
 }

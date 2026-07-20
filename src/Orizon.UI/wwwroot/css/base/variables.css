@@ -1,9 +1,10 @@
 :root {
-    --orizon-primary: #2563eb;
+    /* Deprecated compatibility aliases. Canonical values live in design-tokens.css. */
+    --orizon-primary: var(--orizon-brand-primary);
 
-    --orizon-background: #f8fafc;
-    --orizon-surface: #ffffff;
+    --orizon-background: var(--orizon-color-background);
+    --orizon-surface: var(--orizon-color-surface);
 
-    --orizon-text: #0f172a;
-    --orizon-border: #e2e8f0;
+    --orizon-text: var(--orizon-color-text-primary);
+    --orizon-border: var(--orizon-color-border);
 }

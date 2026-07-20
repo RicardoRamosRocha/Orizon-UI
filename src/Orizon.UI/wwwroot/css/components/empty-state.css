@@ -5,8 +5,8 @@
     padding: var(--orizon-space-8);
     color: var(--orizon-color-text-secondary);
     text-align: center;
-    background: var(--orizon-color-surface);
-    border: 1px dashed var(--orizon-color-border-strong);
+    background: var(--orizon-surface-1-background);
+    border: 1px dashed var(--orizon-surface-2-border);
     border-radius: var(--orizon-radius-xl);
 }
 
