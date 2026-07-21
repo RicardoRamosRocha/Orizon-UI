@@ -1,311 +1,640 @@
-.orizon-card{
+/*
+ * Orizon Card
+ * Reference implementation for surfaces, spacing, elevation and interaction.
+ */
 
-    position:relative;
-
-    display:block;
-
-    overflow:hidden;
-
-    color:var(--orizon-color-text-primary);
-
-    background:var(--orizon-surface-0);
-
-    border:1px solid var(--orizon-border-soft);
-
-    border-radius:var(--orizon-radius-xl);
-
-    box-shadow:var(--orizon-shadow-sm);
-
-    text-decoration:none;
-
-    transition:
-        background .22s ease,
-        border-color .22s ease,
-        box-shadow .22s ease,
-        transform .22s ease;
-
+/* Shared visual contract. Repeated class selectors intentionally outrank legacy
+   component files loaded later without changing their public API. */
+.orizon-card,
+.orizon-stat-card.orizon-stat-card,
+.orizon-kpi-card.orizon-kpi-card,
+.orizon-metric-card.orizon-metric-card,
+.orizon-dashboard-widget.orizon-dashboard-widget {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--orizon-color-text-primary);
+    background: var(--orizon-card-background);
+    border: var(--orizon-card-border-width) var(--orizon-card-border-style) var(--orizon-card-border);
+    border-radius: var(--orizon-card-radius);
+    box-shadow: var(--orizon-card-shadow);
+    text-decoration: none;
+    transition: var(--orizon-card-transition);
 }
 
-.orizon-card:hover {
+.orizon-card {
+    display: block;
+}
+
+.orizon-stat-card.orizon-stat-card {
+    display: flex;
+    gap: var(--orizon-card-gap-spacious);
+    padding: var(--orizon-card-padding-default);
+}
+
+.orizon-kpi-card.orizon-kpi-card,
+.orizon-metric-card.orizon-metric-card {
+    display: grid;
+    gap: var(--orizon-card-gap-default);
+    padding: var(--orizon-card-padding-default);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget {
+    display: grid;
+}
+
+/* Interaction states */
+.orizon-card:hover,
+.orizon-stat-card.orizon-stat-card:hover,
+.orizon-kpi-card.orizon-kpi-card:hover,
+.orizon-metric-card.orizon-metric-card:hover,
+.orizon-dashboard-widget.orizon-dashboard-widget:hover {
     color: var(--orizon-color-text-primary);
+    border-color: var(--orizon-card-border-hover);
+    box-shadow: var(--orizon-card-shadow-hover);
     text-decoration: none;
 }
 
-.orizon-card--hoverable:hover{
-
-    border-color:var(--orizon-border-accent);
-
-    box-shadow:var(--orizon-shadow-xl);
-
-    transform:translateY(-4px);
-
+.orizon-card--hoverable:hover,
+.orizon-stat-card.orizon-stat-card--actionable:hover {
+    transform: translateY(var(--orizon-card-hover-translate-y));
 }
 
-.orizon-card--hoverable:hover {
-    border-color: var(--orizon-color-border-strong);
-    box-shadow: var(--orizon-shadow-md);
-    transform: translateY(-2px);
+.orizon-card--hoverable:active:not([aria-disabled="true"]),
+.orizon-stat-card.orizon-stat-card--actionable:active:not([aria-disabled="true"]) {
+    background: var(--orizon-card-background-hover);
+    box-shadow: var(--orizon-card-shadow);
+    transform: translateY(var(--orizon-card-active-translate-y)) scale(var(--orizon-card-pressed-scale));
 }
 
-.orizon-card--elevated {
-    border-color: transparent;
-    box-shadow: var(--orizon-shadow-lg);
+.orizon-card:focus-visible,
+.orizon-stat-card.orizon-stat-card--actionable:focus-visible,
+.orizon-kpi-card.orizon-kpi-card:focus-visible,
+.orizon-metric-card.orizon-metric-card:focus-visible,
+.orizon-dashboard-widget.orizon-dashboard-widget:focus-visible {
+    outline: var(--orizon-focus-outline);
+    outline-offset: var(--orizon-focus-offset);
+    border-color: var(--orizon-focus-visible-color);
+    box-shadow: var(--orizon-focus-visible-shadow), var(--orizon-card-shadow-hover);
 }
 
-.orizon-card--outlined {
-    box-shadow: none;
+.orizon-card:focus-within,
+.orizon-stat-card.orizon-stat-card:focus-within,
+.orizon-kpi-card.orizon-kpi-card:focus-within,
+.orizon-metric-card.orizon-metric-card:focus-within,
+.orizon-dashboard-widget.orizon-dashboard-widget:focus-within {
+    border-color: var(--orizon-focus-within-color);
 }
 
-.orizon-card--muted {
-    background: var(--orizon-color-surface-secondary);
-    box-shadow: none;
+.orizon-card[aria-current],
+.orizon-card[aria-selected="true"],
+.orizon-stat-card.orizon-stat-card[aria-current],
+.orizon-stat-card.orizon-stat-card[aria-selected="true"],
+.orizon-kpi-card.orizon-kpi-card[aria-current],
+.orizon-kpi-card.orizon-kpi-card[aria-selected="true"],
+.orizon-metric-card.orizon-metric-card[aria-current],
+.orizon-metric-card.orizon-metric-card[aria-selected="true"],
+.orizon-dashboard-widget.orizon-dashboard-widget[aria-current],
+.orizon-dashboard-widget.orizon-dashboard-widget[aria-selected="true"] {
+    background: var(--orizon-card-background-selected);
+    border-color: var(--orizon-card-border-selected);
+    box-shadow: var(--orizon-card-shadow-selected);
 }
 
+.orizon-card[aria-disabled="true"],
+.orizon-card.is-disabled,
+.orizon-stat-card.orizon-stat-card[aria-disabled="true"],
+.orizon-stat-card.orizon-stat-card.is-disabled,
+.orizon-kpi-card.orizon-kpi-card[aria-disabled="true"],
+.orizon-kpi-card.orizon-kpi-card.is-disabled,
+.orizon-metric-card.orizon-metric-card[aria-disabled="true"],
+.orizon-metric-card.orizon-metric-card.is-disabled,
+.orizon-dashboard-widget.orizon-dashboard-widget[aria-disabled="true"],
+.orizon-dashboard-widget.orizon-dashboard-widget.is-disabled {
+    opacity: var(--orizon-card-disabled-opacity);
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+}
+
+/* Official padding scale */
 .orizon-card--padding-none {
-    padding: 0;
+    padding: var(--orizon-card-padding-none);
 }
 
-.orizon-card--padding-sm {
-    padding: 1rem;
+.orizon-card--padding-sm,
+.orizon-metric-card.orizon-metric-card.is-compact {
+    padding: var(--orizon-card-padding-compact);
 }
 
 .orizon-card--padding-md {
-    padding: var(--orizon-density-card-padding);
+    padding: var(--orizon-card-padding-default);
 }
 
 .orizon-card--padding-lg {
-    padding: 1.5rem;
+    padding: var(--orizon-card-padding-spacious);
 }
 
-.orizon-card__header{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:1rem;
-
-    margin-bottom:1.25rem;
-
-}
-
-.orizon-card__icon{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:52px;
-
-    height:52px;
-
-    flex:0 0 auto;
-
-    color:white;
-
-    background:var(--orizon-gradient-primary);
-
-    border-radius:var(--orizon-radius-lg);
-
-    box-shadow:var(--orizon-shadow-primary);
-
-    font-size:1.3rem;
-
+/* Standard card anatomy */
+.orizon-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--orizon-card-header-gap);
+    margin-block-end: var(--orizon-card-header-spacing);
 }
 
 .orizon-card__heading {
-    min-width: 0;
+    display: grid;
     flex: 1;
+    min-width: 0;
+    gap: var(--orizon-card-title-spacing);
 }
 
-.orizon-card__title{
-
-    margin:0;
-
-    font-size:1.05rem;
-
-    font-weight:700;
-
-    letter-spacing:-.02em;
-
-    color:var(--orizon-color-text-primary);
-
+.orizon-card__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: var(--orizon-card-icon-size);
+    height: var(--orizon-card-icon-size);
+    color: var(--orizon-color-text-inverse);
+    background: var(--orizon-gradient-primary);
+    border-radius: var(--orizon-radius-lg);
+    box-shadow: var(--orizon-elevation-2);
+    font-size: var(--orizon-icon-size-lg);
 }
 
-.orizon-card__subtitle{
-
-    margin-top:.35rem;
-
-    color:var(--orizon-color-text-secondary);
-
-    font-size:.85rem;
-
+.orizon-card__title {
+    margin: var(--orizon-space-0);
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-card-title-size);
+    font-weight: var(--orizon-card-title-weight);
+    letter-spacing: var(--orizon-card-title-letter-spacing);
+    line-height: var(--orizon-line-height-tight);
 }
 
-.orizon-card__body{
+.orizon-card__subtitle {
+    margin: var(--orizon-space-0);
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-card-subtitle-size);
+    line-height: var(--orizon-line-height-normal);
+}
 
-    color:var(--orizon-color-text-secondary);
-
-    line-height:1.75;
-
+.orizon-card__body {
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-card-description-size);
+    line-height: var(--orizon-line-height-relaxed);
 }
 
 .orizon-card__body > :first-child {
-    margin-top: 0;
+    margin-block-start: var(--orizon-space-0);
 }
 
 .orizon-card__body > :last-child {
-    margin-bottom: 0;
+    margin-block-end: var(--orizon-space-0);
 }
 
-.orizon-card--glass{
-
-    background:var(--orizon-glass-background);
-
-    backdrop-filter:var(--orizon-glass-backdrop);
-
-    border:1px solid var(--orizon-glass-border);
-
-    box-shadow:var(--orizon-glass-shadow);
-
+/* Surface and elevation variants */
+.orizon-card--elevated,
+.orizon-card--premium {
+    border-color: var(--orizon-surface-2-border);
+    box-shadow: var(--orizon-card-shadow-elevated);
 }
 
-.orizon-card--gradient{
-
-    color:white;
-
-    background:var(--orizon-gradient-primary);
-
-    border:none;
-
+.orizon-card--elevated:hover,
+.orizon-card--premium:hover {
+    border-color: var(--orizon-card-border-hover);
+    box-shadow: var(--orizon-surface-4-shadow);
 }
 
-.orizon-card--gradient
-.orizon-card__title,
-
-.orizon-card--gradient
-.orizon-card__subtitle,
-
-.orizon-card--gradient
-.orizon-card__body{
-
-    color:white;
-
+.orizon-card--outlined {
+    background: var(--orizon-card-background);
+    box-shadow: var(--orizon-elevation-0);
 }
 
-.orizon-card--premium{
-
-    border:1px solid var(--orizon-border-soft);
-
-    box-shadow:var(--orizon-shadow-lg);
-
+.orizon-card--muted {
+    background: var(--orizon-surface-1-hover);
+    box-shadow: var(--orizon-elevation-0);
 }
 
-.orizon-card--premium:hover{
-
-    border-color:var(--orizon-border-accent);
-
-    box-shadow:var(--orizon-shadow-2xl);
-
+.orizon-card--glass {
+    background: var(--orizon-surface-2-glass);
+    border-color: var(--orizon-surface-2-border);
+    box-shadow: var(--orizon-surface-2-shadow);
+    backdrop-filter: var(--orizon-glass-backdrop);
 }
 
-.orizon-card--neon{
-
-    border:1px solid rgba(59,130,246,.28);
-
-    box-shadow:
-
-        var(--orizon-glow-blue),
-
-        var(--orizon-shadow-primary);
-
+.orizon-card--glass:hover {
+    background: var(--orizon-surface-4-glass);
+    border-color: var(--orizon-card-border-hover);
+    box-shadow: var(--orizon-surface-3-shadow);
 }
 
-.orizon-card--neon:hover{
-
-    box-shadow:
-
-        0 0 35px rgba(59,130,246,.22),
-
-        var(--orizon-shadow-primary);
-
+.orizon-card--gradient {
+    color: var(--orizon-color-text-inverse);
+    background: var(--orizon-gradient-primary);
+    border-color: var(--orizon-palette-transparent);
 }
 
-.orizon-card--analytics{
-
-    background:linear-gradient(
-        180deg,
-        white,
-        #fbfcff
-    );
-
+.orizon-card--gradient :is(.orizon-card__title, .orizon-card__subtitle, .orizon-card__body),
+.orizon-card--ai,
+.orizon-card--ai * {
+    color: var(--orizon-color-text-inverse);
 }
 
-.orizon-card--kpi{
-
-    padding:2rem;
-
+.orizon-card--ai {
+    background: var(--orizon-gradient-ai);
+    border-color: var(--orizon-palette-transparent);
 }
 
-.orizon-card--accent{
-
-    border-top:4px solid var(--orizon-color-primary);
-
+.orizon-card--neon {
+    border-color: var(--orizon-border-accent);
+    box-shadow: var(--orizon-glow-blue), var(--orizon-card-shadow);
 }
 
-.orizon-card--ai{
-
-    background:var(--orizon-gradient-ai);
-
-    border:none;
-
-    color:white;
-
+.orizon-card--neon:hover,
+.orizon-card--glow:hover {
+    border-color: var(--orizon-border-accent);
+    box-shadow: var(--orizon-glow-blue), var(--orizon-card-shadow-hover);
 }
 
-.orizon-card--ai *{
-
-    color:white;
-
+.orizon-card--analytics {
+    background: var(--orizon-surface-1-background);
 }
 
-.orizon-card--glow:hover{
-
-    box-shadow:
-
-        var(--orizon-glow-blue),
-
-        var(--orizon-shadow-xl);
-
+.orizon-card--kpi {
+    padding: var(--orizon-card-padding-spacious);
 }
 
-.orizon-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.05),
-        transparent);
-
-    opacity:0;
-
-    transition:.35s;
-
-    pointer-events:none;
-
+.orizon-card--accent {
+    border-block-start-width: var(--orizon-border-width-4);
+    border-block-start-color: var(--orizon-brand-primary);
 }
 
-.orizon-card:hover::before{
+/* Stat Card derives from the same surface and spacing contract. */
+.orizon-stat-card {
+    --orizon-card-accent: var(--orizon-brand-primary);
+    --orizon-card-accent-soft: var(--orizon-brand-primary-soft);
+}
 
-    opacity:1;
+.orizon-stat-card--success {
+    --orizon-card-accent: var(--orizon-focus-success-color);
+    --orizon-card-accent-soft: var(--orizon-color-success-soft);
+}
 
+.orizon-stat-card--danger {
+    --orizon-card-accent: var(--orizon-focus-error-color);
+    --orizon-card-accent-soft: var(--orizon-color-danger-soft);
+}
+
+.orizon-stat-card--warning {
+    --orizon-card-accent: var(--orizon-focus-warning-color);
+    --orizon-card-accent-soft: var(--orizon-color-warning-soft);
+}
+
+.orizon-stat-card__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: var(--orizon-card-icon-size);
+    height: var(--orizon-card-icon-size);
+    color: var(--orizon-card-accent);
+    background: var(--orizon-card-accent-soft);
+    border-radius: var(--orizon-radius-lg);
+    font-size: var(--orizon-icon-size-lg);
+}
+
+.orizon-stat-card__body {
+    display: grid;
+    min-width: 0;
+    gap: var(--orizon-card-gap-compact);
+}
+
+.orizon-stat-card__title,
+.orizon-stat-card__description {
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-card-description-size);
+}
+
+.orizon-stat-card__value {
+    overflow-wrap: anywhere;
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-2xl);
+    line-height: var(--orizon-line-height-tight);
+}
+
+.orizon-stat-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--orizon-card-action-gap);
+}
+
+.orizon-stat-card__trend {
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-semibold);
+}
+
+.orizon-stat-card__trend--positive {
+    color: var(--orizon-focus-success-color);
+}
+
+.orizon-stat-card__trend--negative {
+    color: var(--orizon-focus-error-color);
+}
+
+.orizon-stat-card__trend--neutral {
+    color: var(--orizon-color-text-secondary);
+}
+
+/* KPI and Metric Cards reuse the same anatomy and spacing scale. */
+.orizon-kpi-card {
+    --orizon-card-accent: var(--orizon-brand-primary);
+    --orizon-card-accent-soft: var(--orizon-brand-primary-soft);
+}
+
+.orizon-kpi-card--success {
+    --orizon-card-accent: var(--orizon-focus-success-color);
+    --orizon-card-accent-soft: var(--orizon-color-success-soft);
+}
+
+.orizon-kpi-card--danger {
+    --orizon-card-accent: var(--orizon-focus-error-color);
+    --orizon-card-accent-soft: var(--orizon-color-danger-soft);
+}
+
+.orizon-kpi-card--warning {
+    --orizon-card-accent: var(--orizon-focus-warning-color);
+    --orizon-card-accent-soft: var(--orizon-color-warning-soft);
+}
+
+.orizon-kpi-card.orizon-kpi-card > header,
+.orizon-metric-card.orizon-metric-card > header {
+    display: flex;
+    align-items: center;
+    gap: var(--orizon-card-header-gap);
+}
+
+.orizon-kpi-card.orizon-kpi-card > header > div,
+.orizon-metric-card.orizon-metric-card > header > div {
+    display: grid;
+    gap: var(--orizon-card-title-spacing);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__icon,
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: var(--orizon-card-icon-size-compact);
+    height: var(--orizon-card-icon-size-compact);
+    color: var(--orizon-card-accent);
+    background: var(--orizon-card-accent-soft);
+    border-radius: var(--orizon-radius-lg);
+    font-size: var(--orizon-icon-size-md);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__title {
+    color: var(--orizon-color-text-primary);
+    font-weight: var(--orizon-card-title-weight);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__subtitle,
+.orizon-metric-card.orizon-metric-card > header small {
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-font-size-xs);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__metric,
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__value {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--orizon-card-gap-compact);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__metric strong,
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__value strong {
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-font-size-3xl);
+    line-height: var(--orizon-line-height-none);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__percentage,
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__value span {
+    color: var(--orizon-card-accent);
+    font-size: var(--orizon-font-size-sm);
+    font-weight: var(--orizon-font-weight-bold);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__percentage--positive {
+    color: var(--orizon-focus-success-color);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__percentage--negative {
+    color: var(--orizon-focus-error-color);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__indicator {
+    height: var(--orizon-space-1-5);
+    overflow: hidden;
+    background: var(--orizon-surface-1-hover);
+    border-radius: var(--orizon-radius-full);
+}
+
+.orizon-kpi-card.orizon-kpi-card .orizon-kpi-card__indicator span {
+    display: block;
+    height: 100%;
+    max-width: 100%;
+    background: var(--orizon-card-accent);
+    border-radius: inherit;
+}
+
+.orizon-metric-card {
+    --orizon-card-accent: var(--orizon-brand-primary);
+    --orizon-card-accent-soft: var(--orizon-brand-primary-soft);
+}
+
+.orizon-metric-card--positive {
+    --orizon-card-accent: var(--orizon-focus-success-color);
+    --orizon-card-accent-soft: var(--orizon-color-success-soft);
+}
+
+.orizon-metric-card--negative {
+    --orizon-card-accent: var(--orizon-focus-error-color);
+    --orizon-card-accent-soft: var(--orizon-color-danger-soft);
+}
+
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__sparkline {
+    height: var(--orizon-space-14);
+}
+
+.orizon-metric-card.orizon-metric-card .orizon-metric-card__sparkline svg {
+    width: 100%;
+    height: 100%;
+}
+
+.orizon-metric-card.orizon-metric-card > :is(p, footer) {
+    margin: var(--orizon-space-0);
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-font-size-xs);
+}
+
+.orizon-metric-card.orizon-metric-card.is-compact .orizon-metric-card__value strong {
+    font-size: var(--orizon-font-size-2xl);
+}
+
+/* Dashboard Card sections consume the same header/footer spacing scale. */
+.orizon-dashboard-widget.orizon-dashboard-widget > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--orizon-card-header-gap);
+    padding: var(--orizon-card-padding-compact) var(--orizon-card-padding-default);
+    border-block-end: var(--orizon-card-border-width) var(--orizon-card-border-style) var(--orizon-card-border);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget .orizon-dashboard-widget__heading {
+    display: flex;
+    align-items: center;
+    gap: var(--orizon-card-icon-spacing);
+    min-width: 0;
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget .orizon-dashboard-widget__heading > span {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: var(--orizon-card-icon-size-compact);
+    height: var(--orizon-card-icon-size-compact);
+    color: var(--orizon-brand-primary);
+    background: var(--orizon-brand-primary-soft);
+    border-radius: var(--orizon-radius-lg);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget h2 {
+    margin: var(--orizon-space-0);
+    color: var(--orizon-color-text-primary);
+    font-size: var(--orizon-card-title-size);
+    font-weight: var(--orizon-card-title-weight);
+    letter-spacing: var(--orizon-card-title-letter-spacing);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget header p {
+    margin: var(--orizon-card-title-spacing) var(--orizon-space-0) var(--orizon-space-0);
+    color: var(--orizon-color-text-secondary);
+    font-size: var(--orizon-card-subtitle-size);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget .orizon-dashboard-widget__actions {
+    display: flex;
+    gap: var(--orizon-card-action-gap);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget .orizon-dashboard-widget__body {
+    min-height: var(--orizon-space-32);
+    padding: var(--orizon-card-padding-default);
+}
+
+.orizon-dashboard-widget.orizon-dashboard-widget > footer {
+    display: flex;
+    align-items: center;
+    gap: var(--orizon-card-footer-gap);
+    padding: var(--orizon-card-footer-padding-block) var(--orizon-card-footer-padding-inline);
+    color: var(--orizon-color-text-secondary);
+    border-block-start: var(--orizon-card-border-width) var(--orizon-card-border-style) var(--orizon-card-border);
+    font-size: var(--orizon-font-size-xs);
+}
+
+/* Loading and skeleton states */
+.orizon-card[aria-busy="true"],
+.orizon-card.is-loading,
+.orizon-stat-card.orizon-stat-card[aria-busy="true"],
+.orizon-stat-card.orizon-stat-card.is-loading,
+.orizon-kpi-card.orizon-kpi-card[aria-busy="true"],
+.orizon-kpi-card.orizon-kpi-card.is-loading,
+.orizon-metric-card.orizon-metric-card[aria-busy="true"],
+.orizon-metric-card.orizon-metric-card.is-loading,
+.orizon-dashboard-widget.orizon-dashboard-widget[aria-busy="true"],
+.orizon-dashboard-widget.orizon-dashboard-widget.is-loading {
+    cursor: progress;
+    pointer-events: none;
+}
+
+:is(
+    .orizon-card,
+    .orizon-stat-card,
+    .orizon-kpi-card,
+    .orizon-metric-card,
+    .orizon-dashboard-widget
+) .orizon-skeleton {
+    border-radius: var(--orizon-radius-md);
+}
+
+.orizon-stat-card.is-loading .orizon-skeleton--rectangle,
+.orizon-kpi-card.is-loading .orizon-skeleton--rectangle,
+.orizon-metric-card.is-loading .orizon-skeleton--rectangle {
+    width: 100%;
+    height: var(--orizon-card-skeleton-line-height);
+}
+
+.orizon-dashboard-widget.is-loading .orizon-skeleton--card {
+    width: 100%;
+    height: var(--orizon-space-32);
+}
+
+/* Dark mode keeps semantic accents readable against dark soft surfaces. */
+[data-theme="dark"] :is(.orizon-stat-card--success, .orizon-kpi-card--success, .orizon-metric-card--positive),
+:root[data-color-mode="dark"] :is(.orizon-stat-card--success, .orizon-kpi-card--success, .orizon-metric-card--positive) {
+    --orizon-card-accent: var(--orizon-palette-green-100);
+}
+
+[data-theme="dark"] :is(.orizon-stat-card--danger, .orizon-kpi-card--danger, .orizon-metric-card--negative),
+:root[data-color-mode="dark"] :is(.orizon-stat-card--danger, .orizon-kpi-card--danger, .orizon-metric-card--negative) {
+    --orizon-card-accent: var(--orizon-palette-red-100);
+}
+
+[data-theme="dark"] :is(.orizon-stat-card--warning, .orizon-kpi-card--warning),
+:root[data-color-mode="dark"] :is(.orizon-stat-card--warning, .orizon-kpi-card--warning) {
+    --orizon-card-accent: var(--orizon-palette-amber-100);
+}
+[data-theme="dark"] :is(.orizon-stat-card__trend--positive, .orizon-kpi-card__percentage--positive),
+:root[data-color-mode="dark"] :is(.orizon-stat-card__trend--positive, .orizon-kpi-card__percentage--positive) {
+    color: var(--orizon-palette-green-100);
+}
+
+[data-theme="dark"] :is(.orizon-stat-card__trend--negative, .orizon-kpi-card__percentage--negative),
+:root[data-color-mode="dark"] :is(.orizon-stat-card__trend--negative, .orizon-kpi-card__percentage--negative) {
+    color: var(--orizon-palette-red-100);
+}
+
+@media (forced-colors: active) {
+    :is(
+        .orizon-card,
+        .orizon-stat-card,
+        .orizon-kpi-card,
+        .orizon-metric-card,
+        .orizon-dashboard-widget
+    ) {
+        border-color: CanvasText;
+        forced-color-adjust: auto;
+    }
+
+    :is(
+        .orizon-card,
+        .orizon-stat-card,
+        .orizon-kpi-card,
+        .orizon-metric-card,
+        .orizon-dashboard-widget
+    ):focus-visible {
+        outline-color: Highlight;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orizon-card,
+    .orizon-stat-card,
+    .orizon-kpi-card,
+    .orizon-metric-card,
+    .orizon-dashboard-widget {
+        transition: none;
+    }
 }

@@ -1,0 +1,15 @@
+@{ ViewData["Title"] = "Input Playground"; ViewData["ApplicationName"] = "Orizon UI Playground"; }
+@section Styles { <link rel="stylesheet" href="~/css/playground.css" asp-append-version="true" /> }
+<main class="playground" data-playground-kind="input">
+ <header class="playground__header"><span>Interactive Playground</span><h1>Inputs</h1><p>Teste rótulos, conteúdo de apoio e estados do Orizon Input.</p></header>
+ <nav class="playground__tabs" aria-label="Playgrounds"><a href="/playground/buttons">Buttons</a><a href="/playground/cards">Cards</a><a href="/playground/badge">Badge</a><a class="is-active" href="/playground/inputs">Inputs</a></nav>
+ <div class="playground__workspace">
+  <aside class="playground-panel playground-config"><header><span>01</span><div><h2>Configuração</h2><p>Personalize as propriedades.</p></div></header><div class="playground-fields">
+   <label>Label<input type="text" value="E-mail corporativo" data-control="label" /></label><label>Placeholder<input type="text" value="nome@empresa.com" data-control="placeholder" /></label>
+   <div class="playground-checks"><label><input type="checkbox" data-control="readonly" /> Readonly</label><label><input type="checkbox" data-control="disabled" /> Disabled</label><label><input type="checkbox" data-control="required" /> Required</label></div>
+  </div></aside>
+  <section class="playground-panel playground-preview"><header><span>02</span><div><h2>Preview</h2><p>Componente real da Orizon UI.</p></div></header><div class="playground-stage" data-preview><div class="playground-input-wrap"><orizon-input name="PlaygroundEmail" type="email" label="E-mail corporativo" placeholder="nome@empresa.com" /></div></div></section>
+  <aside class="playground-panel playground-code"><header><span>03</span><div><h2>Código Razor</h2><p>Atualizado automaticamente.</p></div></header><div class="playground-code__block"><div><i></i><i></i><i></i><small>RAZOR</small></div><pre><code data-generated-code>&lt;orizon-input name=&quot;Email&quot; type=&quot;email&quot; label=&quot;E-mail corporativo&quot; placeholder=&quot;nome@empresa.com&quot; /&gt;</code></pre></div><button class="playground-copy" type="button" data-copy-code><orizon-icon name="copy" size="17" /><span>Copiar Código</span></button><p class="playground-copy__status" data-copy-status aria-live="polite"></p></aside>
+ </div>
+</main>
+@section Scripts { <script src="~/js/playground.js" asp-append-version="true"></script> }

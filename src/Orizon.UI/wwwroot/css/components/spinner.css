@@ -21,11 +21,5 @@
     border: 2px solid color-mix(in srgb, var(--orizon-color-primary-600) 22%, transparent);
     border-top-color: var(--orizon-color-primary-600);
     border-radius: 50%;
-    animation: orizon-spinner-spin 750ms linear infinite;
-}
-
-@keyframes orizon-spinner-spin {
-    to {
-        transform: rotate(360deg);
-    }
+    animation: orizon-spin var(--orizon-motion-loading) infinite;
 }

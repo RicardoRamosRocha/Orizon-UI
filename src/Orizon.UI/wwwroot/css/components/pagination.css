@@ -20,8 +20,8 @@
     min-height: 2.25rem;
     padding: 0.5rem 0.75rem;
     color: var(--orizon-color-text-secondary);
-    background: var(--orizon-color-surface);
-    border: 1px solid var(--orizon-color-border);
+    background: var(--orizon-surface-1-background);
+    border: 1px solid var(--orizon-surface-1-border);
     border-radius: var(--orizon-radius-md);
     font-size: var(--orizon-font-size-sm);
     font-weight: var(--orizon-font-weight-semibold);
@@ -30,12 +30,12 @@
 
 .orizon-pagination__item:hover {
     color: var(--orizon-color-text-primary);
-    border-color: var(--orizon-color-border-strong);
+    border-color: var(--orizon-surface-2-border);
 }
 
 .orizon-pagination__item:focus-visible {
-    box-shadow: var(--orizon-focus-ring);
-    outline: 0;
+    box-shadow: var(--orizon-focus-shadow);
+    outline: var(--orizon-focus-outline);
 }
 
 .orizon-pagination__item.is-current {
@@ -47,4 +47,20 @@
 .orizon-pagination__item.is-disabled {
     opacity: 0.55;
     cursor: not-allowed;
+}
+
+/* Accessibility & Focus Language */
+.orizon-pagination :is(a, button):focus-visible {
+    outline: var(--orizon-focus-outline);
+    outline-offset: var(--orizon-focus-offset);
+    box-shadow: var(--orizon-focus-visible-shadow);
+}
+.orizon-pagination :is([aria-current], [aria-selected="true"]) {
+    color: var(--orizon-color-text-inverse);
+    background: var(--orizon-focus-current-color);
+    border-color: var(--orizon-focus-current-color);
+}
+.orizon-pagination :is([aria-disabled="true"], :disabled) {
+    opacity: var(--orizon-state-disabled-opacity);
+    pointer-events: none;
 }

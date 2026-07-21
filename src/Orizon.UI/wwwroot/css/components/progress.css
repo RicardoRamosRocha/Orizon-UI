@@ -16,7 +16,7 @@
     width: 100%;
     height: 0.625rem;
     overflow: hidden;
-    background: var(--orizon-color-surface-secondary);
+    background: var(--orizon-surface-1-hover);
     border-radius: var(--orizon-radius-full);
 }
 
@@ -25,5 +25,5 @@
     height: 100%;
     background: var(--orizon-color-primary-600);
     border-radius: inherit;
-    transition: width var(--orizon-transition-normal);
+    transition: width var(--orizon-motion-fade);
 }

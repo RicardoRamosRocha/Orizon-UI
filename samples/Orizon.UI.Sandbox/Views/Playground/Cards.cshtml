@@ -1,0 +1,16 @@
+@{ ViewData["Title"] = "Card Playground"; ViewData["ApplicationName"] = "Orizon UI Playground"; }
+@section Styles { <link rel="stylesheet" href="~/css/playground.css" asp-append-version="true" /> }
+<main class="playground" data-playground-kind="card">
+ <header class="playground__header"><span>Interactive Playground</span><h1>Cards</h1><p>Explore conteúdo, superfície e espaçamento do Orizon Card.</p></header>
+ <nav class="playground__tabs" aria-label="Playgrounds"><a href="/playground/buttons">Buttons</a><a class="is-active" href="/playground/cards">Cards</a><a href="/playground/badge">Badge</a><a href="/playground/inputs">Inputs</a></nav>
+ <div class="playground__workspace">
+  <aside class="playground-panel playground-config"><header><span>01</span><div><h2>Configuração</h2><p>Personalize as propriedades.</p></div></header><div class="playground-fields">
+   <label>Título<input type="text" value="Performance overview" data-control="title" /></label><label>Subtítulo<input type="text" value="Últimos 30 dias" data-control="subtitle" /></label>
+   <label>Elevação<select data-control="elevation"><option value="default">Default</option><option value="elevated" selected>Elevated</option><option value="muted">Muted</option></select></label><label>Padding<select data-control="padding"><option value="none">None</option><option value="sm">Small</option><option value="md" selected>Medium</option><option value="lg">Large</option></select></label>
+   <div class="playground-checks"><label><input type="checkbox" data-control="bordered" /> Borda</label></div>
+  </div></aside>
+  <section class="playground-panel playground-preview"><header><span>02</span><div><h2>Preview</h2><p>Componente real da Orizon UI.</p></div></header><div class="playground-stage" data-preview><orizon-card title="Performance overview" subtitle="Últimos 30 dias" variant="elevated" padding="md"><div class="playground-card-content"><strong>84.2k</strong><span>+12,4% neste período</span><p>Usuários ativos mensais na plataforma.</p></div></orizon-card></div></section>
+  <aside class="playground-panel playground-code"><header><span>03</span><div><h2>Código Razor</h2><p>Atualizado automaticamente.</p></div></header><div class="playground-code__block"><div><i></i><i></i><i></i><small>RAZOR</small></div><pre><code data-generated-code>&lt;orizon-card title=&quot;Performance overview&quot; subtitle=&quot;Últimos 30 dias&quot; variant=&quot;elevated&quot; padding=&quot;md&quot;&gt;Conteúdo&lt;/orizon-card&gt;</code></pre></div><button class="playground-copy" type="button" data-copy-code><orizon-icon name="copy" size="17" /><span>Copiar Código</span></button><p class="playground-copy__status" data-copy-status aria-live="polite"></p></aside>
+ </div>
+</main>
+@section Scripts { <script src="~/js/playground.js" asp-append-version="true"></script> }

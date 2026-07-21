@@ -1,0 +1,172 @@
+@{
+    var currentPath = Context.Request.Path.Value?.TrimEnd('/').ToLowerInvariant() ?? "";
+    var groups = new[]
+    {
+        new
+        {
+            Title = "Featured",
+            Icon = "star",
+            Items = new[]
+            {
+                ("Featured Components", "/components/premium")
+            }
+        },
+        new
+        {
+            Title = "Playground",
+            Icon = "play",
+            Items = new[]
+            {
+                ("Buttons", "/playground/buttons"),
+                ("Cards", "/playground/cards"),
+                ("Badge", "/playground/badge"),
+                ("Inputs", "/playground/inputs")
+            }
+        },
+        new
+        {
+            Title = "Foundations",
+            Icon = "star",
+            Items = new[]
+            {
+                ("Colors", "/catalog/foundations/colors"),
+                ("Typography", "/catalog/foundations/typography"),
+                ("Icons", "/catalog/foundations/icons"),
+                ("Spacing", "/catalog/foundations/spacing"),
+                ("Shadows", "/catalog/foundations/shadows")
+            }
+        },
+        new
+        {
+            Title = "Components",
+            Icon = "box",
+            Items = new[]
+            {
+                ("Buttons", "/catalog/components/buttons"),
+                ("Cards", "/catalog/components/cards"),
+                ("Forms", "/catalog/components/forms"),
+                ("Inputs", "/catalog/components/inputs"),
+                ("Select", "/catalog/components/select"),
+                ("Badge", "/catalog/components/badge"),
+                ("Avatar", "/catalog/components/avatar"),
+                ("Modal", "/catalog/components/modal"),
+                ("Tabs", "/catalog/components/tabs"),
+                ("Toast", "/catalog/components/toast"),
+                ("Dropdown", "/catalog/components/dropdown"),
+                ("Table", "/catalog/components/table"),
+                ("Pagination", "/catalog/components/pagination"),
+                ("Spinner", "/catalog/components/spinner"),
+                ("Empty State", "/catalog/components/empty-state")
+            }
+        },
+        new
+        {
+            Title = "Layout",
+            Icon = "dashboard",
+            Items = new[]
+            {
+                ("Sidebar", "/catalog/layout/sidebar"),
+                ("Topbar", "/catalog/layout/topbar"),
+                ("Breadcrumb", "/catalog/layout/breadcrumb"),
+                ("Dashboard Layout", "/catalog/layout/dashboard")
+            }
+        },
+        new
+        {
+            Title = "Data",
+            Icon = "table",
+            Items = new[]
+            {
+                ("Enterprise Grid", "/catalog/data/enterprise-grid"),
+                ("Charts", "/catalog/data/charts"),
+                ("TreeView", "/catalog/data/tree-view")
+            }
+        },
+        new
+        {
+            Title = "Patterns",
+            Icon = "packages",
+            Items = new[]
+            {
+                ("CRUD", "/catalog/patterns/crud"),
+                ("Login", "/catalog/patterns/login"),
+                ("Dashboard", "/catalog/patterns/dashboard"),
+                ("Wizard", "/catalog/patterns/wizard"),
+                ("Settings", "/catalog/patterns/settings")
+            }
+        },
+        new
+        {
+            Title = "Templates",
+            Icon = "clipboard",
+            Items = new[]
+            {
+                ("ERP", "/catalog/templates/erp"),
+                ("CRM", "/catalog/templates/crm"),
+                ("Real Estate", "/catalog/templates/real-estate"),
+                ("Distribution", "/catalog/templates/distribution"),
+                ("Hair", "/catalog/templates/hair"),
+                ("Healthcare", "/catalog/templates/healthcare")
+            }
+        }
+    };
+}
+
+<div class="orizon-sidebar-header">
+    <a class="orizon-sidebar-brand" href="/" aria-label="Orizon UI Catalog">
+        <span class="orizon-sidebar-brand-mark" aria-hidden="true">O</span>
+        <span class="orizon-sidebar-brand-content">
+            <strong class="orizon-sidebar-brand-name">Orizon UI</strong>
+            <span class="orizon-sidebar-brand-product">Official Catalog</span>
+        </span>
+    </a>
+
+    <button type="button"
+            class="orizon-sidebar-collapse-button"
+            data-sidebar-collapse
+            aria-label="Recolher navegação"
+            aria-expanded="true">
+        <orizon-icon name="chevron-left" size="16" />
+    </button>
+</div>
+
+<nav class="orizon-sidebar-navigation" aria-label="Catálogo Orizon UI">
+    <div class="orizon-sidebar-section">
+        <a class="orizon-sidebar-link @(currentPath is "" or "/" ? "is-active" : null)"
+           href="/"
+           aria-current="@(currentPath is "" or "/" ? "page" : null)"
+           title="Home">
+            <orizon-icon name="house" size="19" class="orizon-sidebar-link-icon" />
+            <span class="orizon-sidebar-link-label">Home</span>
+        </a>
+    </div>
+
+    @foreach (var group in groups)
+    {
+        <div class="orizon-sidebar-section">
+            <span class="orizon-sidebar-section-title">@group.Title</span>
+
+            @foreach (var item in group.Items)
+            {
+                var active = currentPath == item.Item2;
+                <a class="orizon-sidebar-link @(active ? "is-active" : null)"
+                   href="@item.Item2"
+                   aria-current="@(active ? "page" : null)"
+                   title="@item.Item1">
+                    <orizon-icon name="@group.Icon" size="19" class="orizon-sidebar-link-icon" />
+                    <span class="orizon-sidebar-link-label">@item.Item1</span>
+                </a>
+            }
+        </div>
+    }
+</nav>
+
+<div class="orizon-sidebar-footer">
+    <div class="orizon-sidebar-user">
+        <span class="orizon-sidebar-user-avatar" aria-hidden="true">.NET</span>
+        <div class="orizon-sidebar-user-content">
+            <strong class="orizon-sidebar-user-name">Orizon UI</strong>
+            <span class="orizon-sidebar-user-role">ASP.NET Core · .NET 8</span>
+        </div>
+    </div>
+</div>

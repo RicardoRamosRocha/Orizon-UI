@@ -66,14 +66,7 @@ internal static class ChartIcons
                 <circle cx="18" cy="6" r="1"/>
                 """,
 
-            ["dashboard"] = """
-                <rect x="3" y="3" width="8" height="8" rx="2"/>
-                <rect x="13" y="3" width="8" height="5" rx="2"/>
-                <rect x="13" y="10" width="8" height="11" rx="2"/>
-                <rect x="3" y="13" width="8" height="8" rx="2"/>
-                """,
-
-            ["kpi"] = """
+                      ["kpi"] = """
                 <circle cx="12" cy="12" r="8"/>
                 <path d="M12 12 17 8"/>
                 <circle cx="12" cy="12" r="1"/>

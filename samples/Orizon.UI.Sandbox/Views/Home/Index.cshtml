@@ -1,8 +1,181 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Enterprise Design System";
+    ViewData["ApplicationName"] = "Orizon UI";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/showcase.css" asp-append-version="true" />
+}
+
+<div class="showcase">
+    <section class="showcase-hero" aria-labelledby="showcase-title">
+        <div class="hero-copy">
+            <span class="eyebrow">Design System para .NET 8</span>
+            <h1 id="showcase-title">Interfaces enterprise com uma base sólida.</h1>
+            <p class="hero-description">
+                Componentes Razor, tokens semânticos e padrões de aplicação para construir produtos
+                ASP.NET Core consistentes, acessíveis e prontos para evoluir.
+            </p>
+
+            <div class="hero-actions">
+                <a class="orizon-button orizon-button--solid orizon-button--primary orizon-button--lg showcase-cta"
+                   asp-controller="Components"
+                   asp-action="Index">
+                    <span class="orizon-button__content">Explorar componentes</span>
+                    <orizon-icon name="arrow-right" size="18" />
+                </a>
+                <a class="orizon-button orizon-button--outline orizon-button--neutral orizon-button--lg showcase-cta"
+                   asp-controller="Grid"
+                   asp-action="Index">
+                    <span class="orizon-button__content">Conhecer o Enterprise Grid</span>
+                </a>
+            </div>
+
+            <ul class="hero-stack" aria-label="Tecnologias suportadas">
+                <li>Razor Class Library</li>
+                <li>ASP.NET Core MVC</li>
+                <li>Dark mode</li>
+            </ul>
+        </div>
+
+        <div class="product-preview" aria-hidden="true">
+            <div class="preview-bar">
+                <span class="preview-dots"><i></i><i></i><i></i></span>
+                <span>orizon.app / overview</span>
+                <span class="preview-live"><i></i> Online</span>
+            </div>
+            <div class="preview-shell">
+                <aside class="preview-nav">
+                    <b>O</b><i class="is-active"></i><i></i><i></i><i></i><span></span><i></i>
+                </aside>
+                <div class="preview-main">
+                    <div class="preview-heading">
+                        <div><small>VISÃO GERAL</small><strong>Bom dia, Alex</strong></div>
+                        <span class="preview-avatar">AM</span>
+                    </div>
+                    <div class="preview-kpis">
+                        <article><small>Receita</small><strong>R$ 84,2 mil</strong><span>+12,4%</span></article>
+                        <article><small>Novos pedidos</small><strong>1.429</strong><span>+8,1%</span></article>
+                        <article><small>Conversão</small><strong>24,8%</strong><span>+3,2%</span></article>
+                    </div>
+                    <div class="preview-panels">
+                        <article class="preview-chart">
+                            <header><div><small>PERFORMANCE</small><strong>Receita por período</strong></div><span>6 meses</span></header>
+                            <div class="chart-area">
+                                <svg viewBox="0 0 500 180" focusable="false">
+                                    <path class="chart-fill" d="M0 150 C60 145 65 105 120 115 S190 75 245 90 S330 35 385 55 S445 22 500 18 L500 180 L0 180Z" />
+                                    <path class="chart-line" d="M0 150 C60 145 65 105 120 115 S190 75 245 90 S330 35 385 55 S445 22 500 18" />
+                                </svg>
+                                <div class="chart-labels"><span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span></div>
+                            </div>
+                        </article>
+                        <article class="preview-activity">
+                            <header><small>ATIVIDADE</small><strong>Eventos recentes</strong></header>
+                            <ul>
+                                <li><i>✓</i><span><b>Pagamento recebido</b><small>Há 2 minutos</small></span></li>
+                                <li><i>+</i><span><b>Novo cliente</b><small>Há 18 minutos</small></span></li>
+                                <li><i>↗</i><span><b>Relatório exportado</b><small>Há 1 hora</small></span></li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics" aria-label="Características verificáveis do Orizon UI">
+        <article><strong>.NET 8</strong><small>Target framework</small></article>
+        <article><strong>8</strong><small>Temas no bundle</small></article>
+        <article><strong>MVC</strong><small>Integração nativa</small></article>
+        <article><strong>Razor</strong><small>Class Library</small></article>
+    </section>
+
+    <section class="showcase-section featured" aria-labelledby="featured-title">
+        <header class="section-heading">
+            <span class="eyebrow">Componentes em destaque</span>
+            <h2 id="featured-title">Do primeiro formulário ao dashboard completo.</h2>
+            <p>Explore implementações reais do Sandbox, com estados, variações e exemplos de uso.</p>
+        </header>
+
+        <div class="feature-grid">
+            <a class="feature-card orizon-card" asp-controller="Components" asp-action="Buttons">
+                <span class="feature-icon"><orizon-icon name="check" size="22" /></span>
+                <span><strong>Buttons</strong><small>Ações, hierarquia e estados.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+            <a class="feature-card orizon-card" asp-controller="Components" asp-action="Forms">
+                <span class="feature-icon"><orizon-icon name="code" size="22" /></span>
+                <span><strong>Forms</strong><small>Campos acessíveis e validação.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+            <a class="feature-card orizon-card" asp-controller="Components" asp-action="Data">
+                <span class="feature-icon"><orizon-icon name="chart-line" size="22" /></span>
+                <span><strong>Data Components</strong><small>Busca, filtros, tabelas e KPIs.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+            <a class="feature-card orizon-card" asp-controller="Components" asp-action="Dashboard">
+                <span class="feature-icon"><orizon-icon name="dashboard" size="22" /></span>
+                <span><strong>Dashboard</strong><small>Métricas, gráficos e widgets.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+            <a class="feature-card orizon-card" asp-controller="Grid" asp-action="Index">
+                <span class="feature-icon"><orizon-icon name="chart-column" size="22" /></span>
+                <span><strong>Enterprise Grid</strong><small>Dados complexos em escala.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+            <a class="feature-card orizon-card" asp-controller="Components" asp-action="Templates">
+                <span class="feature-icon"><orizon-icon name="settings" size="22" /></span>
+                <span><strong>Templates</strong><small>Fluxos prontos para aplicações.</small></span>
+                <orizon-icon name="arrow-right" size="18" class="feature-arrow" />
+            </a>
+        </div>
+    </section>
+
+    <section class="grid-spotlight" aria-labelledby="grid-title">
+        <div class="spotlight-copy">
+            <span class="eyebrow">Componente flagship</span>
+            <h2 id="grid-title">Complexidade de dados sob controle.</h2>
+            <p>Operações server-side, virtualização e edição avançada para experiências de dados exigentes.</p>
+            <ul>
+                <li><orizon-icon name="check" size="17" /> Operações server-side</li>
+                <li><orizon-icon name="check" size="17" /> Virtualização</li>
+                <li><orizon-icon name="check" size="17" /> Filtros avançados</li>
+                <li><orizon-icon name="check" size="17" /> Edição em lote</li>
+            </ul>
+            <a class="orizon-button orizon-button--solid orizon-button--primary orizon-button--lg showcase-cta"
+               asp-controller="Grid"
+               asp-action="Index">
+                <span class="orizon-button__content">Abrir Enterprise Grid</span>
+                <orizon-icon name="arrow-right" size="18" />
+            </a>
+        </div>
+
+        <div class="grid-demo" aria-hidden="true">
+            <div class="grid-demo-toolbar"><div><strong>Clientes</strong><small>2.482 registros</small></div><span>Buscar registros</span></div>
+            <div class="grid-demo-table">
+                <div class="grid-row grid-row--head"><span>Cliente</span><span>Empresa</span><span>Status</span><span>Receita</span></div>
+                <div class="grid-row"><span><i>AM</i><b>Alex Morgan<small>alex@north.io</small></b></span><span>Northstar Labs</span><span><em>Ativo</em></span><span><b>R$ 48.250</b></span></div>
+                <div class="grid-row"><span><i>SK</i><b>Sarah Kim<small>sarah@apex.co</small></b></span><span>Apex Systems</span><span><em>Ativo</em></span><span><b>R$ 36.900</b></span></div>
+                <div class="grid-row"><span><i>JD</i><b>James Davis<small>james@orbit.dev</small></b></span><span>Orbit Digital</span><span><em class="is-pending">Pendente</em></span><span><b>R$ 21.480</b></span></div>
+            </div>
+            <div class="grid-demo-footer"><span>Exibindo 1–3 de 2.482</span><span>1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; …</span></div>
+        </div>
+    </section>
+
+    <section class="showcase-section templates" aria-labelledby="templates-title">
+        <header class="section-heading">
+            <span class="eyebrow">Application starters</span>
+            <h2 id="templates-title">Comece com padrões que já funcionam.</h2>
+            <p>Estruturas navegáveis para acelerar os fluxos mais comuns de produtos enterprise.</p>
+        </header>
+
+        <div class="template-grid">
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateAdmin"><span>Admin Dashboard</span><small>Visão operacional</small><orizon-icon name="arrow-right" size="18" /></a>
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateCrud"><span>CRUD Workspace</span><small>Gestão de registros</small><orizon-icon name="arrow-right" size="18" /></a>
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateForms"><span>Entity Form</span><small>Formulários complexos</small><orizon-icon name="arrow-right" size="18" /></a>
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateAnalytics"><span>Analytics</span><small>Indicadores e tendências</small><orizon-icon name="arrow-right" size="18" /></a>
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateKanban"><span>Kanban</span><small>Fluxos de trabalho</small><orizon-icon name="arrow-right" size="18" /></a>
+            <a class="template-card orizon-card" asp-controller="Components" asp-action="TemplateSettings"><span>Settings</span><small>Preferências organizadas</small><orizon-icon name="arrow-right" size="18" /></a>
+        </div>
+    </section>
 </div>
