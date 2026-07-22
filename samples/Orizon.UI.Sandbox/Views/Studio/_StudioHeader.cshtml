@@ -1,0 +1,33 @@
+@model StudioPageViewModel
+<header class="studio-header">
+    <div>
+        <span class="studio-kicker">Orizon Studio · Developer tools</span>
+        <h1>@Model.Section</h1>
+        <p>Explore, configure e copie implementações prontas sem sair do contexto da biblioteca.</p>
+    </div>
+    <div class="studio-search" data-studio-search>
+        <label for="studio-global-search">Pesquisa global do Studio</label>
+        <div class="studio-search__field">
+            <orizon-icon name="search" size="18" />
+            <input id="studio-global-search" type="search" placeholder="Componentes, ícones, templates..." autocomplete="off" aria-controls="studio-search-results" aria-expanded="false" />
+            <kbd>Ctrl K</kbd>
+        </div>
+        <div class="studio-search__results" id="studio-search-results" role="listbox" hidden>
+            @foreach (var item in Model.SearchItems)
+            {
+                <a href="@item.Url" role="option" data-search-value="@($"{item.Title} {item.Kind} {item.Keywords}".ToLowerInvariant())">
+                    <span>@item.Title</span><small>@item.Kind</small>
+                </a>
+            }
+            <p data-search-empty hidden>Nenhum resultado. Tente outro termo.</p>
+        </div>
+    </div>
+</header>
+
+<nav class="studio-tools" aria-label="Ferramentas do Studio">
+    <a class="@(Model.Section == "Component Explorer" ? "is-active" : null)" href="/studio/components"><orizon-icon name="box" size="17" />Component Explorer</a>
+    <a class="@(Model.Section == "Playground" ? "is-active" : null)" href="/studio/playground"><orizon-icon name="play" size="17" />Playground</a>
+    <a class="@(Model.Section == "Icon Explorer" ? "is-active" : null)" href="/studio/icons"><orizon-icon name="star" size="17" />Icon Explorer</a>
+    <a class="@(Model.Section == "Theme Builder" ? "is-active" : null)" href="/studio/theme"><orizon-icon name="gear" size="17" />Theme Builder</a>
+    <a class="@(Model.Section == "Layout Builder" ? "is-active" : null)" href="/studio/layout"><orizon-icon name="dashboard" size="17" />Layout Builder</a>
+</nav>

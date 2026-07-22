@@ -1,5 +1,6 @@
 namespace Orizon.UI.Icons;
 
+/// <summary>Provides case-insensitive lookup for the SVG markup of registered Orizon icons.</summary>
 public static class OrizonIconRegistry
 {
     private static readonly IReadOnlyDictionary<string, string> Icons = CreateRegistry();
@@ -36,6 +37,10 @@ public static class OrizonIconRegistry
             StringComparer.OrdinalIgnoreCase);
     }
 
+    /// <summary>Tries to retrieve the SVG markup registered for an icon name.</summary>
+    /// <param name="name">The icon name.</param>
+    /// <param name="svgContent">When successful, receives the registered SVG markup.</param>
+    /// <returns><see langword="true"/> when the icon exists; otherwise, <see langword="false"/>.</returns>
     public static bool TryGet(string name, out string svgContent)
     {
         return Icons.TryGetValue(name, out svgContent!);

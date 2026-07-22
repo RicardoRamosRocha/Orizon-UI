@@ -1,5 +1,6 @@
 param(
-    [string] $Configuration = "Release"
+    [string] $Configuration = "Release",
+    [string] $PackageVersion = "1.0.0-rc.1"
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,11 +22,16 @@ dotnet restore (Join-Path $repoRoot "Orizon.UI.sln")
 dotnet build (Join-Path $repoRoot "Orizon.UI.sln") --configuration $Configuration --no-restore
 dotnet test (Join-Path $repoRoot "Orizon.UI.sln") --configuration $Configuration --no-build
 dotnet pack (Join-Path $repoRoot "src/Orizon.UI/Orizon.UI.csproj") --configuration $Configuration --output $packageDir --no-build
+$package = Join-Path $packageDir "Orizon.UI.$PackageVersion.nupkg"
+$symbols = Join-Path $packageDir "Orizon.UI.$PackageVersion.snupkg"
+if (-not (Test-Path $package)) { throw "NuGet package not found: $package" }
+if (-not (Test-Path $symbols)) { throw "Symbol package not found: $symbols" }
+
 
 dotnet new mvc --framework net8.0 --output $consumerDir
 dotnet new nugetconfig --output $consumerDir
 dotnet nuget add source $packageDir --name OrizonLocalConsumer --configfile $consumerConfig
-dotnet add $consumerDir package Orizon.UI --version 1.0.0-mvp --source $packageDir
+dotnet add $consumerDir package Orizon.UI --version $PackageVersion --source $packageDir
 dotnet restore $consumerDir
 dotnet build $consumerDir --configuration $Configuration
 
