@@ -4,6 +4,19 @@
     {
         new
         {
+            Title = "Studio",
+            Icon = "terminal",
+            Items = new[]
+            {
+                ("Component Explorer", "/studio/components"),
+                ("Playground", "/studio/playground"),
+                ("Icon Explorer", "/studio/icons"),
+                ("Theme Builder", "/studio/theme"),
+                ("Layout Builder", "/studio/layout")
+            }
+        },
+        new
+        {
             Title = "Featured",
             Icon = "star",
             Items = new[]
@@ -88,11 +101,16 @@
             Icon = "packages",
             Items = new[]
             {
-                ("CRUD", "/catalog/patterns/crud"),
-                ("Login", "/catalog/patterns/login"),
+                ("CRUD Workspace", "/catalog/patterns/crud"),
                 ("Dashboard", "/catalog/patterns/dashboard"),
+                ("Login", "/catalog/patterns/login"),
                 ("Wizard", "/catalog/patterns/wizard"),
-                ("Settings", "/catalog/patterns/settings")
+                ("Search Experience", "/catalog/patterns/search"),
+                ("Master Detail", "/catalog/patterns/master-detail"),
+                ("Data Entry", "/catalog/patterns/data-entry"),
+                ("Approval Workflow", "/catalog/patterns/approval-workflow"),
+                ("Kanban Workspace", "/catalog/patterns/kanban"),
+                ("Analytics", "/catalog/patterns/analytics")
             }
         },
         new

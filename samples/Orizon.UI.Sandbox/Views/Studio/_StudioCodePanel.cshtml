@@ -1,0 +1,20 @@
+@model StudioComponentDocumentation
+<section class="studio-code" data-code-panel>
+    <header>
+        <div><span class="studio-eyebrow">Implementation</span><h2>Código pronto para produção</h2></div>
+        <div class="studio-code__tabs" role="tablist" aria-label="Formato do código">
+            <button type="button" class="is-active" role="tab" aria-selected="true" data-code-tab="razor">Razor</button>
+            <button type="button" role="tab" aria-selected="false" data-code-tab="html">HTML</button>
+            <button type="button" role="tab" aria-selected="false" data-code-tab="css">CSS</button>
+            <button type="button" role="tab" aria-selected="false" data-code-tab="csharp">C#</button>
+        </div>
+    </header>
+    <div class="studio-code__body">
+        <pre data-code-content="razor"><code>@Model.Razor</code></pre>
+        <pre data-code-content="html" hidden><code>@Model.Html</code></pre>
+        <pre data-code-content="css" hidden><code>@Model.Css</code></pre>
+        <pre data-code-content="csharp" hidden><code>@Model.CSharp</code></pre>
+        <button type="button" class="studio-copy" data-copy-active><orizon-icon name="copy" size="16" /><span>Copy Razor</span></button>
+    </div>
+    <p class="studio-copy-status" aria-live="polite"></p>
+</section>

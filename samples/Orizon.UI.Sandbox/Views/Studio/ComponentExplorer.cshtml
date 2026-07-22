@@ -1,0 +1,49 @@
+@model StudioPageViewModel
+@{ ViewData["Title"] = "Component Explorer"; ViewData["ApplicationName"] = "Orizon Studio"; var component = Model.Component!; }
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+
+<main class="studio" data-studio-page>
+    <partial name="_StudioHeader" model="Model" />
+    <div class="studio-explorer">
+        <aside class="studio-catalog" aria-label="Componentes">
+            <span class="studio-eyebrow">Library</span>
+            <h2>Componentes</h2>
+            <label class="studio-filter"><span class="sr-only">Filtrar componentes</span><input type="search" placeholder="Filtrar..." data-local-filter="component" /></label>
+            <nav>
+                @foreach (var item in Model.Components)
+                {
+                    <a class="@(item.Slug == component.Slug ? "is-active" : null)" href="/studio/components/@item.Slug" data-filter-item="component" data-filter-value="@item.Name.ToLowerInvariant()"><span>@item.Name</span><orizon-icon name="chevron-right" size="14" /></a>
+                }
+            </nav>
+        </aside>
+
+        <article class="studio-documentation">
+            <header class="studio-component-title"><div><span class="studio-kicker">Component / @component.Name</span><h2>@component.Name</h2><p>@component.Description</p></div><span class="studio-status"><i></i>Stable</span></header>
+
+            <section class="studio-preview-card">
+                <header><div><span class="studio-eyebrow">Live preview</span><h3>Preview</h3></div><div class="studio-viewport-switcher" data-viewport-controls><button type="button" class="is-active" data-viewport="desktop" aria-label="Preview desktop"><orizon-icon name="desktop" size="17" /></button><button type="button" data-viewport="tablet" aria-label="Preview tablet"><orizon-icon name="tablet" size="17" /></button><button type="button" data-viewport="mobile" aria-label="Preview mobile"><orizon-icon name="mobile" size="17" /></button></div></header>
+                <div class="studio-preview-shell" data-preview-shell data-size="desktop"><div class="studio-component-preview">
+                    @switch (component.Slug)
+                    {
+                        case "button": <orizon-button variant="solid" color="primary" size="md" icon="save">Salvar alterações</orizon-button> break;
+                        case "card": <orizon-card title="Receita mensal" subtitle="Atualizado agora" variant="elevated"><strong class="studio-metric">R$ 128.400</strong></orizon-card> break;
+                        case "badge": <orizon-badge variant="success">Ativo</orizon-badge> break;
+                        case "input": <div class="studio-demo-field"><label for="component-demo-input">E-mail</label><input id="component-demo-input" class="orizon-input" type="email" placeholder="nome@empresa.com" /></div> break;
+                        case "spinner": <orizon-spinner size="md" label="Carregando" /> break;
+                        default: <div class="studio-generic-component"><orizon-icon name="check" size="22" /><div><strong>@component.Name pronto</strong><span>@component.Description</span></div></div> break;
+                    }
+                </div></div>
+            </section>
+
+            <div class="studio-doc-grid">
+                <section><span class="studio-eyebrow">Structure</span><h3>Anatomia</h3><ol class="studio-anatomy">@for (var index = 0; index < component.Anatomy.Count; index++) { <li><span>@(index + 1)</span>@component.Anatomy[index]</li> }</ol></section>
+                <section><span class="studio-eyebrow">Options</span><h3>Variações</h3><div class="studio-chips">@foreach (var item in component.Variations) { <span>@item</span> }</div><h3 class="studio-subtitle">Estados</h3><div class="studio-state-list">@foreach (var item in component.States) { <span><i></i>@item</span> }</div></section>
+            </div>
+
+            <section class="studio-properties"><span class="studio-eyebrow">API reference</span><h3>Propriedades</h3><div class="studio-table" role="table">@foreach (var property in component.Properties) { <div role="row"><code role="cell">@property.Key</code><span role="cell">@property.Value</span></div> }</div></section>
+            <section class="studio-accessibility"><div class="studio-accessibility__icon"><orizon-icon name="shield" size="24" /></div><div><span class="studio-eyebrow">Accessibility</span><h3>Acessibilidade desde a base</h3><ul>@foreach (var item in component.Accessibility) { <li><orizon-icon name="check" size="15" />@item</li> }</ul></div></section>
+            <partial name="_StudioCodePanel" model="component" />
+        </article>
+    </div>
+</main>
+@section Scripts { <script src="~/js/studio.js" asp-append-version="true"></script> }

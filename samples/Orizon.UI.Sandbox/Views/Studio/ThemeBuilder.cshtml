@@ -1,0 +1,26 @@
+@model StudioPageViewModel
+@{ ViewData["Title"] = "Theme Builder"; ViewData["ApplicationName"] = "Orizon Studio"; }
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+<main class="studio" data-studio-page data-theme-builder>
+    <partial name="_StudioHeader" model="Model" />
+    <section class="studio-builder-intro"><div><span class="studio-kicker">Token sandbox</span><h2>Modele um tema com segurança</h2><p>As alterações vivem somente neste preview e desaparecem ao sair da página.</p></div><div class="studio-viewport-switcher" data-viewport-controls><button type="button" class="is-active" data-viewport="desktop" aria-label="Desktop"><orizon-icon name="desktop" size="17" /></button><button type="button" data-viewport="tablet" aria-label="Tablet"><orizon-icon name="tablet" size="17" /></button><button type="button" data-viewport="mobile" aria-label="Mobile"><orizon-icon name="mobile" size="17" /></button></div></section>
+    <div class="studio-theme-workspace">
+        <aside class="studio-controls"><header><span>01</span><div><h3>Design Tokens</h3><p>Ajustes temporários</p></div></header><div class="studio-fields">
+            <div class="studio-color-grid">
+                <label>Primary<input type="color" value="#2563eb" data-theme-token="--studio-primary" /></label><label>Secondary<input type="color" value="#7c3aed" data-theme-token="--studio-secondary" /></label>
+                <label>Success<input type="color" value="#16a34a" data-theme-token="--studio-success" /></label><label>Warning<input type="color" value="#d97706" data-theme-token="--studio-warning" /></label><label>Danger<input type="color" value="#dc2626" data-theme-token="--studio-danger" /></label>
+            </div>
+            <label>Radius <output data-theme-output="radius">16px</output><input type="range" min="0" max="28" value="16" data-theme-token="--studio-radius" data-unit="px" /></label>
+            <label>Spacing <output data-theme-output="spacing">16px</output><input type="range" min="8" max="32" value="16" data-theme-token="--studio-spacing" data-unit="px" /></label>
+            <label>Shadow <output data-theme-output="shadow">24</output><input type="range" min="0" max="48" value="24" data-theme-token="--studio-shadow-size" data-unit="px" /></label>
+            <label>Sidebar<input type="color" value="#0f172a" data-theme-token="--studio-sidebar" /></label><label>Topbar<input type="color" value="#ffffff" data-theme-token="--studio-topbar" /></label>
+            <div class="studio-switches"><label><span>Dark Mode<small>Preview isolado</small></span><input type="checkbox" data-theme-dark /></label></div>
+            <button type="button" class="studio-reset" data-theme-reset><orizon-icon name="refresh" size="16" />Restaurar preview</button>
+        </div></aside>
+        <section class="studio-theme-preview"><header><span>02</span><div><h3>Application Preview</h3><p>Tokens aplicados em tempo real</p></div><i class="studio-live-dot">Local only</i></header><div class="studio-preview-shell" data-preview-shell data-size="desktop"><div class="studio-mini-app" data-theme-preview>
+            <aside><b>O</b><span>Overview</span><span>Analytics</span><span>Customers</span><span>Settings</span></aside>
+            <div class="studio-mini-main"><header><strong>Dashboard</strong><span>OR</span></header><main><div class="studio-mini-title"><div><small>Performance</small><h3>Business overview</h3></div><button>New report</button></div><div class="studio-mini-metrics"><article><small>Revenue</small><strong>R$ 84.240</strong><i>+12.5%</i></article><article><small>Customers</small><strong>1.842</strong><i>+8.2%</i></article><article><small>Conversion</small><strong>24.8%</strong><i>+3.1%</i></article></div><div class="studio-mini-chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></main></div>
+        </div></div></section>
+    </div>
+</main>
+@section Scripts { <script src="~/js/studio.js" asp-append-version="true"></script> }

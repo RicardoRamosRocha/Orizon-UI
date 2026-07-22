@@ -1,0 +1,19 @@
+@model StudioPageViewModel
+@{ ViewData["Title"] = "Layout Builder"; ViewData["ApplicationName"] = "Orizon Studio"; }
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+<main class="studio" data-studio-page data-layout-builder>
+    <partial name="_StudioHeader" model="Model" />
+    <section class="studio-builder-intro"><div><span class="studio-kicker">Composition lab</span><h2>Monte o workspace ideal</h2><p>Teste estrutura, densidade e largura sem modificar o layout real da aplicação.</p></div><div class="studio-viewport-switcher" data-viewport-controls><button type="button" class="is-active" data-viewport="desktop" aria-label="Desktop"><orizon-icon name="desktop" size="17" /></button><button type="button" data-viewport="tablet" aria-label="Tablet"><orizon-icon name="tablet" size="17" /></button><button type="button" data-viewport="mobile" aria-label="Mobile"><orizon-icon name="mobile" size="17" /></button></div></section>
+    <div class="studio-layout-workspace">
+        <aside class="studio-controls"><header><span>01</span><div><h3>Layout Options</h3><p>Composição incremental</p></div></header><div class="studio-fields">
+            <div class="studio-switches"><label><span>Sidebar Expandida<small>240px</small></span><input type="checkbox" checked data-layout-control="sidebar" /></label><label><span>Sidebar Compacta<small>Somente ícones</small></span><input type="checkbox" data-layout-control="compact" /></label><label><span>Topbar<small>Barra de contexto</small></span><input type="checkbox" checked data-layout-control="topbar" /></label></div>
+            <label>Container Width<select data-layout-control="width"><option value="fluid">Fluid</option><option value="wide" selected>Wide</option><option value="contained">Contained</option></select></label>
+            <label>Density<select data-layout-control="density"><option value="compact">Compact</option><option value="comfortable" selected>Comfortable</option><option value="spacious">Spacious</option></select></label>
+        </div></aside>
+        <section class="studio-layout-preview"><header><span>02</span><div><h3>Layout Preview</h3><p>Sidebar · Topbar · Dashboard</p></div><i class="studio-live-dot">Live</i></header><div class="studio-preview-shell" data-preview-shell data-size="desktop"><div class="studio-layout-canvas" data-layout-preview data-width="wide" data-density="comfortable">
+            <aside><b>O</b><div><span><orizon-icon name="dashboard" size="15" />Overview</span><span><orizon-icon name="chart" size="15" />Analytics</span><span><orizon-icon name="users" size="15" />Customers</span><span><orizon-icon name="gear" size="15" />Settings</span></div></aside>
+            <div><header><strong>Dashboard</strong><div><orizon-icon name="search" size="15" /><span>OR</span></div></header><main><div class="studio-layout-title"><div><small>Workspace</small><h3>Good morning, Ricardo</h3></div><button>New widget</button></div><div class="studio-layout-widgets"><article><small>Revenue</small><strong>R$ 84,2k</strong><i>+12.5%</i></article><article><small>Orders</small><strong>2.481</strong><i>+8.2%</i></article><article><small>Customers</small><strong>1.842</strong><i>+5.1%</i></article></div><div class="studio-layout-panels"><article><strong>Performance</strong><div class="studio-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article><strong>Recent activity</strong><p><span></span>New order completed</p><p><span></span>Customer created</p><p><span></span>Report exported</p></article></div></main></div>
+        </div></div></section>
+    </div>
+</main>
+@section Scripts { <script src="~/js/studio.js" asp-append-version="true"></script> }

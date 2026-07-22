@@ -5,10 +5,14 @@ using System.Reflection;
 
 namespace Orizon.UI.Grid;
 
+/// <summary>Provides paging, sorting, filtering, grouping, and aggregation over an in-memory sequence.</summary>
+/// <typeparam name="T">The row type.</typeparam>
+/// <param name="source">The source sequence. It is materialized when the provider is created.</param>
 public sealed class OrizonInMemoryGridDataProvider<T>(IEnumerable<T> source) : IOrizonGridDataProvider<T>
 {
     private readonly IReadOnlyList<T> _source = source.ToArray();
 
+    /// <inheritdoc />
     public Task<OrizonGridDataResult<T>> GetDataAsync(OrizonGridDataRequest request, CancellationToken cancellationToken = default)
     {
         var watch = Stopwatch.StartNew(); cancellationToken.ThrowIfCancellationRequested();

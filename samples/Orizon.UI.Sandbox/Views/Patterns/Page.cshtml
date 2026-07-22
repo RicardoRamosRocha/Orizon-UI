@@ -1,0 +1,95 @@
+@model PatternPageViewModel
+@section Styles { <link rel="stylesheet" href="~/css/patterns.css" asp-append-version="true" /> }
+
+<article class="patterns-page" data-pattern-page="@Model.Slug">
+    <header class="patterns-hero">
+        <div>
+            <span class="patterns-eyebrow">Enterprise pattern</span>
+            <h1>@Model.Title</h1>
+            <p>@Model.Description</p>
+        </div>
+        <nav class="patterns-local-nav" aria-label="Nesta página">
+            <a href="#preview">Preview</a><a href="#flow">Fluxo</a><a href="#code">Código</a><a href="#practices">Boas práticas</a>
+        </nav>
+    </header>
+
+    <section class="patterns-introduction" aria-labelledby="introduction-title">
+        <div class="patterns-section-heading"><span>01</span><div><h2 id="introduction-title">Introdução</h2><p>Decisões de uso antes da implementação.</p></div></div>
+        <div class="patterns-intro-grid">
+            <div><h3>Quando utilizar</h3><p>@Model.WhenToUse</p></div>
+            <div><h3>Quando evitar</h3><p>@Model.WhenToAvoid</p></div>
+            <div><h3>Benefícios</h3><ul>@foreach (var item in Model.Benefits) { <li><orizon-icon name="check" size="15" /> @item</li> }</ul></div>
+        </div>
+    </section>
+
+    <section class="patterns-structure" aria-labelledby="structure-title">
+        <div class="patterns-section-heading"><span>02</span><div><h2 id="structure-title">Estrutura</h2><p>Componentes Orizon UI combinados neste pattern.</p></div></div>
+        <div class="patterns-component-map" role="list">
+            @for (var index = 0; index < Model.Components.Count; index++)
+            {
+                <div role="listitem"><span>@(index + 1)</span><strong>@Model.Components[index]</strong></div>
+            }
+        </div>
+    </section>
+
+    <section id="preview" class="patterns-preview" aria-labelledby="preview-title">
+        <div class="patterns-section-heading"><span>03</span><div><h2 id="preview-title">Preview funcional</h2><p>Use os controles para percorrer o fluxo principal.</p></div></div>
+        <div class="patterns-preview-frame">
+            <partial name="_PatternDemo" model="Model" />
+        </div>
+        <p class="patterns-live-status" data-pattern-status aria-live="polite"></p>
+    </section>
+
+    <section id="flow" class="patterns-flow" aria-labelledby="flow-title">
+        <div class="patterns-section-heading"><span>04</span><div><h2 id="flow-title">Fluxo</h2><p>Sequência recomendada da interação.</p></div></div>
+        <ol>
+            @for (var index = 0; index < Model.Flow.Count; index++)
+            {
+                <li><span>@(index + 1)</span><strong>@Model.Flow[index]</strong>@if (index < Model.Flow.Count - 1) { <orizon-icon name="arrow-right" size="17" /> }</li>
+            }
+        </ol>
+    </section>
+
+    <section id="code" class="patterns-code" data-pattern-code aria-labelledby="code-title">
+        <div class="patterns-section-heading"><span>05</span><div><h2 id="code-title">Código</h2><p>Referência nas quatro camadas da implementação.</p></div></div>
+        <div class="patterns-code-card">
+            <div class="patterns-code-tabs" role="tablist" aria-label="Formato do código">
+                @foreach (var tab in new[] { ("razor", "Razor"), ("html", "HTML gerado"), ("css", "CSS"), ("csharp", "C#") })
+                { <button type="button" role="tab" aria-selected="@(tab.Item1 == "razor" ? "true" : "false")" tabindex="@(tab.Item1 == "razor" ? "0" : "-1")" data-code-tab="@tab.Item1">@tab.Item2</button> }
+            </div>
+            <div class="patterns-code-content">
+                <pre data-code-block="razor"><code>@Model.Code.Razor</code></pre>
+                <pre data-code-block="html" hidden><code>@Model.Code.Html</code></pre>
+                <pre data-code-block="css" hidden><code>@Model.Code.Css</code></pre>
+                <pre data-code-block="csharp" hidden><code>@Model.Code.CSharp</code></pre>
+                <button type="button" class="orizon-button orizon-button--outline orizon-button--neutral" data-copy-code><orizon-icon name="copy" size="16" /> <span>Copy Razor</span></button>
+            </div>
+            <p data-copy-status aria-live="polite"></p>
+        </div>
+    </section>
+
+    <section id="practices" class="patterns-practices" aria-labelledby="practices-title">
+        <div class="patterns-section-heading"><span>06</span><div><h2 id="practices-title">Boas práticas</h2><p>Critérios para uma experiência enterprise resiliente.</p></div></div>
+        <div class="patterns-practice-grid">
+            @foreach (var area in PatternPageViewModel.PracticeAreas)
+            {
+                <article><orizon-icon name="check" size="16" /><div><h3>@area</h3><p>@Practice(area)</p></div></article>
+            }
+        </div>
+    </section>
+</article>
+
+@functions {
+    private static string Practice(string area) => area switch
+    {
+        "Acessibilidade" => "Use nomes acessíveis, regiões semânticas e estados anunciados.",
+        "Responsividade" => "Priorize a tarefa e empilhe regiões sem esconder ações essenciais.",
+        "Performance" => "Carregue dados sob demanda e preserve o feedback durante esperas.",
+        "UX" => "Mantenha contexto, linguagem direta e resultados previsíveis.",
+        "Motion" => "Use transições curtas e respeite prefers-reduced-motion.",
+        "Keyboard Navigation" => "Garanta ordem lógica, Enter, Espaço, setas e Escape quando aplicável.",
+        "Focus" => "Mostre focus visible e devolva o foco após overlays.",
+        _ => "Explique por que não há dados e ofereça uma próxima ação útil."
+    };
+}
+@section Scripts { <script src="~/js/patterns.js" asp-append-version="true"></script> }

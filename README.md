@@ -6,11 +6,11 @@ O Orizon UI inclui personalizacao em tempo real com oito temas oficiais, cor pri
 
 Orizon UI is a reusable ASP.NET Core Razor Class Library for MVC/Razor applications. It provides the Orizon Platform MVP design system, admin layout, Tag Helpers, CSS tokens, JavaScript behaviors, dark mode, responsive styles, and a Sandbox catalog for visual validation.
 
-## MVP Status
+## Release Candidate Status
 
-Version target: `1.0.0-mvp`
+Current package version: `1.0.0-rc.1`; stable target: `1.0.0`.
 
-This release candidate is intended for local package validation and controlled MVP adoption. It is not automatically published to NuGet.org.
+This release candidate is intended for package validation and controlled adoption before the official `1.0.0` publication. Repository builds never publish automatically to NuGet.org.
 
 ## Requirements
 
@@ -22,12 +22,16 @@ This release candidate is intended for local package validation and controlled M
 - `src/Orizon.UI`: Razor Class Library with Tag Helpers, shared layouts, CSS, JavaScript, and static web assets.
 - `samples/Orizon.UI.Sandbox`: MVC Sandbox catalog used for visual and integration validation.
 
-## MVP Features
+## Included areas
 
 - Design tokens, typography, utilities, dark mode, and responsive foundations
 - Admin layout with sidebar, topbar, breadcrumb, and footer
-- Components: Buttons, Cards, Alerts, Badges, Forms, Tables, Modal, Dropdown, Tabs, Pagination, Avatar, Spinner, Progress, Empty State, and Toast
-- Sandbox catalog at `/components`
+- Components, advanced forms, data components, charts, productivity components, and Enterprise Grid
+- Patterns for CRUD, dashboard, authentication, wizard, search, master/detail, data entry, approvals, Kanban, and analytics
+- Application templates for admin, CRUD, forms, authentication, analytics, Kanban, master/detail, settings, profile, and errors
+- Studio tools for component and icon exploration, playground, theme building, and layout building
+- Sandbox catalog for component, pattern, template, and integration validation
+- Static web assets and Tag Helpers packaged for direct consumer use
 - Keyboard and screen-reader accessibility patterns for interactive components
 
 ## Run the Sandbox
@@ -38,7 +42,7 @@ dotnet build Orizon.UI.sln --configuration Release
 dotnet run --project samples/Orizon.UI.Sandbox
 ```
 
-Open `/components` in the Sandbox application.
+Open the Sandbox root and use its sidebar to navigate Foundations, Components, Data, Patterns, Templates, and Studio.
 
 ## Install with ProjectReference
 
@@ -56,11 +60,11 @@ Generate the package:
 dotnet pack src/Orizon.UI/Orizon.UI.csproj --configuration Release --output artifacts/packages
 ```
 
-Add the local source and install the MVP package:
+Add the local source and install the release candidate package:
 
 ```bash
 dotnet nuget add source /path/to/Orizon-UI/artifacts/packages --name OrizonLocal
-dotnet add package Orizon.UI --version 1.0.0-mvp --source /path/to/Orizon-UI/artifacts/packages
+dotnet add package Orizon.UI --version 1.0.0-rc.1 --source /path/to/Orizon-UI/artifacts/packages
 ```
 
 ## Register Tag Helpers
@@ -117,17 +121,36 @@ Use the shared layout from the RCL in MVC views:
 
 The layout expects the Orizon UI CSS and JavaScript assets to be available through static web assets.
 
-## Dark Mode
+## Themes
 
-Dark mode is controlled by the `data-theme` attribute on the HTML element. The bundled theme script toggles between light and dark when the admin layout theme button is used.
+Theme selection is controlled by `data-theme`; light and dark color modes use `data-color-mode`. The bundled theme runtime persists supported appearance preferences without requiring consumers to copy Sandbox files.
 
 ```html
 <html lang="en" data-theme="light">
 ```
 
+## Component documentation
+
+Component and integration guides are maintained under [`docs/`](docs/). Start with:
+
+- [Design System Base](docs/Design-System-Base/01-Visao-Geral.md)
+- [Advanced Forms](docs/Advanced-Forms/README.md)
+- [Data Components](docs/Data-Components/README.md)
+- [Dashboard and Charts](docs/Dashboard-Charts/README.md)
+- [Productivity Components](docs/Productivity-Components/README.md)
+- [Enterprise Grid](docs/Enterprise-Grid/README.md)
+- [Application Templates](docs/Application-Templates/README.md)
+
+Patterns and Studio are interactive documentation areas in the Sandbox. Templates demonstrate complete application compositions; they are examples and are not copied into consuming projects.
+
+## Updating versions
+
+Use an explicit package version when updating, review [`CHANGELOG.md`](CHANGELOG.md), rebuild the consumer, and verify static web assets. Pre-release versions such as `1.0.0-rc.1` are not selected automatically when a stable version constraint is used.
+
 ## Contributing
 
-When adding or changing components:
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). During the 1.0 feature freeze:
 
 1. Keep public APIs stable and named consistently.
 2. Use existing CSS tokens and component naming conventions.
@@ -137,4 +160,4 @@ When adding or changing components:
 
 ## License
 
-Package metadata currently uses the `MIT` license expression. Confirm repository licensing before publishing this package publicly.
+Orizon UI is distributed under the [MIT License](LICENSE).

@@ -1,6 +1,26 @@
 # Changelog
 
-## 1.2.0 - Theme Manager
+## [1.0.0-rc.1] - 2026-07-21
+
+### Changed
+
+- Package metadata completed for NuGet validation, including SourceLink, symbols, deterministic builds, project URL, icon, README, license, and XML documentation output.
+- Installation, versioning, themes, components, Studio, Patterns, Templates, and contribution guidance reviewed for the 1.0 release candidate.
+- XML documentation added to the central Enterprise Grid provider contracts and icon registry without changing public signatures.
+
+### Validated
+
+- Release build with zero errors and zero warnings.
+- Existing automated Enterprise Grid suite.
+- Local `.nupkg` and `.snupkg` generation.
+- Clean ASP.NET Core MVC consumer using only the package's Tag Helpers and static web assets.
+- Light/dark tokens, responsive breakpoints, keyboard patterns, focus-visible states, reduced motion, and ARIA state handling.
+
+### Compatibility
+
+- No public API, Tag Helper name, documented token, CSS class, or runtime behavior was intentionally changed.
+
+## Theme Manager - pre-release history
 
 - Oito temas oficiais e seis cores primarias semanticas.
 - Runtime `OrizonAppearance` com preview instantaneo, LocalStorage e sincronizacao remota.

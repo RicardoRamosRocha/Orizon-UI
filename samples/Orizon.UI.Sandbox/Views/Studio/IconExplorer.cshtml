@@ -1,0 +1,21 @@
+@model StudioPageViewModel
+@{ ViewData["Title"] = "Icon Explorer"; ViewData["ApplicationName"] = "Orizon Studio"; var categories = Model.Icons.Select(icon => icon.Category).Distinct().OrderBy(category => category); }
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+<main class="studio" data-studio-page data-icon-explorer>
+    <partial name="_StudioHeader" model="Model" />
+    <section class="studio-library-heading"><div><span class="studio-kicker">Single registry source</span><h2>@Model.Icons.Count ícones disponíveis</h2><p>Todos os previews são renderizados pelo <code>orizon-icon</code> usando o registry da biblioteca.</p></div><label class="studio-icon-search"><orizon-icon name="search" size="18" /><input type="search" placeholder="Pesquisar ícone..." data-icon-search /></label></section>
+    <div class="studio-category-tabs" role="group" aria-label="Categorias"><button type="button" class="is-active" data-icon-category="all">Todos</button>@foreach (var category in categories) { <button type="button" data-icon-category="@category">@category</button> }</div>
+    <section class="studio-icon-grid" aria-live="polite">
+        @foreach (var icon in Model.Icons)
+        {
+            <article class="studio-icon-card" id="@icon.Name" data-icon-item data-icon-name="@icon.Name" data-icon-category-value="@icon.Category">
+                <div class="studio-icon-preview"><orizon-icon name="@icon.Name" size="28" /></div>
+                <div><strong>@icon.Name</strong><small>@icon.Category</small><code>&lt;orizon-icon name="@icon.Name" /&gt;</code></div>
+                <button type="button" data-copy-text="@($"<orizon-icon name=\"{icon.Name}\" />")" aria-label="Copiar Razor de @icon.Name"><orizon-icon name="copy" size="15" /></button>
+            </article>
+        }
+        <div class="studio-empty" data-icon-empty hidden><orizon-icon name="search" size="26" /><h3>Nenhum ícone encontrado</h3><p>Revise a pesquisa ou selecione outra categoria.</p></div>
+    </section>
+    <p class="studio-copy-status studio-floating-status" aria-live="polite"></p>
+</main>
+@section Scripts { <script src="~/js/studio.js" asp-append-version="true"></script> }
