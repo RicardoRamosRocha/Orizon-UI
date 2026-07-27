@@ -11,7 +11,7 @@
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 
     <PackageId>Orizon.UI</PackageId>
-    <Version>1.0.0-rc.1</Version>
+    <Version>1.2.0</Version>
     <Authors>Ricardo Ramos Rocha</Authors>
     <Company>Orizon Platform</Company>
     <Description>Razor Class Library with reusable ASP.NET Core MVC/Razor UI components, admin layout, design tokens, dark mode, responsive styles, and Sandbox catalog.</Description>
