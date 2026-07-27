@@ -21,5 +21,7 @@ import "./components/tree.js";
 import "./components/kanban.js";
 import "./components/productivity-actions.js";
 import "./components/enterprise-grid.js";
+import "./widgets/widgets.js";
+import "./templates/dashboard-template-gallery.js";
 
 document.documentElement.classList.add("orizon-ready");

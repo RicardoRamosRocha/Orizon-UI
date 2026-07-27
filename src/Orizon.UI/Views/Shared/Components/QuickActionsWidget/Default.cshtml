@@ -1,0 +1,46 @@
+@model Orizon.UI.Models.Widgets.Dashboard.QuickActions.QuickActionsWidgetModel
+
+@if (Model.Visible)
+{
+    <section id="@Model.Id"
+             class="orz-widget orz-quick-actions orizon-card orizon-card--premium @Model.CssClass">
+        @if (!string.IsNullOrWhiteSpace(Model.Title) || !string.IsNullOrWhiteSpace(Model.Subtitle))
+        {
+            <header class="orz-widget-header">
+                <div>
+                    @if (!string.IsNullOrWhiteSpace(Model.Title))
+                    {
+                        <h2 class="orz-widget-title">@Model.Title</h2>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+                    {
+                        <p class="orz-widget-subtitle">@Model.Subtitle</p>
+                    }
+                </div>
+            </header>
+        }
+        <div class="orz-widget-body orz-quick-actions__grid">
+            @foreach (var action in Model.Actions.Take(8))
+            {
+                var color = action.Variant.ToLowerInvariant() switch
+                {
+                    "success" => "success",
+                    "warning" => "warning",
+                    "danger" => "danger",
+                    "info" => "info",
+                    _ => "primary"
+                };
+                <a class="orz-quick-action orz-quick-action--@color"
+                   href="@action.Url">
+                    @if (!string.IsNullOrWhiteSpace(action.Icon))
+                    {
+                        <span class="orz-quick-action__icon">
+                            <orizon-icon name="@action.Icon" size="22" />
+                        </span>
+                    }
+                    <span>@action.Text</span>
+                </a>
+            }
+        </div>
+    </section>
+}

@@ -1,0 +1,45 @@
+@model Orizon.UI.Models.Widgets.Dashboard.Kpi.KpiWidgetModel
+@{
+    var trendType = Model.TrendType.ToLowerInvariant() switch
+    {
+        "positive" => "positive",
+        "negative" => "negative",
+        _ => "neutral"
+    };
+}
+
+@if (Model.Visible)
+{
+    <article id="@Model.Id"
+             class="orz-widget orz-kpi-widget orz-kpi-widget--@trendType orizon-card orizon-card--premium @Model.CssClass">
+        <header class="orz-kpi-widget__header">
+            <div>
+                @if (!string.IsNullOrWhiteSpace(Model.Title))
+                {
+                    <h2 class="orz-widget-title">@Model.Title</h2>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <p class="orz-widget-subtitle">@Model.Description</p>
+                }
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.Icon))
+            {
+                <span class="orz-kpi-widget__icon">
+                    <orizon-icon name="@Model.Icon" size="22" />
+                </span>
+            }
+        </header>
+        <div class="orz-kpi-widget__metric">
+            <strong>@Model.Value</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.Trend))
+            {
+                <span class="orz-kpi-widget__trend">@Model.Trend</span>
+            }
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.Footer))
+        {
+            <footer class="orz-kpi-widget__footer">@Model.Footer</footer>
+        }
+    </article>
+}

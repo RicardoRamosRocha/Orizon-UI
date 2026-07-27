@@ -1,0 +1,62 @@
+@model Orizon.UI.Models.Widgets.Dashboard.ActivityFeed.ActivityFeedWidgetModel
+
+@if (Model.Visible)
+{
+    <section id="@Model.Id"
+             class="orz-widget orz-activity-feed orizon-card orizon-card--premium @Model.CssClass">
+        @if (!string.IsNullOrWhiteSpace(Model.Title) || !string.IsNullOrWhiteSpace(Model.Subtitle))
+        {
+            <header class="orz-widget-header">
+                <div>
+                    @if (!string.IsNullOrWhiteSpace(Model.Title))
+                    {
+                        <h2 class="orz-widget-title">@Model.Title</h2>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+                    {
+                        <p class="orz-widget-subtitle">@Model.Subtitle</p>
+                    }
+                </div>
+            </header>
+        }
+        <div class="orz-widget-body">
+            <ol class="orz-activity-feed__list">
+                @foreach (var item in Model.Items)
+                {
+                    var color = item.Color.ToLowerInvariant() switch
+                    {
+                        "success" => "success",
+                        "warning" => "warning",
+                        "danger" => "danger",
+                        "info" => "info",
+                        _ => "primary"
+                    };
+                    <li class="orz-activity-feed__item orz-activity-feed__item--@color">
+                        <span class="orz-activity-feed__marker">
+                            @if (!string.IsNullOrWhiteSpace(item.Icon))
+                            {
+                                <orizon-icon name="@item.Icon" size="18" />
+                            }
+                        </span>
+                        <div class="orz-activity-feed__content">
+                            <div class="orz-activity-feed__heading">
+                                <strong>@item.Title</strong>
+                                @if (!string.IsNullOrWhiteSpace(item.Badge))
+                                {
+                                    <orizon-badge variant="@color" size="sm" pill>@item.Badge</orizon-badge>
+                                }
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(item.Description))
+                            {
+                                <p>@item.Description</p>
+                            }
+                            <time datetime="@item.Timestamp.ToString("O")">
+                                @item.Timestamp.ToString("dd MMM, HH:mm")
+                            </time>
+                        </div>
+                    </li>
+                }
+            </ol>
+        </div>
+    </section>
+}

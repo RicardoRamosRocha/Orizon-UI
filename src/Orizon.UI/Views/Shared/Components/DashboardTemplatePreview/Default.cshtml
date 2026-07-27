@@ -1,0 +1,87 @@
+@model Orizon.UI.Models.Templates.DashboardTemplatePreviewModel
+@{
+    var template = Model.Template;
+    var searchValue = string.Join(
+        " ",
+        new[] { template.Name, template.DisplayName, template.Category }
+            .Concat(template.Tags)
+            .Where(value => !string.IsNullOrWhiteSpace(value)));
+}
+
+<article class="orz-template-preview"
+         data-template-card
+         data-template-search="@searchValue.ToLowerInvariant()">
+    <orizon-card variant="premium" padding="lg">
+        <div class="orz-template-preview__placeholder" aria-label="Preview de @template.DisplayName">
+            <orizon-icon name="dashboard" size="32" />
+            <span>@(template.PreviewImage ?? "Preview")</span>
+        </div>
+
+        <header class="orz-template-preview__heading">
+            <div>
+                <span class="orz-template-preview__category">@template.Category</span>
+                <h2>@template.DisplayName</h2>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(template.Version))
+            {
+                <orizon-badge variant="primary" size="sm">@($"v{template.Version}")</orizon-badge>
+            }
+        </header>
+
+        @if (!string.IsNullOrWhiteSpace(template.Description))
+        {
+            <p class="orz-template-preview__description">@template.Description</p>
+        }
+
+        <dl class="orz-template-preview__details">
+            <div>
+                <dt><orizon-icon name="dashboard" size="16" /> Layout</dt>
+                <dd>@(template.LayoutName ?? "—")</dd>
+            </div>
+            <div>
+                <dt><orizon-icon name="packages" size="16" /> Widgets</dt>
+                <dd>@(template.Widgets.Count > 0 ? string.Join(", ", template.Widgets) : "—")</dd>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(template.Author))
+            {
+                <div>
+                    <dt><orizon-icon name="user" size="16" /> Autor</dt>
+                    <dd>@template.Author</dd>
+                </div>
+            }
+        </dl>
+
+        @if (template.Tags.Count > 0)
+        {
+            <div class="orz-template-preview__tags" aria-label="Tags">
+                @foreach (var tag in template.Tags)
+                {
+                    <orizon-badge variant="neutral" size="sm" pill>@tag</orizon-badge>
+                }
+            </div>
+        }
+
+        <div class="orz-template-preview__actions">
+            <orizon-button href="/templates/dashboard/@template.Name"
+                           text="Visualizar"
+                           icon="eye"
+                           size="sm" />
+            <orizon-button href="#template-code-@template.Name"
+                           text="Ver Código"
+                           icon="code"
+                           variant="outline"
+                           size="sm" />
+        </div>
+
+        <section class="orz-template-preview__technical" aria-label="Informações técnicas">
+            <h3>Informações Técnicas</h3>
+            <p><strong>Registry key:</strong> <code>@template.Name</code></p>
+            <p><strong>Layout:</strong> <code>@template.LayoutName</code></p>
+        </section>
+
+        <section class="orz-template-preview__code" id="template-code-@template.Name">
+            <h3>Exemplo de Código</h3>
+            <pre><code>@Model.UsageCode</code></pre>
+        </section>
+    </orizon-card>
+</article>

@@ -1,0 +1,7 @@
+@model Orizon.UI.Models.Templates.DashboardTemplateModel
+
+<div class="orz-dashboard-template"
+     data-dashboard-template="@Model.Name"
+     aria-description="@Model.Description">
+    @await Component.InvokeAsync("DashboardLayout", new { model = Model.Layout })
+</div>

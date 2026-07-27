@@ -1,0 +1,31 @@
+@using Orizon.UI.Models.Widgets
+@model Orizon.UI.Models.Dashboard.DashboardSectionModel
+@{
+    var columns = Model.Columns.ToString().ToLowerInvariant();
+}
+
+<section class="orz-dashboard-section" aria-label="@Model.Title">
+    @if (!string.IsNullOrWhiteSpace(Model.Title) || !string.IsNullOrWhiteSpace(Model.Description))
+    {
+        <header class="orz-dashboard-section__header">
+            @if (!string.IsNullOrWhiteSpace(Model.Title))
+            {
+                <h2 class="orz-dashboard-section__title">@Model.Title</h2>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <p class="orz-dashboard-section__description">@Model.Description</p>
+            }
+        </header>
+    }
+
+    <div class="orz-dashboard-section__grid orz-dashboard-section__grid--@columns">
+        @foreach (var widget in Model.Widgets.OfType<WidgetModelBase>().Where(widget => widget.Visible))
+        {
+            @await Component.InvokeAsync("WidgetContainer", new
+            {
+                model = new Orizon.UI.Models.Dashboard.WidgetContainerModel { Widget = widget }
+            })
+        }
+    </div>
+</section>

@@ -58,5 +58,12 @@
 @import url("./components/kanban.css");
 @import url("./components/enterprise-grid.css");
 
+/* Widgets */
+@import url("./widgets/widgets.css");
+
+/* Dashboard composition */
+@import url("./dashboard/dashboard-layout.css");
+@import url("./templates/dashboard-template-gallery.css");
+
 /* Utilities */
 @import url("./utilities.css");

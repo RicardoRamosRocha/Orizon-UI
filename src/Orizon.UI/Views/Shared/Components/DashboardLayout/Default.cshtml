@@ -1,0 +1,33 @@
+@model Orizon.UI.Models.Dashboard.DashboardLayoutModel
+@{
+    var spacing = Model.Spacing.ToString().ToLowerInvariant();
+}
+
+<div class="orz-dashboard-layout orz-dashboard-layout--spacing-@spacing @(Model.Fluid ? "orz-dashboard-layout--fluid" : null)">
+    @if (Model.ShowHeader &&
+        (!string.IsNullOrWhiteSpace(Model.Title) || !string.IsNullOrWhiteSpace(Model.Subtitle)))
+    {
+        <header class="orz-dashboard-layout__header">
+            @if (!string.IsNullOrWhiteSpace(Model.Title))
+            {
+                <h1 class="orz-dashboard-layout__title">@Model.Title</h1>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+            {
+                <p class="orz-dashboard-layout__subtitle">@Model.Subtitle</p>
+            }
+        </header>
+    }
+
+    <main class="orz-dashboard-layout__content">
+        @foreach (var section in Model.Sections)
+        {
+            @await Component.InvokeAsync("DashboardSection", new { model = section })
+        }
+    </main>
+
+    @if (Model.ShowFooter)
+    {
+        <footer class="orz-dashboard-layout__footer" aria-label="Rodapé do dashboard"></footer>
+    }
+</div>

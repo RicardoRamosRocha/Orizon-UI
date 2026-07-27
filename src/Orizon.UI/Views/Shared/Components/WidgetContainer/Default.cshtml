@@ -1,0 +1,64 @@
+@using Orizon.UI.Models.Widgets
+@model Orizon.UI.Models.Dashboard.WidgetContainerModel
+@{
+    var spacing = Model.Spacing.ToString().ToLowerInvariant();
+    var padding = Model.Padding.ToString().ToLowerInvariant();
+    var height = Model.Height.ToString().ToLowerInvariant();
+}
+
+<article class="orz-widget-container orizon-card orizon-card--premium orz-widget-container--spacing-@spacing orz-widget-container--padding-@padding orz-widget-container--height-@height"
+         aria-busy="@(Model.Widget.State == WidgetState.Loading ? "true" : null)">
+    @if ((Model.ShowHeader &&
+         (!string.IsNullOrWhiteSpace(Model.Widget.Title) || !string.IsNullOrWhiteSpace(Model.Widget.Subtitle))) ||
+        (Model.ShowToolbar && Model.ToolbarActions.Count > 0))
+    {
+        <header class="orz-widget-container__header">
+            <div>
+                @if (!string.IsNullOrWhiteSpace(Model.Widget.Title))
+                {
+                    <h3 class="orz-widget-title">@Model.Widget.Title</h3>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Widget.Subtitle))
+                {
+                    <p class="orz-widget-subtitle">@Model.Widget.Subtitle</p>
+                }
+            </div>
+            @if (Model.ShowToolbar && Model.ToolbarActions.Count > 0)
+            {
+                <nav class="orz-widget-toolbar" aria-label="Ações do widget">
+                    @foreach (var action in Model.ToolbarActions)
+                    {
+                        <a class="orizon-button orizon-button--ghost orizon-button--sm" href="@action.Url">
+                            @action.Text
+                        </a>
+                    }
+                </nav>
+            }
+        </header>
+    }
+
+    <div class="orz-widget-container__body">
+        @switch (Model.Widget.State)
+        {
+            case WidgetState.Loading:
+                <div class="orz-widget-container__state" role="status">
+                    <orizon-spinner size="md" label="@Model.LoadingMessage" />
+                    <span>@Model.LoadingMessage</span>
+                </div>
+                break;
+            case WidgetState.Empty:
+                <div class="orz-widget-container__state">
+                    <orizon-empty-state title="@Model.EmptyMessage" />
+                </div>
+                break;
+            case WidgetState.Error:
+                <div class="orz-widget-container__state" role="alert">
+                    <orizon-alert variant="danger">@Model.ErrorMessage</orizon-alert>
+                </div>
+                break;
+            default:
+                @await Component.InvokeAsync(Model.WidgetComponentName, new { model = Model.Widget })
+                break;
+        }
+    </div>
+</article>

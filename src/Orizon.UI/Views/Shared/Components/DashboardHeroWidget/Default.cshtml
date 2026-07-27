@@ -1,0 +1,51 @@
+@model Orizon.UI.Models.Widgets.Dashboard.DashboardHero.DashboardHeroWidgetModel
+@{
+    var backgroundVariant = Model.BackgroundVariant.ToLowerInvariant() switch
+    {
+        "neutral" => "neutral",
+        "success" => "success",
+        "info" => "info",
+        _ => "primary"
+    };
+}
+
+@if (Model.Visible)
+{
+    <section id="@Model.Id"
+             class="orz-widget orz-dashboard-hero orz-dashboard-hero--@backgroundVariant orizon-card orizon-card--premium @Model.CssClass">
+        <div class="orz-dashboard-hero__content">
+            @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+            {
+                <p class="orz-dashboard-hero__eyebrow">@Model.Subtitle</p>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Title))
+            {
+                <h1 class="orz-dashboard-hero__title">@Model.Title</h1>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <p class="orz-dashboard-hero__description">@Model.Description</p>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.PrimaryActionText) ||
+                 !string.IsNullOrWhiteSpace(Model.SecondaryActionText))
+            {
+                <div class="orz-dashboard-hero__actions">
+                    @if (!string.IsNullOrWhiteSpace(Model.PrimaryActionText))
+                    {
+                        <orizon-button href="@Model.PrimaryActionUrl"
+                                       text="@Model.PrimaryActionText"
+                                       variant="solid"
+                                       color="primary" />
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.SecondaryActionText))
+                    {
+                        <orizon-button href="@Model.SecondaryActionUrl"
+                                       text="@Model.SecondaryActionText"
+                                       variant="outline"
+                                       color="neutral" />
+                    }
+                </div>
+            }
+        </div>
+    </section>
+}
