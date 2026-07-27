@@ -1,0 +1,13 @@
+@model Orizon.UI.Models.Templates.DashboardTemplateModel
+
+<div class="orz-template-catalog">
+    <nav class="orz-template-preview__actions" aria-label="Navegação do template">
+        <orizon-button href="/templates/dashboard"
+                       text="Voltar para Templates"
+                       icon="arrow-left"
+                       variant="outline"
+                       size="sm" />
+    </nav>
+
+    @await Component.InvokeAsync("DashboardTemplate", new { model = Model })
+</div>

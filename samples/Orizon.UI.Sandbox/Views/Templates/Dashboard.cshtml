@@ -1,0 +1,64 @@
+@using Orizon.UI.Models.Dashboard
+@using Orizon.UI.Models.Templates
+@using Orizon.UI.Models.Widgets.Dashboard.DashboardHero
+@model IReadOnlyCollection<DashboardTemplateModel>
+@{
+    var heroLayout = new DashboardLayoutModel
+    {
+        Fluid = true,
+        Spacing = DashboardSpacing.Spacious,
+        ShowHeader = false
+    };
+    var heroSection = new DashboardSectionModel
+    {
+        Columns = DashboardColumns.One
+    };
+    heroSection.Widgets.Add(new DashboardHeroWidgetModel
+    {
+        Title = "Dashboard Template Gallery",
+        Subtitle = "Orizon Studio Showcase",
+        Description = $"{Model.Count} template(s) descoberto(s) automaticamente pelo DashboardTemplateRegistry.",
+        PrimaryActionText = "Explorar templates",
+        PrimaryActionUrl = "#template-gallery",
+        SecondaryActionText = "Dashboard Framework",
+        SecondaryActionUrl = "/dashboard/framework"
+    });
+    heroLayout.Sections.Add(heroSection);
+}
+
+<div class="orz-template-catalog" data-template-gallery>
+    @await Component.InvokeAsync("DashboardLayout", new { model = heroLayout })
+
+    <section class="orz-template-catalog__gallery" id="template-gallery" aria-labelledby="template-gallery-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Template Gallery</span>
+                <h1 id="template-gallery-title">Dashboard Templates</h1>
+                <p>Catálogo gerado exclusivamente a partir dos registros disponíveis.</p>
+            </div>
+            <label class="orz-template-catalog__search">
+                <span>Pesquisar por nome, categoria ou tag</span>
+                <span>
+                    <orizon-icon name="search" size="18" />
+                    <input type="search"
+                           placeholder="Pesquisar templates..."
+                           autocomplete="off"
+                           data-template-search-input />
+                </span>
+            </label>
+        </header>
+
+        <div class="orz-template-catalog__grid" data-template-results>
+            @foreach (var template in Model)
+            {
+                @await Component.InvokeAsync("DashboardTemplatePreview", new { model = template })
+            }
+        </div>
+
+        <div class="orz-template-catalog__empty" data-template-empty hidden>
+            <orizon-icon name="search" size="28" />
+            <h2>Nenhum template encontrado</h2>
+            <p>Revise o nome, a categoria ou a tag informada.</p>
+        </div>
+    </section>
+</div>

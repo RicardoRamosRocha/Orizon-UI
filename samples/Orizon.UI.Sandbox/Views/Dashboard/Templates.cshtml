@@ -1,0 +1,82 @@
+@using Orizon.UI.Builders
+@using Orizon.UI.Models.Dashboard
+@using Orizon.UI.Models.Widgets
+@using Orizon.UI.Models.Widgets.Dashboard.ActivityFeed
+@using Orizon.UI.Models.Widgets.Dashboard.DashboardHero
+@using Orizon.UI.Models.Widgets.Dashboard.Kpi
+@using Orizon.UI.Models.Widgets.Dashboard.QuickActions
+@{
+    ViewData["Title"] = "Dashboard Templates";
+    ViewData["ApplicationName"] = "Orizon UI Sandbox";
+
+    var hero = new DashboardHeroWidgetModel
+    {
+        Title = "Template padrão",
+        Subtitle = "Dashboard Templates Framework",
+        Description = "Uma composição reutilizável de layout, seções, containers e widgets.",
+        PrimaryActionText = "Ação demonstrativa",
+        PrimaryActionUrl = "#",
+        SecondaryActionText = "Saiba mais",
+        SecondaryActionUrl = "#"
+    };
+
+    var actions = new QuickActionsWidgetModel
+    {
+        Title = "Ações rápidas",
+        Subtitle = "Atalhos estáticos"
+    };
+    actions.Actions.Add(new WidgetAction { Text = "Novo item", Icon = "plus", Url = "#", Variant = "primary" });
+    actions.Actions.Add(new WidgetAction { Text = "Revisar", Icon = "check", Url = "#", Variant = "success" });
+    actions.Actions.Add(new WidgetAction { Text = "Exportar", Icon = "download", Url = "#", Variant = "info" });
+
+    var activity = new ActivityFeedWidgetModel
+    {
+        Title = "Atividade recente",
+        Subtitle = "Dados estáticos"
+    };
+    activity.Items.Add(new ActivityItem
+    {
+        Icon = "check",
+        Title = "Template carregado",
+        Description = "O dashboard padrão foi composto pela infraestrutura existente.",
+        Timestamp = new DateTimeOffset(2026, 7, 27, 10, 0, 0, TimeSpan.Zero),
+        Badge = "Concluído",
+        Color = "success"
+    });
+
+    var template = new DashboardTemplateBuilder()
+        .Named("sandbox-default")
+        .Header(
+            "Dashboard Templates",
+            "Template padrão → Dashboard Layout → Widgets",
+            "Demonstração sem regras de negócio e sem dependências de domínio.")
+        .Layout(layout =>
+        {
+            layout.Fluid = true;
+            layout.Spacing = DashboardSpacing.Spacious;
+        })
+        .Hero(hero)
+        .Kpis(
+            new KpiWidgetModel
+            {
+                Title = "Componentes reutilizados",
+                Value = "4",
+                Description = "Hero, KPI, ações rápidas e atividade",
+                Icon = "packages",
+                Footer = "Dados estáticos"
+            },
+            new KpiWidgetModel
+            {
+                Title = "Regras de negócio",
+                Value = "0",
+                Description = "Somente composição de infraestrutura",
+                Icon = "check",
+                Footer = "Template independente de domínio"
+            })
+        .QuickActions(actions)
+        .ActivityFeed(activity)
+        .Metadata("source", "sandbox")
+        .Build();
+}
+
+@await Component.InvokeAsync("DashboardTemplate", new { model = template })

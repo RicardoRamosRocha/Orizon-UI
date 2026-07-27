@@ -1,0 +1,117 @@
+@using Orizon.UI.Models.Widgets
+@using Orizon.UI.Models.Widgets.Dashboard.ActivityFeed
+@using Orizon.UI.Models.Widgets.Dashboard.DashboardHero
+@using Orizon.UI.Models.Widgets.Dashboard.Kpi
+@using Orizon.UI.Models.Widgets.Dashboard.QuickActions
+@{
+    ViewData["Title"] = "Dashboard Widgets";
+    ViewData["ApplicationName"] = "Orizon UI Sandbox";
+
+    var hero = new DashboardHeroWidgetModel
+    {
+        Title = "Visão executiva da operação",
+        Subtitle = "Enterprise Dashboard",
+        Description = "Acompanhe prioridades, indicadores e atividades recentes em uma experiência unificada.",
+        PrimaryActionText = "Criar relatório",
+        PrimaryActionUrl = "#",
+        SecondaryActionText = "Ver documentação",
+        SecondaryActionUrl = "#",
+        BackgroundVariant = "primary"
+    };
+
+    var kpis = new[]
+    {
+        new KpiWidgetModel
+        {
+            Title = "Receita recorrente",
+            Value = "R$ 184,2 mil",
+            Description = "Resultado consolidado do mês",
+            Trend = "+14,2%",
+            TrendType = "positive",
+            Icon = "chart-line",
+            Footer = "Atualizado há 5 minutos"
+        },
+        new KpiWidgetModel
+        {
+            Title = "Clientes ativos",
+            Value = "1.248",
+            Description = "Contas com operação no período",
+            Trend = "+6,8%",
+            TrendType = "positive",
+            Icon = "users",
+            Footer = "32 novas contas neste mês"
+        },
+        new KpiWidgetModel
+        {
+            Title = "Tickets em aberto",
+            Value = "27",
+            Description = "Atendimentos aguardando resolução",
+            Trend = "-9,4%",
+            TrendType = "positive",
+            Icon = "info",
+            Footer = "8 tickets de alta prioridade"
+        }
+    };
+
+    var quickActions = new QuickActionsWidgetModel
+    {
+        Title = "Ações rápidas",
+        Subtitle = "Atalhos para operações frequentes"
+    };
+    quickActions.Actions.Add(new WidgetAction { Text = "Novo cliente", Icon = "user", Url = "#", Variant = "primary" });
+    quickActions.Actions.Add(new WidgetAction { Text = "Criar relatório", Icon = "chart", Url = "#", Variant = "info" });
+    quickActions.Actions.Add(new WidgetAction { Text = "Exportar dados", Icon = "download", Url = "#", Variant = "success" });
+    quickActions.Actions.Add(new WidgetAction { Text = "Configurações", Icon = "settings", Url = "#", Variant = "warning" });
+
+    var activityFeed = new ActivityFeedWidgetModel
+    {
+        Title = "Atividade recente",
+        Subtitle = "Últimas atualizações da operação"
+    };
+    activityFeed.Items.Add(new ActivityItem
+    {
+        Icon = "check",
+        Title = "Relatório mensal concluído",
+        Description = "O consolidado financeiro está disponível para revisão.",
+        Timestamp = DateTimeOffset.UtcNow.AddMinutes(-18),
+        Badge = "Concluído",
+        Color = "success"
+    });
+    activityFeed.Items.Add(new ActivityItem
+    {
+        Icon = "user",
+        Title = "Novo cliente cadastrado",
+        Description = "Uma nova conta enterprise foi adicionada à carteira.",
+        Timestamp = DateTimeOffset.UtcNow.AddHours(-2),
+        Badge = "Novo",
+        Color = "info"
+    });
+    activityFeed.Items.Add(new ActivityItem
+    {
+        Icon = "info",
+        Title = "Revisão operacional pendente",
+        Description = "Os indicadores do trimestre aguardam validação.",
+        Timestamp = DateTimeOffset.UtcNow.AddHours(-5),
+        Badge = "Atenção",
+        Color = "warning"
+    });
+}
+
+<div class="orizon-grid orizon-gap-6">
+    @await Component.InvokeAsync("DashboardHeroWidget", new { model = hero })
+
+    <section aria-label="Indicadores principais"
+             class="orizon-dashboard-grid is-auto-fit is-responsive"
+             style="--dashboard-columns: 12; --dashboard-gap: var(--orizon-space-4); --dashboard-min-widget: 16rem;">
+        @foreach (var kpi in kpis)
+        {
+            @await Component.InvokeAsync("KpiWidget", new { model = kpi })
+        }
+    </section>
+
+    <div class="orizon-dashboard-grid is-auto-fit is-responsive"
+         style="--dashboard-columns: 12; --dashboard-gap: var(--orizon-space-4); --dashboard-min-widget: 20rem;">
+        @await Component.InvokeAsync("QuickActionsWidget", new { model = quickActions })
+        @await Component.InvokeAsync("ActivityFeedWidget", new { model = activityFeed })
+    </div>
+</div>

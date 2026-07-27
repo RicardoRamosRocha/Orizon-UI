@@ -1,0 +1,121 @@
+@using Orizon.UI.Models.Dashboard
+@using Orizon.UI.Models.Widgets
+@using Orizon.UI.Models.Widgets.Dashboard.ActivityFeed
+@using Orizon.UI.Models.Widgets.Dashboard.DashboardHero
+@using Orizon.UI.Models.Widgets.Dashboard.Kpi
+@using Orizon.UI.Models.Widgets.Dashboard.QuickActions
+@{
+    ViewData["Title"] = "Dashboard Framework";
+    ViewData["ApplicationName"] = "Orizon UI Sandbox";
+
+    var dashboard = new DashboardLayoutModel
+    {
+        Title = "Dashboard Framework",
+        Subtitle = "Composição reutilizável de seções, containers e widgets enterprise.",
+        Fluid = true,
+        Spacing = DashboardSpacing.Spacious
+    };
+
+    var indicators = new DashboardSectionModel
+    {
+        Title = "Indicadores",
+        Description = "Exemplo estático de uma seção responsiva com três colunas.",
+        Columns = DashboardColumns.Three
+    };
+
+    var overview = new DashboardSectionModel
+    {
+        Columns = DashboardColumns.One
+    };
+    overview.Widgets.Add(new DashboardHeroWidgetModel
+    {
+        Title = "Composição enterprise reutilizável",
+        Subtitle = "Dashboard Framework",
+        Description = "Layouts organizam widgets sem incorporar regras de negócio.",
+        PrimaryActionText = "Ação demonstrativa",
+        PrimaryActionUrl = "#",
+        SecondaryActionText = "Saiba mais",
+        SecondaryActionUrl = "#",
+        BackgroundVariant = "primary"
+    });
+
+    indicators.Widgets.Add(new KpiWidgetModel
+    {
+        Title = "Receita recorrente",
+        Value = "R$ 184,2 mil",
+        Description = "Resultado consolidado do mês",
+        Trend = "+14,2%",
+        TrendType = "positive",
+        Icon = "chart-line",
+        Footer = "Dados estáticos para demonstração"
+    });
+    indicators.Widgets.Add(new KpiWidgetModel
+    {
+        Title = "Clientes ativos",
+        Value = "1.248",
+        Description = "Contas ativas no período",
+        Trend = "+6,8%",
+        TrendType = "positive",
+        Icon = "users",
+        Footer = "Dados estáticos para demonstração"
+    });
+    indicators.Widgets.Add(new KpiWidgetModel
+    {
+        Title = "Revisões pendentes",
+        Value = "27",
+        Description = "Itens aguardando validação",
+        Trend = "-9,4%",
+        TrendType = "positive",
+        Icon = "info",
+        Footer = "Dados estáticos para demonstração"
+    });
+
+    var workspace = new DashboardSectionModel
+    {
+        Title = "Workspace",
+        Description = "Widgets diferentes organizados pelo mesmo container genérico.",
+        Columns = DashboardColumns.Two
+    };
+
+    var actions = new QuickActionsWidgetModel
+    {
+        Title = "Ações rápidas",
+        Subtitle = "Atalhos demonstrativos"
+    };
+    actions.Actions.Add(new WidgetAction { Text = "Novo registro", Icon = "plus", Url = "#", Variant = "primary" });
+    actions.Actions.Add(new WidgetAction { Text = "Exportar", Icon = "download", Url = "#", Variant = "success" });
+    actions.Actions.Add(new WidgetAction { Text = "Revisar", Icon = "check", Url = "#", Variant = "info" });
+    actions.Actions.Add(new WidgetAction { Text = "Configurar", Icon = "settings", Url = "#", Variant = "warning" });
+
+    var activity = new ActivityFeedWidgetModel
+    {
+        Title = "Atividade recente",
+        Subtitle = "Conteúdo estático"
+    };
+    activity.Items.Add(new ActivityItem
+    {
+        Icon = "check",
+        Title = "Relatório disponibilizado",
+        Description = "O documento está pronto para revisão.",
+        Timestamp = new DateTimeOffset(2026, 7, 27, 9, 30, 0, TimeSpan.Zero),
+        Badge = "Concluído",
+        Color = "success"
+    });
+    activity.Items.Add(new ActivityItem
+    {
+        Icon = "user",
+        Title = "Novo registro criado",
+        Description = "Um item foi adicionado à demonstração.",
+        Timestamp = new DateTimeOffset(2026, 7, 27, 8, 0, 0, TimeSpan.Zero),
+        Badge = "Novo",
+        Color = "info"
+    });
+
+    workspace.Widgets.Add(actions);
+    workspace.Widgets.Add(activity);
+    dashboard.Sections.Add(overview);
+    dashboard.Sections.Add(indicators);
+    dashboard.Sections.Add(workspace);
+}
+
+@await Component.InvokeAsync("DashboardLayout", new { model = dashboard })
