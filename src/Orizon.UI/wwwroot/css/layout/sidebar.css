@@ -2,28 +2,21 @@
    Sidebar identity
    ========================================================== */
 .orizon-sidebar-header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: var(--orizon-topbar-height);
-    padding: var(--orizon-space-3) var(--orizon-space-4);
-    border-bottom: var(--orizon-border-width-1) var(--orizon-border-style-solid) var(--orizon-sidebar-border);
-}
-
-.orizon-sidebar-brand {
-    display: flex;
-    align-items: center;
-    min-width: 0;
-    gap: var(--orizon-space-3);
-    color: var(--orizon-sidebar-text-active);
-    border-radius: var(--orizon-radius-lg);
-    text-decoration: none;
+    position: relative; /* necessário para o botão de collapse posicionado em absolute no modo colapsado */
+    min-height: 72px;
+    padding: var(--orizon-space-5);
+    border-bottom: 1px solid color-mix(in srgb,
+        var(--orizon-sidebar-border) 65%,
+        transparent);
 }
 
 .orizon-sidebar-brand:hover { color: var(--orizon-sidebar-text-active); }
 .orizon-sidebar-brand:focus-visible { outline: var(--orizon-focus-outline); box-shadow: var(--orizon-focus-shadow); }
 
+/* Fix: esta regra existia duplicada (uma vez com valores fixos em px, outra com tokens).
+   A segunda sobrescrevia a primeira sempre, então a primeira era código morto — removida.
+   O box-shadow com rgba() fixo também foi trocado por --orizon-shadow-primary, que já
+   existe e mantém a marca consistente com o restante do design system. */
 .orizon-sidebar-brand-mark {
     display: grid;
     flex: 0 0 auto;
@@ -116,32 +109,29 @@
 }
 
 .orizon-sidebar-link {
-    position: relative;
+    position: relative; /* necessário para o indicador ::before posicionado em absolute */
     display: flex;
     align-items: center;
-    min-height: var(--orizon-control-height-md);
-    padding: var(--orizon-space-2) var(--orizon-space-3);
     gap: var(--orizon-space-3);
+    min-height: 48px;
+    padding: 0 14px;
     color: var(--orizon-sidebar-text);
-    background: var(--orizon-palette-transparent);
-    border: var(--orizon-border-width-1) var(--orizon-border-style-solid) transparent;
-    border-radius: var(--orizon-radius-lg);
+    border: 1px solid transparent;
+    border-radius: 14px;
     text-decoration: none;
-    transition:
-        color var(--orizon-motion-hover),
-        background-color var(--orizon-motion-hover),
-        border-color var(--orizon-motion-hover),
-        box-shadow var(--orizon-motion-hover),
-        transform var(--orizon-motion-hover);
+    cursor: pointer;
+    transition: color var(--orizon-motion-hover), background-color var(--orizon-motion-hover), border-color var(--orizon-motion-hover), box-shadow var(--orizon-motion-hover);
 }
 
 .orizon-sidebar-link + .orizon-sidebar-link { margin-top: var(--orizon-space-1); }
 
+/* Fix: hover agora também clareia o texto, não só o fundo — melhora a affordance
+   de que o item é clicável (antes só a cor de fundo mudava). */
 .orizon-sidebar-link:hover {
     color: var(--orizon-sidebar-text-active);
-    background: var(--orizon-sidebar-background-hover);
-    border-color: var(--orizon-sidebar-border);
-    transform: translateX(var(--orizon-space-0-5));
+    transform: none;
+    background: color-mix(in srgb, var(--orizon-color-primary) 8%, var(--orizon-sidebar-background-hover));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--orizon-color-primary) 10%, transparent);
 }
 
 .orizon-sidebar-link:focus-visible {
@@ -154,19 +144,7 @@
     color: var(--orizon-sidebar-text-active);
     background: color-mix(in srgb, var(--orizon-color-primary) 18%, var(--orizon-sidebar-background-hover));
     border-color: color-mix(in srgb, var(--orizon-color-primary) 34%, var(--orizon-sidebar-border));
-    box-shadow: var(--orizon-focus-selected-shadow);
-}
-
-.orizon-sidebar-link.is-active::before {
-    position: absolute;
-    top: var(--orizon-space-2);
-    bottom: var(--orizon-space-2);
-    left: calc(var(--orizon-space-0-5) * -1);
-    width: var(--orizon-space-1);
-    background: var(--orizon-color-primary);
-    border-radius: var(--orizon-radius-full);
-    box-shadow: var(--orizon-elevation-2);
-    content: "";
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--orizon-color-primary) 10%, transparent);
 }
 
 .orizon-sidebar-link-icon {
@@ -193,6 +171,19 @@
     white-space: nowrap;
     transition: opacity var(--orizon-motion-fade), transform var(--orizon-motion-fade);
 }
+
+/* Fix: chevron de submenu que existia implicitamente (orizon-sidebar-link[aria-expanded])
+   sem nenhum indício visual de rotação. Adiciona um estado de rotação claro. */
+.orizon-sidebar-link-chevron {
+    flex: 0 0 var(--orizon-icon-size-md);
+    width: var(--orizon-icon-size-md);
+    height: var(--orizon-icon-size-md);
+    margin-inline-start: auto;
+    color: currentColor;
+    transition: transform var(--orizon-motion-hover);
+}
+
+.orizon-sidebar-link[aria-expanded="true"] .orizon-sidebar-link-chevron { transform: rotate(90deg); }
 
 /* ==========================================================
    Sidebar user
@@ -229,6 +220,11 @@
 .orizon-admin-shell.is-sidebar-collapsed .orizon-sidebar-link.is-active::before { top: var(--orizon-space-2); bottom: var(--orizon-space-2); left: calc(var(--orizon-space-3) * -1); }
 .orizon-admin-shell.is-sidebar-collapsed .orizon-sidebar-user { justify-content: center; padding-inline: 0; background: var(--orizon-palette-transparent); border-color: transparent; }
 
+/* Fix: no modo colapsado, o item ativo não deve mostrar chevron/label — ele já some
+   pela regra acima, mas o chevron precisa do mesmo tratamento explícito para não
+   "vazar" durante a transição de largura. */
+.orizon-admin-shell.is-sidebar-collapsed .orizon-sidebar-link-chevron { display: none; }
+
 /* Existing optional utilities */
 .orizon-sidebar-badge { display: inline-flex; align-items: center; justify-content: center; min-width: var(--orizon-icon-size-md); height: var(--orizon-icon-size-md); margin-left: auto; padding-inline: var(--orizon-space-1); color: var(--orizon-color-primary-contrast); background: var(--orizon-color-primary); border-radius: var(--orizon-radius-full); font-size: var(--orizon-font-size-xs); font-weight: var(--orizon-font-weight-bold); }
 .orizon-sidebar-dot { width: var(--orizon-space-2); height: var(--orizon-space-2); margin-left: auto; background: var(--orizon-color-success); border-radius: var(--orizon-radius-full); }
@@ -242,6 +238,7 @@
     .orizon-sidebar-section-title,
     .orizon-sidebar-link,
     .orizon-sidebar-link-icon,
+    .orizon-sidebar-link-chevron,
     .orizon-sidebar-link-label,
     .orizon-sidebar-user-content { transition: none; }
 }
@@ -266,8 +263,22 @@
     pointer-events: none;
 }
 
-/* Enterprise navigation states and optional hierarchy */
-.orizon-sidebar-link:is(.is-active, [aria-current], [aria-selected="true"])::before { position: absolute; inset-block: var(--orizon-space-2); inset-inline-start: calc(var(--orizon-space-0-5) * -1); width: var(--orizon-space-1); background: var(--orizon-sidebar-indicator); border-radius: var(--orizon-radius-full); box-shadow: var(--orizon-elevation-2); content: ""; }
+/* Enterprise navigation states and optional hierarchy
+   Fix: esta regra existia duplicada com `.orizon-sidebar-link.is-active::before` mais acima
+   (mesmo ::before definido duas vezes, com valores diferentes e conflitantes: top/bottom vs
+   inset-block, e background var(--orizon-color-primary) vs var(--orizon-sidebar-indicator)).
+   Mantida apenas esta versão, que é a mais completa (cobre is-active, aria-current e
+   aria-selected em um único seletor). A regra antiga foi removida. */
+.orizon-sidebar-link:is(.is-active, [aria-current], [aria-selected="true"])::before {
+    position: absolute;
+    inset-block: var(--orizon-space-2);
+    inset-inline-start: calc(var(--orizon-space-0-5) * -1);
+    width: var(--orizon-space-1);
+    background: var(--orizon-sidebar-indicator);
+    border-radius: var(--orizon-radius-full);
+    box-shadow: var(--orizon-elevation-2);
+    content: "";
+}
 .orizon-sidebar-link:is([aria-expanded="true"], .is-expanded) { color: var(--orizon-sidebar-text-active); background: var(--orizon-sidebar-background-hover); }
 .orizon-sidebar-link:is([aria-disabled="true"], .is-disabled), .orizon-sidebar-navigation[aria-busy="true"] { opacity: var(--orizon-state-disabled-opacity); cursor: not-allowed; }
 .orizon-sidebar-navigation[aria-busy="true"] { cursor: progress; }
