@@ -1,0 +1,48 @@
+@using Orizon.UI.Enums.Templates
+@model Orizon.UI.Models.Templates.DashboardTemplateModel
+@{
+    var manifest = Model.Manifest!;
+    var options = Model.Options!;
+}
+
+<div class="orz-template-catalog">
+    <section class="orz-template-catalog__gallery">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Template SDK Foundation</span>
+                <h1>Template SDK</h1>
+                <p>Composição estática e independente de domínio usando os contratos oficiais.</p>
+            </div>
+        </header>
+
+        <div class="template-grid" aria-label="Fluxo do Template SDK">
+            <orizon-card title="Manifest"><strong>@manifest.DisplayName</strong><p>@manifest.Version · @manifest.Category</p></orizon-card>
+            <p aria-hidden="true">↓</p>
+            <orizon-card title="Factory"><strong>@ViewData["FactoryName"]</strong><p>CanCreate: true</p></orizon-card>
+            <p aria-hidden="true">↓</p>
+            <orizon-card title="Builder"><strong>DashboardTemplateBuilder</strong><p>Manifest + Options + Context + Slots</p></orizon-card>
+            <p aria-hidden="true">↓</p>
+            <orizon-card title="Registry"><strong>DashboardTemplateRegistry</strong><p>Registro explícito, sem reflexão</p></orizon-card>
+            <p aria-hidden="true">↓</p>
+            <orizon-card title="Template"><strong>@Model.Name</strong><p>@string.Join(" · ", manifest.Widgets)</p></orizon-card>
+            <p aria-hidden="true">↓</p>
+            <orizon-card title="Renderização"><strong>@Model.Context!.Rendering["mode"]</strong><p>Tema: @options.Theme</p></orizon-card>
+        </div>
+
+        <orizon-card title="Composição">
+            <pre><code>var template = new DashboardTemplateBuilder()
+    .UseManifest(manifest)
+    .UseOptions(options)
+    .UseContext(context)
+    .UseTheme(DashboardTheme.@options.Theme)
+    .Header("Header")
+    .Toolbar("Toolbar")
+    .Sidebar("Sidebar")
+    .Content("Content")
+    .Footer("Footer")
+    .Build();</code></pre>
+        </orizon-card>
+    </section>
+
+    @await Component.InvokeAsync("DashboardTemplate", new { model = Model })
+</div>

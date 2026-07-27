@@ -1,0 +1,69 @@
+@model Orizon.UI.Sandbox.Models.ResponsiveLayoutExplorerViewModel
+@{
+    var context = Model.Template.Context!;
+    ViewData["Title"] = "Responsive Layout Explorer";
+    ViewData["ApplicationName"] = "Orizon Studio";
+}
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+
+<main class="studio" data-studio-page>
+    <partial name="_StudioHeader" model='new Orizon.UI.Sandbox.Models.StudioPageViewModel
+    {
+        Section = "Responsive Layout Explorer"
+    }' />
+
+    <div class="orz-template-catalog">
+        <section class="orz-template-catalog__gallery" aria-labelledby="responsive-layout-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Responsive Layout Engine</span>
+                <h1 id="responsive-layout-title">Responsive Layout Explorer</h1>
+                <p>Layout, zonas e placements declarados pelo template registrado.</p>
+            </div>
+        </header>
+
+        <nav class="orz-template-preview__actions" aria-label="Selecionar breakpoint">
+            @foreach (var breakpoint in Model.SupportedBreakpoints)
+            {
+                <orizon-button href="/studio/responsive-layout?breakpoint=@breakpoint"
+                               text="@breakpoint.ToString()"
+                               variant="@(breakpoint == Model.CurrentBreakpoint ? "solid" : "outline")"
+                               size="sm" />
+            }
+        </nav>
+
+        <div class="template-grid">
+            <orizon-card title="Breakpoint atual">
+                <h2>@Model.CurrentBreakpoint</h2>
+                <p>Default: @Model.Template.Manifest?.DefaultBreakpoint</p>
+            </orizon-card>
+            <orizon-card title="Layout">
+                @foreach (var layout in context.Layout.OrderBy(item => item.Key))
+                {
+                    <p><strong>@layout.Key:</strong> @layout.Value.Columns coluna(s), stack: @(layout.Value.Stack ?? false)</p>
+                }
+            </orizon-card>
+            <orizon-card title="Zones">
+                @foreach (var zone in context.Zones)
+                {
+                    <p><strong>@zone.Name</strong> · @zone.Zone · ordem @(zone.Options.Order?.ToString() ?? "—")</p>
+                }
+            </orizon-card>
+            <orizon-card title="Widget Placement">
+                @foreach (var placement in context.Placements.OrderBy(item => item.Order))
+                {
+                    <p>
+                        <code>@placement.WidgetId</code> →
+                        @placement.Zone / @placement.Region ·
+                        ordem @(placement.Order?.ToString() ?? "—") ·
+                        prioridade @(placement.Priority?.ToString() ?? "—")
+                    </p>
+                }
+            </orizon-card>
+        </div>
+        </section>
+
+        @await Component.InvokeAsync("DashboardTemplate", new { model = Model.Template })
+    </div>
+</main>
+@section Scripts { <script src="~/js/studio.js" asp-append-version="true"></script> }

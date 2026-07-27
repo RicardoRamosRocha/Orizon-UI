@@ -1,7 +1,12 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Orizon.UI.Icons;
+using Orizon.UI.Registry;
 using Orizon.UI.Sandbox.Models;
+using Orizon.UI.Builders;
+using Orizon.UI.Models.Layout;
+using Orizon.UI.Models.Templates;
+using Orizon.UI.Studio.Designer;
 
 namespace Orizon.UI.Sandbox.Controllers;
 
@@ -34,6 +39,49 @@ public sealed class StudioController : Controller
     [HttpGet("layout")]
     public IActionResult LayoutBuilder() => View(Page("Layout Builder"));
 
+    [HttpGet("templates")]
+    public IActionResult TemplateGallery()
+    {
+        var registry = new DashboardTemplateRegistry();
+        ViewData["Title"] = "Template Gallery";
+        return View("~/Views/Templates/Dashboard.cshtml", registry.GetAll());
+    }
+
+    [HttpGet("template-composition")]
+    public IActionResult TemplateComposition()
+    {
+        ViewData["Title"] = "Template Composition";
+        return View(
+            "~/Views/Templates/Composition.cshtml",
+            CreateTemplateCompositionPage());
+    }
+
+    [HttpGet("responsive-layout")]
+    public IActionResult ResponsiveLayoutExplorer(
+        ResponsiveBreakpoint breakpoint = ResponsiveBreakpoint.Desktop)
+    {
+        var registry = new DashboardTemplateRegistry();
+        ViewData["Title"] = "Responsive Layout Explorer";
+        return View(new ResponsiveLayoutExplorerViewModel
+        {
+            Template = CreateResponsiveTemplate(registry.Create("erp"), breakpoint),
+            CurrentBreakpoint = breakpoint,
+            SupportedBreakpoints = registry.GetSupportedBreakpoints("erp")
+        });
+    }
+
+    [HttpGet("designer")]
+    public IActionResult Designer(
+        string template = "executive",
+        ResponsiveBreakpoint breakpoint = ResponsiveBreakpoint.Desktop)
+    {
+        var designer = new VisualTemplateDesignerModel(new DashboardTemplateRegistry());
+        designer.LoadTemplate(template);
+        designer.ChangeViewport(breakpoint);
+        ViewData["Title"] = "Visual Template Designer";
+        return View(designer);
+    }
+
     private static StudioPageViewModel Page(string section, StudioComponentDocumentation? component = null) => new()
     {
         Section = section,
@@ -43,20 +91,49 @@ public sealed class StudioController : Controller
         SearchItems = CreateSearchItems()
     };
 
+    internal static TemplateCompositionPageViewModel CreateTemplateCompositionPage()
+    {
+        var registry = new DashboardTemplateRegistry();
+        return new TemplateCompositionPageViewModel
+        {
+            BaseTemplate = registry.Create("executive"),
+            DerivedTemplate = registry.Create("erp"),
+            BaseManifest = registry.GetManifest("executive")!,
+            DerivedManifest = registry.GetManifest("erp")!,
+            CompositionTree = registry.GetCompositionTree()
+        };
+    }
+
+    internal static DashboardTemplateModel CreateResponsiveTemplate(
+        DashboardTemplateModel source,
+        ResponsiveBreakpoint breakpoint)
+    {
+        return new DashboardTemplateBuilder()
+            .Inherit(source)
+            .UseManifest(source.Manifest!)
+            .UseResponsiveLayout(breakpoint)
+            .BuildLayout()
+            .Build();
+    }
+
     private static IReadOnlyList<StudioSearchItem> CreateSearchItems()
     {
         var items = Components.Select(item => new StudioSearchItem(item.Name, "Componente", $"/studio/components/{item.Slug}", item.Description));
         var icons = Icons.Select(item => new StudioSearchItem(item.Name, $"Ícone · {item.Category}", $"/studio/icons#{item.Name}", item.Category));
+        var templates = new DashboardTemplateRegistry().GetManifests().Select(manifest => new StudioSearchItem(
+            manifest.DisplayName ?? manifest.Name,
+            $"Template · {manifest.Category}",
+            $"/templates/dashboard/{manifest.Name}",
+            string.Join(" ", manifest.Tags.Append(manifest.Description ?? string.Empty))));
         var fixedItems = new[]
         {
-            new StudioSearchItem("Admin Dashboard", "Template", "/components/templates/admin", "dashboard template"),
-            new StudioSearchItem("CRUD", "Template", "/components/templates/crud", "table form"),
             new StudioSearchItem("Dashboard Layout", "Layout", "/studio/layout", "sidebar topbar cards widgets"),
             new StudioSearchItem("Design Tokens", "Foundation", "/catalog/foundations/colors", "colors radius spacing shadow"),
             new StudioSearchItem("Typography", "Foundation", "/catalog/foundations/typography", "type scale font"),
-            new StudioSearchItem("Theme Builder", "Ferramenta", "/studio/theme", "dark mode tokens colors")
+            new StudioSearchItem("Theme Builder", "Ferramenta", "/studio/theme", "dark mode tokens colors"),
+            new StudioSearchItem("Visual Template Designer", "Ferramenta", "/studio/designer", "templates canvas toolbox properties responsive")
         };
-        return items.Concat(icons).Concat(fixedItems).ToArray();
+        return items.Concat(icons).Concat(templates).Concat(fixedItems).ToArray();
     }
 
     private static IReadOnlyList<StudioIconItem> LoadIcons()

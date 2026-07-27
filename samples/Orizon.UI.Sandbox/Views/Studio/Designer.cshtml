@@ -1,0 +1,143 @@
+@using Orizon.UI.Models.Designer
+@using Orizon.UI.Models.Layout
+@using System.Text.Json
+@model Orizon.UI.Studio.Designer.VisualTemplateDesignerModel
+@{
+    var template = Model.Canvas.Template!;
+    ViewData["Title"] = "Visual Template Designer";
+    ViewData["ApplicationName"] = "Orizon Studio";
+}
+@section Styles { <link rel="stylesheet" href="~/css/studio.css" asp-append-version="true" /> }
+
+<main class="studio" data-studio-page>
+    <partial name="_StudioHeader" model='new Orizon.UI.Sandbox.Models.StudioPageViewModel
+    {
+        Section = "Visual Template Designer"
+    }' />
+
+    <section class="designer-shell" aria-labelledby="designer-title">
+        <header class="designer-toolbar">
+            <div>
+                <span class="studio-kicker">In-memory visual editor</span>
+                <h2 id="designer-title">@template.DisplayName</h2>
+            </div>
+            <nav aria-label="Carregar template">
+                @foreach (var item in Model.Templates)
+                {
+                    <orizon-button href="/studio/designer?template=@item.Name&breakpoint=@Model.Viewport.Current"
+                                   text="@(item.DisplayName ?? item.Name)"
+                                   variant="@(item.Name == template.Name ? "solid" : "outline")"
+                                   size="sm" />
+                }
+            </nav>
+            <nav aria-label="Viewport">
+                @foreach (var viewport in Model.Viewport.Available)
+                {
+                    <button type="button"
+                            class="designer-viewport-button @(viewport == Model.Viewport.Current ? "is-active" : null)"
+                            data-designer-viewport="@viewport">@viewport</button>
+                }
+            </nav>
+        </header>
+
+        <div class="designer-workspace">
+            <aside class="designer-panel designer-toolbox" aria-label="Toolbox">
+                <h3>Toolbox</h3>
+                @foreach (var group in Model.Toolbox.Groups)
+                {
+                    <details open="@(group.Name is "Widgets" or "Templates")">
+                        <summary>@group.Name <span>@group.Items.Count</span></summary>
+                        @foreach (var item in group.Items)
+                        {
+                            <div class="designer-toolbox-item"
+                                 draggable="@(group.Name == "Widgets" ? "true" : "false")"
+                                 data-designer-toolbox-widget="@(group.Name == "Widgets" ? item.Key : null)"
+                                 data-designer-widget-name="@item.Name">@item.Name</div>
+                        }
+                    </details>
+                }
+            </aside>
+
+            <section class="designer-canvas designer-viewport--@Model.Viewport.Current.ToString().ToLowerInvariant()"
+                     aria-label="Canvas">
+                <header>
+                    <span>Canvas · @Model.Viewport.Current</span>
+                    <strong>@template.LayoutName</strong>
+                </header>
+                <div class="designer-canvas-frame" data-designer-canvas>
+                    <div class="designer-canvas-meta">
+                        <span>@Model.Canvas.Zones.Count zones</span>
+                        <span>@Model.Canvas.Widgets.Count widgets</span>
+                        <span>@Model.Canvas.Slots.Count slots</span>
+                    </div>
+                    <div class="designer-zone-list" data-designer-zones>
+                        @foreach (var zone in Model.Canvas.Zones)
+                        {
+                            <section class="designer-zone" data-designer-zone="@zone.Name" data-zone-kind="@zone.Kind" draggable="true">
+                                <header><span class="designer-zone-handle" title="Mover zone">⋮⋮</span><strong>@zone.Name</strong><small>@zone.Kind</small></header>
+                                <div class="designer-zone-widgets">
+                                    @foreach (var widget in zone.Widgets.OrderBy(item => item.Placement?.Order))
+                                    {
+                                        <article class="designer-widget" draggable="true"
+                                                 data-designer-widget="@widget.Id"
+                                                 data-widget-name="@widget.Name"
+                                                 data-zone="@zone.Name"
+                                                 data-zone-kind="@zone.Kind"
+                                                 data-order="@widget.Placement?.Order"
+                                                 data-priority="@widget.Placement?.Priority"
+                                                 data-visible-on="@string.Join(",", widget.Placement?.VisibleOn ?? [])"
+                                                 data-hidden-on="@string.Join(",", widget.Placement?.HiddenOn ?? [])">
+                                            <span class="designer-widget-handle">⋮⋮</span>
+                                            <div><strong>@(widget.Model is Orizon.UI.Models.Widgets.WidgetModelBase model ? model.Title ?? widget.Name : widget.Name)</strong><small>@widget.Name · #@widget.Placement?.Order</small></div>
+                                            <div class="designer-widget-actions">
+                                                <button type="button" data-designer-duplicate aria-label="Duplicar widget">＋</button>
+                                                <button type="button" data-designer-delete aria-label="Remover widget">×</button>
+                                            </div>
+                                        </article>
+                                    }
+                                    <div class="designer-zone-placeholder">Solte widgets nesta zone</div>
+                                </div>
+                            </section>
+                        }
+                    </div>
+                </div>
+            </section>
+
+            <aside class="designer-panel designer-properties" aria-label="Properties">
+                <h3>Properties</h3>
+                <section><h4>Manifest</h4><dl>
+                    <dt>Name</dt><dd>@Model.Properties.Manifest?.Name</dd>
+                    <dt>Version</dt><dd>@Model.Properties.Manifest?.Version</dd>
+                    <dt>Category</dt><dd>@Model.Properties.Manifest?.Category</dd>
+                </dl></section>
+                <section><h4>Widget</h4><p data-designer-property="widget">Nenhum widget selecionado</p></section>
+                <section><h4>Placement</h4><dl>
+                    <dt>Zone</dt><dd data-designer-property="zone">—</dd>
+                    <dt>Order</dt><dd data-designer-property="order">—</dd>
+                    <dt>Priority</dt><dd data-designer-property="priority">—</dd>
+                    <dt>VisibleOn</dt><dd data-designer-property="visibleOn">—</dd>
+                    <dt>HiddenOn</dt><dd data-designer-property="hiddenOn">—</dd>
+                </dl></section>
+                <section><h4>Responsive</h4><p><span data-designer-property="viewport">@Model.Viewport.Current</span> · @Model.Viewport.Available.Count breakpoints</p></section>
+                <section><h4>Composition</h4><p>@(Model.Properties.Composition?.BaseTemplate?.DisplayName ?? "Template base")</p></section>
+            </aside>
+        </div>
+
+        <footer class="designer-status">
+            <span>Ready</span>
+            <span data-designer-selection>Selection: @Model.Selection.Kind</span>
+            <button type="button" data-designer-undo disabled>Undo</button>
+            <button type="button" data-designer-redo disabled>Redo</button>
+            <span data-designer-history>0 changes</span>
+            <span>In-memory only</span>
+        </footer>
+    </section>
+    <script type="application/json" data-designer-config>
+        @Html.Raw(JsonSerializer.Serialize(new {
+            template = template.Name,
+            viewport = Model.Viewport.Current.ToString(),
+            selectedWidget = Model.Selection.Widget?.Id
+        }))
+    </script>
+</main>
+@section Scripts { <script src="~/js/designer.js" asp-append-version="true"></script> }

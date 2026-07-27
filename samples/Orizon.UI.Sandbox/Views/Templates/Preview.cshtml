@@ -1,4 +1,7 @@
 @model Orizon.UI.Models.Templates.DashboardTemplateModel
+@{
+    var manifest = Model.Manifest ?? Orizon.UI.Models.Templates.DashboardTemplateManifest.FromModel(Model);
+}
 
 <div class="orz-template-catalog">
     <nav class="orz-template-preview__actions" aria-label="Navegação do template">
@@ -8,6 +11,79 @@
                        variant="outline"
                        size="sm" />
     </nav>
+
+    <section class="orz-template-catalog__gallery" aria-labelledby="manifest-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Manifest</span>
+                <h1 id="manifest-title">@manifest.DisplayName</h1>
+                <p>@manifest.Description</p>
+            </div>
+        </header>
+
+        <div class="template-grid">
+            <orizon-card title="Manifest">
+                <dl>
+                    <dt>Name</dt><dd>@manifest.Name</dd>
+                    <dt>Category</dt><dd>@manifest.Category</dd>
+                    <dt>Version</dt><dd>@manifest.Version</dd>
+                    <dt>Author</dt><dd>@manifest.Author</dd>
+                    <dt>Minimum Version</dt><dd>@manifest.MinimumVersion</dd>
+                </dl>
+            </orizon-card>
+            <orizon-card title="Supported Themes">
+                <p>@string.Join(" · ", manifest.SupportedThemes)</p>
+            </orizon-card>
+            <orizon-card title="Widgets">
+                <p>@string.Join(" · ", manifest.Widgets)</p>
+            </orizon-card>
+            <orizon-card title="Layout">
+                <p>@manifest.LayoutName</p>
+            </orizon-card>
+            @if (manifest.SupportsComposition == true || manifest.Composable == true)
+            {
+                <orizon-card title="Composition">
+                    <p><strong>Base Template:</strong> @(manifest.BaseTemplate ?? "—")</p>
+                    <p><strong>Regions:</strong> @(manifest.Regions.Count > 0 ? string.Join(" · ", manifest.Regions) : "—")</p>
+                    <p><strong>Inherited Widgets:</strong> @(manifest.InheritedWidgets.Count > 0 ? string.Join(" · ", manifest.InheritedWidgets) : "—")</p>
+                    <p><strong>Derived Templates:</strong> @(manifest.DerivedTemplates.Count > 0 ? string.Join(" · ", manifest.DerivedTemplates) : "—")</p>
+                </orizon-card>
+            }
+            @if (manifest.SupportsResponsiveLayout == true)
+            {
+                <orizon-card title="Responsive Layout">
+                    <p><strong>Default Breakpoint:</strong> @manifest.DefaultBreakpoint</p>
+                    <p><strong>Supported:</strong> @string.Join(" · ", manifest.SupportedBreakpoints)</p>
+                    <p><strong>Density:</strong> @(manifest.PreferredDensity ?? "—")</p>
+                    <p><strong>Default Zones:</strong> @string.Join(" · ", manifest.DefaultZones)</p>
+                </orizon-card>
+            }
+            <orizon-card title="Metadata">
+                @foreach (var item in manifest.Metadata)
+                {
+                    <p><strong>@item.Key:</strong> @item.Value</p>
+                }
+                <p>Tags: @string.Join(", ", manifest.Tags)</p>
+            </orizon-card>
+            <orizon-card title="Preview">
+                @if (!string.IsNullOrWhiteSpace(manifest.PreviewImage))
+                {
+                    <img src="@manifest.PreviewImage" alt="Preview de @manifest.DisplayName" />
+                }
+                else
+                {
+                    <div style="height:5rem;background:@(manifest.PreviewColor ?? "var(--orizon-color-primary)")"></div>
+                }
+            </orizon-card>
+        </div>
+
+        <orizon-card title="Código de exemplo">
+            <pre><code>var template = new DashboardTemplateBuilder()
+    .UseManifest(registry.GetManifest("@manifest.Name")!)
+    .UseTheme(DashboardTheme.@(manifest.SupportedThemes.FirstOrDefault()))
+    .Build();</code></pre>
+        </orizon-card>
+    </section>
 
     @await Component.InvokeAsync("DashboardTemplate", new { model = Model })
 </div>

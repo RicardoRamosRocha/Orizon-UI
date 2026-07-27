@@ -1,0 +1,110 @@
+@using Orizon.UI.Models.Templates
+@model Orizon.UI.Sandbox.Models.TemplateCompositionPageViewModel
+@{
+    var composition = Model.DerivedTemplate.Composition ?? new TemplateComposition();
+    var inherited = composition.InheritedRegions;
+    var replaced = composition.ReplacedRegions;
+    var added = composition.AddedRegions;
+}
+
+<div class="orz-template-catalog">
+    <section class="orz-template-catalog__gallery" aria-labelledby="composition-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Orizon Studio</span>
+                <h1 id="composition-title">Template Composition</h1>
+                <p>Composição declarativa derivada exclusivamente do Manifest e do DashboardTemplateRegistry.</p>
+            </div>
+        </header>
+
+        <div class="template-grid">
+            <orizon-card title="Base Template">
+                <h2>@Model.BaseManifest.DisplayName</h2>
+                <p><code>@Model.BaseManifest.Name</code></p>
+                <p>@Model.BaseManifest.Description</p>
+            </orizon-card>
+
+            <orizon-card title="Inherited Regions">
+                @if (inherited.Count > 0)
+                {
+                    @foreach (var region in inherited)
+                    {
+                        <orizon-badge variant="success" size="sm" pill>@region</orizon-badge>
+                    }
+                }
+                else
+                {
+                    <p>Nenhuma região herdada.</p>
+                }
+            </orizon-card>
+
+            <orizon-card title="Replaced Regions">
+                @if (replaced.Count > 0)
+                {
+                    @foreach (var region in replaced)
+                    {
+                        <orizon-badge variant="warning" size="sm" pill>@region</orizon-badge>
+                    }
+                }
+                else
+                {
+                    <p>Nenhuma região substituída.</p>
+                }
+            </orizon-card>
+
+            <orizon-card title="Added Regions">
+                @if (added.Count > 0)
+                {
+                    @foreach (var region in added)
+                    {
+                        <orizon-badge variant="primary" size="sm" pill>@region</orizon-badge>
+                    }
+                }
+                else
+                {
+                    <p>Nenhuma região adicionada; a estrutura-base foi preservada.</p>
+                }
+            </orizon-card>
+
+            <orizon-card title="Composition Tree">
+                @foreach (var root in Model.CompositionTree)
+                {
+                    <p>
+                        <strong>@root.Template.DisplayName</strong>
+                        @foreach (var derived in root.DerivedTemplates)
+                        {
+                            <span> ↓ @derived.Template.DisplayName</span>
+                        }
+                    </p>
+                }
+            </orizon-card>
+
+            <orizon-card title="Final Composition">
+                <p><strong>@Model.DerivedManifest.DisplayName</strong></p>
+                <p>Base: @Model.DerivedManifest.BaseTemplate</p>
+                <p>Regiões: @string.Join(" · ", Model.DerivedManifest.Regions)</p>
+                <p>Widgets herdados: @string.Join(" · ", Model.DerivedManifest.InheritedWidgets)</p>
+            </orizon-card>
+        </div>
+    </section>
+
+    <section class="orz-template-catalog__gallery" aria-labelledby="base-preview-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Base</span>
+                <h2 id="base-preview-title">@Model.BaseManifest.DisplayName</h2>
+            </div>
+        </header>
+        @await Component.InvokeAsync("DashboardTemplate", new { model = Model.BaseTemplate })
+    </section>
+
+    <section class="orz-template-catalog__gallery" aria-labelledby="derived-preview-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Derivado</span>
+                <h2 id="derived-preview-title">@Model.DerivedManifest.DisplayName</h2>
+            </div>
+        </header>
+        @await Component.InvokeAsync("DashboardTemplate", new { model = Model.DerivedTemplate })
+    </section>
+</div>

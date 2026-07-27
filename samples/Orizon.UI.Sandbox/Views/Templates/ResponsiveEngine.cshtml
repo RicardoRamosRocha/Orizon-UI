@@ -1,0 +1,28 @@
+@model Orizon.UI.Sandbox.Models.ResponsiveDashboardEngineViewModel
+
+<div class="orz-template-catalog">
+    <section class="orz-template-catalog__gallery" aria-labelledby="responsive-engine-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Sandbox</span>
+                <h1 id="responsive-engine-title">Responsive Dashboard Engine</h1>
+                <p>O mesmo ERP Dashboard materializado em três breakpoints, sem duplicação do template.</p>
+            </div>
+        </header>
+    </section>
+
+    @foreach (var preview in Model.Previews)
+    {
+        <section class="orz-template-catalog__gallery"
+                 aria-labelledby="breakpoint-@preview.Breakpoint.ToString().ToLowerInvariant()">
+            <header class="orz-template-catalog__header">
+                <div>
+                    <span>Breakpoint</span>
+                    <h2 id="breakpoint-@preview.Breakpoint.ToString().ToLowerInvariant()">@preview.Breakpoint</h2>
+                    <p>@preview.Template.Context?.Placements.Count placements distribuídos pelo Layout Engine.</p>
+                </div>
+            </header>
+            @await Component.InvokeAsync("DashboardTemplate", new { model = preview.Template })
+        </section>
+    }
+</div>

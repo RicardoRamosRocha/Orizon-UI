@@ -1,0 +1,28 @@
+@model Orizon.UI.Models.Templates.DashboardTemplateModel
+@{
+    var manifest = Model.Manifest
+        ?? Orizon.UI.Models.Templates.DashboardTemplateManifest.FromModel(Model);
+}
+
+<div class="orz-template-catalog">
+    <nav class="orz-template-preview__actions" aria-label="Navegação do template">
+        <orizon-button href="/studio/templates"
+                       text="Voltar para Gallery"
+                       icon="arrow-left"
+                       variant="outline"
+                       size="sm" />
+        <orizon-badge variant="primary" size="sm">@manifest.Category</orizon-badge>
+    </nav>
+
+    <section class="orz-template-catalog__gallery" aria-labelledby="erp-dashboard-title">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Sandbox · dados fictícios</span>
+                <h1 id="erp-dashboard-title">@manifest.DisplayName</h1>
+                <p>@manifest.Description</p>
+            </div>
+        </header>
+
+        @await Component.InvokeAsync("DashboardTemplate", new { model = Model })
+    </section>
+</div>

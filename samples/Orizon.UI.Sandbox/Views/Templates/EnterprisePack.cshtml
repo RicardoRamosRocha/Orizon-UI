@@ -1,0 +1,30 @@
+@model IReadOnlyCollection<Orizon.UI.Models.Templates.DashboardTemplateModel>
+@{
+    var templates = Model.ToArray();
+}
+
+<div class="orz-template-catalog">
+    <section class="orz-template-catalog__gallery">
+        <header class="orz-template-catalog__header">
+            <div>
+                <span>Template SDK</span>
+                <h1>Enterprise Dashboard Pack</h1>
+                <p>Cinco templates genéricos criados e renderizados por suas factories explícitas.</p>
+            </div>
+        </header>
+
+        @for (var index = 0; index < templates.Length; index++)
+        {
+            var template = templates[index];
+            <section aria-labelledby="pack-@template.Name">
+                <h2 id="pack-@template.Name">@template.Manifest!.DisplayName</h2>
+                <p>@template.Manifest.Description</p>
+                @await Component.InvokeAsync("DashboardTemplate", new { model = template })
+            </section>
+            @if (index < templates.Length - 1)
+            {
+                <p aria-hidden="true">↓</p>
+            }
+        }
+    </section>
+</div>

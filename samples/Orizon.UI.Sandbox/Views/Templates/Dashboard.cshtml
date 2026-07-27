@@ -48,6 +48,21 @@
             </label>
         </header>
 
+        <nav class="orz-template-preview__actions" aria-label="Filtrar templates por categoria">
+            <button type="button" class="orizon-button orizon-button--outline orizon-button--sm"
+                    data-template-category-filter="">Todos</button>
+            @foreach (var category in Model
+                .Select(template => template.Manifest?.Category)
+                .Where(category => !string.IsNullOrWhiteSpace(category))
+                .Select(category => category!)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Order(StringComparer.OrdinalIgnoreCase))
+            {
+                <button type="button" class="orizon-button orizon-button--outline orizon-button--sm"
+                        data-template-category-filter="@category.ToLowerInvariant()">@category</button>
+            }
+        </nav>
+
         <div class="orz-template-catalog__grid" data-template-results>
             @foreach (var template in Model)
             {
