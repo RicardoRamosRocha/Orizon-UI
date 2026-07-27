@@ -12,6 +12,7 @@ public sealed class DashboardTemplatePreviewViewComponent : ViewComponent
         return View("Default", new DashboardTemplatePreviewModel
         {
             Template = model,
+            Manifest = model.Manifest ?? DashboardTemplateManifest.FromModel(model),
             UsageCode = CreateUsageCode(model)
         });
     }

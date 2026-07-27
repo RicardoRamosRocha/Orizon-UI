@@ -7,5 +7,7 @@ public sealed class DashboardTemplatePreviewModel
 {
     public required DashboardTemplateModel Template { get; init; }
 
+    public required DashboardTemplateManifest Manifest { get; init; }
+
     public required string UsageCode { get; init; }
 }

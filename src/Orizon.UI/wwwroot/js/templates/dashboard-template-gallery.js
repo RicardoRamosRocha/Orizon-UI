@@ -9,6 +9,8 @@ const initializeTemplateGallery = (gallery) => {
     const input = gallery.querySelector("[data-template-search-input]");
     const cards = [...gallery.querySelectorAll("[data-template-card]")];
     const empty = gallery.querySelector("[data-template-empty]");
+    const categoryFilters = [...gallery.querySelectorAll("[data-template-category-filter]")];
+    let category = "";
 
     if (!input || cards.length === 0 || !empty) {
         return;
@@ -20,7 +22,10 @@ const initializeTemplateGallery = (gallery) => {
 
         cards.forEach((card) => {
             const value = normalizeTemplateSearch(card.dataset.templateSearch ?? "");
-            const visible = query.length === 0 || value.includes(query);
+            const matchesQuery = query.length === 0 || value.includes(query);
+            const matchesCategory = category.length === 0 ||
+                normalizeTemplateSearch(card.dataset.templateCategory ?? "") === category;
+            const visible = matchesQuery && matchesCategory;
             card.hidden = !visible;
             visibleCount += visible ? 1 : 0;
         });
@@ -29,6 +34,14 @@ const initializeTemplateGallery = (gallery) => {
     };
 
     input.addEventListener("input", filter);
+    categoryFilters.forEach((button) => {
+        button.addEventListener("click", () => {
+            category = normalizeTemplateSearch(button.dataset.templateCategoryFilter ?? "");
+            categoryFilters.forEach((item) =>
+                item.setAttribute("aria-pressed", String(item === button)));
+            filter();
+        });
+    });
 };
 
 document

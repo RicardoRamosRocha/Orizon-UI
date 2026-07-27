@@ -38,4 +38,12 @@ public sealed class DashboardTemplateModel
 
     public IDictionary<string, object?> Metadata { get; } =
         new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
+
+    public DashboardTemplateManifest? Manifest { get; set; }
+
+    public DashboardTemplateOptions? Options { get; set; }
+
+    public DashboardTemplateContext? Context { get; set; }
+
+    public TemplateComposition? Composition { get; set; }
 }
